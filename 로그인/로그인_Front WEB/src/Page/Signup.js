@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import Header from "../component_frame/Header";
-import Manu from "../component_frame/Manu";
-import List from "../component_frame/List";
+import Header from "../component_frame/component/Header";
+import Manu from "../component_frame/component/Manu";
+import List from "../component_frame/component/List";
 import SignupForm from "../containers/Signup/SignupForm";
 
 class Signup extends Component {

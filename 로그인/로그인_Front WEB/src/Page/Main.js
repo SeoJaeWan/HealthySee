@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import Header from "../component_frame/Header";
-import Manu from "../component_frame/Manu";
-import List from "../component_frame/List";
-import MainCom from "../component_contet/MainCom";
+import Header from "../component_frame/component/Header";
+import Manu from "../component_frame/component/Manu";
+import List from "../component_frame/component/List";
+import MainCom from "../component_contet/component/MainCom";
 
 class Main extends Component {
   render() {
