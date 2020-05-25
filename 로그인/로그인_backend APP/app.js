@@ -13,6 +13,8 @@ const cors = require("cors");
 var passport = require("passport");
 var passportConfig = require("./passport");
 
+const jwtMiddleware = require("./token/jwtMiddlewares").jwtMiddleware;
+
 var session = require("express-session");
 
 var app = express();
@@ -28,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
+app.use(jwtMiddleware);
 
 app.use(
   // 세션 설정을 위해 사용
