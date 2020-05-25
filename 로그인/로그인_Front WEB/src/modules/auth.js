@@ -8,7 +8,7 @@ import createRequestSaga, {
 } from "../lib/createRequestSaga";
 
 const CHANGE_FIELD = "auth/CHANGE_FIELD";
-
+const INITIALIZEFORM = "auth/INITIALIZEFORM";
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes(
   "auth/REGISTER"
 );
@@ -17,13 +17,13 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
-
+export const initializeForm = createAction(INITIALIZEFORM);
 export const register = createAction(
   REGISTER,
-  ({ nickname, weight, male, scope }) => ({
+  ({ nickname, weight, gender, scope }) => ({
     nickname,
     weight,
-    male,
+    gender,
     scope,
   })
 );
@@ -34,13 +34,19 @@ export function* authSaga() {
   yield takeLatest(REGISTER, registeSage);
 }
 
+const accountForm = {
+  nickname: "",
+  weight: "",
+  gender: 1,
+  scope: 1,
+};
+
 const initialState = {
   account: {
-    nickname: "",
-    weight: "",
-    gender: 1,
-    scope: 1,
+    accountForm,
   },
+  auth: null,
+  authError: null,
 };
 
 const auth = handleActions(
@@ -49,7 +55,13 @@ const auth = handleActions(
       produce(state, (draft) => {
         draft["account"][key] = value;
       }),
-
+    [INITIALIZEFORM]: (state) => ({
+      ...state,
+      account: {
+        ...state.account,
+        accountForm,
+      },
+    }),
     [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       auth,

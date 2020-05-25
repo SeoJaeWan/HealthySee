@@ -2,12 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  border-bottom: 10px solid #676A72;
+  border-bottom: 10px solid #676a72;
 `;
-
-export const ColorA = styled.a`
-  color : #676a72;
-`
 
 export const Element = styled.div`
   margin: 0 auto;
@@ -26,12 +22,12 @@ export const Shortcut = styled.div`
 `;
 export const Menu = styled.button`
   position: absolute;
-  font-size:20pt;
+  font-size: 20pt;
   width: 5%;
   height: 5%;
-  font-family:'font';
+  font-family: "font";
   background-color: #676a72;
-  color:white;
+  color: white;
   border-radius: 10%;
   left: 1%;
 `;
@@ -43,6 +39,6 @@ export const Title = styled.div`
 
 export const Login = styled.div`
   position: absolute;
-  top : 3.5%;
+  top: 3.5%;
   right: 3%;
 `;

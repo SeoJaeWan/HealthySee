@@ -12,7 +12,7 @@ class Home extends Component {
         <Header />
         <Manu />
         <List />
-        <HomeCom/>
+        <HomeCom />
       </div>
     );
   }
