@@ -13,6 +13,12 @@ const getToken = ({ username, email }) => {
   return token;
 };
 
+const getRefreshToken = () => {
+  const token = jwt.sign({}, process.env.JWT_SECRET, { expiresIn: "30d" });
+
+  return token;
+};
+
 const jwtMiddleware = async (req, res, next) => {
   const token = req.cookies.access_token;
 
@@ -41,11 +47,13 @@ const jwtMiddleware = async (req, res, next) => {
 
     return next();
   } catch (error) {
+    console.log(error);
     return next();
   }
 };
 
 module.exports = {
-  getToken: getToken,
-  jwtMiddleware: jwtMiddleware,
+  getToken,
+  getRefreshToken,
+  jwtMiddleware,
 };

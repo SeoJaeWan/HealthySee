@@ -6,7 +6,7 @@ var passport = require("passport");
 const Account = require("../models").account;
 
 const getToken = require("../token/jwtMiddlewares").getToken;
-const requestIp = require("request-ip");
+const getRefresh = require("../token/jwtMiddlewares").getRefreshToken;
 
 const platforms = {
   kakao: 1,
@@ -55,9 +55,15 @@ router.get("/", async (req, res) => {
   };
 
   const token = getToken(tokenInfo);
+  const refresh = getRefresh();
 
   res.cookie("access_token", token, {
-    // maxAge: 1000 * 60 * 30, // 30분
+    maxAge: 1000 * 60 * 30, // 30분
+    httpOnly: true,
+  });
+
+  res.cookie("refresh_token", refresh, {
+    maxAge: 1000 * 60 * 30, // 30분 쿠키에 제한 시간을 주어 웹에서는 리플레시토큰을 사용하지 못하게 하였다.
     httpOnly: true,
   });
 
@@ -104,8 +110,14 @@ router.post("/register", async (req, res) => {
   };
 
   const token = getToken(tokenInfo);
+  const refresh = getRefresh();
 
   res.cookie("access_token", token, {
+    maxAge: 1000 * 60 * 30, // 30분
+    httpOnly: true,
+  });
+
+  res.cookie("refresh_token", refresh, {
     maxAge: 1000 * 60 * 30, // 30분
     httpOnly: true,
   });
