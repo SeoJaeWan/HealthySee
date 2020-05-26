@@ -5,6 +5,7 @@ import Main from "./Page/Main";
 import Login from "./Page/Login";
 import Home from "./Page/Home";
 import Signup from "./Page/Signup";
+import Board from "./Page/Board";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         <Route path="/Login/" component={Login} />
         <Route path="/Home/" component={Home} />
         <Route path="/Signup/" component={Signup} />
+        <Route path="/Board/" component={Board}/>
       </div>
     );
   }

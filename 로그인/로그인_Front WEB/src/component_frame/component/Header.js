@@ -10,7 +10,7 @@ import {
   Login,
 } from "../style/Header_Style.js";
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <Container>
       <Element>
@@ -22,9 +22,19 @@ const Header = () => {
             </Link>
           </Title>
           <Login>
-            <Link to="/Login">로그인</Link>
+            {user ? (
+              <>
+                <Link>{user.username}</Link>
 
-            <Link to="/Signup">회원가입</Link>
+                <Link>로그아웃</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/Login">로그인</Link>
+
+                <Link to="/Signup">회원가입</Link>
+              </>
+            )}
           </Login>
         </Shortcut>
       </Element>
