@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "hjg",
+    "password": "wnsrms123",
+    "database": "healthy",
+    "host": "218.157.244.7",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "hjg",
+    "password": "wnsrms123",
+    "database": "healthy",
+    "host": "218.157.244.7",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "hjg",
+    "password": "wnsrms123",
+    "database": "healthy",
+    "host": "218.157.244.7",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
