@@ -5,17 +5,17 @@ var path = require('path')
 
 // 글쓰기 페이지
 
-var list = require('./list/index')
-var post = require('./post/index')
-var comment = require('./comment/index')
-var healthsee = require('./healthsee/index')
-var report = require('./report/index')
+var list = require('./lists/index')
+var post = require('./posts/index')
+var comment = require('./comments/index')
+var healthsee = require('./healthsees/index')
+var report = require('./reports/index')
 
 
-router.use('/list', list)
-router.use('/post', post)
-router.use('/comment', comment)
-router.use('/healthsee', healthsee)
-router.use('/report', report)
+router.use('/lists', list)
+router.use('/posts', post)
+router.use('/comments', comment)
+router.use('/healthsees', healthsee)
+router.use('/reports', report)
 
 module.exports = router;
