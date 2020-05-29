@@ -7,12 +7,9 @@ var logger = require("morgan");
 var authRouter = require("./routes/account");
 var boardRouter = require("./routes/board");
 
-const cors = require("cors");
-
 const jwtMiddleware = require("./token/jwtMiddlewares").jwtMiddleware;
 
 var app = express();
-app.use(cors()); // CORS 미들웨어 추가
 // view engine setup
 
 app.use(logger("dev"));
