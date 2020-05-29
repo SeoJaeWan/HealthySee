@@ -4,6 +4,7 @@ var router = express.Router();
 var today = require("../Date/time");
 var passport = require("passport");
 const Account = require("../models").account;
+const Token = require('../models').token;
 
 const getToken = require("../token/jwtMiddlewares").getToken;
 const getRefresh = require("../token/jwtMiddlewares").getRefreshToken;
@@ -71,16 +72,18 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
+
+  console.dir(req.cookies);
+  console.log(req.body);
   const {
       nickname,
       gender,
       weight,
-      scope,
-      A_name,
+      scope}= req.body,
+      {A_name,
       A_platform,
-      A_email,
-    } = req.body,
-    { name, platform, email } = req.session.info;
+      A_email,A_type} = req.cookies.profile;
+    //{ name, platform, email} = req.session.info; 쿠키 같이 쓰기로
 
   const user = await Account.findOne({
     where: {
@@ -109,25 +112,37 @@ router.post("/register", async (req, res) => {
     email: A_email ? A_email : email,
   };
 
-  const token = getToken(tokenInfo);
+  const accesstoken = getToken(tokenInfo);//token -> accesstoken
   const refresh = getRefresh();
+  
+  await Token.create({
+    TK_Refresh_Token : refresh,
+    TK_NickName : nickname,
+    TK_Platform_Account : tokenInfo.email,
+    TK_Creation_Date : today
+  });
 
-  res.cookie("access_token", token, {
+  res.cookie("access_token", accesstoken, {
     maxAge: 1000 * 60 * 30, // 30분
     httpOnly: true,
   });
-
-  res.cookie("refresh_token", refresh, {
+  if(A_type){
+    res.cookie("refresh_token", refresh, {
     maxAge: 1000 * 60 * 30, // 30분
     httpOnly: true,
+    
   });
+}
+  
 
   res.json(tokenInfo);
 });
 
 router.get("/check", async (req, res) => {
   const { user } = req.body;
-
+  // console.log(req.cookies.access_token);
+  // console.log(req.cookies.refresh);
+ 
   if (!user) {
     res.status(401).send("Not Login");
     return;
