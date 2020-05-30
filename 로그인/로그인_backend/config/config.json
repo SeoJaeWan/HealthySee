@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "hjg",
-    "password": "wnsrms123",
+    "username": "root",
+    "password": "0428",
     "database": "healthy",
-    "host": "218.157.244.7",
+    "host": "192.168.0.4",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "test": {
-    "username": "hjg",
-    "password": "wnsrms123",
+    "username": "root",
+    "password": "0428",
     "database": "healthy",
-    "host": "218.157.244.7",
+    "host": "192.168.0.4",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
-    "username": "hjg",
-    "password": "wnsrms123",
+    "username": "root",
+    "password": "0428",
     "database": "healthy",
-    "host": "218.157.244.7",
+    "host": "192.168.0.4",
     "dialect": "mysql",
     "operatorsAliases": false
   }

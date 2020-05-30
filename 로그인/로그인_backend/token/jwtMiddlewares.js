@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const Token = require("../models").token;
+
 
 const getToken = ({ username, email }) => {
   const token = jwt.sign(
@@ -21,6 +23,8 @@ const getRefreshToken = () => {
 
 const jwtMiddleware = async (req, res, next) => {
   const token = req.cookies.access_token;
+  console.dir(req.cookies);
+  console.log(token);
 
   if (!token) {
     return next();
@@ -54,6 +58,7 @@ const jwtMiddleware = async (req, res, next) => {
           TK_Refresh_Token: rftoken,
         },
       });
+      console.log(refreshToken);
       if (refreshToken) {
         console.log("엑세스 토큰 재생성 시작");
         var date =
@@ -66,21 +71,29 @@ const jwtMiddleware = async (req, res, next) => {
             username: refreshToken.TK_NickName,
             email: refreshToken.TK_Platform_Account,
           };
+          console.log(req.body);
 
           const token = getToken(req.body.user);
-
+          newRfToken = getRefreshToken();
+          Token.create({
+            TK_Refresh_Token : newRfToken,
+            TK_NickName : refreshToken.TK_NickName,
+            TK_Platform_Account : refreshToken.TK_Platform_Account,
+            TK_Creation_Date : today
+          })
           res.cookie("access_token", token, {
             maxAge: 1000 * 60 * 30, // 30분
             httpOnly: true,
           });
         } else {
           // 리프레시 토큰기간 만료, db에서 삭제
-          User.delete({
+          Token.destroy({
             where: {
               TK_Refresh_Token: rftoken,
             },
           });
-
+          
+          
           return next();
         }
       } else {

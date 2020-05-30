@@ -1,22 +1,26 @@
 const BoardDetail = require("../../models").boarddetail;
 const B_Comment = require("../../models").b_comment;
+const Board = require("../../models").board;
 
-const readPost = (req, res, next) => {
-    var BO_CODE = req.params.BO_CODE;
+const readPost = async (req, res, next) => {
+
+   
+    var BO_Code =req.params.BO_Code;
+    console.log(BO_Code);
+
     var self = req.body.self;
 
     var responseData = {};
 
     if(!self)
-        Board.increment("BO_HIT", { where: { BO_CODE: BO_CODE } });
+        Board.increment("BO_Hit", { where: { BO_Code: BO_Code } });
 
     var BoardD = await BoardDetail.findOne({
-        where: { BO_CODE},
+        where: { BO_Code : BO_Code},
     });
     var comments = await B_Comment.findAll({
-        where: { Board_BO_Code: BO_CODE },
+        where: { Board_BO_Code: BO_Code },
     });
-
     responseData.boardDetail = BoardD;
     responseData.comments = comments;
 

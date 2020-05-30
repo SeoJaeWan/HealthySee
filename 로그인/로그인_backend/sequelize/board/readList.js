@@ -2,14 +2,15 @@ const BoardList = require("../../models").boardlist;
 const { Op } = require("sequelize");
 
 const readList = async (req, res, next) => {
+  console.log('아아');
   var responseData = {};
-  var BO_CODE = req.params.BO_CODE ? req.params.BO_CODE : "";
+  var BO_Code = req.params.BO_Code ? req.params.BO_Code : "";
 
-  console.log(BO_CODE ? "있다" : "");
+  console.log(BO_Code ? "있다" : "");
 
   var boardList = await BoardList.findAll(
-    BO_CODE
-      ? { where: { BO_CODE: { [Op.lt]: BO_CODE } }, limit: 10 }
+    BO_Code
+      ? { where: { BO_Code: { [Op.lt]: BO_Code } }, limit: 10 }
       : { where: {}, limit: 10 }
   );
 

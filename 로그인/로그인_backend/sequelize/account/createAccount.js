@@ -1,6 +1,5 @@
 var today = require("../../Date/time");
 const Account = require("../../models").account;
-
 const platforms = {
   kakao: 1,
   naver: 2,

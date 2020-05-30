@@ -6,7 +6,7 @@ const createAccount = require("../../sequelize/account/createAccount");
 const userManagement = require("../../sequelize/account/userManagement");
 
 router.post("/login", loginUser, sendToken);
-router.post("/register", loginUser, createAccount);
+router.post("/register", createAccount, sendToken);
 router.post("/logout", userManagement.logoutUser);
 
 router.get("/check", userManagement.checkUser);
