@@ -15,12 +15,13 @@ export default List;
 
 const Container = styled.div`
   height: 100vh;
+  width: 20vh;
   float: right;
   border-left: 10px solid #676A72;
 `;
 
 const Element = styled.div`
-  width: 250px;
+  width: 50%;
   height: 100vh;
   font-size: 15pt;
 `;

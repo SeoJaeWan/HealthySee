@@ -1,7 +1,7 @@
 import * as boardAPI from "../../lib/api/board";
 
 import { createAction, handleActions } from "redux-actions";
-import { takeLastest } from "redux-saga/effects";
+import { takeLatest } from "redux-saga/effects";
 import produce from "immer";
 
 import createRequestSaga, {
@@ -23,17 +23,20 @@ const SET_ORIGINAL = "write/SET_ORIGINAL";
 const CHANGE_FIELD = "write/CHANGE_FIELD";
 const INITIALIZE = "write/INITIALIZE";
 
-export const writePost = createAction(WRITE_POST, ({ title, content }) => ({
-  title,
-  content,
-}));
+export const writePost = createAction(
+  WRITE_POST,
+  ({ title, content, file }) => ({
+    title,
+    content,
+    file,
+  })
+);
 
 export const writeComment = createAction(
   WRITE_COMMENT,
-  ({ content, postId, username }) => ({
+  ({ content, postId }) => ({
     content,
     postId,
-    username,
   })
 );
 
@@ -59,8 +62,8 @@ export const writeCommentSaga = createRequestSaga(
   boardAPI.writeComment
 );
 export function* writeSaga() {
-  yield takeLastest(WRITE_POST, writePostSaga);
-  yield takeLastest(WRITE_COMMENT, writeCommentSaga);
+  yield takeLatest(WRITE_POST, writePostSaga);
+  yield takeLatest(WRITE_COMMENT, writeCommentSaga);
 }
 
 const initialState = {
@@ -70,7 +73,6 @@ const initialState = {
     file: "",
   },
   comment: {
-    title: "",
     content: "",
   },
 
@@ -88,7 +90,7 @@ const write = handleActions(
       }),
     [WRITE_POST]: (state) => ({
       ...state,
-      post: null,
+      postInfo: null,
       postError: null,
     }),
     [WRITE_POST_SUCCESS]: (state, { payload: postInfo }) => ({

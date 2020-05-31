@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeField, register } from "../../modules/account/auth";
 import { check } from "../../modules/account/user";
-import SignupCom from "../../component_contet/component/SignupCom";
+import SignupCom from "../../component_contet/component/auth/SignupCom";
 import { withRouter } from "react-router-dom";
 
 const SignupForm = ({ history }) => {

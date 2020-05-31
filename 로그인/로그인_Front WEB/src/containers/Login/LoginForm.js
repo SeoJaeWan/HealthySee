@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import LoginCom from "../../component_contet/component/LoginCom";
+import LoginCom from "../../component_contet/component/auth/LoginCom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, initializeForm } from "../../modules/account/auth";
 import { check } from "../../modules/account/user";
