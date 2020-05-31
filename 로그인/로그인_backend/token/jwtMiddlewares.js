@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Token = require("../models").token;
-
+var today = require("../Date/time");
 
 const getToken = ({ username, email }) => {
   const token = jwt.sign(
@@ -41,16 +41,33 @@ const jwtMiddleware = async (req, res, next) => {
     const now = Math.floor(Date.now() / 1000);
 
     if (decoded.exp - now < 60 * 30) {
+      console.log('액세스 토큰 재생성');
       const token = getToken(req.body.user);
-
+      console.log("엑세스토큰 재생성 완료");
+      const arftoken = getRefreshToken();
+      console.log("리프레쉬토큰 재생성 완료");
       res.cookie("access_token", token, {
         maxAge: 1000 * 60 * 30, // 30분
         httpOnly: true,
       });
+      console.log("엑세스토큰 쿠키세팅 완료");
+      res.cookie("refresh_token", arftoken, {
+        maxAge: 1000 * 60 * 30, 
+        httpOnly: true,
+      });
+      console.log("리프레쉬토큰 쿠키세팅 완료");
+       await Token.create({
+        TK_Refresh_Token : arftoken,
+        TK_NickName : req.body.user.username,
+        TK_Platform_Account : req.body.user.email,
+        TK_Creation_Date : today
+      });
+      console.log("리프레쉬 디비세팅 완료");
     }
 
     return next();
   } catch (error) {
+    console.log('토큰 생성중 에러발생');
     const rftoken = req.cookies.refresh;
     if (rftoken) {
       const refreshToken = await Token.findOne({
@@ -75,14 +92,18 @@ const jwtMiddleware = async (req, res, next) => {
 
           const token = getToken(req.body.user);
           newRfToken = getRefreshToken();
-          Token.create({
+          await Token.create({
             TK_Refresh_Token : newRfToken,
             TK_NickName : refreshToken.TK_NickName,
             TK_Platform_Account : refreshToken.TK_Platform_Account,
             TK_Creation_Date : today
-          })
+          });
           res.cookie("access_token", token, {
             maxAge: 1000 * 60 * 30, // 30분
+            httpOnly: true,
+          });
+          res.cookie("refresh_token", newRfToken, {
+            maxAge: 1000 * 60 * 30, 
             httpOnly: true,
           });
         } else {
@@ -92,7 +113,6 @@ const jwtMiddleware = async (req, res, next) => {
               TK_Refresh_Token: rftoken,
             },
           });
-          
           
           return next();
         }
