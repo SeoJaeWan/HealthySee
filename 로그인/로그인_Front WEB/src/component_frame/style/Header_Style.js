@@ -7,12 +7,13 @@ export const Container = styled.div`
   border-bottom: 10px solid #676a72;
 `;
 
+
 export const Menu = styled.button`
   position: absolute;
   font-size: 20pt;
   width: 5%;
-  top: 2%;
   height: 5%;
+  top:2%;
   font-family: "font";
   background-color: #676a72;
   color: white;
@@ -22,14 +23,13 @@ export const Menu = styled.button`
 `}
 `;
 
-export const Title = styled.img`
+export const Title = styled.div`
   position:relative;
   left:40%;
-  width: auto; height: auto;
-  max-width: 500px;
-  max-height: 500px;
+  width:1%;
+  font-size: 4rem;
   ${media.mobile`
-  width: 50%;
+  width: 10%;
   top:10%;
   left:25%;
 `}

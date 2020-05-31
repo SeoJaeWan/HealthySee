@@ -18,7 +18,7 @@ export const StartB = styled.button`
   border-color: #676a72;
   color: white;
   border-radius: 50%;
-  left: 16%;
+  left: 14%;
   ${media.mobile`
 `}
 `;
@@ -37,9 +37,7 @@ export const Title = styled.p`
     color: #676a72;
     font-size: 4.5rem;
 `
-export const Start = styled.button`
 
-`
 
 export const Title2 = styled.p`
     position: absolute;

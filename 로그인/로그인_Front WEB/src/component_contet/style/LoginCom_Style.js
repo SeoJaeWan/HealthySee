@@ -1,65 +1,55 @@
 import styled from "styled-components";
-import { media } from "../../ReactiveStyle/ReactiveStyle";
+import KakaoLogin from "react-kakao-login";
 
 export const Container = styled.div`
   position: relative;
   height: 100vh;
-  width: 85%;
+  width: 90%;
   left: 15%;
 `;
 
-export const Kakao = styled.img`
-  position: absolute;
-  left: 8%;
-  top: 13%;
-  width: auto;
-  height: auto;
-  max-width: 400px;
-  max-height: 100px;
-  padding-left: 5%;
-  ${media.mobile`
-  width: 80%;
-  top:15%;
-`}
+export const Kakao = styled.div`
+  position: relative;
+  width: 24%;
+  color:#2B0B20;
+  background-color:#FCF012;
+  text-align:center;
+  height: 10%;
+  top: 20%; 
+  font-size: 3rem;
+  left: 13%;
 `;
-export const Google = styled.img`
-  position: absolute;
-  left: 8%;
-  top: 43%;
-  width: auto;
-  height: auto;
-  max-width: 400px;
-  max-height: 100px;
-  padding-left: 5%;
-  ${media.mobile`
-  width: 80%;
-  top:45%;
-`}
+
+export const Google = styled.div`
+  position: relative;
+  width: 24%;
+  color:white;
+  background-color:#D94D3D;
+  text-align:center;
+  height: 10%;
+  font-size: 3rem;
+  top: 30%;
+  left: 13%;
 `;
-export const Naver = styled.img`
-  position: absolute;
-  left: 8%;
-  top: 73%;
-  width: auto;
-  height: auto;
-  max-width: 400px;
-  max-height: 100px;
-  padding-left: 5%;
-  ${media.mobile`
-  width: 80%;
-  top:70%;
-`}
+export const Naver = styled.div`
+  position: relative;
+  color:white;
+  background-color:#13D261;
+  text-align:center;
+  width: 24%;
+  height: 10%;
+  font-size: 3rem;
+  top: 40%;
+  left: 13.5%;
 `;
 
 export const Label = styled.hr`
-  position: relative;
+  position: absolute;
   width: 0px;
   height: 50vh;
-  left: 3%;
+  top:3%;
+  left: 50%;
   border-left: 3px solid #676a72;
-  ${media.mobile`
-  display:none;
-`}
 `;
 
 export const Title = styled.div`
@@ -94,12 +84,9 @@ export const Login = styled.div`
   }
 `;
 
-export const Home = styled.img`
+export const Home = styled.label`
   position: absolute;
   height: 53vh;
   top: 5%;
   left: 60%;
-  ${media.mobile`
-  display:none;
-`}
 `;

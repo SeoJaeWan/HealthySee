@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeField, register, initializeForm } from "../../modules/auth";
-import { check } from "../../modules/user";
+import { changeField, register } from "../../modules/account/auth";
+import { check } from "../../modules/account/user";
 import SignupCom from "../../component_contet/component/SignupCom";
 import { withRouter } from "react-router-dom";
 
 const SignupForm = ({ history }) => {
+  const [error, setError] = useState(null);
+
   const dispatch = useDispatch();
   const { account, auth, authError, user } = useSelector(({ auth, user }) => ({
     account: auth.account,
@@ -27,23 +29,24 @@ const SignupForm = ({ history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(sessionStorage.getItem("platforms"));
+    const { nickname, weight, gender, scope } = account,
+      { name, email, platform } = JSON.parse(
+        sessionStorage.getItem("platforms")
+      );
 
-    const { nickname, weight, gender, scope } = account;
-
-    dispatch(register({ nickname, gender, weight, scope }));
+    dispatch(
+      register({ nickname, gender, weight, scope, name, email, platform })
+    );
   };
-
-  useEffect(() => {
-    dispatch(initializeForm());
-  }, [dispatch]);
 
   useEffect(() => {
     if (authError) {
       if (authError.response.status === 409) {
-        console.log("이미 있는 닉네임입니다!");
+        setError("이미 존재하는 닉네임입니다.");
         return;
       }
-      console.log("회원가입 실패");
+      setError("회원가입 실패");
       return;
     }
 
@@ -56,15 +59,21 @@ const SignupForm = ({ history }) => {
     if (user) {
       history.push("/");
       try {
-        localStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.removeItem("platforms");
       } catch (e) {
-        console.log("localStorage setItem is not working");
+        console.log("sessionStorage setItem is not working");
       }
     }
   }, [history, user]);
 
   return (
-    <SignupCom onChange={onChange} onSubmit={onSubmit} account={account} />
+    <SignupCom
+      onChange={onChange}
+      onSubmit={onSubmit}
+      account={account}
+      error={error}
+    />
   );
 };
 
