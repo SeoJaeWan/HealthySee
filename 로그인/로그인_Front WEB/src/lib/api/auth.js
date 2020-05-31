@@ -1,26 +1,7 @@
 import client from "./client";
 
-export const login = ({ name, platform, email }) =>
-  client.post("/auth/login", { name, platform, email });
-
-export const register = ({
-  nickname,
-  gender,
-  weight,
-  scope,
-  name,
-  email,
-  platform,
-}) =>
-  client.post("/auth/register", {
-    nickname,
-    gender,
-    weight,
-    scope,
-    name,
-    email,
-    platform,
-  });
+export const register = ({ nickname, gender, weight, scope }) =>
+  client.post("/auth/register", { nickname, gender, weight, scope });
 
 // export const register = () => client.get(`auth/test`);
 

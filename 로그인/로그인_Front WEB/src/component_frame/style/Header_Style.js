@@ -11,6 +11,7 @@ export const Menu = styled.button`
   position: absolute;
   font-size: 20pt;
   width: 5%;
+  top: 2%;
   height: 5%;
   font-family: "font";
   background-color: #676a72;
@@ -23,7 +24,7 @@ export const Menu = styled.button`
 
 export const Title = styled.img`
   position:relative;
-  left:30%;
+  left:40%;
   width: auto; height: auto;
   max-width: 500px;
   max-height: 500px;

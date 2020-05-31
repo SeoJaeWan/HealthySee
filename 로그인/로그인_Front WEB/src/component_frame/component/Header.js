@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Container, Menu, Title, Login } from "../style/Header_Style.js";
 
-const Header = ({ user, onLogout }) => {
+const Header = ({ user }) => {
   return (
     <Container>
       <Menu>메뉴</Menu>
@@ -13,9 +13,9 @@ const Header = ({ user, onLogout }) => {
       <Login>
         {user ? (
           <>
-            <Link>{user.username}</Link>
+            <Link>{user.username}</Link>/
 
-            <Link onClick={onLogout}>로그아웃</Link>
+            <Link>로그아웃</Link>
           </>
         ) : (
           <>

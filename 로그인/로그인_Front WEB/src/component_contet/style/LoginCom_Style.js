@@ -1,34 +1,65 @@
 import styled from "styled-components";
-import KakaoLogin from "react-kakao-login";
+import { media } from "../../ReactiveStyle/ReactiveStyle";
 
 export const Container = styled.div`
   position: relative;
   height: 100vh;
-  width: 90%;
+  width: 85%;
   left: 15%;
 `;
 
-export const Kakao = styled(KakaoLogin)`
-  position: relative;
-  width: 20%;
-  height: 15%;
-  top: 200px;
-  left: 15%;
+export const Kakao = styled.img`
+  position: absolute;
+  left: 8%;
+  top: 13%;
+  width: auto;
+  height: auto;
+  max-width: 400px;
+  max-height: 100px;
+  padding-left: 5%;
+  ${media.mobile`
+  width: 80%;
+  top:15%;
+`}
 `;
-export const Google = styled.div`
-  position: relative;
-  width: 20%;
-  height: 15%;
-  top: 40%;
-  left: 15%;
+export const Google = styled.img`
+  position: absolute;
+  left: 8%;
+  top: 43%;
+  width: auto;
+  height: auto;
+  max-width: 400px;
+  max-height: 100px;
+  padding-left: 5%;
+  ${media.mobile`
+  width: 80%;
+  top:45%;
+`}
 `;
+export const Naver = styled.img`
+  position: absolute;
+  left: 8%;
+  top: 73%;
+  width: auto;
+  height: auto;
+  max-width: 400px;
+  max-height: 100px;
+  padding-left: 5%;
+  ${media.mobile`
+  width: 80%;
+  top:70%;
+`}
+`;
+
 export const Label = styled.hr`
   position: relative;
   width: 0px;
   height: 50vh;
   left: 3%;
-  top: -30%;
   border-left: 3px solid #676a72;
+  ${media.mobile`
+  display:none;
+`}
 `;
 
 export const Title = styled.div`
@@ -63,9 +94,12 @@ export const Login = styled.div`
   }
 `;
 
-export const Home = styled.label`
+export const Home = styled.img`
   position: absolute;
   height: 53vh;
   top: 5%;
   left: 60%;
+  ${media.mobile`
+  display:none;
+`}
 `;
