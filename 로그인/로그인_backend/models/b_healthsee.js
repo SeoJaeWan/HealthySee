@@ -26,6 +26,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	}, {
-		tableName: 'b_healthsee'
+		tableName: 'b_healthsee',
+		timestamps: false
 	});
 };
