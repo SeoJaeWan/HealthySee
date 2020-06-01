@@ -25,6 +25,7 @@ const ReadCom = ({
       ) : (
         ""
       )} */}
+      <div>첨부파일 : {post.BO_File ? post.BO_File.substring(13) : ""}</div>
       <div>
         <p>댓글</p>
         <input

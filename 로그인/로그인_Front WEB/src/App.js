@@ -11,6 +11,7 @@ import { createGlobalStyle } from "styled-components";
 
 const App = () => {
   const GlobalStyle = createGlobalStyle`
+
       @font-face {
       font-family: "font";
       src: url(${require("./Font/BMJUA.eot")});
@@ -18,7 +19,7 @@ const App = () => {
       url(${require("./Font/BMJUA.woff")}) format('woff'),
       url(${require("./Font/BMJUA.ttf")}) format('ttf');
     }
-    body {font-family: "font" ;}`;
+    body {font-family: "font" ;margin:0;}`;
   return (
     <div>
       <GlobalStyle />

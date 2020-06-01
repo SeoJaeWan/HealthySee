@@ -9,12 +9,11 @@ import {
   Form,
   Input,
   Frame,
-  NickButton,
   OnOff,
   Comflit,
 } from "../../style/SignupCom_Style.js";
 
-const SignupCom = ({ onChange, account, onSubmit }) => {
+const SignupCom = ({ onChange, account, onSubmit, error }) => {
   return (
     <Container>
       <Title>회원가입</Title>
@@ -28,7 +27,6 @@ const SignupCom = ({ onChange, account, onSubmit }) => {
               value={account.nickname}
               onChange={onChange}
             />
-            <NickButton>중복 확인</NickButton>
           </Frame>
           <Frame>
             몸무게
@@ -61,9 +59,10 @@ const SignupCom = ({ onChange, account, onSubmit }) => {
             />
             <CheckBoxLabel htmlFor="checkbox2" />
           </Frame>
-          <Link to="/Home">
+          <Frame>{error}</Frame>
+          <Frame>
             <Comflit>완료</Comflit>
-          </Link>
+          </Frame>
         </Form>
       </Sign>
     </Container>

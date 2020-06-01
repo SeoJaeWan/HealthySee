@@ -1,6 +1,6 @@
 import React from "react";
 
-const WriteCom = ({ post, onChange, onClick }) => {
+const WriteCom = ({ post, onChange, onClick, onUpload }) => {
   return (
     <div>
       <div>
@@ -23,8 +23,7 @@ const WriteCom = ({ post, onChange, onClick }) => {
       </div>
 
       <div>
-        <input type="file" />
-        <button type="submit">Upload</button>
+        <input type="file" name="file" onChange={onUpload} />
       </div>
 
       <div>

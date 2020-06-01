@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import WriteCom from "../../component_contet/component/board/WriteCom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -7,20 +7,38 @@ import { withRouter } from "react-router-dom";
 
 const WriteForm = ({ route, history }) => {
   const dispatch = useDispatch();
-  const { postInfo, comments, post } = useSelector(({ write }) => ({
+
+  const { postInfo, comments, post, user } = useSelector(({ write, user }) => ({
     postInfo: write.postInfo,
     comments: write.comments,
     post: write.post,
+
+    user: user.user,
   }));
 
-  const onClick = () => {
-    dispatch(writePost(post));
+  const onClick = (e) => {
+    const formData = new FormData();
+
+    console.log(post.file);
+
+    formData.append("BO_Title", post.title);
+    formData.append("BO_Content", post.content);
+    formData.append("file", post.file);
+    formData.append("username", user.username);
+
+    dispatch(writePost(formData));
   };
 
   const onChange = (e) => {
     const { name, value } = e.target;
 
     dispatch(changeField({ form: "post", key: name, value }));
+  };
+
+  const onUpload = (e) => {
+    dispatch(
+      changeField({ form: "post", key: "file", value: e.target.files[0] })
+    );
   };
 
   useEffect(() => {
@@ -38,7 +56,14 @@ const WriteForm = ({ route, history }) => {
     }
   }, [postInfo, history, route]);
 
-  return <WriteCom onChange={onChange} post={post} onClick={onClick} />;
+  return (
+    <WriteCom
+      onChange={onChange}
+      post={post}
+      onClick={onClick}
+      onUpload={onUpload}
+    />
+  );
 };
 
 export default withRouter(WriteForm);

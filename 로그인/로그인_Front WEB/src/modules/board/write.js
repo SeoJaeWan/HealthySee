@@ -23,14 +23,7 @@ const SET_ORIGINAL = "write/SET_ORIGINAL";
 const CHANGE_FIELD = "write/CHANGE_FIELD";
 const INITIALIZE = "write/INITIALIZE";
 
-export const writePost = createAction(
-  WRITE_POST,
-  ({ title, content, file }) => ({
-    title,
-    content,
-    file,
-  })
-);
+export const writePost = createAction(WRITE_POST, (formData) => formData);
 
 export const writeComment = createAction(
   WRITE_COMMENT,

@@ -7,13 +7,12 @@ export const Container = styled.div`
   border-bottom: 10px solid #676a72;
 `;
 
-
 export const Menu = styled.button`
   position: absolute;
   font-size: 20pt;
   width: 5%;
   height: 5%;
-  top:2%;
+  top: 2%;
   font-family: "font";
   background-color: #676a72;
   color: white;
@@ -24,9 +23,9 @@ export const Menu = styled.button`
 `;
 
 export const Title = styled.div`
-  position:relative;
-  left:40%;
-  width:1%;
+  position: relative;
+  left: 40%;
+  width: 1%;
   font-size: 4rem;
   ${media.mobile`
   width: 10%;
@@ -37,6 +36,7 @@ export const Title = styled.div`
 
 export const Login = styled.div`
   position: absolute;
+  display: flex;
   font-size: 20pt;
   top: 3.5%;
   right: 3%;

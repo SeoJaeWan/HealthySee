@@ -17,14 +17,13 @@ class Manu extends Component {
 export default Manu;
 
 const Container = styled.div`
-  height: 100vh;  
+  height: 100vh;
   width: 12%;
-  float:left;
+  float: left;
   border-right: 10px solid#676A72;
-`
+`;
 
 const Element = styled.div`
   height: 100vh;
   font-size: 15pt;
-`
-
+`;
