@@ -6,7 +6,7 @@ const upload = require("../../../lib/sequelize/board/writeBoard").upload;
 const readPost = require("../../../lib/sequelize/board/readBoard").readPost;
 const deletePost = require("../../../lib/sequelize/board/deletePost");
 const checkLogin = require("../../../lib/check/checkData").checkLogin;
-const checkOwnPost = require("../../../lib/check/checkData").checkOwnPost;
+const checkOwnBoard = require("../../../lib/check/checkData").checkOwnBoard;
 const checkPost = require("../../../lib/sequelize/board/checkBoard").checkPost;
 const reportPost = require("../../../lib/sequelize/board/reportPost");
 const unDoReportPost = require("../../../lib/sequelize/board/unDoReportPost");
@@ -20,7 +20,7 @@ router.post("/", checkLogin, upload.single("file"), writePost, readPost);
 router.get("/:BO_Code", readPost);
 
 // 해당 BO_CODE의 게시글 삭제
-router.delete("/:BO_Code", checkPost, checkLogin, checkOwnPost, deletePost);
+router.delete("/:BO_Code", checkPost, checkLogin, checkOwnBoard, deletePost);
 
 // 신고
 router.post("/report", checkPost, checkLogin, reportPost);

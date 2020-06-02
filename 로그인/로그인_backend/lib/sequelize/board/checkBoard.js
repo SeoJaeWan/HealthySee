@@ -31,13 +31,15 @@ const checkPost = async (req, res, next) => {
 const checkComment = async (req, res, next) => {
   const BC_Code = req.params.BC_Code;
 
+  console.log(BC_Code);
+
   if (!BC_Code) {
     res.status(400).end();
     return;
   }
 
   try {
-    const comment = await B_Comment.findOne({ where: BC_Code });
+    const comment = await B_Comment.findOne({ where: { BC_Code } });
 
     if (!comment) {
       res.status(404).end();

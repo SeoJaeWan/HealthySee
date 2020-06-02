@@ -5,8 +5,9 @@ const writeComment = require("../../../lib/sequelize/board/writeBoard")
 const readComment = require("../../../lib/sequelize/board/readBoard")
   .readComment;
 const checkLogin = require("../../../lib/check/checkData").checkLogin;
-const checkOwnPost = require("../../../lib/check/checkData").checkOwnPost;
-const checkPost = require("../../../lib/sequelize/board/checkBoard").checkPost;
+const checkOwnBoard = require("../../../lib/check/checkData").checkOwnBoard;
+const checkComment = require("../../../lib/sequelize/board/checkBoard")
+  .checkComment;
 const deleteComment = require("../../../lib/sequelize/board/deleteComment");
 
 // 댓글 작성
@@ -17,9 +18,9 @@ router.get("/:BO_Code", readComment);
 
 router.delete(
   "/:BC_Code",
-  checkPost,
+  checkComment,
   checkLogin,
-  checkOwnPost,
+  checkOwnBoard,
   deleteComment,
   readComment
 );

@@ -7,7 +7,7 @@ const checkLogin = (req, res, next) => {
   next();
 };
 
-const checkOwnPost = (req, res, next) => {
+const checkOwnBoard = (req, res, next) => {
   console.log("여기오ㅓㅏ써용3");
   const { user, code } = req.body;
   console.log(req.body);
@@ -19,6 +19,4 @@ const checkOwnPost = (req, res, next) => {
   next();
 };
 
-module.exports = checkOwnPost;
-
-module.exports = { checkLogin, checkOwnPost };
+module.exports = { checkLogin, checkOwnBoard };
