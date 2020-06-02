@@ -18,7 +18,7 @@ const pushHealthsee = async (req, res) => {
   response.isHealthsee = true;
   response.BO_Healthsee_Count = boardList.BO_Healthsee_Count;
 
-  console.log(response);
+  console.log(response, "여기다씨발");
 
   res.json(response);
 };

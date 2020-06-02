@@ -24,12 +24,10 @@ router.delete("/:BO_Code", checkPost, checkLogin, checkOwnBoard, deletePost);
 
 // 신고
 router.post("/report", checkPost, checkLogin, reportPost);
-
 router.delete("/report/:BO_Code", checkPost, checkLogin, unDoReportPost);
 
 // 추천
 router.post("/health", checkPost, checkLogin, pushHealthsee);
-
 router.delete("/health/:BO_Code", checkPost, checkLogin, unDoPushHealthsee);
 
 module.exports = router;
