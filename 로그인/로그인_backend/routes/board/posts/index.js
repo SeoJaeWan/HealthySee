@@ -14,7 +14,7 @@ const pushHealthsee = require("../../../lib/sequelize/board/pushHealthsee");
 const unDoPushHealthsee = require("../../../lib/sequelize/board/unDoPushHealthsee");
 
 // 게시글 작성
-router.post("/", checkLogin, upload.single("file"), writePost, readPost);
+//router.post("/", checkLogin, upload.single("file"), writePost, readPost);
 
 // 해당 BO_CODE의 게시글 조회
 router.get("/:BO_Code", readPost);
@@ -24,10 +24,12 @@ router.delete("/:BO_Code", checkPost, checkLogin, checkOwnBoard, deletePost);
 
 // 신고
 router.post("/report", checkPost, checkLogin, reportPost);
+
 router.delete("/report/:BO_Code", checkPost, checkLogin, unDoReportPost);
 
 // 추천
 router.post("/health", checkPost, checkLogin, pushHealthsee);
+
 router.delete("/health/:BO_Code", checkPost, checkLogin, unDoPushHealthsee);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const getToken = require("../../token/jwtMiddlewares").getToken;
 const getRefresh = require("../../token/jwtMiddlewares").getRefreshToken;
-const Token = require("../../../lib/token/jwtMiddlewares").token;
+const Token = require("../../../models").token;
 var today = require("../../../lib/Date/time");
 
 const sendToken = async (req, res) => {

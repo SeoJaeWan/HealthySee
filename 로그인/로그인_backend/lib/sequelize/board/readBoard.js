@@ -37,7 +37,6 @@ const readComment = async (req, res, next) => {
 
   responseData.comments = comments;
 
-  console.log(responseData);
   res.json(responseData);
 };
 

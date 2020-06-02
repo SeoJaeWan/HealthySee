@@ -2,12 +2,10 @@ const B_Reporter = require("../../../models").b_reporter;
 const BoardList = require("../../../models").boardlist;
 var today = require("../../Date/time");
 
-const reportPort = async (req, res) => {
+const reportPost = async (req, res) => {
   var Board_BO_Code = req.body.BO_Code;
   var BR_Reporter_NickName = req.body.user.username;
   var response = {};
-
-  console.log(Board_BO_Code);
   await B_Reporter.create({
     BR_Reporter_NickName: BR_Reporter_NickName,
     BR_Creation_Date: today,
@@ -25,4 +23,4 @@ const reportPort = async (req, res) => {
   res.json(response);
 };
 
-module.exports = reportPort;
+module.exports = reportPost;

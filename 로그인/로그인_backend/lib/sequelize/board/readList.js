@@ -12,8 +12,7 @@ const readList = async (req, res, next) => {
   );
 
   responseData.boardList = boardList;
-  console.log(responseData);
-  res.json(responseData);
+  return res.json(responseData);
 };
 
 module.exports = readList;
