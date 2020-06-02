@@ -1,40 +1,45 @@
 /* jshint indent: 1 */
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('board', {
-		BO_Code: {
-			type: DataTypes.INTEGER(11),
-			allowNull: false,
-			primaryKey: true,
-			autoIncrement: true
-		},
-		BO_Writer_NickName: {
-			type: DataTypes.STRING(16),
-			allowNull: false
-		},
-		BO_Title: {
-			type: DataTypes.STRING(60),
-			allowNull: false
-		},
-		BO_File: {
-			type: DataTypes.STRING(45),
-			allowNull: true
-		},
-		BO_Content: {
-			type: DataTypes.STRING(2000),
-			allowNull: false
-		},
-		BO_Hit: {
-			type: DataTypes.INTEGER(11),
-			allowNull: false,
-			defaultValue: '0'
-		},
-		BO_Creation_Date: {
-			type: DataTypes.DATE,
-			allowNull: false
-		}
-	}, {
-		tableName: 'board',
-		timestamps: false,
-	});
+module.exports = function (sequelize, DataTypes) {
+  return sequelize.define(
+    "board",
+    {
+      BO_Code: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      BO_Writer_NickName: {
+        type: DataTypes.STRING(16),
+        allowNull: false,
+      },
+      BO_Title: {
+        type: DataTypes.STRING(60),
+        allowNull: false,
+      },
+      BO_File: {
+        type: DataTypes.STRING(45),
+        allowNull: true,
+      },
+      BO_Content: {
+        type: DataTypes.STRING(2000),
+        allowNull: false,
+      },
+      BO_Hit: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        defaultValue: "0",
+      },
+      BO_Creation_Date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.fn("current_timestamp"),
+      },
+    },
+    {
+      tableName: "board",
+      timestamps: false,
+    }
+  );
 };

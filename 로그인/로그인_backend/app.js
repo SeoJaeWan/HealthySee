@@ -7,7 +7,7 @@ var logger = require("morgan");
 var authRouter = require("./routes/account");
 var boardRouter = require("./routes/board");
 
-const jwtMiddleware = require("./token/jwtMiddlewares").jwtMiddleware;
+const jwtMiddleware = require("./lib/token/jwtMiddlewares").jwtMiddleware;
 
 var app = express();
 // view engine setup
@@ -19,7 +19,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(jwtMiddleware);
-
 
 app.use("/auth", authRouter);
 app.use("/board", boardRouter);

@@ -16,6 +16,7 @@ const sequelize = new Sequelize({
   port: config.port,
   database: config.database,
   dialect: "mysql",
+  timezone: "+09:00",
 });
 
 fs.readdirSync(__dirname)
