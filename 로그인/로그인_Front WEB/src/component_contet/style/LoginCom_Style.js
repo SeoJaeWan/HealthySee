@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import KakaoLogin from "react-kakao-login";
 
 export const Container = styled.div`
   position: relative;
@@ -11,11 +10,11 @@ export const Container = styled.div`
 export const Kakao = styled.div`
   position: relative;
   width: 24%;
-  color:#2B0B20;
-  background-color:#FCF012;
-  text-align:center;
+  color: #2b0b20;
+  background-color: #fcf012;
+  text-align: center;
   height: 10%;
-  top: 20%; 
+  top: 20%;
   font-size: 3rem;
   left: 13%;
 `;
@@ -23,9 +22,9 @@ export const Kakao = styled.div`
 export const Google = styled.div`
   position: relative;
   width: 24%;
-  color:white;
-  background-color:#D94D3D;
-  text-align:center;
+  color: white;
+  background-color: #d94d3d;
+  text-align: center;
   height: 10%;
   font-size: 3rem;
   top: 30%;
@@ -33,9 +32,9 @@ export const Google = styled.div`
 `;
 export const Naver = styled.div`
   position: relative;
-  color:white;
-  background-color:#13D261;
-  text-align:center;
+  color: white;
+  background-color: #13d261;
+  text-align: center;
   width: 24%;
   height: 10%;
   font-size: 3rem;
@@ -47,7 +46,7 @@ export const Label = styled.hr`
   position: absolute;
   width: 0px;
   height: 50vh;
-  top:3%;
+  top: 3%;
   left: 50%;
   border-left: 3px solid #676a72;
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import WriteCom from "../../component_contet/component/board/WriteCom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,9 +8,9 @@ import { withRouter } from "react-router-dom";
 const WriteForm = ({ route, history }) => {
   const dispatch = useDispatch();
 
-  const { postInfo, comments, post, user } = useSelector(({ write, user }) => ({
+  const { postInfo, post, user } = useSelector(({ write, user }) => ({
     postInfo: write.postInfo,
-    comments: write.comments,
+
     post: write.post,
 
     user: user.user,

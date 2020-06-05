@@ -1,70 +1,62 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { readPost, changeComments } from "../../modules/board/post";
-import { writeComment, changeField } from "../../modules/board/write";
+import { readPost } from "../../modules/board/post";
 import { withRouter } from "react-router-dom";
-import { deletePost } from "../../lib/api/board";
+import { deletePost, downloadFile } from "../../lib/api/board";
+import { saveAs } from "file-saver";
 
 import ReadCom from "../../component_contet/component/board/ReadCom";
+import EvaluationForm from "./read/EvaluationForm";
+import CommentsForm from "./read/CommentsForm";
+import ActionButton from "../../component_contet/common/ActionButton";
 
-const ReadForm = ({ match, history }) => {
+const ReadForm = ({ match, history, route }) => {
   const postId = match.params.postId;
 
   const dispatch = useDispatch();
-  const { post, comments, newComments, comment, loading, user } = useSelector(
-    ({ post, write, loading, user }) => ({
-      post: post.post,
-      comments: post.comments,
-      comment: write.comment,
-      newComments: write.comments,
-      loading: loading["post/READ_POST"],
+  const { post, loading, user } = useSelector(({ post, loading, user }) => ({
+    post: post.post,
 
-      user: user.user,
-    })
-  );
+    loading: loading["post/READ_POST"],
+    user: user.user,
+  }));
 
-  const onDelete = async () => {
+  const onDeletePost = async () => {
     await deletePost(post.BO_Code);
-    console.log("겨이다", post.BO_Code);
+    history.push(route);
+  };
+
+  const onClick = async (filename) => {
+    const file = await downloadFile(filename);
+    console.log(file);
+    saveAs(file.data, filename.substring(13));
   };
 
   const onGoBack = () => {
     history.push("/board");
   };
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-
-    dispatch(changeField({ form: "comment", key: name, value }));
-  };
-
-  const onComment = (postId) => {
-    dispatch(writeComment({ content: comment.content, postId }));
-    dispatch(changeField({ form: "comment", key: "content", value: "" }));
-  };
-
   useEffect(() => {
     dispatch(readPost(postId));
   }, [dispatch, postId]);
 
-  useEffect(() => {
-    if (newComments) {
-      dispatch(changeComments(newComments));
-    }
-  }, [newComments, dispatch]);
+  if (!post || loading) {
+    return null;
+  }
 
   return (
-    <ReadCom
-      post={post}
-      loading={loading}
-      comment={comment}
-      comments={comments}
-      user={user}
-      onGoBack={onGoBack}
-      onComment={onComment}
-      onChange={onChange}
-      onDelete={onDelete}
-    />
+    <>
+      <ReadCom
+        post={post}
+        ownPost={(user && user.username) === (post && post.BO_Writer_NickName)}
+        actionButton={<ActionButton onDelete={onDeletePost} />}
+        onGoBack={onGoBack}
+        onDeletePost={onDeletePost}
+        onClick={onClick}
+      />
+      <EvaluationForm post={post} />
+      <CommentsForm post={post} user={user} />
+    </>
   );
 };
 

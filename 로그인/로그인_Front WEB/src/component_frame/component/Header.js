@@ -1,46 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Menu, Title, Login } from "../style/Header_Style.js";
+import { Container } from "../style/Header_Style.js";
+import { Element } from "../style/Manu_Style.js";
 
 const Header = ({ user, onLogout }) => {
   return (
     <Container>
-      <Menu>메뉴</Menu>
-      <Link to="/" style={{ textDecoration: "none", color: "#676a72" }}>
-        <Title>Health&See</Title>
+      <button className="menu">메뉴</button>
+      <Link to="/">
+        <div className="Title">Health&See</div>
       </Link>
-      <Login>
+      <div className="Login">
         {user ? (
           <>
-            <div style={{ textDecoration: "none", color: "#676a72" }}>
-              {user.username}
-            </div>
+            <div>{user.username}</div>
 
-            <div
-              onClick={onLogout}
-              style={{ textDecoration: "none", color: "#676a72" }}
-            >
-              로그아웃
-            </div>
+            <div onClick={onLogout}>로그아웃</div>
           </>
         ) : (
           <>
-            <Link
-              to="/Login"
-              style={{ textDecoration: "none", color: "#676a72" }}
-            >
-              로그인
-            </Link>
-            /
-            <Link
-              to="/Signup"
-              style={{ textDecoration: "none", color: "#676a72" }}
-            >
-              회원가입
-            </Link>
+            <Link to="/Login">로그인</Link>
           </>
         )}
-      </Login>
+      </div>
     </Container>
   );
 };

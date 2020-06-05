@@ -1,4 +1,7 @@
 import * as boardAPI from "../../lib/api/board";
+import produce from "immer";
+
+import { saveAs } from "file-saver";
 
 import { createAction, handleActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
@@ -13,24 +16,66 @@ const [
   READ_POST_FAILURE,
 ] = createRequestActionTypes("post/READ_POST");
 
-const CHANGE_COMMENTS = "post/CHANGE_COMMENTS";
+const CHANGE_EVALUATION = "post/CHANGE_EVALUATION";
+const [
+  DOWNLOAD_FILE,
+  DOWNLOAD_FILE_SUCCESS,
+  DOWNLOAD_FILE_FAILURE,
+] = "post/DOWNLOAD_FILE";
+const [
+  WRITE_COMMENT,
+  WRITE_COMMENT_SUCCESS,
+  WRITE_COMMENT_FAILURE,
+] = createRequestActionTypes("write/WRITE_COMMENT");
+
+const [
+  DELETE_COMMENT,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAILURE,
+] = createRequestActionTypes("write/DELETE_COMMENT");
 
 export const readPost = createAction(READ_POST, (id) => id);
-export const changeComments = createAction(
-  CHANGE_COMMENTS,
-  (comments) => comments
+export const changeEvaluation = createAction(
+  CHANGE_EVALUATION,
+  ({ key, value }) => ({
+    key,
+    value,
+  })
+);
+export const downloadFile = createAction(DOWNLOAD_FILE, (id) => id);
+export const writeComment = createAction(
+  WRITE_COMMENT,
+  ({ content, postId, ref }) => ({ content, postId, ref })
+);
+export const deleteComment = createAction(DELETE_COMMENT, (id) => id);
+
+const writeCommentSaga = createRequestSaga(
+  WRITE_COMMENT,
+  boardAPI.writeComment
+);
+const deleteCommentSaga = createRequestSaga(
+  DELETE_COMMENT,
+  boardAPI.deleteComment
+);
+const readPostSaga = createRequestSaga(READ_POST, boardAPI.readPost);
+const downloadFileSaga = createRequestSaga(
+  DOWNLOAD_FILE,
+  boardAPI.downloadFile
 );
 
-export const readPostSaga = createRequestSaga(READ_POST, boardAPI.readPost);
 export function* postSaga() {
   yield takeLatest(READ_POST, readPostSaga);
+  yield takeLatest(DOWNLOAD_FILE, downloadFileSaga);
+  yield takeLatest(WRITE_COMMENT, writeCommentSaga);
+  yield takeLatest(DELETE_COMMENT, deleteCommentSaga);
 }
 
 const initialState = {
   post: null,
   comments: null,
 
-  error: null,
+  readError: null,
+  commentError: null,
 };
 
 const post = handleActions(
@@ -40,13 +85,35 @@ const post = handleActions(
       post: post.boardDetail,
       comments: post.comments,
     }),
-    [READ_POST_FAILURE]: (state, { payload: error }) => ({
+    [READ_POST_FAILURE]: (state, { payload: readError }) => ({
       ...state,
-      error,
+      readError,
     }),
-    [CHANGE_COMMENTS]: (state, { payload: comments }) => ({
+    [CHANGE_EVALUATION]: (state, { payload: { key, value } }) =>
+      produce(state, (draft) => {
+        draft["post"][key] = value;
+      }),
+    [DOWNLOAD_FILE_SUCCESS]: (state, { payload: data }) => {
+      saveAs(data, "테스트이다.png");
+      console.log(data);
+    },
+    [WRITE_COMMENT_SUCCESS]: (state, { payload: comments }) => ({
       ...state,
-      comments: comments.comments,
+      comments,
+      commentError: null,
+    }),
+    [WRITE_COMMENT_FAILURE]: (state, { payload: commentError }) => ({
+      ...state,
+      comments: null,
+      commentError,
+    }),
+    [DELETE_COMMENT_SUCCESS]: (state, { payload: comments }) => ({
+      ...state,
+      comments: comments,
+    }),
+    [DELETE_COMMENT_FAILURE]: (state, { payload: commentError }) => ({
+      ...state,
+      commentError,
     }),
   },
   initialState

@@ -8,12 +8,12 @@ import HeaderForm from "../containers/Header/HeaderForm";
 class Main extends Component {
   render() {
     return (
-      <div>
+      <>
         <HeaderForm />
         <Manu />
         <List />
         <MainCom />
-      </div>
+      </>
     );
   }
 }

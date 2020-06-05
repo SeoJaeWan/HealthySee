@@ -13,31 +13,17 @@ const [
   WRITE_POST_SUCCESS,
   WRITE_POST_FAILURE,
 ] = createRequestActionTypes("write/WRITE_POST");
-const [
-  WRITE_COMMENT,
-  WRITE_COMMENT_SUCCESS,
-  WRITE_COMMENT_FAILURE,
-] = createRequestActionTypes("board/WRITE_COMMENT");
 
-const SET_ORIGINAL = "write/SET_ORIGINAL";
 const CHANGE_FIELD = "write/CHANGE_FIELD";
 const INITIALIZE = "write/INITIALIZE";
+const SET_ORIGINAL = "write/SET_ORIGINAL";
 
 export const writePost = createAction(WRITE_POST, (formData) => formData);
-
-export const writeComment = createAction(
-  WRITE_COMMENT,
-  ({ content, postId }) => ({
-    content,
-    postId,
-  })
-);
 
 export const setOriginal = createAction(SET_ORIGINAL, ({ form, data }) => ({
   form,
   data,
 }));
-
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
@@ -49,14 +35,10 @@ export const changeField = createAction(
 
 export const initialize = createAction(INITIALIZE);
 
-export const writePostSaga = createRequestSaga(WRITE_POST, boardAPI.writePost);
-export const writeCommentSaga = createRequestSaga(
-  WRITE_COMMENT,
-  boardAPI.writeComment
-);
+const writePostSaga = createRequestSaga(WRITE_POST, boardAPI.writePost);
+
 export function* writeSaga() {
   yield takeLatest(WRITE_POST, writePostSaga);
-  yield takeLatest(WRITE_COMMENT, writeCommentSaga);
 }
 
 const initialState = {
@@ -65,13 +47,14 @@ const initialState = {
     content: "",
     file: "",
   },
+
   comment: {
     content: "",
+    reply: "",
   },
 
   postInfo: null,
   postError: null,
-  comments: null,
 };
 
 const write = handleActions(
@@ -95,10 +78,6 @@ const write = handleActions(
       ...state,
       postInfo: null,
       postError,
-    }),
-    [WRITE_COMMENT_SUCCESS]: (state, { payload: comments }) => ({
-      ...state,
-      comments,
     }),
     [SET_ORIGINAL]: (state, { payload: { form, data } }) =>
       produce(state, (draft) => {

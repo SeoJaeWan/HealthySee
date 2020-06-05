@@ -19,7 +19,7 @@ const [LIST, LIST_SUCCESS, LIST_FAILURE] = createRequestActionTypes(
 export const initialize = createAction(INITIALIZE);
 export const list = createAction(LIST);
 
-export const listSaga = createRequestSaga(LIST, boardAPI.list);
+const listSaga = createRequestSaga(LIST, boardAPI.list);
 
 export function* postsSaga() {
   yield takeLatest(LIST, listSaga);

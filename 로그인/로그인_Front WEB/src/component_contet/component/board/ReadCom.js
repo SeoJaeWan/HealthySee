@@ -3,13 +3,10 @@ import React from "react";
 const ReadCom = ({
   post,
   loading,
-  comment,
-  comments,
-  user,
-  onComment,
+  ownPost,
+  actionButton,
   onGoBack,
-  onChange,
-  onDelete,
+  onClick,
 }) => {
   if (!post || loading) {
     return null;
@@ -17,38 +14,22 @@ const ReadCom = ({
 
   return (
     <div>
+      {console.log(post)}
       <h1>제목 : {post.BO_Title}</h1>
       <pre>{post.BO_Content}</pre>
-
-      {/* {user.username === post.BO_Writer_NickName ? (
-        <div onClick={onDelete}>삭제</div>
-      ) : (
-        ""
-      )} */}
-      <div>첨부파일 : {post.BO_File ? post.BO_File.substring(13) : ""}</div>
+      {ownPost && actionButton}
       <div>
-        <p>댓글</p>
-        <input
-          type="text"
-          name="content"
-          value={comment.content}
-          onChange={onChange}
-        />
-        <button onClick={() => onComment(post.BO_Code)}>작성</button>
+        첨부파일 :
+        {post.BO_File ? (
+          <span onClick={() => onClick(post.BO_File)}>
+            {post.BO_File.substring(13)}
+          </span>
+        ) : (
+          ""
+        )}
       </div>
 
-      <div>
-        {comments.map((comment, index) => {
-          return (
-            <div key={index}>
-              {comment.BC_Content}
-              {comment.BC_Writer_NickName}
-            </div>
-          );
-        })}
-      </div>
-
-      <div onClick={onGoBack}>나가기</div>
+      <button onClick={onGoBack}>나가기</button>
     </div>
   );
 };
