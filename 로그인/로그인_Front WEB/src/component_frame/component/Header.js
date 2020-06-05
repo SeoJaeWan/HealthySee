@@ -8,7 +8,7 @@ const Header = ({ user, onLogout }) => {
     <Container>
       <button className="menu">메뉴</button>
       <Link to="/">
-        <div className="Title">Health&See</div>
+        <div className="Title">Health&amp;See</div>
       </Link>
       <div className="Login">
         {user ? (
