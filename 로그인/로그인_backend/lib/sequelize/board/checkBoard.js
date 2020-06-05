@@ -3,7 +3,6 @@ const B_Comment = require("../../../models").b_comment;
 
 const checkPost = async (req, res, next) => {
   const BO_Code = req.params.BO_Code ? req.params.BO_Code : req.body.BO_Code;
-  console.log("여기 와ㅣㅆ어용1", req.body);
 
   if (!BO_Code) {
     res.status(400).end();

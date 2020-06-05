@@ -16,6 +16,10 @@ const readPost = async (req, res, next) => {
   });
   var comments = await B_Comment.findAll({
     where: { Board_BO_Code: BO_Code },
+    order: [
+      ["BC_Re_Ref", "ASC"],
+      ["BC_Code", "ASC"],
+    ],
   });
   responseData.boardDetail = BoardD;
   responseData.comments = comments;
@@ -35,7 +39,7 @@ const readComment = async (req, res, next) => {
     ],
   });
 
-  responseData.comments = comments;
+  responseData = comments;
 
   res.json(responseData);
 };

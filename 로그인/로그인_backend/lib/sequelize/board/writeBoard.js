@@ -22,7 +22,6 @@ const writePost = async (req, res, next) => {
   var BO_File = req.file ? req.file.filename : "";
 
   var BO_Writer_NickName = req.body.username;
-  var BO_Creation_Date = today;
 
   const board = await Board.create({
     BO_Title,
@@ -42,6 +41,8 @@ const writeComment = async (req, res, next) => {
   var Board_BO_Code = req.body.Board_BO_Code;
   var BC_Writer_NickName = req.body.user.username;
   var BC_Creation_Date = today;
+
+  console.log(req.body);
 
   if (BC_Re_Ref === "0")
     await B_Comment.create({

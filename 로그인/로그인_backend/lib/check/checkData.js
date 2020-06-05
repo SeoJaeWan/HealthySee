@@ -1,5 +1,4 @@
 const checkLogin = (req, res, next) => {
-  console.log("여기오ㅓㅏ써용2", req.body.user);
   if (!req.body.user) {
     res.status(401).end();
     return;
@@ -8,7 +7,6 @@ const checkLogin = (req, res, next) => {
 };
 
 const checkOwnBoard = (req, res, next) => {
-  console.log("여기오ㅓㅏ써용3");
   const { user, code } = req.body;
   console.log(req.body);
 
