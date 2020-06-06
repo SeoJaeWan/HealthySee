@@ -19,7 +19,11 @@ const App = () => {
       url(${require("./Font/BMJUA.woff")}) format('woff'),
       url(${require("./Font/BMJUA.ttf")}) format('ttf');
     }
-    body {font-family: "font" ;margin:0;}`;
+    body {font-family: "font" ;margin:0;color:#676a72;} 
+    a {text-decoration: none; color: #676a72;}
+    button{font-family: "font"; border-color:white}
+    `;
+
   return (
     <div>
       <GlobalStyle />

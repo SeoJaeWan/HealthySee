@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "../../style/ReadCom_Style";
 
 const ReadCom = ({
   post,
@@ -13,9 +14,9 @@ const ReadCom = ({
   }
 
   return (
-    <div>
+    <Container>
       {console.log(post)}
-      <h1>제목 : {post.BO_Title}</h1>
+      <div className="TitleForm"><div className="Title">제목 : {post.BO_Title}</div></div>
       <pre>{post.BO_Content}</pre>
       {ownPost && actionButton}
       <div>
@@ -30,7 +31,7 @@ const ReadCom = ({
       </div>
 
       <button onClick={onGoBack}>나가기</button>
-    </div>
+    </Container>
   );
 };
 

@@ -17,5 +17,10 @@ export const media = ({
         @media (max-width: 600px) {
             ${ css(...args) }
         }
+    `,
+    half: (...args) => css`
+        @media (max-width: 990px) {
+            ${ css(...args) }
+        }
     `
 });
