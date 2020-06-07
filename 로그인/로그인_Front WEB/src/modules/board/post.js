@@ -1,8 +1,6 @@
 import * as boardAPI from "../../lib/api/board";
 import produce from "immer";
 
-import { saveAs } from "file-saver";
-
 import { createAction, handleActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
 
@@ -17,11 +15,6 @@ const [
 ] = createRequestActionTypes("post/READ_POST");
 
 const CHANGE_EVALUATION = "post/CHANGE_EVALUATION";
-const [
-  DOWNLOAD_FILE,
-  DOWNLOAD_FILE_SUCCESS,
-  DOWNLOAD_FILE_FAILURE,
-] = "post/DOWNLOAD_FILE";
 const [
   WRITE_COMMENT,
   WRITE_COMMENT_SUCCESS,
@@ -42,7 +35,6 @@ export const changeEvaluation = createAction(
     value,
   })
 );
-export const downloadFile = createAction(DOWNLOAD_FILE, (id) => id);
 export const writeComment = createAction(
   WRITE_COMMENT,
   ({ content, postId, ref }) => ({ content, postId, ref })
@@ -58,14 +50,9 @@ const deleteCommentSaga = createRequestSaga(
   boardAPI.deleteComment
 );
 const readPostSaga = createRequestSaga(READ_POST, boardAPI.readPost);
-const downloadFileSaga = createRequestSaga(
-  DOWNLOAD_FILE,
-  boardAPI.downloadFile
-);
 
 export function* postSaga() {
   yield takeLatest(READ_POST, readPostSaga);
-  yield takeLatest(DOWNLOAD_FILE, downloadFileSaga);
   yield takeLatest(WRITE_COMMENT, writeCommentSaga);
   yield takeLatest(DELETE_COMMENT, deleteCommentSaga);
 }
@@ -93,10 +80,6 @@ const post = handleActions(
       produce(state, (draft) => {
         draft["post"][key] = value;
       }),
-    [DOWNLOAD_FILE_SUCCESS]: (state, { payload: data }) => {
-      saveAs(data, "테스트이다.png");
-      console.log(data);
-    },
     [WRITE_COMMENT_SUCCESS]: (state, { payload: comments }) => ({
       ...state,
       comments,

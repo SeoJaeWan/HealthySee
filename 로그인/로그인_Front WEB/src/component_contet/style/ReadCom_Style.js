@@ -3,15 +3,15 @@ import { media } from "../../ReactiveStyle/ReactiveStyle";
 
 export const Container = styled.div`
   height: 100%;
-  width: 1400px;
+  width: 70%;
   margin-left: 260px;
 
   .TitleForm {
     display: flex;
     width: 95%;
     font-size: 3rem;
-    margin-top:50px;
-    margin-left:30px;
+    margin-top: 50px;
+    margin-left: 30px;
     border: 5px solid #676a72;
     border-left: solid white;
     &::before {
@@ -33,8 +33,8 @@ export const Container = styled.div`
     display: flex;
     width: 95%;
     font-size: 3rem;
-    margin-top:50px;
-    margin-left:30px;
+    margin-top: 50px;
+    margin-left: 30px;
     border: 5px solid #676a72;
     border-left: solid white;
     &::before {
@@ -51,8 +51,7 @@ export const Container = styled.div`
       transition: 0.2s;
     }
   }
-  .Title{
-      padding: 14px 14px 14px 14px;
+  .Title {
+    padding: 14px 14px 14px 14px;
   }
 `;
-

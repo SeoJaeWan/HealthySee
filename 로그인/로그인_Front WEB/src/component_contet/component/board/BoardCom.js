@@ -1,19 +1,10 @@
 import React from "react";
 import { Container } from "../../style/BoardCom_Style";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const BoardCom = ({ match, posts, loading, onClick }) => {
-  const fetchMoreData = (posts) => {
-    // a fake async api call like which sends
-    // 20 more records in 1.5 secs
-    setTimeout(() => {
-      this.setState({
-        items: <div>다음에 넣어야될값</div>,
-      });
-    }, 1500);
-  };
+const BoardCom = ({ match, posts, loading, onClick, fetchMoreData }) => {
   if (!posts || loading) {
     return null;
   }
@@ -23,6 +14,10 @@ const BoardCom = ({ match, posts, loading, onClick }) => {
       <div className="Board">
         <div className="Title">
           게시판
+          <div>
+            <input type="text" />
+            <button>검색</button>
+          </div>
           <div className="Write">
             <Link to={`${match.url}/write`}>글쓰기</Link>
           </div>
@@ -30,7 +25,7 @@ const BoardCom = ({ match, posts, loading, onClick }) => {
         <div className="BoardForm">
           <InfiniteScroll
             dataLength={posts.length}
-            next={posts.fetchMoreData}
+            next={fetchMoreData}
             hasMore={true}
             loader={<h4>Loading...</h4>}
           >

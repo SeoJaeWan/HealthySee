@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 400px;
-  width: 1400px;
+  width: 70%;
   margin-left: 260px;
 
   .Item {
@@ -11,28 +11,28 @@ export const Container = styled.div`
     font-size: 1.5rem;
     cursor: pointer;
   }
-  .Board{
+  .Board {
   }
 
-  .Write{
+  .Write {
     margin-right: 70px;
   }
-  .Title{
-    display:flex;
+  .Title {
+    display: flex;
     color: #676a72;
-    justify-content:space-between;
-    font-size:4rem;
-    margin-left:110px;
-    margin-top:70px;
+    justify-content: space-between;
+    font-size: 4rem;
+    margin-left: 110px;
+    margin-top: 70px;
   }
   .BoardForm {
     display: flex;
-    height: 60vh;
+    /* height: 60vh; */
     width: 90%;
     font-size: 1rem;
     border: 5px solid #676a72;
     border-left: solid white;
-    max-height:100%;
+    max-height: 100%;
     margin-left: 5%;
     &::before {
       content: "";

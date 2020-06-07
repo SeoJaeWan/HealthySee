@@ -4,6 +4,7 @@ import AskModal from "./AskModal";
 const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount }) => {
   const [modal, setModal] = useState(false);
   const [action, setAction] = useState(null);
+
   const onActionClick = (action) => {
     console.log(action);
     setModal(true);
@@ -16,10 +17,10 @@ const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount }) => {
     setModal(false);
     action();
   };
+
   return (
     <>
       <div>
-        {console.log(action)}
         <div>
           <button onClick={() => onActionClick(() => onHealth)}>추천</button>
           <p>{healthseeCount}</p>

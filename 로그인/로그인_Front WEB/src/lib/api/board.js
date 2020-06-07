@@ -19,6 +19,13 @@ export const undoHealthPost = (id) =>
   client.delete(`/board/posts/health/${id}`);
 
 export const list = () => client.get(`/board/lists/`);
+export const listDetail = (id) => {
+  // const queryString = qs.stringify({
+  //   id,
+  // });
+  console.log(id);
+  return client.get(`/board/lists/${id}`);
+};
 export const writeComment = ({ content, postId, ref }) => {
   console.log(content, postId, ref);
 

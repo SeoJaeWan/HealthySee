@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import BoardCom from "../../component_contet/component/board/BoardCom";
 import { useDispatch, useSelector } from "react-redux";
-import { list, initialize } from "../../modules/board/posts";
+import { list, listDetail, initialize } from "../../modules/board/posts";
 
 const BoardForm = ({ match, history, route }) => {
   const dispatch = useDispatch();
@@ -9,6 +9,14 @@ const BoardForm = ({ match, history, route }) => {
     posts: posts.posts,
     loading: loading["posts/LIST"],
   }));
+
+  const fetchMoreData = () => {
+    // a fake async api call like which sends
+    // 20 more records in 1.5 secs
+    setTimeout(() => {
+      dispatch(listDetail(posts[posts.length - 1].BO_Code));
+    }, 1500);
+  };
 
   const onClick = (postId) => {
     history.push(`${match.url}/read/${postId}`);
@@ -24,7 +32,13 @@ const BoardForm = ({ match, history, route }) => {
   }, [dispatch]);
 
   return (
-    <BoardCom match={match} posts={posts} loading={loading} onClick={onClick} />
+    <BoardCom
+      match={match}
+      posts={posts}
+      loading={loading}
+      onClick={onClick}
+      fetchMoreData={fetchMoreData}
+    />
   );
 };
 

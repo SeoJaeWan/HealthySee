@@ -3,13 +3,12 @@ import ActionButton from "./ActionButton";
 
 const CommentsCom = ({
   comments,
-  comment,
+  commentValue,
   user,
   onWrite,
   changeComment,
   onDeleteComment,
 }) => {
-  const { content, reply } = comment;
   return (
     <div>
       <div>
@@ -18,7 +17,7 @@ const CommentsCom = ({
           type="text"
           id="comment"
           name="content"
-          value={content}
+          value={commentValue.content}
           onChange={changeComment}
         />
         <button onClick={() => onWrite("0")}>작성</button>
@@ -40,11 +39,11 @@ const CommentsCom = ({
 
               <input
                 type="text"
-                name="reply"
-                value={reply}
+                name={BC_Code}
+                value={commentValue[BC_Code]}
                 onChange={changeComment}
               />
-              <button onClick={() => onWrite(BC_Re_Ref)}>답글</button>
+              <button onClick={() => onWrite(BC_Re_Ref, BC_Code)}>답글</button>
               {(user && user.username) === (comment && BC_Writer_NickName) && (
                 <ActionButton onDelete={() => onDeleteComment(BC_Code)} />
               )}

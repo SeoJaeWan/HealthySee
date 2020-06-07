@@ -13,11 +13,12 @@ const CommentsForm = ({ post, user }) => {
 
   const changeComment = (e) => {
     const { name, value } = e.target;
+    console.log(comment[name]);
 
     dispatch(changeField({ form: "comment", key: name, value }));
   };
-  const onWrite = (BC_Re_Ref) => {
-    const content = BC_Re_Ref === "0" ? comment.content : comment.reply;
+  const onWrite = (BC_Re_Ref, BC_Code) => {
+    const content = BC_Re_Ref === "0" ? comment.content : comment[BC_Code];
 
     dispatch(
       writeComment({
@@ -38,7 +39,7 @@ const CommentsForm = ({ post, user }) => {
       comments={comments}
       changeComment={changeComment}
       onWrite={onWrite}
-      comment={comment}
+      commentValue={comment}
       user={user}
       onDeleteComment={onDelete}
     />
