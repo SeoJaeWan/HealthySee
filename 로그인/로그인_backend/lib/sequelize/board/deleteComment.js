@@ -8,18 +8,12 @@ const deleteComment = async (req, res, next) => {
 
   req.params.BO_Code = comment.Board_BO_Code;
   console.log(req.params.BO_Code);
-
-  B_Comment.destroy({ where: { BC_Code } })
-    .then((affectedRows) => {
-      if (affectedRows === 1) {
-        // req.params.result = 1;
-        next();
-      }
-    })
+  await B_Comment.update({BC_Content : "삭제된 댓글 입니다."},{where : {BC_Code}})
     .catch((err) => {
       console.error(err);
       res.status(401).end();
     });
+    next();
 };
 
 module.exports = deleteComment;
