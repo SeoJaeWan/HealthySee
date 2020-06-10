@@ -77,6 +77,7 @@ const writeComment = async (req, res, next) => {
       BC_Creation_Date,
     });
   req.params.BO_Code = Board_BO_Code;
+  req.params.page = (req.params.page)?req.params.page:1;
 
   next();
 };
