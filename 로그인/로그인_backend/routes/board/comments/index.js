@@ -12,16 +12,17 @@ const updateComment = require("../../../lib/sequelize/board/updateBoard").update
 
 // 댓글 작성
 router.post("/", writeComment,readComment);
-
+// 답글 작성
+router.post("/:page", writeComment,readComment);
 
 // 해당 BO_CODE의 댓글 조회
-router.get("/:BO_Code", readComment);
+router.get("/:BO_Code&:page", readComment);
 
-router.patch("/:BC_Code",checkComment,checkLogin,checkOwnBoard, updateComment,readComment);
+router.patch("/:BC_Code&:page",checkComment,checkLogin,checkOwnBoard, updateComment,readComment);
 
 //router.delete("/:BC_Code",deleteComment, readComment);
 router.delete(
-    "/:BC_Code",
+    "/:BC_Code&:page",
     checkComment,
     checkLogin,
     checkOwnBoard,
