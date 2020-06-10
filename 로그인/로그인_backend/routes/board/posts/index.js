@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
+const downloadFile = require("../../../lib/sequelize/board/downloadFile")
 const writePost = require("../../../lib/sequelize/board/writeBoard").writePost;
 const upload = require("../../../lib/sequelize/board/writeBoard").upload;
 const readPost = require("../../../lib/sequelize/board/readBoard").readPost;
@@ -12,10 +12,10 @@ const reportPost = require("../../../lib/sequelize/board/reportPost");
 const unDoReportPost = require("../../../lib/sequelize/board/unDoReportPost");
 const pushHealthsee = require("../../../lib/sequelize/board/pushHealthsee");
 const unDoPushHealthsee = require("../../../lib/sequelize/board/unDoPushHealthsee");
-const downloadFile = require("../../../lib/sequelize/board/downloadFile");
+const updatePost = require("../../../lib/sequelize/board/updateBoard").updatePost
 
 // 게시글 작성
-router.post("/", checkLogin, upload.single("file"), writePost, readPost);
+router.post("/", checkLogin, upload.array("files"), writePost, readPost);
 
 router.get("/download/:filename", downloadFile);
 
@@ -24,13 +24,16 @@ router.get("/:BO_Code", readPost);
 
 // 해당 BO_CODE의 게시글 삭제
 router.delete("/:BO_Code", checkPost, checkLogin, checkOwnBoard, deletePost);
+router.patch("/:BO_Code",checkPost, upload.array("files"),updatePost, readPost)
 
 // 신고
 router.post("/report", checkPost, checkLogin, reportPost);
+
 router.delete("/report/:BO_Code", checkPost, checkLogin, unDoReportPost);
 
 // 추천
 router.post("/health", checkPost, checkLogin, pushHealthsee);
+
 router.delete("/health/:BO_Code", checkPost, checkLogin, unDoPushHealthsee);
 
 module.exports = router;
