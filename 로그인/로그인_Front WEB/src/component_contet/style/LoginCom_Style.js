@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100%;
-  width: 1400px;
+  width: 70%;
   margin-left: 260px;
 
   .Title {
@@ -22,12 +22,10 @@ export const Container = styled.div`
   }
   .LoginForm {
     display: flex;
-    height: 60vh;
-    width: 90%;
-    font-size: 50pt;
+    width: 100%;
+    font-size: 3rem,;
     border: 5px solid #676a72;
     border-left: solid white;
-    margin-left: 5%;
     &::before {
       content: "";
       position: static;
@@ -78,7 +76,3 @@ export const Label = styled.hr`
   border-left: 3px solid #676a72;
 `;
 
-export const Home = styled.label`
-  height: 53vh;
-  margin-left: 50px;
-`;

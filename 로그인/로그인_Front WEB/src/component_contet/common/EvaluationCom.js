@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AskModal from "./AskModal";
+import { EvaluationComForm } from "./style/EvaluationCom_Style";
 
 const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount }) => {
   const [modal, setModal] = useState(false);
@@ -20,17 +21,25 @@ const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount }) => {
 
   return (
     <>
-      <div>
-        <div>
-          <button onClick={() => onActionClick(() => onHealth)}>추천</button>
-          <p>{healthseeCount}</p>
-        </div>
+      <EvaluationComForm>
+        <div className="ContentForm">
+          <div className="PositionB">
+            <div>
+              <button onClick={() => onActionClick(() => onHealth)}>
+                추천
+              </button>
+              <p>{healthseeCount}</p>
+            </div>
 
-        <div>
-          <button onClick={() => onActionClick(() => onReport)}>신고</button>
-          <p>{reportCount}</p>
+            <div>
+              <button onClick={() => onActionClick(() => onReport)}>
+                신고
+              </button>
+              <p>{reportCount}</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </EvaluationComForm>
 
       <AskModal
         visible={modal}

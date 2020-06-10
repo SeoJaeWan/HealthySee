@@ -1,39 +1,22 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  height: 400px;
+export const ContentComForm = styled.div`
   width: 70%;
   margin-left: 260px;
-
-  .Item {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    font-size: 1.5rem;
-    cursor: pointer;
+  button {
+    font-size: 3rem;
   }
-  .Board {
-  }
-
-  .Write {
-    margin-right: 70px;
-  }
-  .Title {
+  .PositionB {
     display: flex;
-    color: #676a72;
-    justify-content: space-between;
-    font-size: 4rem;
-    margin-left: 110px;
-    margin-top: 70px;
+    margin-left: 160px;
   }
-  .BoardForm {
-    display: flex;
-    /* height: 60vh; */
+  .ContentForm {
     width: 100%;
-    font-size: 1rem;
+    font-size: 3rem;
+    margin-top: 50px;
+    margin-left: 30px;
     border: 5px solid #676a72;
     border-left: solid white;
-    max-height: 100%;
-    margin-left: 5%;
     &::before {
       content: "";
       position: static;

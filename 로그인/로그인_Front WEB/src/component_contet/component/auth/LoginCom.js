@@ -53,9 +53,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
           </div>
           <Label/>
           <div className="rightCon">
-            <Home>
               <img src={require("../../../Images/Login/H&S.png")} alt="" />
-            </Home>
           </div>
         </div>
       </div>

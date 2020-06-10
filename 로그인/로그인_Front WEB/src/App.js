@@ -21,7 +21,8 @@ const App = () => {
     }
     body {font-family: "font" ;margin:0;color:#676a72;} 
     a {text-decoration: none; color: #676a72;}
-    button{font-family: "font"; border-color:white}
+    button{font-family: "font"; color: #676a72;border:none;background-color:white; box-shadow:0px 0px 0px white;}
+    pre{font-family: "font"}
     `;
 
   return (
