@@ -28,14 +28,17 @@ const ReadCom = ({
       <div className="ContentForm">
         <pre>{post.BO_Content}</pre>
         <div className="FileForm">
-          <div className="FileText">첨부파일 :</div>
-          {post.BO_File ? (
-            <span onClick={() => onClick(post.BO_File)}>
-              {post.BO_File.substring(13)}
-            </span>
-          ) : (
-            ""
-          )}
+          <div className="FileText">첨부파일</div>
+          {console.log(post.BO_File)}
+          {post.BO_File
+            ? post.BO_File.map((file, index) => {
+                return (
+                  <span key={index} onClick={() => onClick(file)}>
+                    {file.substring(13)}
+                  </span>
+                );
+              })
+            : ""}
         </div>
       </div>
     </Container>

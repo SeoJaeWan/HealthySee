@@ -1,7 +1,7 @@
 import * as boardAPI from "../../lib/api/board";
 import produce from "immer";
 
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions, combineActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
 
 import createRequestSaga, {
@@ -19,13 +19,18 @@ const [
   WRITE_COMMENT,
   WRITE_COMMENT_SUCCESS,
   WRITE_COMMENT_FAILURE,
-] = createRequestActionTypes("write/WRITE_COMMENT");
+] = createRequestActionTypes("post/WRITE_COMMENT");
+const [
+  UPDATE_COMMENT,
+  UPDATE_COMMENT_SUCCESS,
+  UPDATE_COMMENT_FAILURE,
+] = createRequestActionTypes("post/UPDATE_COMMENT");
 
 const [
   DELETE_COMMENT,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
-] = createRequestActionTypes("write/DELETE_COMMENT");
+] = createRequestActionTypes("post/DELETE_COMMENT");
 
 export const readPost = createAction(READ_POST, (id) => id);
 export const changeEvaluation = createAction(
@@ -39,11 +44,26 @@ export const writeComment = createAction(
   WRITE_COMMENT,
   ({ content, postId, ref }) => ({ content, postId, ref })
 );
-export const deleteComment = createAction(DELETE_COMMENT, (id) => id);
+export const updateComment = createAction(
+  UPDATE_COMMENT,
+  ({ code, content, page }) => ({
+    code,
+    content,
+    page,
+  })
+);
+export const deleteComment = createAction(DELETE_COMMENT, ({ id, page }) => ({
+  id,
+  page,
+}));
 
 const writeCommentSaga = createRequestSaga(
   WRITE_COMMENT,
   boardAPI.writeComment
+);
+const updateCommentSaga = createRequestSaga(
+  UPDATE_COMMENT,
+  boardAPI.updateComment
 );
 const deleteCommentSaga = createRequestSaga(
   DELETE_COMMENT,
@@ -55,12 +75,13 @@ export function* postSaga() {
   yield takeLatest(READ_POST, readPostSaga);
   yield takeLatest(WRITE_COMMENT, writeCommentSaga);
   yield takeLatest(DELETE_COMMENT, deleteCommentSaga);
+  yield takeLatest(UPDATE_COMMENT, updateCommentSaga);
 }
 
 const initialState = {
   post: null,
   comments: null,
-
+  page: null,
   readError: null,
   commentError: null,
 };
@@ -71,6 +92,7 @@ const post = handleActions(
       ...state,
       post: post.boardDetail,
       comments: post.comments,
+      page: post.lastPage,
     }),
     [READ_POST_FAILURE]: (state, { payload: readError }) => ({
       ...state,
@@ -80,19 +102,28 @@ const post = handleActions(
       produce(state, (draft) => {
         draft["post"][key] = value;
       }),
-    [WRITE_COMMENT_SUCCESS]: (state, { payload: comments }) => ({
+    [combineActions(WRITE_COMMENT_SUCCESS, UPDATE_COMMENT_SUCCESS)]: (
+      state,
+      { payload: data }
+    ) => ({
       ...state,
-      comments,
+      comments: data.comments,
+      page: data.lastPage,
+
       commentError: null,
     }),
-    [WRITE_COMMENT_FAILURE]: (state, { payload: commentError }) => ({
+    [combineActions(WRITE_COMMENT_FAILURE, UPDATE_COMMENT_FAILURE)]: (
+      state,
+      { payload: commentError }
+    ) => ({
       ...state,
       comments: null,
       commentError,
     }),
-    [DELETE_COMMENT_SUCCESS]: (state, { payload: comments }) => ({
+    [DELETE_COMMENT_SUCCESS]: (state, { payload: data }) => ({
       ...state,
-      comments: comments,
+      comments: data.comments,
+      page: data.lastPage,
     }),
     [DELETE_COMMENT_FAILURE]: (state, { payload: commentError }) => ({
       ...state,

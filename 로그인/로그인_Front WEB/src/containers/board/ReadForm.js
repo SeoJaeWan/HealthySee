@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readPost } from "../../modules/board/post";
+import { setOriginal } from "../../modules/board/write";
 import { withRouter } from "react-router-dom";
 import { deletePost, downloadFile } from "../../lib/api/board";
 import { saveAs } from "file-saver";
@@ -21,9 +22,16 @@ const ReadForm = ({ match, history, route }) => {
     user: user.user,
   }));
 
-  const onDeletePost = async () => {
-    await deletePost(post.BO_Code);
+  const onDeletePost = async (code) => {
+    await deletePost(code);
     history.push(route);
+  };
+
+  const onChange = ({ code, data }) => {
+    dispatch(setOriginal({ code, data }));
+    localStorage.setItem(code, JSON.stringify(data));
+
+    history.push("/Board/write");
   };
 
   const onClick = async (filename) => {
@@ -49,7 +57,14 @@ const ReadForm = ({ match, history, route }) => {
       <ReadCom
         post={post}
         ownPost={(user && user.username) === (post && post.BO_Writer_NickName)}
-        actionButton={<ActionButton onDelete={onDeletePost} />}
+        actionButton={
+          <ActionButton
+            onDelete={onDeletePost}
+            onChange={onChange}
+            data={post}
+            code={"post"}
+          />
+        }
         onGoBack={onGoBack}
         onDeletePost={onDeletePost}
         onClick={onClick}

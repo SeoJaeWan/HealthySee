@@ -1,5 +1,5 @@
 import React from "react";
-import ActionButton from "./ActionButton";
+import CommentsItem from "./CommentsItem";
 
 const CommentsCom = ({
   comments,
@@ -8,6 +8,7 @@ const CommentsCom = ({
   onWrite,
   changeComment,
   onDeleteComment,
+  update,
 }) => {
   return (
     <div>
@@ -25,29 +26,17 @@ const CommentsCom = ({
 
       <div>
         {comments.map((comment, index) => {
-          const {
-            BC_Content,
-            BC_Writer_NickName,
-            BC_Re_Ref,
-            BC_Code,
-          } = comment;
           return (
-            <div key={index}>
-              {BC_Content}
-              {BC_Writer_NickName}
-              {BC_Re_Ref}
-
-              <input
-                type="text"
-                name={BC_Code}
-                value={commentValue[BC_Code]}
-                onChange={changeComment}
-              />
-              <button onClick={() => onWrite(BC_Re_Ref, BC_Code)}>답글</button>
-              {(user && user.username) === (comment && BC_Writer_NickName) && (
-                <ActionButton onDelete={() => onDeleteComment(BC_Code)} />
-              )}
-            </div>
+            <CommentsItem
+              key={index}
+              comment={comment}
+              commentValue={commentValue}
+              changeComment={changeComment}
+              onWrite={onWrite}
+              user={user}
+              onDeleteComment={onDeleteComment}
+              update={update}
+            />
           );
         })}
       </div>

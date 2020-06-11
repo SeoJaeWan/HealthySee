@@ -1,6 +1,6 @@
 import * as boardAPI from "../../lib/api/board";
 
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions, combineActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
 import produce from "immer";
 
@@ -13,12 +13,21 @@ const [
   WRITE_POST_SUCCESS,
   WRITE_POST_FAILURE,
 ] = createRequestActionTypes("write/WRITE_POST");
+const [
+  UPDATE_POST,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
+] = createRequestActionTypes("write/UPDATE_POST");
 
 const CHANGE_FIELD = "write/CHANGE_FIELD";
 const INITIALIZE = "write/INITIALIZE";
 const SET_ORIGINAL = "write/SET_ORIGINAL";
 
 export const writePost = createAction(WRITE_POST, (formData) => formData);
+export const updatePost = createAction(UPDATE_POST, (id, formData) => ({
+  id,
+  formData,
+}));
 
 export const setOriginal = createAction(SET_ORIGINAL, ({ form, data }) => ({
   form,
@@ -36,21 +45,24 @@ export const changeField = createAction(
 export const initialize = createAction(INITIALIZE);
 
 const writePostSaga = createRequestSaga(WRITE_POST, boardAPI.writePost);
+const updatePostSaga = createRequestSaga(UPDATE_POST, boardAPI.updatePost);
 
 export function* writeSaga() {
   yield takeLatest(WRITE_POST, writePostSaga);
+  yield takeLatest(UPDATE_POST, updatePostSaga);
 }
 
 const initialState = {
   post: {
-    title: "",
-    content: "",
-    file: "",
+    BO_Title: "",
+    BO_Content: "",
+    BO_File: [],
+    file: [],
   },
 
   comment: {
     content: "",
-    reply: "",
+    update: "",
   },
 
   postInfo: null,
@@ -64,17 +76,19 @@ const write = handleActions(
       produce(state, (draft) => {
         draft[form][key] = value;
       }),
-    [WRITE_POST]: (state) => ({
-      ...state,
-      postInfo: null,
-      postError: null,
-    }),
-    [WRITE_POST_SUCCESS]: (state, { payload: postInfo }) => ({
+
+    [combineActions(WRITE_POST_SUCCESS, UPDATE_POST_SUCCESS)]: (
+      state,
+      { payload: postInfo }
+    ) => ({
       ...state,
       postInfo,
       postError: null,
     }),
-    [WRITE_POST_FAILURE]: (state, { payload: postError }) => ({
+    [combineActions(WRITE_POST_FAILURE, UPDATE_POST_FAILURE)]: (
+      state,
+      { payload: postError }
+    ) => ({
       ...state,
       postInfo: null,
       postError,

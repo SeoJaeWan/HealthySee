@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeField, initialize } from "../../../modules/board/write";
-import { writeComment, deleteComment } from "../../../modules/board/post";
+import {
+  writeComment,
+  deleteComment,
+  updateComment,
+} from "../../../modules/board/post";
 import CommentsCom from "../../../component_contet/common/CommentsCom";
 
-const CommentsForm = ({ post, user }) => {
+const CommentsForm = ({ post, user, onChange }) => {
   const dispatch = useDispatch();
-  const { comments, comment } = useSelector(({ write, post }) => ({
+  const { comments, comment, page } = useSelector(({ write, post }) => ({
     comments: post.comments,
     comment: write.comment,
+    page: post.page,
   }));
 
   const changeComment = (e) => {
@@ -30,8 +35,14 @@ const CommentsForm = ({ post, user }) => {
     dispatch(initialize());
   };
 
+  const update = ({ edit, code, data }) => {
+    if (edit) dispatch(updateComment({ code, content: comment.update, page }));
+    else dispatch(changeField({ form: "comment", key: "update", value: data }));
+  };
+
   const onDelete = (id) => {
-    dispatch(deleteComment(id));
+    console.log(id);
+    dispatch(deleteComment({ id, page }));
   };
 
   return (
@@ -42,6 +53,8 @@ const CommentsForm = ({ post, user }) => {
       commentValue={comment}
       user={user}
       onDeleteComment={onDelete}
+      onChange={onChange}
+      update={update}
     />
   );
 };
