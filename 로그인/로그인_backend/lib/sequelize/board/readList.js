@@ -1,43 +1,32 @@
 const BoardList = require("../../../models").boardlist;
 const { Op } = require("sequelize");
-
-const readGeneralList = async (req, res, next) => {
+const readlList = async (req, res, next) => {
+  name = req.query.name;
+  keyword = req.query.keyword;
+  BO_Code = req.query.BO_Code;
+  category = req.query.category;
+  console.log(BO_Code);
   var responseData = {};
-  var BO_Code = req.params.BO_Code ? req.params.BO_Code : "";
-  var boardList = await BoardList.findAll(
-    BO_Code
-      ? { where: {
-        [Op.and]:[ 
-           {BO_Code: { [Op.lt]: BO_Code } },
-           {BO_Category : 0 }
-    ]
-  }, limit: 10 }
-      : { where: {
-        BO_Category : 0 }, limit: 10 }
-  );
-
-  responseData.boardList = boardList;
-  return res.json(responseData);
-};
-const readHealthList = async (req, res, next) => {
-  var responseData = {};
-  var BO_Code = req.params.BO_Code ? req.params.BO_Code : "";
-  var boardList = await BoardList.findAll(
-    BO_Code
-      ? { where: {
-        [Op.and]:[ 
-           {BO_Code: { [Op.lt]: BO_Code } },
-           {BO_Category : 1 }
-    ]
-  }, limit: 10 }
-      : { where: {
-        BO_Category : 1 
-}, limit: 10 }
-  );
-
+  var condition = {
+    where: {
+      [Op.and]: [
+        name
+          ? (name === 'BO_Title')
+              ?{BO_Title: { [Op.like]: "%" + keyword + "%" },}
+              :{ BO_Writer_NickName: { [Op.like]: "%" + keyword + "%" },}
+          : null,
+        BO_Code
+         ?{ BO_Code: { [Op.lt]: BO_Code } }
+         : null,
+        { BO_Category: category },
+      ],
+    },
+    limit: 10,
+  };
+  var boardList = await BoardList.findAll(condition);
   responseData.boardList = boardList;
   return res.json(responseData);
 };
 
 
-module.exports = {readGeneralList, readHealthList};
+module.exports = readlList;
