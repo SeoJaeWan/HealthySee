@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AskModal from "./AskModal";
 import { ButtonForm } from "./style/ActionButton_Style.js";
 
-const ActionButton = ({ onChange, onDelete, data, code }) => {
+const ActionButton = ({ onChange, onDelete }) => {
   const [modal, setModal] = useState(false);
   const onRemoveClick = () => {
     setModal(true);
@@ -18,10 +18,10 @@ const ActionButton = ({ onChange, onDelete, data, code }) => {
   return (
     <>
       <ButtonForm>
-        <button onClick={() => onChange({ code, data })}>수정</button>
+        <button onClick={onChange}>수정</button>
 
         <hr></hr>
-        <button onClick={() => onRemoveClick(code)}>삭제</button>
+        <button onClick={onRemoveClick}>삭제</button>
       </ButtonForm>
       <AskModal
         visible={modal}

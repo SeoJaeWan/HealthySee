@@ -23,8 +23,8 @@ const WriteForm = ({ route, history }) => {
 
   const onClick = (e) => {
     const formData = new FormData();
-    var files = post.file ? post.file.length : 0;
-    var oldFiles = post.BO_File ? post.BO_File.length : 0;
+    var files = post.file.length;
+    var oldFiles = post.BO_File.length;
 
     // 파일 크기 3개 이상일 때 return
     if (files + oldFiles > 3) return;
@@ -80,6 +80,7 @@ const WriteForm = ({ route, history }) => {
 
   useEffect(() => {
     var post = localStorage.getItem("post");
+    console.log(post);
 
     if (post) dispatch(setOriginal({ form: "post", data: JSON.parse(post) }));
 

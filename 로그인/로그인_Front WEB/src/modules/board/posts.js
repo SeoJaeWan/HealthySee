@@ -43,6 +43,8 @@ const initialState = {
 const posts = handleActions(
   {
     [INITIALIZE]: () => initialState,
+    [LIST]: () => initialState,
+
     [combineActions(LIST_SUCCESS, LISTDETAIL_SUCCESS)]: (
       state,
       { payload: posts }

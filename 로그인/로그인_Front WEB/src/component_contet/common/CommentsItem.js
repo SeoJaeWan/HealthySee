@@ -8,13 +8,15 @@ const CommentsItem = ({
   onWrite,
   user,
   onDeleteComment,
-  update,
+  onUpdate,
 }) => {
   const [edit, setEdit] = useState(false);
   const { BC_Content, BC_Writer_NickName, BC_Re_Ref, BC_Code } = comment;
 
-  const ChangeEdit = ({ code, data }) => {
-    update({ edit, code, data });
+  const ChangeEdit = (code, data) => {
+    console.log(edit);
+    console.log(code, data);
+    onUpdate(edit, code, data);
     setEdit(!edit);
   };
 
@@ -25,15 +27,13 @@ const CommentsItem = ({
           <input
             className="InputReply"
             type="text"
-            name="update"
-            value={commentValue.update}
+            name={BC_Code}
+            value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
             onChange={changeComment}
           />
           <ActionButton
             onDelete={onDeleteComment}
-            onChange={ChangeEdit}
-            code={BC_Code}
-            data={BC_Content}
+            onChange={() => ChangeEdit(BC_Code, BC_Content)}
           />
         </div>
       ) : (
@@ -55,10 +55,8 @@ const CommentsItem = ({
               {(user && user.username) === (comment && BC_Writer_NickName) && (
                 <div className="DeleteButton">
                   <ActionButton
-                    onDelete={onDeleteComment}
-                    onChange={ChangeEdit}
-                    code={BC_Code}
-                    data={BC_Content}
+                    onDelete={() => onDeleteComment(BC_Code)}
+                    onChange={() => ChangeEdit(BC_Code, BC_Content)}
                   />
                 </div>
               )}
@@ -73,7 +71,7 @@ const CommentsItem = ({
               className="InputReply"
               type="text"
               name={BC_Code}
-              value={commentValue[BC_Code]}
+              value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
               onChange={changeComment}
             />
             <button

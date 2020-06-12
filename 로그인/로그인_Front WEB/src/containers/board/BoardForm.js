@@ -15,7 +15,7 @@ const BoardForm = ({ match, history, route }) => {
     // 20 more records in 1.5 secs
     setTimeout(() => {
       dispatch(listDetail(posts[posts.length - 1].BO_Code));
-    }, 1500);
+    }, 500);
   };
 
   const onClick = (postId) => {

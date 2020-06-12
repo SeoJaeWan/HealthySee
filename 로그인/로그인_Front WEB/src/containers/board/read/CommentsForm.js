@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeField, initialize } from "../../../modules/board/write";
 import {
@@ -35,13 +35,15 @@ const CommentsForm = ({ post, user, onChange }) => {
     dispatch(initialize());
   };
 
-  const update = ({ edit, code, data }) => {
-    if (edit) dispatch(updateComment({ code, content: comment.update, page }));
-    else dispatch(changeField({ form: "comment", key: "update", value: data }));
+  const onUpdate = (edit, code, data) => {
+    console.log(code);
+    if (edit) {
+      dispatch(updateComment({ code, content: comment[code], page }));
+      dispatch(changeField({ form: "comment", key: code, value: "" }));
+    } else dispatch(changeField({ form: "comment", key: code, value: data }));
   };
 
   const onDelete = (id) => {
-    console.log(id);
     dispatch(deleteComment({ id, page }));
   };
 
@@ -54,7 +56,7 @@ const CommentsForm = ({ post, user, onChange }) => {
       user={user}
       onDeleteComment={onDelete}
       onChange={onChange}
-      update={update}
+      onUpdate={onUpdate}
     />
   );
 };

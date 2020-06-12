@@ -22,14 +22,18 @@ const ReadForm = ({ match, history, route }) => {
     user: user.user,
   }));
 
-  const onDeletePost = async (code) => {
-    await deletePost(code);
+  const onDeletePost = async () => {
+    await deletePost(post.BO_Code);
     history.push(route);
   };
 
-  const onChange = ({ code, data }) => {
-    dispatch(setOriginal({ code, data }));
-    localStorage.setItem(code, JSON.stringify(data));
+  const onChange = (form, data) => {
+    var post = {
+      ...data,
+      file: [],
+    };
+    console.log(post);
+    localStorage.setItem(form, JSON.stringify(post));
 
     history.push("/Board/write");
   };
@@ -60,9 +64,7 @@ const ReadForm = ({ match, history, route }) => {
         actionButton={
           <ActionButton
             onDelete={onDeletePost}
-            onChange={onChange}
-            data={post}
-            code={"post"}
+            onChange={() => onChange("post", post)}
           />
         }
         onGoBack={onGoBack}

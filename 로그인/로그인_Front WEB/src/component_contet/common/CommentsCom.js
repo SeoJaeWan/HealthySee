@@ -10,7 +10,7 @@ const CommentsCom = ({
   onWrite,
   changeComment,
   onDeleteComment,
-  update,
+  onUpdate,
 }) => {
   return (
     <Container>
@@ -24,7 +24,9 @@ const CommentsCom = ({
             value={commentValue.content}
             onChange={changeComment}
           />
-          <button className="write" onClick={() => onWrite("0")}>작성</button>
+          <button className="write" onClick={() => onWrite("0")}>
+            작성
+          </button>
         </div>
 
         <div>
@@ -38,7 +40,7 @@ const CommentsCom = ({
                 onWrite={onWrite}
                 user={user}
                 onDeleteComment={onDeleteComment}
-                update={update}
+                onUpdate={onUpdate}
               />
             );
           })}
