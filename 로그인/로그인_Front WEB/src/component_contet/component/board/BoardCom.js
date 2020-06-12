@@ -18,7 +18,7 @@ const BoardCom = ({ match, posts, loading, onClick, fetchMoreData }) => {
             <input type="text" />
             <button>검색</button>
           </div>
-          <div className="Write">
+          <div>
             <Link to={`${match.url}/write`}>글쓰기</Link>
           </div>
         </div>

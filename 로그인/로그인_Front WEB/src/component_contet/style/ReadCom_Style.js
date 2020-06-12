@@ -69,6 +69,7 @@ export const Container = styled.div`
   }
   pre {
     margin-left: 34px;
+    width: 90%;
   }
   .FileForm {
     overflow: hidden;

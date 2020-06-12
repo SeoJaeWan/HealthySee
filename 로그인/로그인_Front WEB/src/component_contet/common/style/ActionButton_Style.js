@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const ButtonForm = styled.div`
-  margin-right: 26px;
   display:flex;
 
   button{
-      font-size:3rem;
+      font-size:2rem;
   }
   hr{ 
       margin: 2px 5px 3px 5px;
