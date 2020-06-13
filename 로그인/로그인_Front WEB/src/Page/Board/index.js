@@ -8,7 +8,7 @@ import HeaderForm from "../../containers/Header/HeaderForm";
 
 import ReadPost from "./ReadPost";
 import WritePost from "./WritePost";
-import BoardForm from "../../containers/board/BoardForm";
+import BoardPost from "./BoardPost";
 
 const Board = ({ match }) => {
   return (
@@ -16,7 +16,8 @@ const Board = ({ match }) => {
       <HeaderForm />
       <Manu />
       <List />
-      <Route exact path={match.path} component={BoardForm} />
+      <Route exact path={match.path} component={BoardPost} />
+      <Route exact path={`${match.path}/search`} component={BoardPost} />
       <Route path={`${match.path}/write`} component={WritePost} />
       <Route path={`${match.path}/read/:postId`} component={ReadPost} />
     </>

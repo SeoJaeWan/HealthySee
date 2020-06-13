@@ -7,7 +7,8 @@ class Manu extends Component {
     return (
       <Container>
         <div className="Element">
-          <Link to="/Board"> 게시판</Link>
+          <Link to="/Board/0"> 자유 게시판</Link>
+          <Link to="/Board/1"> 운동 게시판</Link>
         </div>
       </Container>
     );

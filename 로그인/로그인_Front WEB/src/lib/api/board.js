@@ -19,14 +19,16 @@ export const healthPost = ({ BO_Code }) =>
 export const undoHealthPost = (id) =>
   client.delete(`/board/posts/health/${id}`);
 
-export const list = () => client.get(`/board/lists/0/`);
-export const listDetail = (id) => {
-  // const queryString = qs.stringify({
-  //   id,
-  // });
-  console.log(id);
-  return client.get(`/board/lists/0/${id}`);
+export const list = ({ id, name, keyword, category }) => {
+  const queryString = qs.stringify({
+    BO_Code: id,
+    name: name,
+    keyword: keyword,
+    category: category,
+  });
+  return client.get(`/board/lists?${queryString}`);
 };
+
 export const writeComment = ({ content, postId, ref }) => {
   console.log(content, postId, ref);
 
@@ -41,6 +43,9 @@ export const updateComment = ({ code, content, page }) =>
 
 export const deleteComment = ({ id, page }) =>
   client.delete(`/board/comments/${id}&${page}`);
+
+export const readComment = ({ BO_Code, page }) =>
+  client.get(`/board/comments/${BO_Code}&${page}`);
 
 export const downloadFile = (id) =>
   client.get(`/board/posts/download/${id}`, { responseType: "blob" });

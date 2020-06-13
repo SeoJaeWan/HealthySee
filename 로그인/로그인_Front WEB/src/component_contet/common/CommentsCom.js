@@ -11,12 +11,13 @@ const CommentsCom = ({
   changeComment,
   onDeleteComment,
   onUpdate,
+  count,
 }) => {
   return (
     <Container>
       <ContentComForm>
         <div className="Comment">
-          <label htmlFor="comment">댓글</label>
+          <label htmlFor="comment">댓글 {count}</label>
           <input
             type="text"
             id="comment"

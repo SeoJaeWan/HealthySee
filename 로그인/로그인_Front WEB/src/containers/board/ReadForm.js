@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readPost } from "../../modules/board/post";
-import { setOriginal } from "../../modules/board/write";
 import { withRouter } from "react-router-dom";
 import { deletePost, downloadFile } from "../../lib/api/board";
 import { saveAs } from "file-saver";

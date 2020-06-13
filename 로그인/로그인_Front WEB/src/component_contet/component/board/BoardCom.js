@@ -4,19 +4,33 @@ import { Link } from "react-router-dom";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const BoardCom = ({ match, posts, loading, onClick, fetchMoreData }) => {
+const BoardCom = ({
+  match,
+  posts,
+  loading,
+  scroll,
+  onClick,
+  onChange,
+  onSearch,
+  fetchMoreData,
+}) => {
   if (!posts || loading) {
     return null;
   }
 
   return (
     <Container>
+      {console.log(posts.length)}
       <div className="Board">
         <div className="Title">
           게시판
           <div>
-            <input type="text" />
-            <button>검색</button>
+            <select name="name" onChange={onChange}>
+              <option value="BO_Title">제목</option>
+              <option value="BO_Writer_NickName">닉네임</option>
+            </select>
+            <input type="text" name="keyword" onChange={onChange} />
+            <button onClick={onSearch}>검색</button>
           </div>
           <div>
             <Link to={`${match.url}/write`}>글쓰기</Link>
@@ -26,7 +40,7 @@ const BoardCom = ({ match, posts, loading, onClick, fetchMoreData }) => {
           <InfiniteScroll
             dataLength={posts.length}
             next={fetchMoreData}
-            hasMore={true}
+            hasMore={scroll}
             loader={<h4>Loading...</h4>}
           >
             {posts.map((post, index) => {

@@ -5,15 +5,18 @@ import {
   writeComment,
   deleteComment,
   updateComment,
+  readComment,
 } from "../../../modules/board/post";
 import CommentsCom from "../../../component_contet/common/CommentsCom";
+import Pagenation from "../../../component_contet/common/Pagenation";
 
 const CommentsForm = ({ post, user, onChange }) => {
   const dispatch = useDispatch();
-  const { comments, comment, page } = useSelector(({ write, post }) => ({
+  const { comments, comment, page, count } = useSelector(({ write, post }) => ({
     comments: post.comments,
     comment: write.comment,
     page: post.page,
+    count: post.count,
   }));
 
   const changeComment = (e) => {
@@ -47,17 +50,25 @@ const CommentsForm = ({ post, user, onChange }) => {
     dispatch(deleteComment({ id, page }));
   };
 
+  const getPage = (page) => {
+    dispatch(readComment({ BO_Code: post.BO_Code, page }));
+  };
+
   return (
-    <CommentsCom
-      comments={comments}
-      changeComment={changeComment}
-      onWrite={onWrite}
-      commentValue={comment}
-      user={user}
-      onDeleteComment={onDelete}
-      onChange={onChange}
-      onUpdate={onUpdate}
-    />
+    <>
+      <CommentsCom
+        comments={comments}
+        count={count}
+        commentValue={comment}
+        user={user}
+        changeComment={changeComment}
+        onWrite={onWrite}
+        onDeleteComment={onDelete}
+        onChange={onChange}
+        onUpdate={onUpdate}
+      />
+      <Pagenation page={page} getPage={getPage} />
+    </>
   );
 };
 
