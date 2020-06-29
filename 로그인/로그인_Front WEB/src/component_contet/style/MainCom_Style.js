@@ -1,14 +1,40 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { media } from "../../ReactiveStyle/ReactiveStyle";
+
+const slideInTop = keyframes`
+  
+  0% {   
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 4;
+    transform: translateY(0px);
+  }
+`;
 
 export const Container = styled.div`
   height: 100%;
   width: 50%;
-  margin-left: 260px;
+  margin-left: 10%;
+  ${media.mobile`
+    
+    margin-left: 0%;
+`}
 
   .Main {
     margin-left: 35%;
+    width: 100%;
     margin-top: 100px;
+    
   }
   .Title {
     display: flex;
@@ -16,9 +42,16 @@ export const Container = styled.div`
     color: #676a72;
     font-size: 4.5rem;
     margin-top: 40px;
+ 
+    animation: ${slideInTop} 3s forwards ease-in;
+     ${media.mobile`
+    
+    font-size: 3rem;
+`}
   }
   .Con {
     display: flex;
+    width: 100%;
   }
   .leftCon {
     display: flex;
@@ -30,10 +63,16 @@ export const Container = styled.div`
   }
   .Title2 {
     margin-top: 50px;
-    margin-left: 50px;
+    margin-left: 10%;
     font-weight: bold;
     color: #676a72;
-    font-size: 2rem;
+    font-size: 2rem; 
+    visibility: none;
+    animation: ${slideInTop} 3s ease-in;
+    ${media.mobile`
+    
+    font-size: 1.5rem;
+`}
   }
 
   .StartB {
@@ -46,8 +85,11 @@ export const Container = styled.div`
     color: white;
     border-radius: 50%;
     margin-top: 50px;
-    margin-left: 95px;
+    margin-left: 20%;
+    animation: ${slideInTop} 3s  ease-in;
     ${media.mobile`
+    
+    margin-left: 10%;
 `}
   }
   .Lng {
@@ -55,17 +97,24 @@ export const Container = styled.div`
     width: 40%;
     margin-top: 50px;
     margin-left: -90px;
+    animation: ${slideInTop} 3s  ease-in;
+    ${media.mobile`
+    
+    margin-left: -20%;
+`}
   }
 `;
 
 export const Home = styled.img`
-  margin-left: 55px;
-  ${media.mobile`
+  margin-left: 10%;
+  height: auto;
+  max-height: 100%;
+  animation-delay: 3s;
+  animation: ${slideInTop} 3s ease-in;  
+  /*visibility:${props => props.out ? 'hidden' : 'visible'};*/
+  ${media.imgs`
   display:none;
 `}
-  ${media.half`
-  display:none;
-  `}
 `;
 
 export const Img = styled.img`
@@ -80,3 +129,4 @@ export const Img = styled.img`
   left:25%;
 `}
 `;
+

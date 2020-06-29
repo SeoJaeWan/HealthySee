@@ -1,26 +1,16 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import { Container, Element, Sticky } from "../style/List_Style.js";
 
 class List extends Component {
   render() {
     return (
-      <Container>
-        <Element>트레이너,구독자</Element>
-      </Container>
+      <Sticky>
+        <Container>
+          <Element>트레이너,구독자</Element>
+        </Container>
+      </Sticky>
     );
   }
 }
 
 export default List;
-
-const Container = styled.div`
-  width: 20vh;
-  float: right;
-  border-left: 10px solid #676A72;
-`;
-
-const Element = styled.div`
-  width: 50%;
-  height: 100vh;
-  font-size: 15pt;
-`;

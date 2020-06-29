@@ -2,7 +2,6 @@ import React from "react";
 
 import { Route } from "react-router-dom";
 
-import Manu from "../../component_frame/component/Manu";
 import List from "../../component_frame/component/List";
 import HeaderForm from "../../containers/Header/HeaderForm";
 
@@ -14,7 +13,6 @@ const Board = ({ match }) => {
   return (
     <>
       <HeaderForm />
-      <Manu />
       <List />
       <Route exact path={match.path} component={BoardPost} />
       <Route exact path={`${match.path}/search`} component={BoardPost} />

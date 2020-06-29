@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import media from "../../../ReactiveStyle/ReactiveStyle";
+import { media } from "../../../ReactiveStyle/ReactiveStyle";
 
 export const ContentComForm = styled.div`
   width: 100%;
   font-size: 2rem;
   margin-top: 50px;
-  margin-left: 30px;
+  margin-left: 2%;
   border: 5px solid #676a72;
   border-left: solid white;
   &::before {
     content: "";
     position: static;
-    margin: -1%;
-    margin-top: -2.3%;
+    margin: -10px;
+    margin-top: -30px;
     display: block;
     border-radius: 50%;
     width: 50px;
@@ -20,6 +20,11 @@ export const ContentComForm = styled.div`
     background: #676a72;
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
+    ${media.mobile`    
+      margin-top: -20px;
+      width: 30px;
+      height: 40px;
+  `}
   }
   label {
     font-size: 2rem;
@@ -27,6 +32,10 @@ export const ContentComForm = styled.div`
     margin-top: 2%;
     margin-bottom: 2%;
     padding-bottom: 2%;
+    text-align: center;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
   }
   label.LabelReply {
     font-size: 2rem;
@@ -35,6 +44,9 @@ export const ContentComForm = styled.div`
     margin-bottom: 2%;
     padding-bottom: 2%;
     border-bottom: white;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
   }
   button.write {
     background-color: #676a72;
@@ -42,7 +54,15 @@ export const ContentComForm = styled.div`
     font-size: 3rem;
     height: 85%;
     width: 10%;
-    margin-left: 1.9%;
+    margin-top: -1%;
+    margin-left: 1%;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
+    ${media.mobile`
+    width:16%;
+    height:65%;
+  `}
   }
   button.writeReply {
     background-color: #676a72;
@@ -52,34 +72,57 @@ export const ContentComForm = styled.div`
     height: 75%;
     width: 10%;
     margin-left: 1.9%;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
+    ${media.mobile`
+    width:16%;
+    height:65%;
+  `}
   }
   input {
     width: 75%;
+    height: 80%;
     margin-left: 4%;
     margin-bottom: 1%;
+    ${media.mobile`
+    height: 60%;
+  width: 60%;
+  `}
   }
   input.InputReply {
     width: 75%;
+    height: 80%;
     margin-top: 1%;
     margin-left: 4%;
     margin-bottom: 1%;
+    ${media.mobile`
+    height: 60%;
+  width: 60%;
+  `}
   }
   .Comment {
     width: 100%;
     height: 100px;
     display: flex;
+    align-items: center;
     border-bottom: 5px solid #676a72;
   }
   .Reply {
     font-size: 2rem;
     display: flex;
     border-bottom: 5px solid #676a72;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
   }
   .Content {
     width: 77.3%;
     margin-left: 1%;
     border-right: 5px solid #676a72;
     padding: 2% 0 2% 2%;
+    ${media.board`
+width:80%  `}
   }
   .ContentReply {
     width: 70%;
@@ -90,11 +133,16 @@ export const ContentComForm = styled.div`
     width: 20%;
     font-size: 1.5rem;
     text-align: center;
+    ${media.board`
+  font-size: 1rem;
+  `}
+    ${media.mobile`
+width: 40%  `}
   }
   .CommentWriter {
     padding: 5% 1% 1% 5%;
     line-height: 140%;
-    width: 50%;
+    width: 70%;
   }
   .flex {
     width: 100%;

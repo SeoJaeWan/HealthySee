@@ -1,4 +1,6 @@
 import React from "react";
+import { Container } from "../../style/Container";
+import { WriteForm } from "../../style/WriteCom_Style";
 
 const WriteCom = ({
   post,
@@ -9,51 +11,60 @@ const WriteCom = ({
   onCancel,
 }) => {
   return (
-    <div>
-      <div>
-        <p>제목</p>
-        <input
-          type="text"
-          value={post.BO_Title}
-          name="BO_Title"
-          onChange={onChange}
-        />
-      </div>
-      <div>
-        <p>본문</p>
-        <textarea
-          type="text"
-          value={post.BO_Content}
-          name="BO_Content"
-          onChange={onChange}
-        />
-      </div>
-
-      {post.BO_File ? (
-        <div className="FileForm">
-          <div className="FileText">첨부파일</div>
-          {post.BO_File.map((file, index) => {
-            return (
-              <div key={index}>
-                <span key={index}>{file.substring(13)}</span>
-                <button onClick={() => deleteFile(file)}>X</button>
-              </div>
-            );
-          })}
+    <Container>
+      <WriteForm>
+        <div className="Buttonform">
+          <button onClick={onCancel}>돌아가기</button>
+          <button onClick={onClick}>{post.BO_Code ? "수정" : "글쓰기"}</button>
         </div>
-      ) : (
-        ""
-      )}
+        <div className="Titleform">
+          <div className="Titlediv">
+            <div className="Title">제목 :</div>
+            <input
+              className="Titleinput"
+              type="text"
+              value={post.BO_Title}
+              name="BO_Title"
+              onChange={onChange}
+            />
+          </div>
+        </div>
 
-      <div>
-        <input type="file" name="file" onChange={onUpload} multiple />
-      </div>
+        <div className="TextTitle">본문</div>
+        <div className="TextForm">
+          <textarea
+            className="TextArea"
+            type="text"
+            value={post.BO_Content}
+            name="BO_Content"
+            onChange={onChange}
+            onkeydown="resize(this)"
+            onkeyup="resize(this)"
+          />
+        </div>
 
-      <div>
-        <button onClick={onClick}>{post.BO_Code ? "수정" : "글쓰기"}</button>
-        <button onClick={onCancel}>돌아가기</button>
-      </div>
-    </div>
+        <div className="FileForm">
+          <div className="FileButton">
+            <input type="file" name="file" onChange={onUpload} multiple />
+          </div>
+          {post.BO_File ? (
+            <div className="Filetext">
+              <div className="Title">첨부파일</div>
+              {post.BO_File.map((file, index) => {
+                return (
+                  <div key={index}>
+                    <span key={index}>{file.substring(13)}</span>
+                    <button onClick={() => deleteFile(file)}>X</button>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </WriteForm>
+    </Container>
   );
 };
 

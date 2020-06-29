@@ -9,7 +9,7 @@ import {
 } from "../../../modules/board/evaluation";
 import EvaluationCom from "../../../component_contet/common/EvaluationCom";
 
-const EvaluationForm = ({ post }) => {
+const EvaluationForm = ({ post, Writer  }) => {
   const {
     isHealthsee,
     isReport,
@@ -54,7 +54,8 @@ const EvaluationForm = ({ post }) => {
       onHealth={onHealth}
       onReport={onReport}
       healthseeCount={healthseeCount}
-      reportCount={reportCount}
+      reportCount={reportCount}  
+      Writer={Writer}
     />
   );
 };

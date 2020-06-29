@@ -4,6 +4,7 @@ import ActionButton from "./ActionButton";
 const CommentsItem = ({
   comment,
   commentValue,
+  nextcomment,
   changeComment,
   onWrite,
   user,
@@ -19,7 +20,7 @@ const CommentsItem = ({
     onUpdate(edit, code, data);
     setEdit(!edit);
   };
-
+  console.log(nextcomment, comment.BC_Re_Ref);
   return (
     <>
       {edit ? (
@@ -62,25 +63,26 @@ const CommentsItem = ({
               )}
             </div>
           </div>
-
-          <div className="Comment">
-            <label className="LabelReply" htmlFor="comment">
-              답글
-            </label>
-            <input
-              className="InputReply"
-              type="text"
-              name={BC_Code}
-              value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
-              onChange={changeComment}
-            />
-            <button
-              className="writeReply"
-              onClick={() => onWrite(BC_Re_Ref, BC_Code)}
-            >
-              답글
-            </button>
-          </div>
+          {(nextcomment !== BC_Re_Ref) && (
+            <div className="Comment">
+              <label className="LabelReply" htmlFor="comment">
+                답글
+              </label>
+              <input
+                className="InputReply"
+                type="text"
+                name={BC_Code}
+                value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
+                onChange={changeComment}
+              />
+              <button
+                className="writeReply"
+                onClick={() => onWrite(BC_Re_Ref, BC_Code)}
+              >
+                답글
+              </button>
+            </div>
+          )}
         </>
       )}
     </>

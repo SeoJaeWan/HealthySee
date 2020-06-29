@@ -20,11 +20,10 @@ const BoardCom = ({
 
   return (
     <Container>
-      {console.log(posts.length)}
       <div className="Board">
         <div className="Title">
           게시판
-          <div>
+          <div className="Searchbox">
             <select name="name" onChange={onChange}>
               <option value="BO_Title">제목</option>
               <option value="BO_Writer_NickName">닉네임</option>
@@ -38,6 +37,7 @@ const BoardCom = ({
         </div>
         <div className="BoardForm">
           <InfiniteScroll
+            className="infinitescroll"
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={scroll}

@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import AskModal from "./AskModal";
 import { EvaluationComForm } from "./style/EvaluationCom_Style";
 
-const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount }) => {
+const EvaluationCom = ({
+  onHealth,
+  onReport,
+  healthseeCount,
+  reportCount,
+  Writer,
+}) => {
   const [modal, setModal] = useState(false);
   const [action, setAction] = useState(null);
 
@@ -23,19 +29,22 @@ const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount }) => {
     <>
       <EvaluationComForm>
         <div className="ContentForm">
-          <div className="PositionB">
-            <div>
-              <button onClick={() => onActionClick(() => onHealth)}>
-                추천
-              </button>
-              <p>{healthseeCount}</p>
-            </div>
-
-            <div>
-              <button onClick={() => onActionClick(() => onReport)}>
-                신고
-              </button>
-              <p>{reportCount}</p>
+          <div className="flex">
+            <div className="Writer">작성자 : {Writer}</div>
+            <div className="Buttondiv">
+              <div className="onHealth">
+                <button onClick={() => onActionClick(() => onHealth)}>
+                  추천
+                </button>
+                <div>{healthseeCount}</div>
+              </div>
+              <hr/>
+              <div className="onReport">
+                <button onClick={() => onActionClick(() => onReport)}>
+                  신고
+                </button>
+                <div>{reportCount}</div>
+              </div>
             </div>
           </div>
         </div>

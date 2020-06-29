@@ -20,7 +20,7 @@ class MainCom extends Component {
               </div>
             </div>
             <div className="rightCon">
-              <Home src={require("../../Images/Login/H&S.png")} alt="" />
+              <Home out="visible" src={require("../../Images/Login/H&S.png")} alt="" />
             </div>
           </div>
         </div>

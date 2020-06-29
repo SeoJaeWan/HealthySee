@@ -70,7 +70,7 @@ const ReadForm = ({ match, history, route }) => {
         onDeletePost={onDeletePost}
         onClick={onClick}
       />
-      <EvaluationForm post={post} />
+      <EvaluationForm post={post} Writer={post.BO_Writer_NickName}/>
       <CommentsForm post={post} user={user} />
     </>
   );

@@ -6,6 +6,7 @@ import Login from "./Page/Login";
 import Home from "./Page/Home";
 import Signup from "./Page/Signup";
 import Board from "./Page/Board";
+import MyPage from "./Page/MyPage";
 
 import { createGlobalStyle } from "styled-components";
 
@@ -20,8 +21,14 @@ const App = () => {
       url(${require("./Font/BMJUA.ttf")}) format('ttf');
     }
     body {font-family: "font" ;margin:0;color:#676a72;} 
-    a {text-decoration: none; color: #676a72;}
-    button{font-family: "font"; color: #676a72;border:none;background-color:white; box-shadow:0px 0px 0px white;}
+    a {&:hover {
+      color: #858994;
+      cursor: pointer;
+    }text-decoration: none; color: #676a72;}
+    button{&:hover {
+      color: #858994;
+      cursor: pointer;
+    }font-family: "font"; color: #676a72;border:none;background-color:white; box-shadow:0px 0px 0px white;}
     pre{font-family: "font"}
     `;
 
@@ -32,7 +39,9 @@ const App = () => {
       <Route path="/Login" component={Login} />
       <Route path="/Home" component={Home} />
       <Route path="/Signup" component={Signup} />
-      <Route path="/Board/:board" component={Board} />
+      <Route path="/Board/:board" component={Board} />      
+      <Route path="/MyPage" component={MyPage} />
+      
     </div>
   );
 };

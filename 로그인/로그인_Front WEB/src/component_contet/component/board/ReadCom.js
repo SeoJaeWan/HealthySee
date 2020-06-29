@@ -20,7 +20,7 @@ const ReadCom = ({
         <button className="exit" onClick={onGoBack}>
           나가기
         </button>
-        {ownPost && actionButton}
+        <div className="titlebutton">{ownPost && actionButton}</div>
       </div>
       <div className="TitleForm">
         <div className="Title">제목 : {post.BO_Title}</div>
@@ -28,17 +28,21 @@ const ReadCom = ({
       <div className="ContentForm">
         <pre>{post.BO_Content}</pre>
         <div className="FileForm">
-          <div className="FileText">첨부파일</div>
-          {console.log(post.BO_File)}
-          {post.BO_File
-            ? post.BO_File.map((file, index) => {
-                return (
-                  <span key={index} onClick={() => onClick(file)}>
-                    {file.substring(13)}
-                  </span>
-                );
-              })
-            : ""}
+          <div className="flex">
+            <div className="FileText">첨부파일 :</div>
+            <div className="FileButton">
+              {console.log(post.BO_File)}
+              {post.BO_File
+                ? post.BO_File.map((file, index) => {
+                    return (
+                      <span key={index} onClick={() => onClick(file)}>
+                        {file.substring(13)}
+                      </span>
+                    );
+                  })
+                : ""}
+            </div>
+          </div>
         </div>
       </div>
     </Container>
