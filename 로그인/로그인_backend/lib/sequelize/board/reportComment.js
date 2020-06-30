@@ -7,7 +7,6 @@ const { Op } = require("sequelize");
 
 const reportComment = async (req, res, next) => {
     var  B_Comment_BC_Code = req.params.BC_Code;
-    console.log(req.params.BC_Code, "아아아아아아아아아아");
     var B_Comment_Board_BO_Code = req.body.Board_BO_Code;
     var BCR_Reporter_NickName = req.body.user.username;
     var response = {};
@@ -23,9 +22,10 @@ const reportComment = async (req, res, next) => {
                 var bc_reporter = await BC_Reporter.findAndCountAll({
                     where : {B_Comment_BC_Code}
                 })
-                if(bc_reporter.count > 0)
+                if(bc_reporter.count > 0){
                     await B_Comment.update({BC_State : 1},{where : {BC_Code : B_Comment_BC_Code}})
-                    req.params.BO_Code = B_Comment_Board_BO_Code;
+                }
+                req.params.BO_Code = B_Comment_Board_BO_Code;
                 next();
             }else{
                 res.status(409).end();

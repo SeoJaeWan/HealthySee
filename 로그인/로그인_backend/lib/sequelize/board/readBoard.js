@@ -4,6 +4,8 @@ const Board = require("../../../models").board;
 const B_Healthsee = require("../../../models").b_healthsee;
 const B_Reporter = require("../../../models").b_reporter;
 const { Op } = require("sequelize");
+const FrontComment = require("../../../models").frontcomment;
+
 
 const readPost = async (req, res, next) => {
   var BO_Code = req.params.BO_Code;
@@ -26,7 +28,7 @@ const readPost = async (req, res, next) => {
     return res.status(406).end();
 
   // 댓글 1페이지
-  comments = await B_Comment.findAndCountAll({
+  comments = await FrontComment.findAndCountAll({
     where: { Board_BO_Code: BO_Code },
     order: [
       ["BC_Re_Ref", "DESC"],
@@ -64,8 +66,6 @@ var isReport = await B_Reporter.count({
   return res.json(responseData);
 };
 
-
-
 const readComment = async (req, res, next) => {
   var BO_Code = req.params.BO_Code;
   var offset = 0;
@@ -79,7 +79,7 @@ const readComment = async (req, res, next) => {
     }
 
   var responseData = {};
-  comments = await B_Comment.findAndCountAll({
+  comments = await FrontComment.findAndCountAll({
     where: { Board_BO_Code: BO_Code },
     order: [
       ["BC_Re_Ref", "DESC"],
