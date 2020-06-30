@@ -34,7 +34,6 @@ const CommentsCom = ({
             작성
           </button>
         </div>
-
         <div>
           {comments.map((comment, index) => {
             const a = comments.slice(index + 1, index + 2);

@@ -36,6 +36,7 @@ export const Container = styled.div`
       position: static;
       margin: -10px;
       margin-top: -30px;
+
       display: block;
       border-radius: 50%;
       width: 50px;
@@ -102,7 +103,14 @@ margin-top: 10%;  `}
   }
 
   .Title {
-    padding: 14px 14px 14px 14px;
+    min-width: 8rem;
+    padding: 14px 3px 14px 14px;
+    ${media.mobile`
+    min-width: 4rem;
+  `}
+  }
+  .TitleContent{
+    width: 63vw;
   }
   pre {
     margin-left: 4%;

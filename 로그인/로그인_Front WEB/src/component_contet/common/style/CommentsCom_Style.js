@@ -68,7 +68,6 @@ export const ContentComForm = styled.div`
     background-color: #676a72;
     color: white;
     font-size: 3rem;
-    margin-top: 1%;
     height: 75%;
     width: 10%;
     margin-left: 1.9%;
@@ -90,7 +89,7 @@ export const ContentComForm = styled.div`
   width: 60%;
   `}
   }
-  input.InputReply {
+  .InputReply {
     width: 75%;
     height: 80%;
     margin-top: 1%;
@@ -101,7 +100,27 @@ export const ContentComForm = styled.div`
   width: 60%;
   `}
   }
+  .InputReplyChagne {
+    border-right: 5px solid #676a72;
+    width: 75%;
+    height: 80%;
+    margin-top: 1%;
+    margin-left: 4%;
+    margin-bottom: 1%;
+    margin-right: 5%;
+    ${media.mobile`
+    height: 60%;
+  width: 60%;
+  `}
+  }
   .Comment {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid #676a72;
+  }
+  .CommentChange {
     width: 100%;
     height: 100px;
     display: flex;
@@ -124,11 +143,7 @@ export const ContentComForm = styled.div`
     ${media.board`
 width:80%  `}
   }
-  .ContentReply {
-    width: 70%;
-    margin-top: 2px;
-    border-right: 5px solid #676a72;
-  }
+
   .ReplyContent {
     width: 20%;
     font-size: 1.5rem;
@@ -153,6 +168,13 @@ width: 40%  `}
     display: flex;
     border-top: 5px solid #676a72;
     justify-content: center;
-    align-items: center;
+  }
+  .hrtag {
+    margin: 0 0 0 0;
+
+    border: none;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #676a72;
   }
 `;

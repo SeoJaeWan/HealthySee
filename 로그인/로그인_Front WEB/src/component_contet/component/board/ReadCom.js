@@ -22,7 +22,8 @@ const ReadCom = ({
         <div className="titlebutton">{ownPost && actionButton}</div>
       </div>
       <div className="TitleForm">
-        <div className="Title">제목 : {post.BO_Title}</div>
+        <div className="Title">제목 :</div>
+        <div className="TitleContent">{post.BO_Title}</div>
       </div>
       <div className="ContentForm">
         <pre>{post.BO_Content}</pre>

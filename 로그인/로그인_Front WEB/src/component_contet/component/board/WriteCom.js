@@ -14,8 +14,8 @@ const WriteCom = ({
     <Container>
       <WriteForm>
         <div className="Buttonform">
-          <button onClick={onCancel}>돌아가기</button>
-          <button onClick={onClick}>{post.BO_Code ? "수정" : "글쓰기"}</button>
+          <button className="Backbutton" onClick={onCancel}>돌아가기</button>
+          <button className="Writebutton" onClick={onClick}>{post.BO_Code ? "수정" : "글쓰기"}</button>
         </div>
         <div className="Titleform">
           <div className="Titlediv">

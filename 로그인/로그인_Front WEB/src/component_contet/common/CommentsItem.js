@@ -32,19 +32,20 @@ const CommentsItem = ({
     <>
       {console.log(edit)}
       {edit ? (
-        <div className="flex">
-          {console.log(edit)}
+        <div className="CommentChange">
           <input
-            className="InputReply"
+            className="InputReplyChagne"
             type="text"
             name={BC_Code}
             value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
             onChange={changeComment}
           />
-          <ActionButton
-            onDelete={onDeleteComment}
-            onChange={() => ChangeEdit(BC_Code, BC_Content)}
-          />
+          <div>
+            <ActionButton
+              onDelete={onDeleteComment}
+              onChange={() => ChangeEdit(BC_Code, BC_Content)}
+            />
+          </div>
         </div>
       ) : (
         <>
@@ -71,12 +72,15 @@ const CommentsItem = ({
                 </div>
                 {(user && user.username) ===
                   (comment && BC_Writer_NickName) && (
-                  <div className="DeleteButton">
-                    <ActionButton
-                      onDelete={() => onDeleteComment(BC_Code)}
-                      onChange={() => ChangeEdit(BC_Code, BC_Content)}
-                    />
-                  </div>
+                  <>
+                    <div className="DeleteButton">
+                      <ActionButton
+                        onDelete={() => onDeleteComment(BC_Code)}
+                        onChange={() => ChangeEdit(BC_Code, BC_Content)}
+                      />
+                    </div>
+                    <hr className="hrtag" />
+                  </>
                 )}
               </div>
             </div>

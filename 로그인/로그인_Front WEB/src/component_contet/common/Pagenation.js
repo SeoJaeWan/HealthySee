@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Container } from "../style/Container.js";
 
 const Pagenation = ({ page, getPage }) => {
   return (
-    <div>
+    <Container>
       {[...Array(page)].map((count, index) => {
         return (
           <Button key={index} onClick={() => getPage(index + 1)}>
@@ -11,7 +12,7 @@ const Pagenation = ({ page, getPage }) => {
           </Button>
         );
       })}
-    </div>
+    </Container>
   );
 };
 

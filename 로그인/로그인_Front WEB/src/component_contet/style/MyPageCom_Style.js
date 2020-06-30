@@ -108,4 +108,7 @@ export const InfCom = styled.div`
      font-size:1.5rem;
     `}
   }
+  .ButtonLink{
+    color : white;
+  }
 `;

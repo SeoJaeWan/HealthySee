@@ -29,8 +29,8 @@ const BoardCom = ({
               <option value="BO_Title">제목</option>
               <option value="BO_Writer_NickName">닉네임</option>
             </select>
-            <input type="text" name="keyword" onChange={onChange} />
-            <button onClick={onSearch}>검색</button>
+            <input className="SearchInput" type="text" name="keyword" onChange={onChange} />
+            <button className="SearchButton" onClick={onSearch}>검색</button>
           </div>
           <div>
             <Link to={`${match.url}/write`}>글쓰기</Link>

@@ -60,35 +60,21 @@ export const Container = styled.div`
   .Board {
     width: 100%;
   }
-  option{
-    font-size:1.3rem;
-  }
   .Searchbox {
-    width:50%;
+    width: 10%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
   }
   select {
     width: 5rem;
     padding: 0.8em 0.5em;
     border: 1px solid #999;
-    font-size: 1rem;
     font-family: inherit;
     border-radius: 0px;
-  }
-  .SearchInput{
-    width: 70%;
-    height: 80%;
-  }
-  .SearchButton{
-    border: 2px solid #676a72;
-    width:5rem;
-    height: 90%;
-    font-size:2rem;
-    ${media.desktop`
-    font-size:1rem;
-  `}
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
   .Write {
     margin-right: 70px;

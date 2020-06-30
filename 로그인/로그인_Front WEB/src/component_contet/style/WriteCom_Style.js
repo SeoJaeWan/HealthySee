@@ -13,7 +13,18 @@ export const WriteForm = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  button {
+  .Backbutton {
+    margin-left: 4%;
+    font-size: 3rem;
+    ${media.mobile`
+    margin-left: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  font-size: 1.5rem;
+  `}
+  }
+  .Writebutton {
+    margin-left: 4%;
     font-size: 3rem;
     ${media.mobile`
     margin-left: 2%;
