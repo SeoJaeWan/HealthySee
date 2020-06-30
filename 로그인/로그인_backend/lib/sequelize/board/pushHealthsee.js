@@ -18,6 +18,8 @@ const pushHealthsee = async (req, res) => {
   response.isHealthsee = true;
   response.BO_Healthsee_Count = boardList.BO_Healthsee_Count;
 
+  console.log(response);
+
   res.json(response);
 };
 

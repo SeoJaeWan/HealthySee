@@ -8,7 +8,7 @@ const deleteComment = async (req, res, next) => {
 
   req.params.BO_Code = comment.Board_BO_Code;
   console.log(req.params.BO_Code);
-  await B_Comment.update({BC_Content : "삭제된 댓글 입니다."},{where : {BC_Code}})
+  await B_Comment.update({BC_State : 2},{where : {BC_Code}})
     .catch((err) => {
       console.error(err);
       res.status(401).end();

@@ -21,6 +21,9 @@ const readPost = async (req, res, next) => {
      BoardD.BO_File = BoardD.BO_File.split(',');
   else BoardD.BO_File = [];
 
+ console.log(Board.BO_State)
+  if(BoardD.BO_State === 1)
+    return res.status(406).end();
 
   // 댓글 1페이지
   comments = await B_Comment.findAndCountAll({

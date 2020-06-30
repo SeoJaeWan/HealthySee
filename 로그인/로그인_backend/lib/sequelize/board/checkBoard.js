@@ -2,6 +2,8 @@ const BoardDetail = require("../../../models").boarddetail;
 const B_Comment = require("../../../models").b_comment;
 
 const checkPost = async (req, res, next) => {
+
+
   const BO_Code = req.params.BO_Code ? req.params.BO_Code : req.body.BO_Code;
 
   if (!BO_Code) {
