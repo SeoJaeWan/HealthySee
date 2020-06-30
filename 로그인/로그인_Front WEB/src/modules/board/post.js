@@ -39,9 +39,9 @@ const [
 export const readPost = createAction(READ_POST, (id) => id);
 export const changeEvaluation = createAction(
   CHANGE_EVALUATION,
-  ({ key, value }) => ({
-    key,
-    value,
+  ({ comments, page }) => ({
+    comments,
+    page,
   })
 );
 export const writeComment = createAction(
@@ -94,6 +94,8 @@ const initialState = {
   page: null,
   readError: null,
   commentError: null,
+  isHealthsee: null,
+  isReport: null,
 };
 
 const post = handleActions(
@@ -104,15 +106,18 @@ const post = handleActions(
       comments: post.comments,
       page: post.lastPage,
       count: post.boardDetail.BO_Comment_Count,
+      isHealthsee: post.isHealthsee,
+      isReport: post.isReport,
     }),
     [READ_POST_FAILURE]: (state, { payload: readError }) => ({
       ...state,
       readError,
     }),
-    [CHANGE_EVALUATION]: (state, { payload: { key, value } }) =>
-      produce(state, (draft) => {
-        draft["post"][key] = value;
-      }),
+    [CHANGE_EVALUATION]: (state, { payload: { comments, page } }) => ({
+      ...state,
+      comments,
+      page,
+    }),
     [combineActions(
       WRITE_COMMENT_SUCCESS,
       READ_COMMENT_SUCCESS,

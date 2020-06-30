@@ -38,8 +38,6 @@ const WriteCom = ({
             value={post.BO_Content}
             name="BO_Content"
             onChange={onChange}
-            onkeydown="resize(this)"
-            onkeyup="resize(this)"
           />
         </div>
 

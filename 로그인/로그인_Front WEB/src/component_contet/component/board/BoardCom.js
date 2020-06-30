@@ -13,6 +13,7 @@ const BoardCom = ({
   onChange,
   onSearch,
   fetchMoreData,
+  onChangeModal,
 }) => {
   if (!posts || loading) {
     return null;
@@ -36,15 +37,30 @@ const BoardCom = ({
           </div>
         </div>
         <div className="BoardForm">
+          <div className="flex">
+            <div className="BoardTitle">제목</div>
+            <div className="BoardWriter">글쓴이</div>
+            <div className="BoardDate">작성일</div>
+            <div className="BoardHit">조회수</div>
+          </div>
+
           <InfiniteScroll
             className="infinitescroll"
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={scroll}
-            loader={<h4>Loading...</h4>}
+            loader={<div className="EndBoard">게시글을 불러오고 있습니다.</div>}
+            endMessage={<div className="EndBoard">마지막 게시글 입니다.</div>}
           >
             {posts.map((post, index) => {
-              return <BoardItem post={post} key={index} onClick={onClick} />;
+              return (
+                <BoardItem
+                  post={post}
+                  key={index}
+                  onClick={onClick}
+                  onChangeModal={onChangeModal}
+                />
+              );
             })}
           </InfiniteScroll>
         </div>
@@ -53,12 +69,31 @@ const BoardCom = ({
   );
 };
 
-const BoardItem = ({ post, onClick }) => {
-  const { BO_Code, BO_Title, BO_Creation_Date } = post;
+const BoardItem = ({ post, onClick, onChangeModal }) => {
+  const {
+    BO_Code,
+    BO_Title,
+    BO_Creation_Date,
+    BO_Writer_NickName,
+    BO_Hit,
+    BO_State,
+  } = post;
   return (
-    <div className="Item" onClick={() => onClick(BO_Code)}>
-      {BO_Code} {BO_Title} {new Date(BO_Creation_Date).toLocaleDateString()}
-    </div>
+    <>
+      <div
+        className="Item"
+        onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}
+      >
+        <div className="ItemTitle">
+          {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
+        </div>
+        <div className="ItemWriter">{BO_Writer_NickName}</div>
+        <div className="ItemDate">
+          {new Date(BO_Creation_Date).toLocaleDateString()}
+        </div>
+        <div className="ItemHit">{BO_Hit}회</div>
+      </div>
+    </>
   );
 };
 

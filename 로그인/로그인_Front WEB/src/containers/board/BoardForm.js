@@ -8,10 +8,11 @@ import {
   changeField,
 } from "../../modules/board/posts";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import AskModal from "../../component_contet/common/AskModal";
 
 const BoardForm = ({ match, history }) => {
   const [scroll, setScroll] = useState(true);
-
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const { posts, postsCount, loading, options } = useSelector(
     ({ posts, loading }) => ({
@@ -43,19 +44,10 @@ const BoardForm = ({ match, history }) => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-
     dispatch(changeField({ form: "options", key: name, value }));
   };
   // 원리는 다 구현되었다. 이제 검색시 나오는 주소, 그리고 useEffect 종속 해결하면 끝
   const onSearch = () => {
-    // dispatch(
-    //   list({
-    //     id: null,
-    //     name: options.name,
-    //     keyword: options.keyword,
-    //     category: match.params.board,
-    //   })
-    // );
     localStorage.setItem(
       "search",
       JSON.stringify({
@@ -109,17 +101,34 @@ const BoardForm = ({ match, history }) => {
     };
   }, [dispatch, match]);
 
+  const onChangeModal = () => {
+    setModal(!modal);
+  };
+
+  useEffect(() => {});
+
   return (
-    <BoardCom
-      match={match}
-      posts={posts}
-      loading={loading}
-      scroll={scroll}
-      onClick={onClick}
-      onChange={onChange}
-      onSearch={onSearch}
-      fetchMoreData={fetchMoreData}
-    />
+    <>
+      <BoardCom
+        match={match}
+        posts={posts}
+        loading={loading}
+        scroll={scroll}
+        onClick={onClick}
+        onChange={onChange}
+        onSearch={onSearch}
+        fetchMoreData={fetchMoreData}
+        onChangeModal={onChangeModal}
+      />
+      <AskModal
+        visible={modal}
+        title="블라인드"
+        description="블라인드 처리된 게시글입니다!"
+        onCancel={onChangeModal}
+        confirmText=""
+        cancelText="뒤로가기"
+      />
+    </>
   );
 };
 

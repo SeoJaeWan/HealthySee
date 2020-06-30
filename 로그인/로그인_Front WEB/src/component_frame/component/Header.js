@@ -17,7 +17,7 @@ const Header = ({ user, onLogout }) => {
             <div className="block">
               <Link to="/MyPage">
                 <div className="user">{user.username}</div>
-              </Link>{" "}
+              </Link>
               &nbsp;&nbsp;
               <div className="logout" onClick={onLogout}>
                 Logout

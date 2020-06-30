@@ -14,6 +14,11 @@ export const reportPost = ({ BO_Code }) =>
 export const undoReportPost = (id) =>
   client.delete(`/board/posts/report/${id}`);
 
+export const reportComments = ({ BC_Code, page, BO_Code }) =>
+  client.post(`/board/comments/report/${BC_Code}&${page}`, {
+    Board_BO_Code: BO_Code,
+  });
+
 export const healthPost = ({ BO_Code }) =>
   client.post("/board/posts/health", { BO_Code });
 export const undoHealthPost = (id) =>

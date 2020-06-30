@@ -9,21 +9,28 @@ import ReadCom from "../../component_contet/component/board/ReadCom";
 import EvaluationForm from "./read/EvaluationForm";
 import CommentsForm from "./read/CommentsForm";
 import ActionButton from "../../component_contet/common/ActionButton";
+import { useCallback } from "react";
+import { initialize } from "../../modules/board/evaluation";
 
 const ReadForm = ({ match, history, route }) => {
   const postId = match.params.postId;
+  const rootUrl = `/board/${match.params.board}`;
 
   const dispatch = useDispatch();
-  const { post, loading, user } = useSelector(({ post, loading, user }) => ({
-    post: post.post,
-
-    loading: loading["post/READ_POST"],
-    user: user.user,
-  }));
+  const { post, loading, user, isReport, isHealth, reportError } = useSelector(
+    ({ post, loading, user, evaluation }) => ({
+      post: post.post,
+      loading: loading["post/READ_POST"],
+      user: user.user,
+      isHealth: post.isHealthsee,
+      isReport: post.isReport,
+      reportError: evaluation.reportError,
+    })
+  );
 
   const onDeletePost = async () => {
     await deletePost(post.BO_Code);
-    history.push(route);
+    history.push(rootUrl);
   };
 
   const onChange = (form, data) => {
@@ -34,7 +41,7 @@ const ReadForm = ({ match, history, route }) => {
     console.log(post);
     localStorage.setItem(form, JSON.stringify(post));
 
-    history.push("/Board/write");
+    history.push(`${rootUrl}/write`);
   };
 
   const onClick = async (filename) => {
@@ -43,13 +50,21 @@ const ReadForm = ({ match, history, route }) => {
     saveAs(file.data, filename.substring(13));
   };
 
-  const onGoBack = () => {
-    history.push("/board");
-  };
+  const onGoBack = useCallback(() => {
+    console.log("여기다");
+    history.push(rootUrl);
+  }, [history, rootUrl]);
 
   useEffect(() => {
     dispatch(readPost(postId));
   }, [dispatch, postId]);
+
+  useEffect(() => {
+    if (reportError) {
+      onGoBack();
+      dispatch(initialize());
+    }
+  }, [reportError, onGoBack, dispatch]);
 
   if (!post || loading) {
     return null;
@@ -70,7 +85,12 @@ const ReadForm = ({ match, history, route }) => {
         onDeletePost={onDeletePost}
         onClick={onClick}
       />
-      <EvaluationForm post={post} Writer={post.BO_Writer_NickName}/>
+      <EvaluationForm
+        post={post}
+        Writer={post.BO_Writer_NickName}
+        isHealthsee={isHealth}
+        isReport={isReport}
+      />
       <CommentsForm post={post} user={user} />
     </>
   );

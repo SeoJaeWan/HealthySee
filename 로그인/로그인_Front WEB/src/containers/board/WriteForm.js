@@ -11,13 +11,14 @@ import {
 } from "../../modules/board/write";
 import { withRouter } from "react-router-dom";
 
-const WriteForm = ({ route, history }) => {
+const WriteForm = ({ route, history, match }) => {
   const dispatch = useDispatch();
+
+  const readUrl = `${route + "/" + match.params.board}`;
 
   const { postInfo, post, user } = useSelector(({ write, user }) => ({
     postInfo: write.postInfo,
     post: write.post,
-
     user: user.user,
   }));
 
@@ -80,7 +81,6 @@ const WriteForm = ({ route, history }) => {
 
   useEffect(() => {
     var post = localStorage.getItem("post");
-    console.log(post);
 
     if (post) dispatch(setOriginal({ form: "post", data: JSON.parse(post) }));
 
@@ -94,9 +94,10 @@ const WriteForm = ({ route, history }) => {
   useEffect(() => {
     if (postInfo) {
       const postId = postInfo.boardDetail.BO_Code;
-      history.push(`${route}/read/${postId}`);
+
+      history.push(`${readUrl}/read/${postId}`);
     }
-  }, [postInfo, history, route]);
+  }, [postInfo, readUrl, history]);
 
   return (
     <WriteCom

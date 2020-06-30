@@ -10,9 +10,17 @@ const CommentsItem = ({
   user,
   onDeleteComment,
   onUpdate,
+  onReport,
 }) => {
   const [edit, setEdit] = useState(false);
-  const { BC_Content, BC_Writer_NickName, BC_Re_Ref, BC_Code } = comment;
+  const {
+    BC_Content,
+    BC_Writer_NickName,
+    BC_Re_Ref,
+    BC_Code,
+    BC_Report_Count,
+    BC_State,
+  } = comment;
 
   const ChangeEdit = (code, data) => {
     console.log(edit);
@@ -20,11 +28,12 @@ const CommentsItem = ({
     onUpdate(edit, code, data);
     setEdit(!edit);
   };
-  console.log(nextcomment, comment.BC_Re_Ref);
   return (
     <>
+      {console.log(edit)}
       {edit ? (
         <div className="flex">
+          {console.log(edit)}
           <input
             className="InputReply"
             type="text"
@@ -39,31 +48,42 @@ const CommentsItem = ({
         </div>
       ) : (
         <>
-          <div className="Reply">
-            <div className="Content">{BC_Content}</div>
-            <div className="ReplyContent">
-              <div className="flex">
-                <div className="CommentWriter">
-                  작성자
-                  <br /> {BC_Writer_NickName}
+          {BC_State === 0 ? (
+            <div className="Reply">
+              <div className="Content">{BC_Content}</div>
+              <div className="ReplyContent">
+                <div className="flex">
+                  <div className="CommentWriter">
+                    작성자
+                    <br /> {BC_Writer_NickName}
+                  </div>
+                  <div
+                    className="CommentWriter"
+                    onClick={() =>
+                      (user && user.username) !==
+                        (comment && BC_Writer_NickName) && onReport(BC_Code)
+                    }
+                  >
+                    신고 횟수
+                    <br />
+                    {BC_Report_Count}
+                  </div>
                 </div>
-                <div className="CommentWriter">
-                  댓글번호
-                  <br />
-                  {BC_Re_Ref}
-                </div>
+                {(user && user.username) ===
+                  (comment && BC_Writer_NickName) && (
+                  <div className="DeleteButton">
+                    <ActionButton
+                      onDelete={() => onDeleteComment(BC_Code)}
+                      onChange={() => ChangeEdit(BC_Code, BC_Content)}
+                    />
+                  </div>
+                )}
               </div>
-              {(user && user.username) === (comment && BC_Writer_NickName) && (
-                <div className="DeleteButton">
-                  <ActionButton
-                    onDelete={() => onDeleteComment(BC_Code)}
-                    onChange={() => ChangeEdit(BC_Code, BC_Content)}
-                  />
-                </div>
-              )}
             </div>
-          </div>
-          {(nextcomment !== BC_Re_Ref) && (
+          ) : (
+            <div className="Content">블라인드된 댓글입니다.</div>
+          )}
+          {nextcomment !== BC_Re_Ref && (
             <div className="Comment">
               <label className="LabelReply" htmlFor="comment">
                 답글

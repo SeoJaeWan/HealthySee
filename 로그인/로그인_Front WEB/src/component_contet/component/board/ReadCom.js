@@ -15,7 +15,6 @@ const ReadCom = ({
 
   return (
     <Container>
-      {console.log(post)}
       <div className="TopButton">
         <button className="exit" onClick={onGoBack}>
           나가기
@@ -31,7 +30,6 @@ const ReadCom = ({
           <div className="flex">
             <div className="FileText">첨부파일 :</div>
             <div className="FileButton">
-              {console.log(post.BO_File)}
               {post.BO_File
                 ? post.BO_File.map((file, index) => {
                     return (

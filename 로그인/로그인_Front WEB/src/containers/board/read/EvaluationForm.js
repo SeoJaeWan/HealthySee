@@ -9,14 +9,8 @@ import {
 } from "../../../modules/board/evaluation";
 import EvaluationCom from "../../../component_contet/common/EvaluationCom";
 
-const EvaluationForm = ({ post, Writer  }) => {
-  const {
-    isHealthsee,
-    isReport,
-    BO_Healthsee_Count,
-    BO_Report_Count,
-    BO_Code,
-  } = post;
+const EvaluationForm = ({ post, Writer, isHealthsee, isReport }) => {
+  const { BO_Healthsee_Count, BO_Report_Count, BO_Code } = post;
 
   const dispatch = useDispatch();
   const { healthsee, report, healthseeCount, reportCount } = useSelector(
@@ -54,7 +48,7 @@ const EvaluationForm = ({ post, Writer  }) => {
       onHealth={onHealth}
       onReport={onReport}
       healthseeCount={healthseeCount}
-      reportCount={reportCount}  
+      reportCount={reportCount}
       Writer={Writer}
     />
   );

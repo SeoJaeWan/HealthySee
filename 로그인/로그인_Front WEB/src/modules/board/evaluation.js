@@ -7,6 +7,8 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from "../../lib/createRequestSaga";
 
+const INITIALIZE = "evaluation/INITIALIZE";
+
 const [
   REPORT_POST,
   REPORT_POST_SUCCESS,
@@ -17,6 +19,12 @@ const [
   UNDOREPORT_POST_SUCCESS,
   UNDOREPORT_POST_FAILURE,
 ] = createRequestActionTypes("evaluation/UNDOREPORT_POST");
+
+const [
+  REPORT_COMMENT,
+  REPORT_COMMENT_SUCCESS,
+  REPORT_COMMENT_FAILURE,
+] = createRequestActionTypes("evaluation/REPORT_COMMENT");
 
 const [
   HEALTH_POST,
@@ -30,6 +38,7 @@ const [
 ] = createRequestActionTypes("evaluation/UNDOHEALTH_POST");
 const SETEVALUATION = "evaluation/SETEVALUATION";
 
+export const initialize = createAction(INITIALIZE);
 export const healthPost = createAction(HEALTH_POST, ({ BO_Code }) => ({
   BO_Code,
 }));
@@ -55,6 +64,15 @@ export const setEvaluation = createAction(
   })
 );
 
+export const reportComment = createAction(
+  REPORT_COMMENT,
+  ({ BC_Code, page, BO_Code }) => ({
+    BC_Code,
+    page,
+    BO_Code,
+  })
+);
+
 const healthPostSaga = createRequestSaga(HEALTH_POST, boardAPI.healthPost);
 const undoHealthPostSaga = createRequestSaga(
   UNDOHEALTH_POST,
@@ -66,9 +84,17 @@ const undoReportPostSaga = createRequestSaga(
   UNDOREPORT_POST,
   boardAPI.undoReportPost
 );
+
+const reportCommentSaga = createRequestSaga(
+  REPORT_COMMENT,
+  boardAPI.reportComments
+);
+
 export function* evaluationSaga() {
   yield takeLatest(HEALTH_POST, healthPostSaga);
   yield takeLatest(UNDOHEALTH_POST, undoHealthPostSaga);
+
+  yield takeLatest(REPORT_COMMENT, reportCommentSaga);
 
   yield takeLatest(REPORT_POST, reportPostSaga);
   yield takeLatest(UNDOREPORT_POST, undoReportPostSaga);
@@ -80,12 +106,22 @@ const initialState = {
   healthseeCount: 0,
   reportCount: 0,
 
+  comments: {
+    value: null,
+    page: null,
+  },
+
   healthError: null,
   reportError: null,
+
+  commentsError: null,
 };
+
+// reportComments를 통해 받아온 댓글들을 저장할 변수 만들고 그걸 다시 post에 있는 comment로 이동시켜줘야함
 
 const evaluation = handleActions(
   {
+    [INITIALIZE]: () => initialState,
     [SETEVALUATION]: (
       state,
       {
@@ -130,6 +166,18 @@ const evaluation = handleActions(
     ) => ({
       ...state,
       reportError,
+    }),
+    [REPORT_COMMENT_SUCCESS]: (state, { payload: data }) => ({
+      ...state,
+      comments: {
+        ...state.comments,
+        value: data.comments,
+        page: data.lastPage,
+      },
+    }),
+    [REPORT_COMMENT_FAILURE]: (state, { payload: commentsError }) => ({
+      ...state,
+      commentsError,
     }),
   },
   initialState
