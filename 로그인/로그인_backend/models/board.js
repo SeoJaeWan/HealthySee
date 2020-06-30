@@ -37,7 +37,12 @@ module.exports = function(sequelize, DataTypes) {
 		BO_Creation_Date: {
 			type: DataTypes.DATE,
 			allowNull: false
-		}
+		},
+		BO_State: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			defaultValue: "0",
+		  }
 	}, {
 		tableName: 'board',
 		timestamps: false,

@@ -32,7 +32,12 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'board',
 				key: 'BO_Code'
 			}
-		}
+		},
+		BC_State: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			defaultValue: "0",
+		  }
 	}, {
 		tableName: 'b_comment',
 		timestamps: false

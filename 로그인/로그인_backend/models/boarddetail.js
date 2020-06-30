@@ -49,7 +49,12 @@ module.exports = function(sequelize, DataTypes) {
 		BO_Report_Count: {
 			type: DataTypes.BIGINT,
 			allowNull: true
-		}
+		},
+		BO_State: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			defaultValue: "0",
+		  }
 	}, {
 		tableName: 'boarddetail',
 		timestamps: false,
