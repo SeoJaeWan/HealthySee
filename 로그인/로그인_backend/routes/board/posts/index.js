@@ -22,6 +22,7 @@ router.get("/download/:filename", downloadFile);
 // 해당 BO_CODE의 게시글 조회
 router.get("/:BO_Code", readPost);
 
+
 // 해당 BO_CODE의 게시글 삭제
 router.delete("/:BO_Code", checkPost, checkLogin, checkOwnBoard, deletePost);
 router.patch("/:BO_Code",checkPost, upload.array("files"),updatePost, readPost)
