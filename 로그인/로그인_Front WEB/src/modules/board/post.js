@@ -36,6 +36,8 @@ const [
   DELETE_COMMENT_FAILURE,
 ] = createRequestActionTypes("post/DELETE_COMMENT");
 
+const SETBEFORELIST = "post/SETBEFORELIST";
+
 export const readPost = createAction(READ_POST, (id) => id);
 export const changeEvaluation = createAction(
   CHANGE_EVALUATION,
@@ -64,6 +66,10 @@ export const deleteComment = createAction(DELETE_COMMENT, ({ id, page }) => ({
   id,
   page,
 }));
+export const setBeforeList = createAction(
+  SETBEFORELIST,
+  (beforeList) => beforeList
+);
 
 const writeCommentSaga = createRequestSaga(
   WRITE_COMMENT,
@@ -96,6 +102,8 @@ const initialState = {
   commentError: null,
   isHealthsee: null,
   isReport: null,
+
+  beforeList: [],
 };
 
 const post = handleActions(
@@ -117,6 +125,10 @@ const post = handleActions(
       ...state,
       comments,
       page,
+    }),
+    [SETBEFORELIST]: (state, { payload: beforeList }) => ({
+      ...state,
+      beforeList,
     }),
     [combineActions(
       WRITE_COMMENT_SUCCESS,

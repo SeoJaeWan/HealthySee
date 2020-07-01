@@ -19,7 +19,7 @@ const checkSaga = createRequestSaga(CHECK, authAPI.check);
 
 function checkFailureSaga() {
   try {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
   } catch (e) {
     console.log("CheckFailure is not working`");
   }
@@ -28,7 +28,7 @@ function checkFailureSaga() {
 function checkSuccessSaga(user) {
   // login을 사용하면 redirect를 하기 때문에 loginForm에서 user를 로컬 스토리지에 저장하지 못해 리다이렉트시 index.js에서 loadUser를 통해 받아오게 함
   try {
-    sessionStorage.setItem("user", JSON.stringify(user.payload));
+    localStorage.setItem("user", JSON.stringify(user.payload));
   } catch (e) {
     console.log("CheckSuccessSaga is not working`");
   }
@@ -37,7 +37,7 @@ function checkSuccessSaga(user) {
 function* logoutSaga() {
   try {
     yield call(authAPI.logout);
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
   } catch (error) {
     console.log("LogoutSaga is not working", error);
   }

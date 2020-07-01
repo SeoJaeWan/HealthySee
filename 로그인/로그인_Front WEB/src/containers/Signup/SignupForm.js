@@ -59,7 +59,7 @@ const SignupForm = ({ history }) => {
     if (user) {
       history.push("/");
       try {
-        sessionStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
         sessionStorage.removeItem("platforms");
       } catch (e) {
         console.log("sessionStorage setItem is not working");

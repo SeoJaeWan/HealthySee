@@ -15,7 +15,7 @@ const BoardForm = ({ match, history }) => {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const { posts, postsCount, loading, options } = useSelector(
-    ({ posts, loading }) => ({
+    ({ posts, loading, post }) => ({
       posts: posts.posts,
       options: posts.options,
       postsCount: posts.postsCount,
@@ -24,7 +24,7 @@ const BoardForm = ({ match, history }) => {
   );
 
   const fetchMoreData = () => {
-    if (postsCount < 10) {
+    if (postsCount <= 3) {
       setScroll(false);
       return;
     }
@@ -48,6 +48,7 @@ const BoardForm = ({ match, history }) => {
   };
   // 원리는 다 구현되었다. 이제 검색시 나오는 주소, 그리고 useEffect 종속 해결하면 끝
   const onSearch = () => {
+    console.log("asdasd");
     localStorage.setItem(
       "search",
       JSON.stringify({
@@ -61,13 +62,14 @@ const BoardForm = ({ match, history }) => {
   };
 
   const onClick = (postId) => {
+    const beforeInfo = { posts, options, postsCount };
+    sessionStorage.setItem("beforeList", JSON.stringify(beforeInfo));
     history.push(`/Board/${match.params.board}/read/${postId}`);
   };
 
   useEffect(() => {
     setScroll(true);
     let search = localStorage.getItem("search");
-
     if (search) {
       let jsonSearch = JSON.parse(search);
       dispatch(list(jsonSearch));
@@ -82,8 +84,10 @@ const BoardForm = ({ match, history }) => {
           value: jsonSearch.keyword,
         })
       );
-
       localStorage.removeItem("search");
+    } else if (posts.length !== 0) {
+      console.log("여기?", posts.length);
+      sessionStorage.removeItem("beforeList");
     } else {
       dispatch(
         list({

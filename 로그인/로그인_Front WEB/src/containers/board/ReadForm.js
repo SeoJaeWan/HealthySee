@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { readPost } from "../../modules/board/post";
+import { readPost, setBeforeList } from "../../modules/board/post";
 import { withRouter } from "react-router-dom";
 import { deletePost, downloadFile } from "../../lib/api/board";
 import { saveAs } from "file-saver";
@@ -11,22 +11,30 @@ import CommentsForm from "./read/CommentsForm";
 import ActionButton from "../../component_contet/common/ActionButton";
 import { useCallback } from "react";
 import { initialize } from "../../modules/board/evaluation";
+import { setPosts } from "../../modules/board/posts";
 
 const ReadForm = ({ match, history, route }) => {
   const postId = match.params.postId;
   const rootUrl = `/board/${match.params.board}`;
 
   const dispatch = useDispatch();
-  const { post, loading, user, isReport, isHealth, reportError } = useSelector(
-    ({ post, loading, user, evaluation }) => ({
-      post: post.post,
-      loading: loading["post/READ_POST"],
-      user: user.user,
-      isHealth: post.isHealthsee,
-      isReport: post.isReport,
-      reportError: evaluation.reportError,
-    })
-  );
+  const {
+    post,
+    loading,
+    user,
+    isReport,
+    isHealth,
+    reportError,
+    beforeList,
+  } = useSelector(({ post, loading, user, evaluation }) => ({
+    post: post.post,
+    loading: loading["post/READ_POST"],
+    user: user.user,
+    isHealth: post.isHealthsee,
+    isReport: post.isReport,
+    reportError: evaluation.reportError,
+    beforeList: post.beforeList,
+  }));
 
   const onDeletePost = async () => {
     await deletePost(post.BO_Code);
@@ -51,11 +59,18 @@ const ReadForm = ({ match, history, route }) => {
   };
 
   const onGoBack = useCallback(() => {
-    console.log("여기다");
+    dispatch(
+      setPosts({
+        posts: beforeList.posts,
+        options: beforeList.options,
+        postsCount: beforeList.postsCount,
+      })
+    );
     history.push(rootUrl);
-  }, [history, rootUrl]);
+  }, [history, rootUrl, beforeList, dispatch]);
 
   useEffect(() => {
+    dispatch(setBeforeList(JSON.parse(sessionStorage.getItem("beforeList"))));
     dispatch(readPost(postId));
   }, [dispatch, postId]);
 

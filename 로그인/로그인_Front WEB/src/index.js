@@ -22,7 +22,7 @@ const store = createStore(
 function loadUser() {
   // 새로고침을 하더라도 로그인 상태를 유지
   try {
-    const user = sessionStorage.getItem("user");
+    const user = localStorage.getItem("user");
 
     if (!user) return;
 

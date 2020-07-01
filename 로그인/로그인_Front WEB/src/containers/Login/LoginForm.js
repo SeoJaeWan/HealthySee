@@ -58,7 +58,7 @@ const LoginForm = ({ history }) => {
     if (user) {
       history.push("/");
       try {
-        sessionStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
       } catch (error) {
         console.log("LoginForm sessionStorage is not work");
       }

@@ -12,7 +12,7 @@ const INITIALIZE = "posts/INITIALIZE";
 const [LIST, LIST_SUCCESS, LIST_FAILURE] = createRequestActionTypes(
   "posts/LIST"
 );
-
+const SETPOSTS = "posts/SETPOSTS";
 const [
   LISTDETAIL,
   LISTDETAIL_SUCCESS,
@@ -26,6 +26,14 @@ const CHANGE_FIELD = "posts/CHANGE_FIELD";
 // }));
 
 export const initialize = createAction(INITIALIZE);
+export const setPosts = createAction(
+  SETPOSTS,
+  ({ posts, options, postsCount }) => ({
+    posts,
+    options,
+    postsCount,
+  })
+);
 export const list = createAction(LIST, ({ id, name, keyword, category }) => ({
   id,
   name,
@@ -69,7 +77,12 @@ const posts = handleActions(
       produce(state, (draft) => {
         draft[form][key] = value;
       }),
-
+    [SETPOSTS]: (state, { payload: { posts, options, postsCount } }) => ({
+      ...state,
+      posts,
+      options,
+      postsCount,
+    }),
     [combineActions(LIST_SUCCESS, LISTDETAIL_SUCCESS)]: (
       state,
       { payload: posts }
