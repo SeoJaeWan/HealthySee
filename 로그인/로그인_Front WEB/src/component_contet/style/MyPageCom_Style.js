@@ -97,13 +97,14 @@ export const InfCom = styled.div`
     display: flex;
     justify-content: space-around;
     margin-top: 2rem;
-    width: 90%;
+    width: 68%;
   }
   .Buttons {
     font-size: 2rem;
     background-color: #676a72;
+    padding: 10px 15px; 
     color : white;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     ${media.tablet`
      font-size:1.5rem;
     `}

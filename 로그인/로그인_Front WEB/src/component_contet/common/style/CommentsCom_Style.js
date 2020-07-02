@@ -82,6 +82,9 @@ export const ContentComForm = styled.div`
   input {
     width: 75%;
     height: 80%;
+    color: #676a72;
+    font: inherit;
+    font-size: 2rem;
     margin-left: 4%;
     margin-bottom: 1%;
     ${media.mobile`
@@ -104,6 +107,7 @@ export const ContentComForm = styled.div`
     border-right: 5px solid #676a72;
     width: 75%;
     height: 80%;
+    font-size: 2rem;
     margin-top: 1%;
     margin-left: 4%;
     margin-bottom: 1%;
@@ -169,7 +173,15 @@ width: 40%  `}
     border-top: 5px solid #676a72;
     justify-content: center;
   }
-  .hrtag {
+  .Blind {
+    padding-left: 3%;
+    width: 97%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid #676a72;
+  }
+  .bottomHR {
     margin: 0 0 0 0;
 
     border: none;

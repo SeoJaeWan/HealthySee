@@ -79,13 +79,14 @@ const CommentsItem = ({
                         onChange={() => ChangeEdit(BC_Code, BC_Content)}
                       />
                     </div>
-                    <hr className="hrtag" />
+
+                    <hr className="bottomHR" />
                   </>
                 )}
               </div>
             </div>
           ) : (
-            <div className="Content">블라인드된 댓글입니다.</div>
+            <div className="Blind">블라인드된 댓글입니다.</div>
           )}
           {nextcomment !== BC_Re_Ref && (
             <div className="Comment">

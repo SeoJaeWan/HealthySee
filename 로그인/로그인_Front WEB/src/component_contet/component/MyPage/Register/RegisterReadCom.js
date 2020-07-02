@@ -1,7 +1,8 @@
 import React from "react";
-import { Container } from "../../style/ReadCom_Style";
+import { Link } from "react-router-dom";
+import { Container } from "../../../style/RegisterReadCom_Style";
 
-const ReadCom = ({
+const RegisterReadCom = ({
   post,
   loading,
   ownPost,
@@ -9,37 +10,26 @@ const ReadCom = ({
   onGoBack,
   onClick,
 }) => {
-  if (!post || loading) {
-    return null;
-  }
 
   return (
     <Container>
       <div className="TopButton">
         <button className="exit" onClick={onGoBack}>
-          나가기
+        <Link to="/Mypage/registerBO">뒤로가기</Link>
         </button>
         <div className="titlebutton">{ownPost && actionButton}</div>
       </div>
       <div className="TitleForm">
         <div className="Title">제목 :</div>
-        <div className="TitleContent">{post.BO_Title}</div>
+        <div className="TitleContent">제목 들어갈곳</div>
       </div>
       <div className="ContentForm">
-        <pre>{post.BO_Content}</pre>
+        <pre>내용 들어갈곳</pre>
         <div className="FileForm">
           <div className="flex">
             <div className="FileText">첨부파일 :</div>
             <div className="FileButton">
-              {post.BO_File
-                ? post.BO_File.map((file, index) => {
-                    return (
-                      <span className="File" key={index} onClick={() => onClick(file)}>
-                        {file.substring(13)}<br/>
-                      </span>
-                    );
-                  })
-                : ""}
+              
             </div>
           </div>
         </div>
@@ -48,4 +38,4 @@ const ReadCom = ({
   );
 };
 
-export default ReadCom;
+export default RegisterReadCom;

@@ -123,28 +123,27 @@ export const WriteForm = styled.div`
   }
   .Titleinput {
     border: none;
+    font: inherit;
+    color: #676a72;
+    font-size: 2rem;
     height: 55px;
     width: 100%;
-    color: #676a72;
-    font: inherit;
-    font-size: 2rem;
     box-shadow: 0px 4px 10px -8px black;
   }
   .FileButton {
     margin-left: 2%;
     margin-top: 2%;
   }
-  .StorageFileForm{
-    margin-top:1.5%;
+  .StorageFileForm {
+    margin-top: 1.5%;
     width: 75%;
   }
-  .StorageFile{  
+  .StorageFile {
     font-size: 1.5rem;
-    padding-top: 0.8%;
     margin-left: 2%;
     margin-bottom: 1%;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
   }
   .TextForm {
     display: flex;
@@ -181,10 +180,11 @@ export const WriteForm = styled.div`
   }
   .TextArea {
     margin-left: 2%;
-    color: #676a72;
-    font: inherit;
-    font-size: 3rem;
+    height: 100%;
     width: 100%;
+    font: inherit;
+    color: #676a72;
+    font-size: 2rem;
     border: none;
     resize: none;
     overflow: auto;

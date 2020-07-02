@@ -48,9 +48,22 @@ class MypageCom extends Component {
                 </div>
               </div>
               <div className="ButtonDiv">
-                <button className="Buttons">트레이너 등록하기</button>
-                <button className="Buttons">앨&nbsp;범</button>
-                <button className="Buttons"><Link className="ButtonLink" to="/Mypage/registerEX">등록한 운동</Link></button>
+                <button className="Buttons">
+                  <Link className="ButtonLink" to="/Mypage/registerTR">
+                    트레이너 등록하기
+                  </Link>
+                </button>
+
+                <button className="Buttons">
+                  <Link className="ButtonLink" to="/Mypage/registerBO">
+                    운동 건의
+                  </Link>
+                </button>
+                <button className="Buttons">
+                  <Link className="ButtonLink" to="/Mypage/Album">
+                    앨 범
+                  </Link>
+                </button>
               </div>
             </div>
           </div>

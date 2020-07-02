@@ -125,9 +125,6 @@ export const WriteForm = styled.div`
     border: none;
     height: 55px;
     width: 100%;
-    color: #676a72;
-    font: inherit;
-    font-size: 2rem;
     box-shadow: 0px 4px 10px -8px black;
   }
   .FileButton {
@@ -140,7 +137,6 @@ export const WriteForm = styled.div`
   }
   .StorageFile{  
     font-size: 1.5rem;
-    padding-top: 0.8%;
     margin-left: 2%;
     margin-bottom: 1%;
     display:flex;
@@ -181,12 +177,12 @@ export const WriteForm = styled.div`
   }
   .TextArea {
     margin-left: 2%;
-    color: #676a72;
-    font: inherit;
-    font-size: 3rem;
+    height: 100%;
     width: 100%;
     border: none;
     resize: none;
+    font-size: 20px;
+    line-height: 24px;
     overflow: auto;
     height: auto;
     padding: 8px;

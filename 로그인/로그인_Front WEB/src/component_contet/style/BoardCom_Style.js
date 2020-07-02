@@ -76,9 +76,13 @@ export const Container = styled.div`
     font-size: 1rem;
     font-family: inherit;
     border-radius: 0px;
+    color: #676a72;
   }
   .SearchInput{
     width: 70%;
+    font: inherit;
+    font-size: 2rem; 
+    color: #676a72;
     height: 80%;
   }
   .SearchButton{

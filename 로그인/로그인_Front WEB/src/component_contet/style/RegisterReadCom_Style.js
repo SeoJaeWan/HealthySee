@@ -114,8 +114,6 @@ margin-top: 10%;  `}
     width: 63vw;
   }
   pre {
-    overflow: auto;
-    white-space: pre-wrap;
     margin-left: 4%;
     ${media.mobile`
     margin-left: 10%;

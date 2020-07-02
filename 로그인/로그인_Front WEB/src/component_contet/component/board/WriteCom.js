@@ -14,8 +14,12 @@ const WriteCom = ({
     <Container>
       <WriteForm>
         <div className="Buttonform">
-          <button className="Backbutton" onClick={onCancel}>돌아가기</button>
-          <button className="Writebutton" onClick={onClick}>{post.BO_Code ? "수정" : "글쓰기"}</button>
+          <button className="Backbutton" onClick={onCancel}>
+            돌아가기
+          </button>
+          <button className="Writebutton" onClick={onClick}>
+            {post.BO_Code ? "수정" : "글쓰기"}
+          </button>
         </div>
         <div className="Titleform">
           <div className="Titlediv">
@@ -48,14 +52,16 @@ const WriteCom = ({
           {post.BO_File ? (
             <div className="Filetext">
               <div className="Title">첨부파일</div>
-              {post.BO_File.map((file, index) => {
-                return (
-                  <div key={index}>
-                    <span key={index}>{file.substring(13)}</span>
-                    <button onClick={() => deleteFile(file)}>X</button>
-                  </div>
-                );
-              })}
+              <div className="StorageFileForm">
+                {post.BO_File.map((file, index) => {
+                  return (
+                    <div className="StorageFile" key={index}>
+                      <span key={index}>{file.substring(13)}</span>
+                      <button onClick={() => deleteFile(file)}>X</button>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ) : (
             ""
