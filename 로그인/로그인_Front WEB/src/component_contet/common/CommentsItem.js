@@ -51,7 +51,16 @@ const CommentsItem = ({
         <>
           {BC_State === 0 ? (
             <div className="Reply">
-              <div className="Content">{BC_Content}</div>
+              {BC_Re_Ref !== BC_Code ? (
+                <>
+                  <div className="SeparateREF">ㄴ</div>
+                  <div className="REFContent">{BC_Content}</div>
+                </>
+              ) : (
+                <>
+                  <div className="Content">{BC_Content}</div>
+                </>
+              )}
               <div className="ReplyContent">
                 <div className="flex">
                   <div className="CommentWriter">
@@ -86,7 +95,11 @@ const CommentsItem = ({
               </div>
             </div>
           ) : (
-            <div className="Blind">블라인드된 댓글입니다.</div>
+            <div className="Blind">
+              {BC_State === 1
+                ? "블라인드된 댓글입니다. "
+                : "삭제된 댓글입니다."}
+            </div>
           )}
           {nextcomment !== BC_Re_Ref && (
             <div className="Comment">

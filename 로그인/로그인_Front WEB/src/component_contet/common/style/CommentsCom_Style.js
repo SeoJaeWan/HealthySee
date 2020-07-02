@@ -79,6 +79,18 @@ export const ContentComForm = styled.div`
     height:65%;
   `}
   }
+  .SeparateREF {
+    padding-left: 2%;
+    font: solid;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    ${media.board`
+font-size:2rem  `}
+    ${media.mobile`
+    font-size:1.5rem  `}
+  }
   input {
     width: 75%;
     height: 80%;
@@ -146,6 +158,16 @@ export const ContentComForm = styled.div`
     padding: 2% 0 2% 2%;
     ${media.board`
 width:80%  `}
+  }
+  .REFContent {
+    width: 72.3%;
+    margin-left: 1%;
+    border-right: 5px solid #676a72;
+    padding: 2% 0 2% 2%;
+    ${media.board`
+width:76%  `}
+   ${media.mobile`
+width:70%  `}
   }
 
   .ReplyContent {
