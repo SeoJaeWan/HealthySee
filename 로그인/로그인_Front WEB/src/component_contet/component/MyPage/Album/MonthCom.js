@@ -9,7 +9,7 @@ class MonthCom extends Component {
       <>
         <MonthForm>
           <label className="Month">1월</label>
-          <button>+</button>
+          <button ><Link className="PlusButton" to={`/Mypage/Album/write`}>+</Link></button>
         </MonthForm>
         <AlbumInfo />
       </>
