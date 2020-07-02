@@ -55,4 +55,7 @@ export const MonthForm = styled.div`
     z-index:999;
     font-size: 3rem;
   }
+  .PlusButton{
+    color:white;
+  }
 `;
