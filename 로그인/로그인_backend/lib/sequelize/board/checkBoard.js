@@ -30,7 +30,13 @@ const checkPost = async (req, res, next) => {
 };
 
 const checkComment = async (req, res, next) => {
-  const BC_Code = req.params.BC_Code;
+
+  let BC_Code;
+
+  if(req.method === "PATCH" || req.method === "POST" )
+   BC_Code = req.body.BC_Code;
+  else
+   BC_Code = req.params.BC_Code;
 
   console.log(BC_Code);
 

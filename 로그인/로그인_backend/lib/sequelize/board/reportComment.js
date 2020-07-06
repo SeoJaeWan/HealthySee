@@ -6,17 +6,16 @@ const { Op } = require("sequelize");
 
 
 const reportComment = async (req, res, next) => {
-    var  B_Comment_BC_Code = req.params.BC_Code;
+    var B_Comment_BC_Code = req.body.B_Comment_BC_Code;
     var B_Comment_Board_BO_Code = req.body.Board_BO_Code;
     var BCR_Reporter_NickName = req.body.user.username;
-    var response = {};
 
     await BC_Reporter.findOrCreate({
         where : {[Op.and]: [
             {BCR_Reporter_NickName : BCR_Reporter_NickName},
             {B_Comment_BC_Code : B_Comment_BC_Code}
         ]},
-        defaults : {B_Comment_BC_Code : B_Comment_BC_Code, BCR_Reporter_NickName:BCR_Reporter_NickName, B_Comment_Board_BO_Code : B_Comment_Board_BO_Code, BCR_Creation_Date : today }})
+        defaults : {B_Comment_BC_Code,BCR_Reporter_NickName,B_Comment_Board_BO_Code,BCR_Creation_Date : today }})
         .spread( async function (report, created) {
             if(created){
                 var bc_reporter = await BC_Reporter.findAndCountAll({
@@ -26,10 +25,10 @@ const reportComment = async (req, res, next) => {
                     await B_Comment.update({BC_State : 1},{where : {BC_Code : B_Comment_BC_Code}})
                 }
                 req.params.BO_Code = B_Comment_Board_BO_Code;
+                req.params.page = req.body.page;
                 next();
             }else{
-                res.status(409).end();
-                
+                res.status(409).end(); 
             }
         })
   };

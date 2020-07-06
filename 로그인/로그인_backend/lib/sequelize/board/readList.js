@@ -11,13 +11,9 @@ const readlList = async (req, res, next) => {
     where: {
       [Op.and]: [
         name
-          ? (name === 'BO_Title')
-              ?{BO_Title: { [Op.like]: "%" + keyword + "%" },}
-              :{ BO_Writer_NickName: { [Op.like]: "%" + keyword + "%" },}
-          : null,
+        &&{[name]: { [Op.like]: "%" + keyword + "%" },},
         BO_Code
-         ?{ BO_Code: { [Op.lt]: BO_Code } }
-         : null,
+        &&{ BO_Code: { [Op.lt]: BO_Code } },
         { BO_Category: category },
       ],
     },

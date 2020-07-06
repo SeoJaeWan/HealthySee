@@ -18,40 +18,41 @@ const upload = multer({
 
 const updatePost = async (req, res, next) => {
   console.log(req.body);
-  var BO_Code = req.params.BO_Code;
-  var BO_Category = req.body.BO_Category;
-  var BO_Title = req.body.BO_Title;
-  var BO_Content = req.body.BO_Content;
-  var leaveFile = req.body.leaveFile;
-  var fileString = leaveFile
+  let BO_Code = req.params.BO_Code;
+  let BO_Category = req.body.BO_Category;
+  let BO_Title = req.body.BO_Title;
+  let BO_Content = req.body.BO_Content;
+  let leaveFile = req.body.leaveFile;
+  let fileString = leaveFile
   if(req.files){
-    for(var i = 0; i < req.files.length; i++){
+    for(let i = 0; i < req.files.length; i++){
       if(fileString !== null && fileString !=="")
       fileString =fileString + "," + (req.files[i].filename);
       else
       fileString = req.files[i].filename;
     }
   }
-  var BO_File = req.files ? fileString : "";
-  var BO_Writer_NickName = req.body.username;
-  var BO_Creation_Date = today;
-
+  let BO_File = req.files ? fileString : "";
+  let BO_Writer_NickName = req.body.username;
+  let BO_Creation_Date = today;
   const board = await Board.update({
+    BO_Code,
     BO_Category,
     BO_Title,
     BO_Content,
     BO_Writer_NickName,
     BO_File,
     BO_Creation_Date
-  },{where:{BO_Code : BO_Code}});
-
+  },{where:{BO_Code}});
+ 
   req.body.self = true;
   next();
 };
 
 const updateComment = async (req, res, next) => {
-  var BC_Code = req.params.BC_Code;
+  var BC_Code = req.body.BC_Code;
   var BC_Content = req.body.BC_Content;
+  
 
   var comment = await B_Comment.findOne({
     where: { BC_Code },
@@ -62,6 +63,7 @@ const updateComment = async (req, res, next) => {
       {BC_Content},
     {where: { BC_Code: BC_Code },
   });
+    req.params.page = req.body.page;
     next();
 };
 
