@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container } from "../../../style/RegisterReadCom_Style";
+import { Container } from "../../../style/Mypage/RegisterReadCom_Style";
 
 const RegisterReadCom = ({
   post,

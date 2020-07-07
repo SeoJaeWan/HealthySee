@@ -11,6 +11,8 @@ import RegisterTR from "../component_contet/component/MyPage/RegisterTRCom";
 import Album from "../component_contet/component/MyPage/Album/Album";
 import AlbumWrite from "../component_contet/component/MyPage/Album/AlbumWrite";
 import HeaderForm from "../containers/Header/HeaderForm";
+import GoalBO from "../component_contet/component/MyPage/Goal/GoalBO";
+import GoalEdit from "../component_contet/component/MyPage/Goal/GoalEdit";
 
 class MyPage extends Component {
   render() {
@@ -24,6 +26,8 @@ class MyPage extends Component {
         <Route exact path="/MyPage/Album" component={Album} />   
         <Route path="/MyPage/Album/write" component={AlbumWrite} />
         <Route exact path="/MyPage/registerBO" component={RegisterBO} />
+        <Route exact path="/MyPage/GoalBO" component={GoalBO} />
+        <Route path="/MyPage/GoalBO/GoalEdit" component={GoalEdit} />
         <Route path="/MyPage/registerBO/write" component={RegisterWrite} />
         <Route path="/MyPage/registerBO/read" component={RegisterRead} />
       </>

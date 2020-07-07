@@ -1,0 +1,154 @@
+import styled, { keyframes } from "styled-components";
+import { media } from "../../../ReactiveStyle/ReactiveStyle";
+
+export const InfCom = styled.div`
+  width: 100%;
+  margin-top: 2rem;
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    ${media.tablet`
+     flex-wrap:wrap;
+    justify-content: center;
+    `}
+  }
+  .leftDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 3%;
+    height: 80%;
+    width: 25%;
+    min-width: 15rem;
+  }
+  .Title {
+    font-size: 2rem;
+  }
+
+  .ImgDiv {
+    border: 3px solid #676a72;
+    height: 32vw;
+    width: 18vw;
+    min-height: 22.3rem;
+    min-width: 14rem;
+    max-width: 15rem;
+    max-height: 22.3rem;
+  }
+  .PublicDiv {
+    font-size: 2rem;
+  }
+  .rightDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 3%;
+    height: 80%;
+    width: 65%;
+    min-width: 20rem;
+    ${media.tablet`
+     width:100%;
+    `}
+  }
+  .Contents {
+    display: flex;
+    border: 3px solid #676a72;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 3rem;
+    align-items: center;
+  }
+  .rowrserver {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 2rem;
+  }
+  .edit {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 2rem;
+    margin: 0 2rem 2rem 0;
+  }
+
+  .FlexGrow {
+    flex-grow: 1;
+    min-width: 10rem;
+    margin-left: 1.5rem;
+  }
+  .TowContetns {
+    flex-wrap: wrap;
+    display: flex;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    min-width: 20rem;
+    width: 90%;
+    ${media.tablet`
+     font-size:1.5rem;
+    `}
+  }
+  .name {
+    border: 3px solid #676a72;
+    font-size: 2rem;
+    width: 90%;
+  }
+  .ButtonDiv {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    width: 68%;
+  }
+  .Buttons {
+    font-size: 2rem;
+    background-color: #676a72;
+    padding: 10px 15px; 
+    color : white;
+    border-radius: 0.5rem;
+    ${media.tablet`
+     font-size:1.5rem;
+    `}
+  }
+  .ButtonLink{
+    color : white;
+  }
+  .IntroForm{
+    margin-top:3rem;
+    margin-left:5%;
+  }
+  .BoardForm {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    font-size: 1rem;
+    border: 5px solid #676a72;
+    border-left: solid white;
+    max-height: 100%;
+    ${media.mobile`
+    width: 100%;
+    `}
+    &::before {
+      content: "";
+      position: static;
+      margin: -10px;
+      margin-top: -30px;
+      display: block;
+      border-radius: 50%;
+      width: 50px;
+      height: 58px;
+      background: #676a72;
+      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+      transition: 0.2s;
+    }
+  }
+  .IntroInfo{
+    font-size:2rem;
+    padding: 2rem;
+  }
+
+  .Introtitle{
+    margin: 2rem 0 1rem 3rem;
+    font-size: 2rem;
+  }
+`;

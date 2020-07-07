@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container } from "../../../style/Container";
 import { Link } from "react-router-dom";
-import { AlbumForm } from "../../../style/AlbumWrite_Style";
+import { AlbumForm } from "../../../style/Album/AlbumWrite_Style";
 
-class AlbumWrite extends Component {
-  render() {
+const AlbumWrite = () =>  {
     return (
       <Container>
         <AlbumForm>
@@ -37,7 +36,7 @@ class AlbumWrite extends Component {
         </AlbumForm>
       </Container>
     );
-  }
+  
 }
 
 export default AlbumWrite;

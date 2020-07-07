@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../style/ReadCom_Style";
+import { Container } from "../../style/Board/ReadCom_Style";
 
 const ReadCom = ({
   post,

@@ -1,14 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
-import { Container, Sticky } from "../style/Header_Style.js";
-import SideBar from "./sidebar";
+import { Container, MenuForm, Sticky } from "../style/Header_Style.js";
 import "../style/styles.css";
+import Menu from "./Menu.js";
 
 const Header = ({ user, onLogout }) => {
+
+  const [isView, setView] = useState(true);
+  const setMenu = () => {
+    return setView(!isView);
+  };
   return (
     <Sticky>
       <Container>
-        <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
+        <button className="MenuButton" onClick={() => setView(setMenu)}>Menu</button>
+        <MenuForm isView={isView}>
+          <Menu/>
+        </MenuForm>
         <div className="Title">
           <Link to="/">Health&amp;See</Link>
         </div>

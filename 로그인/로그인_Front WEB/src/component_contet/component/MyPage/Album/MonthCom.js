@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { MonthForm } from "../../../style/MonthCom_Style.js";
+import { MonthForm } from "../../../style/Album/MonthCom_Style.js";
 import AlbumInfo from "./AlbumInfoCom";
 
-class MonthCom extends Component {
-  render() {
+const MonthCom = () =>  {
     return (
       <>
         <MonthForm>
@@ -14,7 +13,7 @@ class MonthCom extends Component {
         <AlbumInfo />
       </>
     );
-  }
+  
 }
 
 export default MonthCom;

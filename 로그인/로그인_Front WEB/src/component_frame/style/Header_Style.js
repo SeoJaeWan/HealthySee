@@ -28,7 +28,7 @@ export const Container = styled.div`
   .Title {
     display: flex;
     justify-content: center;
-    height:100%;
+    height: 100%;
     align-items: center;
     margin-left: 5rem;
     margin-top: 0.65rem;
@@ -72,4 +72,12 @@ export const Sticky = styled.div`
   z-index: 9999;
   width: 100%;
   height: 100px;
+`;
+
+export const MenuForm = styled.div`
+  position: absolute;
+  top: 15rem;
+  width: 250px;
+  border-right: 10px solid#676A72;
+  display: ${(props) => (props.isView ? "none" : "block")};
 `;

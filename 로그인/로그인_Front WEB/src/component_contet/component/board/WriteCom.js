@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "../../style/Container";
-import { WriteForm } from "../../style/WriteCom_Style";
+import { WriteForm } from "../../style/Board/WriteCom_Style";
 
 const WriteCom = ({
   post,

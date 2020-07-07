@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container } from "../../style/Container";
 import { Link } from "react-router-dom";
-import { InfCom } from "../../style/MyPageCom_Style";
+import { InfCom } from "../../style/Mypage/MyPageCom_Style";
+import GoalCom from "./Goal/GoalCom"
 
-class MypageCom extends Component {
-  render() {
+const MypageCom = () => {
     return (
       <Container>
         <InfCom>
@@ -67,10 +67,21 @@ class MypageCom extends Component {
               </div>
             </div>
           </div>
+          <div className="IntroForm">
+            <div className="Introtitle">
+              자기소개
+          </div>
+            <div className="BoardForm">
+              <div className="IntroInfo">
+                내용이 들어갈곳
+            </div>
+            </div>
+          </div>
         </InfCom>
+        <GoalCom/>
       </Container>
     );
-  }
+  
 }
 
 export default MypageCom;
