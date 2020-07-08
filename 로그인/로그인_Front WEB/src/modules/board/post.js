@@ -37,6 +37,7 @@ const [
 ] = createRequestActionTypes("post/DELETE_COMMENT");
 
 const SETBEFORELIST = "post/SETBEFORELIST";
+const CHANGEPAGE = "post/CHANGEPAGE";
 
 export const readPost = createAction(READ_POST, (id) => id);
 export const changeEvaluation = createAction(
@@ -48,7 +49,7 @@ export const changeEvaluation = createAction(
 );
 export const writeComment = createAction(
   WRITE_COMMENT,
-  ({ content, postId, ref }) => ({ content, postId, ref })
+  ({ content, postId, ref, page }) => ({ content, postId, ref, page })
 );
 export const readComment = createAction(READ_COMMENT, ({ BO_Code, page }) => ({
   BO_Code,
@@ -70,6 +71,7 @@ export const setBeforeList = createAction(
   SETBEFORELIST,
   (beforeList) => beforeList
 );
+export const changePage = createAction(CHANGEPAGE, (page) => page);
 
 const writeCommentSaga = createRequestSaga(
   WRITE_COMMENT,
@@ -100,8 +102,8 @@ const initialState = {
   page: null,
   readError: null,
   commentError: null,
-  isHealthsee: null,
-  isReport: null,
+
+  nowPage: 1,
 
   beforeList: [],
 };
@@ -113,7 +115,7 @@ const post = handleActions(
       post: post.boardDetail,
       comments: post.comments,
       page: post.lastPage,
-      count: post.boardDetail.BO_Comment_Count,
+      count: post.commentsCount,
       isHealthsee: post.isHealthsee,
       isReport: post.isReport,
     }),
@@ -129,6 +131,10 @@ const post = handleActions(
     [SETBEFORELIST]: (state, { payload: beforeList }) => ({
       ...state,
       beforeList,
+    }),
+    [CHANGEPAGE]: (state, { payload: page }) => ({
+      ...state,
+      nowPage: page,
     }),
     [combineActions(
       WRITE_COMMENT_SUCCESS,

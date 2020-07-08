@@ -14,11 +14,6 @@ const [
   REPORT_POST_SUCCESS,
   REPORT_POST_FAILURE,
 ] = createRequestActionTypes("evaluation/REPORT_POST");
-const [
-  UNDOREPORT_POST,
-  UNDOREPORT_POST_SUCCESS,
-  UNDOREPORT_POST_FAILURE,
-] = createRequestActionTypes("evaluation/UNDOREPORT_POST");
 
 const [
   REPORT_COMMENT,
@@ -31,29 +26,18 @@ const [
   HEALTH_POST_SUCCESS,
   HEALTH_POST_FAILURE,
 ] = createRequestActionTypes("evaluation/HEALTH_POST");
-const [
-  UNDOHEALTH_POST,
-  UNDOHEALTH_POST_SUCCESS,
-  UNDOHEALTH_POST_FAILURE,
-] = createRequestActionTypes("evaluation/UNDOHEALTH_POST");
+
 const SETEVALUATION = "evaluation/SETEVALUATION";
 
 export const initialize = createAction(INITIALIZE);
 export const healthPost = createAction(HEALTH_POST, ({ BO_Code }) => ({
   BO_Code,
 }));
-export const undoHealthPost = createAction(
-  UNDOHEALTH_POST,
-  (BO_Code) => BO_Code
-);
 
 export const reportPost = createAction(REPORT_POST, ({ BO_Code }) => ({
   BO_Code,
 }));
-export const undoReportPost = createAction(
-  UNDOREPORT_POST,
-  (BO_Code) => BO_Code
-);
+
 export const setEvaluation = createAction(
   SETEVALUATION,
   ({ isHealthsee, isReport, BO_Healthsee_Count, BO_Report_Count }) => ({
@@ -74,16 +58,8 @@ export const reportComment = createAction(
 );
 
 const healthPostSaga = createRequestSaga(HEALTH_POST, boardAPI.healthPost);
-const undoHealthPostSaga = createRequestSaga(
-  UNDOHEALTH_POST,
-  boardAPI.undoHealthPost
-);
 
 const reportPostSaga = createRequestSaga(REPORT_POST, boardAPI.reportPost);
-const undoReportPostSaga = createRequestSaga(
-  UNDOREPORT_POST,
-  boardAPI.undoReportPost
-);
 
 const reportCommentSaga = createRequestSaga(
   REPORT_COMMENT,
@@ -92,12 +68,8 @@ const reportCommentSaga = createRequestSaga(
 
 export function* evaluationSaga() {
   yield takeLatest(HEALTH_POST, healthPostSaga);
-  yield takeLatest(UNDOHEALTH_POST, undoHealthPostSaga);
-
   yield takeLatest(REPORT_COMMENT, reportCommentSaga);
-
   yield takeLatest(REPORT_POST, reportPostSaga);
-  yield takeLatest(UNDOREPORT_POST, undoReportPostSaga);
 }
 
 const initialState = {
@@ -134,36 +106,24 @@ const evaluation = handleActions(
       healthseeCount: BO_Healthsee_Count,
       reportCount: BO_Report_Count,
     }),
-    [combineActions(HEALTH_POST_SUCCESS, UNDOHEALTH_POST_SUCCESS)]: (
-      state,
-      { payload: health }
-    ) => ({
+    [HEALTH_POST_SUCCESS]: (state, { payload: health }) => ({
       ...state,
 
       healthseeCount: health.BO_Healthsee_Count,
       healthsee: health.isHealthsee,
       healthError: null,
     }),
-    [combineActions(HEALTH_POST_FAILURE, UNDOHEALTH_POST_FAILURE)]: (
-      state,
-      { payload: healthError }
-    ) => ({
+    [HEALTH_POST_FAILURE]: (state, { payload: healthError }) => ({
       ...state,
       healthError,
     }),
-    [combineActions(REPORT_POST_SUCCESS, UNDOREPORT_POST_SUCCESS)]: (
-      state,
-      { payload: report }
-    ) => ({
+    [REPORT_POST_SUCCESS]: (state, { payload: report }) => ({
       ...state,
       reportCount: report.BO_Report_Count,
       report: report.isReport,
       reportError: null,
     }),
-    [combineActions(REPORT_POST_FAILURE, UNDOREPORT_POST_FAILURE)]: (
-      state,
-      { payload: reportError }
-    ) => ({
+    [REPORT_POST_FAILURE]: (state, { payload: reportError }) => ({
       ...state,
       reportError,
     }),

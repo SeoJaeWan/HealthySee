@@ -72,7 +72,6 @@ const initialState = {
 const posts = handleActions(
   {
     [INITIALIZE]: () => initialState,
-    // [LIST]: () => initialState,
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
         draft[form][key] = value;

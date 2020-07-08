@@ -15,14 +15,14 @@ export const undoReportPost = (id) =>
   client.delete(`/board/posts/report/${id}`);
 
 export const reportComments = ({ BC_Code, page, BO_Code }) =>
-  client.post(`/board/comments/report/${BC_Code}&${page}`, {
+  client.post("/board/comments/report", {
     Board_BO_Code: BO_Code,
+    B_Comment_BC_Code: BC_Code,
+    page,
   });
 
 export const healthPost = ({ BO_Code }) =>
   client.post("/board/posts/health", { BO_Code });
-export const undoHealthPost = (id) =>
-  client.delete(`/board/posts/health/${id}`);
 
 export const list = ({ id, name, keyword, category }) => {
   const queryString = qs.stringify({
@@ -34,17 +34,22 @@ export const list = ({ id, name, keyword, category }) => {
   return client.get(`/board/lists?${queryString}`);
 };
 
-export const writeComment = ({ content, postId, ref }) => {
+export const writeComment = ({ content, postId, ref, page }) => {
   console.log(content, postId, ref);
 
   return client.post("/board/comments", {
     BC_Content: content,
     Board_BO_Code: postId,
     BC_Re_Ref: ref,
+    page,
   });
 };
 export const updateComment = ({ code, content, page }) =>
-  client.patch(`/board/comments/${code}&${page}`, { BC_Content: content });
+  client.patch("/board/comments", {
+    BC_Content: content,
+    BC_Code: code,
+    page,
+  });
 
 export const deleteComment = ({ id, page }) =>
   client.delete(`/board/comments/${id}&${page}`);

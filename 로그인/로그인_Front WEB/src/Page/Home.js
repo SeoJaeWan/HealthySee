@@ -1,15 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
-import List from "../component_frame/component/List";
-import HomeCom from "../component_contet/component/HomeCom";
-import HeaderForm from "../containers/Header/HeaderForm";
+import HomeCom from "../component_contet/component/HomeCom"
 
 class Home extends Component {
   render() {
-    return (
-        <HomeCom />
-    );
+    return <HomeCom />
   }
 }
-
-export default Home;
+export default Home

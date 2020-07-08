@@ -1,14 +1,14 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import Main from "./Page/Main";
-import Login from "./Page/Login";
 import Home from "./Page/Home";
+import Login from "./Page/Login";
 import Signup from "./Page/Signup";
 import Board from "./Page/Board";
 import MyPage from "./Page/MyPage";
 
 import { createGlobalStyle } from "styled-components";
+import HeaderForm from "./containers/Header/HeaderForm";
 
 const App = () => {
   const GlobalStyle = createGlobalStyle`
@@ -20,28 +20,36 @@ const App = () => {
       url(${require("./Font/BMJUA.woff")}) format('woff'),
       url(${require("./Font/BMJUA.ttf")}) format('ttf');
     }
-    body {font-family: "font" ;margin:0;color:#676a72;} 
+    body {
+      font-family: "font" ;
+    margin:0;color:#676a72;
+  } 
     a {&:hover {
       color: #858994;
       cursor: pointer;
-    }text-decoration: none; color: #676a72;}
+    }text-decoration: none; 
+    color: #676a72;}
     button{&:hover {
       color: #858994;
       cursor: pointer;
-    }font-family: "font"; color: #676a72;border:none;background-color:white; box-shadow:0px 0px 0px white;}
+    }font-family: "font"; 
+    color: #676a72;border:none;
+    background-color:white; 
+    box-shadow:0px 0px 0px white;
+  }
     pre{font-family: "font"}
+    h1{margin: 0; font-size:3rem;}
     `;
 
   return (
     <div>
+      <HeaderForm />
       <GlobalStyle />
-      <Route exact path="/" component={Main} />
+      <Route exact path="/" component={Home} />
       <Route path="/Login" component={Login} />
-      <Route path="/Home" component={Home} />
       <Route path="/Signup" component={Signup} />
-      <Route path="/Board/:board" component={Board} />      
+      <Route path="/Board/:board" component={Board} />
       <Route path="/MyPage" component={MyPage} />
-      
     </div>
   );
 };
