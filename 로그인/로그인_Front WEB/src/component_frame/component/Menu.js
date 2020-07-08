@@ -1,10 +1,15 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { MenuInfo } from "../style/Menu_Style";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import { MenuInfo } from "../style/Menu_Style"
 
 const Menu = ({ onClear }) => {
   return (
     <MenuInfo>
+      <li>
+        <button onClick={onClear}>
+          <Link to="/SelectBoard">게시판</Link>
+        </button>
+      </li>
       <li>
         <button onClick={onClear}>
           <Link to="/Board/0">자유 게시판</Link>
@@ -17,10 +22,12 @@ const Menu = ({ onClear }) => {
       </li>
 
       <li>
-        <Link to="/MyPage">MyPage</Link>
+        <button onClick={onClear}>
+          <Link to="/MyPage">MyPage</Link>
+        </button>
       </li>
     </MenuInfo>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

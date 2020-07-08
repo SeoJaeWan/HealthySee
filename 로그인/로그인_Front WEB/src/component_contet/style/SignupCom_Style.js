@@ -1,15 +1,19 @@
-import styled from "styled-components";
+import styled from "styled-components"
+import { media } from "../../ReactiveStyle/ReactiveStyle"
 
 export const SignupForm = styled.div`
-  height: 100%;
-  width: 70%;
-  margin-top: 0.7%;
-  margin-left: 0.7%;
- 
+  width: 100%;
+  margin-top: 5%;
+  margin-left: 5%;
   .title {
-    margin-left: 120px;
+    margin-left: 10%;
     font-size: 4rem;
     color: #676a72;
+    ${media.mobile`
+    margin-left: 20%;
+    font-size: 3rem;
+
+`}
   }
   .signForm {
     display: flex;
@@ -32,66 +36,76 @@ export const SignupForm = styled.div`
       transition: 0.2s;
     }
   }
-  .infoForm{
-    display:flex;
+
+  .leftdiv {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-top:2rem;
+    ${media.desktop`
+    width: 100%;
+
+`}
+    ${media.mobile`
+    width: 100%;
+
+`}
   }
-`;
+  .contextform {
+    display: flex;
 
-export const Form = styled.form`
-  margin-top: 45px;
-  margin-left: 85px;
-`;
-export const Frame = styled.div`
-  display: flex;
-  font-size: 2.5rem;
-  margin-top: 7%;
-  word-spacing: 4rem;
-`;
+    width: 100%;
+    height: 80%;
+  }
 
-export const Complete = styled.button`
-  background-color: #676a72;
-  font-size: 3rem;
-  margin-top: 50px;
-  margin-left: 200px;
-  color: white;
-  font-family: "font";
-`;
+  input {
+    box-shadow: 0px 3px 0px 0px #676a72;
+    border: 0px;
+  }
+  .textInput {
+    width: 40%;
+    margin-left: 20%;
+  }
 
-export const OnOff = styled.div`
-  top: -5%;
-  left: 15.3%;
-  font-size: 2.5rem;
-  word-spacing: 8.6rem;
-`;
+  .completeButton {
+    background-color: #676a72;
+    font-size: 3rem;
+    color: white;
+    font-family: "font";
 
-export const NickButton = styled.button`
-  background-color: #676a72;
-  font-size: 2rem;
-  left: 10%;
-  color: white;
-  font-family: "font";
-  height: 4vh;
-  width: 10%;
-`;
-export const Input = styled.input`
-  width: 250px;
-  margin-left: 110px;
-  box-shadow: 0px 3px 0px 0px #676a72;
-  border: 0px;
-`;
+    display: block;
+    margin: 0 auto;
+  }
+  .flex {
+    display: flex;
+    text-align: center;
+    padding-left: 10%;
+    font-size: 2rem;
+    margin: 2rem 0;
+    word-spacing: 0.3vw;
+    ${media.mobile`
+    font-size: 1.5rem;
 
-export const InputWeight = styled.input`
-  box-shadow: 0px 3px 0px 0px #676a72;
-  border: 0px;
-`;
+`}
+    .genderToggle {
+      display: flex;
+      text-align: center;
+      padding-left: 20%;
+      font-size: 2rem;
+      word-spacing: 0.3vw;
+      ${media.mobile`
+    font-size: 1.5rem;
+
+`}
+    }
+  }
+`
 
 export const CheckBoxLabel = styled.label`
-  top: 20%;
-  left: 22%;
-  margin-top: 10px;
-  margin-left: -200px;
   width: 62px;
   height: 26px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   border-radius: 15px;
   background: skyblue;
   cursor: pointer;
@@ -106,15 +120,14 @@ export const CheckBoxLabel = styled.label`
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
   }
-`;
+`
 
 export const CheckBox1 = styled.input`
   opacity: 0;
   z-index: 1;
-  margin-left: 25px;
   border-radius: 15px;
-  width: 42px;
-  height: 26px;
+  width: 0px;
+  height: 0px;
   &:checked + ${CheckBoxLabel} {
     background: pink;
     &::after {
@@ -127,15 +140,15 @@ export const CheckBox1 = styled.input`
       transition: 0.2s;
     }
   }
-`;
+`
 
 export const CheckBox2 = styled.input`
   opacity: 0;
   z-index: 1;
-  margin-left: -15px;
   border-radius: 15px;
-  width: 42px;
-  height: 26px;
+
+  width: 0px;
+  height: 0px;
   &:checked + ${CheckBoxLabel} {
     background: pink;
     &::after {
@@ -148,24 +161,4 @@ export const CheckBox2 = styled.input`
       transition: 0.2s;
     }
   }
-`;
-
-export const Select = styled.select`
-  width: 250px;
-  height: 35px;
-  background: white;
-  color: gray;
-  padding-left: 5px;
-  font-size: 14px;
-  border: none;
-  margin-left: 10px;
-
-  option {
-    color: black;
-    background: white;
-    display: flex;
-    white-space: pre;
-    min-height: 20px;
-    padding: 0px 2px 1px;
-  }
-`;
+`
