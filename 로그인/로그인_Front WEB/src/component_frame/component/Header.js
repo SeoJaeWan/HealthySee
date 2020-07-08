@@ -1,12 +1,16 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import { MenuForm, Sticky } from "../style/Header_Style.js"
-import Menu from "./Menu.js"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { MenuForm, Sticky } from "../style/Header_Style.js";
+import Menu from "./Menu.js";
 
 const Header = ({ user, onLogout, isView, setMenu }) => {
   return (
     <Sticky>
-      <button type="button" className="menuButton" onClick={() => setMenu(setMenu)}>
+      <button
+        type="button"
+        className="menuButton"
+        onClick={() => setMenu(setMenu)}
+      >
         Menu
       </button>
       <MenuForm isView={isView}>
@@ -19,7 +23,7 @@ const Header = ({ user, onLogout, isView, setMenu }) => {
         {user ? (
           <>
             <button type="button">
-              <Link className="user" to="/MyPage">
+              <Link className="user" to={`/MyPage/${user.username}`}>
                 {user.username}
               </Link>
             </button>
@@ -34,7 +38,7 @@ const Header = ({ user, onLogout, isView, setMenu }) => {
         )}
       </div>
     </Sticky>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

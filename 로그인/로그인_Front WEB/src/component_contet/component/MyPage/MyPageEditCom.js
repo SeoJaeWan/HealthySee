@@ -9,7 +9,7 @@ import {
   CheckBox1,
 } from "../../style/Mypage/MyPageEditCom_Style";
 
-const MyPageEditCom = () => {
+const MyPageEditCom = ({ mypage }) => {
   return (
     <Container>
       <InfCom>
@@ -31,7 +31,13 @@ const MyPageEditCom = () => {
             <div className="TowContetns">
               <div className="FlexGrow">
                 닉네임
-                <input type="text" name="nickname" className="Contents" />
+                <input
+                  readOnly
+                  type="text"
+                  name="nickname"
+                  className="Contents"
+                  defaultValue={mypage.Account_AC_NickName}
+                />
               </div>
               <div className="FlexGrow">
                 공개여부

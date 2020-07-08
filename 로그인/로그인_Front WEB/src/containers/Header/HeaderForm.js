@@ -24,6 +24,7 @@ const HeaderForm = () => {
   const setMenu = () => {
     return setView(!isView);
   };
+
   return (
     <Header
       user={user}
