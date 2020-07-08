@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const readList = require("../../../lib/sequelize/board/readList");
+const readList = require("../../../lib/sequelize/board/readList").readList;
+const bestList = require("../../../lib/sequelize/board/readList").bestList;
 const { Op } = require("sequelize");
 
 // 1. /search 게시글 전체 검색
@@ -8,6 +9,7 @@ const { Op } = require("sequelize");
 
 
 router.get("/", readList);
-
+router.get("/:name", bestList);
 
 module.exports = router;
+
