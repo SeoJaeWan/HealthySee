@@ -7,6 +7,7 @@ import {
   updateComment,
   readComment,
   changeEvaluation,
+  changePage,
 } from "../../../modules/board/post";
 import { reportComment } from "../../../modules/board/evaluation";
 import CommentsCom from "../../../component_contet/common/CommentsCom";
@@ -15,15 +16,21 @@ import { useEffect } from "react";
 
 const CommentsForm = ({ post, user, onChange }) => {
   const dispatch = useDispatch();
-  const { comments, comment, page, count, temporaryComments } = useSelector(
-    ({ write, post, evaluation }) => ({
-      comments: post.comments,
-      comment: write.comment,
-      page: post.page,
-      count: post.count,
-      temporaryComments: evaluation.comments,
-    })
-  );
+  const {
+    comments,
+    comment,
+    page,
+    count,
+    temporaryComments,
+    nowPage,
+  } = useSelector(({ write, post, evaluation }) => ({
+    comments: post.comments,
+    comment: write.comment,
+    page: post.page,
+    count: post.count,
+    temporaryComments: evaluation.comments,
+    nowPage: post.nowPage,
+  }));
 
   const changeComment = (e) => {
     const { name, value } = e.target;
@@ -39,6 +46,7 @@ const CommentsForm = ({ post, user, onChange }) => {
         content: content,
         postId: post.BO_Code,
         ref: BC_Re_Ref,
+        page: BC_Re_Ref === "0" ? 1 : nowPage,
       })
     );
     dispatch(initialize());
@@ -47,20 +55,22 @@ const CommentsForm = ({ post, user, onChange }) => {
   const onUpdate = (edit, code, data) => {
     console.log(code);
     if (edit) {
-      dispatch(updateComment({ code, content: comment[code], page }));
+      console.log(page);
+      dispatch(updateComment({ code, content: comment[code], nowPage }));
       dispatch(changeField({ form: "comment", key: code, value: "" }));
     } else dispatch(changeField({ form: "comment", key: code, value: data }));
   };
 
   const onReport = (BC_Code) => {
-    dispatch(reportComment({ BC_Code, page, BO_Code: post.BO_Code }));
+    dispatch(reportComment({ BC_Code, nowPage, BO_Code: post.BO_Code }));
   };
 
   const onDelete = (id) => {
-    dispatch(deleteComment({ id, page }));
+    dispatch(deleteComment({ id, nowPage }));
   };
 
   const getPage = (page) => {
+    dispatch(changePage(page));
     dispatch(readComment({ BO_Code: post.BO_Code, page }));
   };
 

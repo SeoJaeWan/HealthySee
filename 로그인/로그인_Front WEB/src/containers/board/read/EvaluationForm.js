@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   healthPost,
-  undoHealthPost,
   reportPost,
-  undoReportPost,
   setEvaluation,
 } from "../../../modules/board/evaluation";
 import EvaluationCom from "../../../component_contet/common/EvaluationCom";
@@ -23,13 +21,11 @@ const EvaluationForm = ({ post, Writer, isHealthsee, isReport }) => {
   );
 
   const onHealth = () => {
-    if (!healthsee) dispatch(healthPost({ BO_Code }));
-    else dispatch(undoHealthPost(BO_Code));
+    dispatch(healthPost({ BO_Code }));
   };
 
   const onReport = () => {
-    if (!report) dispatch(reportPost({ BO_Code }));
-    else dispatch(undoReportPost(BO_Code));
+    dispatch(reportPost({ BO_Code }));
   };
 
   useEffect(() => {

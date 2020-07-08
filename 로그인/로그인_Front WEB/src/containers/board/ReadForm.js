@@ -11,30 +11,22 @@ import CommentsForm from "./read/CommentsForm";
 import ActionButton from "../../component_contet/common/ActionButton";
 import { useCallback } from "react";
 import { initialize } from "../../modules/board/evaluation";
-import { setPosts } from "../../modules/board/posts";
 
 const ReadForm = ({ match, history, route }) => {
   const postId = match.params.postId;
   const rootUrl = `/board/${match.params.board}`;
 
   const dispatch = useDispatch();
-  const {
-    post,
-    loading,
-    user,
-    isReport,
-    isHealth,
-    reportError,
-    beforeList,
-  } = useSelector(({ post, loading, user, evaluation }) => ({
-    post: post.post,
-    loading: loading["post/READ_POST"],
-    user: user.user,
-    isHealth: post.isHealthsee,
-    isReport: post.isReport,
-    reportError: evaluation.reportError,
-    beforeList: post.beforeList,
-  }));
+  const { post, loading, user, isReport, isHealth, reportError } = useSelector(
+    ({ post, loading, user, evaluation }) => ({
+      post: post.post,
+      loading: loading["post/READ_POST"],
+      user: user.user,
+      isHealth: post.isHealthsee,
+      isReport: post.isReport,
+      reportError: evaluation.reportError,
+    })
+  );
 
   const onDeletePost = async () => {
     await deletePost(post.BO_Code);
@@ -59,15 +51,8 @@ const ReadForm = ({ match, history, route }) => {
   };
 
   const onGoBack = useCallback(() => {
-    dispatch(
-      setPosts({
-        posts: beforeList.posts,
-        options: beforeList.options,
-        postsCount: beforeList.postsCount,
-      })
-    );
     history.push(rootUrl);
-  }, [history, rootUrl, beforeList, dispatch]);
+  }, [history, rootUrl]);
 
   useEffect(() => {
     dispatch(setBeforeList(JSON.parse(sessionStorage.getItem("beforeList"))));

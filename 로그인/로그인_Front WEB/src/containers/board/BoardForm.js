@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BoardCom from "../../component_contet/component/board/BoardCom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  list,
-  listDetail,
-  initialize,
-  changeField,
-} from "../../modules/board/posts";
+import { list, listDetail, changeField } from "../../modules/board/posts";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import AskModal from "../../component_contet/common/AskModal";
 
@@ -24,7 +19,8 @@ const BoardForm = ({ match, history }) => {
   );
 
   const fetchMoreData = () => {
-    if (postsCount <= 3) {
+    console.log(postsCount);
+    if (postsCount <= 10) {
       setScroll(false);
       return;
     }
@@ -69,6 +65,7 @@ const BoardForm = ({ match, history }) => {
 
   useEffect(() => {
     setScroll(true);
+    console.log(posts);
     let search = localStorage.getItem("search");
     if (search) {
       let jsonSearch = JSON.parse(search);
@@ -86,9 +83,11 @@ const BoardForm = ({ match, history }) => {
       );
       localStorage.removeItem("search");
     } else if (posts.length !== 0) {
-      console.log("여기?", posts.length);
+      console.log("여기?", posts.length, options, postsCount);
+      console.log(posts);
       sessionStorage.removeItem("beforeList");
     } else {
+      console.log("여기까지 왔나요?");
       dispatch(
         list({
           id: null,
@@ -99,17 +98,11 @@ const BoardForm = ({ match, history }) => {
       );
     }
     // 페이지네이션도 끝 리스트 페이지도 끝 , 검색어는 localstorigy를 사용할 것을 고려해보자
-    return () => {
-      // 언마운트 시 초기화
-      dispatch(initialize());
-    };
   }, [dispatch, match]);
 
   const onChangeModal = () => {
     setModal(!modal);
   };
-
-  useEffect(() => {});
 
   return (
     <>

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
 export const MonthForm = styled.div`
   width: 95%;
@@ -29,7 +29,7 @@ export const MonthForm = styled.div`
     border-bottom-right-radius: 30px;
     border-left: 5px solid #676a72;
   }
-  .Month {
+  .month {
     position: relative;
     display: flex;
     justify-content: center;
@@ -50,12 +50,12 @@ export const MonthForm = styled.div`
     margin: 2px;
     width: 3rem;
     height: 3rem;
-    margin-right:3px;
+    margin-right: 3px;
     border-radius: 50%;
-    z-index:999;
+    z-index: 999;
     font-size: 3rem;
   }
-  .PlusButton{
-    color:white;
+  .plusButton {
+    color: white;
   }
-`;
+`

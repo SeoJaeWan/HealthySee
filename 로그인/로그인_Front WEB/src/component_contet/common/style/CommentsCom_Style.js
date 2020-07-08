@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
 export const ContentComForm = styled.div`
   width: 100%;
@@ -26,29 +26,14 @@ export const ContentComForm = styled.div`
       height: 40px;
   `}
   }
-  label {
-    font-size: 2rem;
-    margin-left: 3%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    padding-bottom: 2%;
-    text-align: center;
-    ${media.board`
-  font-size: 1.5rem;
-  `}
+  .comment {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid #676a72;
   }
-  label.LabelReply {
-    font-size: 2rem;
-    margin-left: 3%;
-    margin-top: 3%;
-    margin-bottom: 2%;
-    padding-bottom: 2%;
-    border-bottom: white;
-    ${media.board`
-  font-size: 1.5rem;
-  `}
-  }
-  button.write {
+  .writeButton {
     background-color: #676a72;
     color: white;
     font-size: 3rem;
@@ -64,7 +49,30 @@ export const ContentComForm = styled.div`
     height:65%;
   `}
   }
-  button.writeReply {
+  label {
+    font-size: 2rem;
+    margin-left: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
+  }
+  .labelReply {
+    font-size: 2rem;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+    border-bottom: white;
+    ${media.board`
+  font-size: 1.5rem;
+  `}
+  }
+
+  .writeReply {
     background-color: #676a72;
     color: white;
     font-size: 3rem;
@@ -104,7 +112,7 @@ font-size:2rem  `}
   width: 60%;
   `}
   }
-  .InputReply {
+  .inputReply {
     width: 75%;
     height: 80%;
     margin-top: 1%;
@@ -115,7 +123,7 @@ font-size:2rem  `}
   width: 60%;
   `}
   }
-  .InputReplyChagne {
+  .inputReplyChagne {
     border-right: 5px solid #676a72;
     width: 75%;
     height: 80%;
@@ -129,21 +137,15 @@ font-size:2rem  `}
   width: 60%;
   `}
   }
-  .Comment {
+
+  .commentChange {
     width: 100%;
     height: 100px;
     display: flex;
     align-items: center;
     border-bottom: 5px solid #676a72;
   }
-  .CommentChange {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid #676a72;
-  }
-  .Reply {
+  .reply {
     font-size: 2rem;
     display: flex;
     border-bottom: 5px solid #676a72;
@@ -151,7 +153,7 @@ font-size:2rem  `}
   font-size: 1.5rem;
   `}
   }
-  .Content {
+  .content {
     width: 77.3%;
     margin-left: 1%;
     border-right: 5px solid #676a72;
@@ -166,11 +168,11 @@ width:80%  `}
     padding: 2% 0 2% 2%;
     ${media.board`
 width:76%  `}
-   ${media.mobile`
+    ${media.mobile`
 width:70%  `}
   }
 
-  .ReplyContent {
+  .replyContent {
     width: 20%;
     font-size: 1.5rem;
     text-align: center;
@@ -180,7 +182,7 @@ width:70%  `}
     ${media.mobile`
 width: 40%  `}
   }
-  .CommentWriter {
+  .commentWriter {
     padding: 5% 1% 1% 5%;
     line-height: 140%;
     width: 70%;
@@ -190,12 +192,12 @@ width: 40%  `}
     display: flex;
     justify-content: space-between;
   }
-  .DeleteButton {
+  .deleteButton {
     display: flex;
     border-top: 5px solid #676a72;
     justify-content: center;
   }
-  .Blind {
+  .blind {
     padding-left: 3%;
     width: 97%;
     height: 100px;
@@ -211,4 +213,4 @@ width: 40%  `}
     border-width: 3px;
     border-color: #676a72;
   }
-`;
+`

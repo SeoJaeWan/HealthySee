@@ -4,7 +4,7 @@ import { MenuForm, Sticky } from "../style/Header_Style.js";
 import "../style/styles.css";
 import Menu from "./Menu.js";
 
-const Header = ({ user, onLogout, isView, setMenu }) => {
+const Header = ({ user, onLogout, isView, setMenu, onClear }) => {
   return (
     <Sticky>
       <button
@@ -15,7 +15,7 @@ const Header = ({ user, onLogout, isView, setMenu }) => {
         Menu
       </button>
       <MenuForm isView={isView}>
-        <Menu />
+        <Menu onClear={onClear} />
       </MenuForm>
       <h1 className="Title">
         <Link to="/">Health&amp;See</Link>

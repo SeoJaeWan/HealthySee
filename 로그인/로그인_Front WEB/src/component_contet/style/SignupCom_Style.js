@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const SignupForm = styled.div`
   height: 100%;
   width: 70%;
   margin-top: 0.7%;
   margin-left: 0.7%;
  
-  .Title {
+  .title {
     margin-left: 120px;
     font-size: 4rem;
     color: #676a72;
   }
-  .SignForm {
+  .signForm {
     display: flex;
     height: 60vh;
     width: 90%;
@@ -31,6 +31,9 @@ export const Container = styled.div`
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;
     }
+  }
+  .infoForm{
+    display:flex;
   }
 `;
 

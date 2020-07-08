@@ -1,7 +1,7 @@
-import React from "react";
-import CommentsItem from "./CommentsItem";
-import { Container } from "../style/Container.js";
-import { ContentComForm } from "./style/CommentsCom_Style.js";
+import React from "react"
+import CommentsItem from "./CommentsItem"
+import { Container } from "../style/Container.js"
+import { ContentComForm } from "./style/CommentsCom_Style.js"
 
 const CommentsCom = ({
   comments,
@@ -17,27 +17,26 @@ const CommentsCom = ({
   return (
     <Container>
       <ContentComForm>
-        <div className="Comment">
+        <div className="comment">
           <label htmlFor="comment">
             댓글
             <br /> {count}
           </label>
           <input
-            className=""
             type="text"
             id="comment"
             name="content"
             value={commentValue.content}
             onChange={changeComment}
           />
-          <button className="write" onClick={() => onWrite("0")}>
+          <button className="writeButton" onClick={() => onWrite("0")}>
             작성
           </button>
         </div>
         <div>
           {comments.map((comment, index) => {
-            const a = comments.slice(index + 1, index + 2);
-            const b = a[0];
+            const a = comments.slice(index + 1, index + 2)
+            const b = a[0]
             return (
               <CommentsItem
                 key={index}
@@ -52,12 +51,12 @@ const CommentsCom = ({
                 onUpdate={onUpdate}
                 onReport={onReport}
               />
-            );
+            )
           })}
         </div>
       </ContentComForm>
     </Container>
-  );
-};
+  )
+}
 
-export default CommentsCom;
+export default CommentsCom

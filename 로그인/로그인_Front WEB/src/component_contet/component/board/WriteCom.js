@@ -1,31 +1,24 @@
-import React from "react";
-import { Container } from "../../style/Container";
-import { WriteForm } from "../../style/Board/WriteCom_Style";
+import React from "react"
+import { Container } from "../../style/Container"
+import { WriteForm } from "../../style/Board/WriteCom_Style"
 
-const WriteCom = ({
-  post,
-  onChange,
-  onClick,
-  onUpload,
-  deleteFile,
-  onCancel,
-}) => {
+const WriteCom = ({ post, onChange, onClick, onUpload, deleteFile, onCancel }) => {
   return (
     <Container>
       <WriteForm>
-        <div className="Buttonform">
-          <button className="Backbutton" onClick={onCancel}>
+        <div className="buttonform">
+          <button className="backbutton" onClick={onCancel}>
             돌아가기
           </button>
-          <button className="Writebutton" onClick={onClick}>
+          <button className="writebutton" onClick={onClick}>
             {post.BO_Code ? "수정" : "글쓰기"}
           </button>
         </div>
-        <div className="Titleform">
-          <div className="Titlediv">
-            <div className="Title">제목 :</div>
+        <div className="titleform">
+          <div className="titlediv">
+            <div className="title">제목 :</div>
             <input
-              className="Titleinput"
+              className="titleinput"
               type="text"
               value={post.BO_Title}
               name="BO_Title"
@@ -34,10 +27,10 @@ const WriteCom = ({
           </div>
         </div>
 
-        <div className="TextTitle">본문</div>
-        <div className="TextForm">
+        <div className="textTitle">본문</div>
+        <div className="textForm">
           <textarea
-            className="TextArea"
+            className="textArea"
             type="text"
             value={post.BO_Content}
             name="BO_Content"
@@ -45,21 +38,21 @@ const WriteCom = ({
           />
         </div>
 
-        <div className="FileForm">
-          <div className="FileButton">
+        <div className="fileForm">
+          <div className="fileButton">
             <input type="file" name="file" onChange={onUpload} multiple />
           </div>
           {post.BO_File ? (
-            <div className="Filetext">
-              <div className="Title">첨부파일</div>
-              <div className="StorageFileForm">
+            <div className="filetext">
+              <div className="title">첨부파일</div>
+              <div className="storageFileForm">
                 {post.BO_File.map((file, index) => {
                   return (
-                    <div className="StorageFile" key={index}>
+                    <div className="storageFile" key={index}>
                       <span key={index}>{file.substring(13)}</span>
                       <button onClick={() => deleteFile(file)}>X</button>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -69,7 +62,7 @@ const WriteCom = ({
         </div>
       </WriteForm>
     </Container>
-  );
-};
+  )
+}
 
-export default WriteCom;
+export default WriteCom

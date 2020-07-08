@@ -1,34 +1,27 @@
-import styled from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
 export const AlbumForm = styled.div`
   width: 100%;
   margin-top: 2rem;
   font-size: 2rem;
-  .flex {
-    width: 100%;
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: space-around;
-  }
-  .TitleBar {
+  .titleBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .backbutton {
+
+  .backButton {
     font-size: 2rem;
     margin-left: 4rem;
   }
-  .Title {
-    font-size: 2rem;
-    margin-left: 1rem;
-  }
-  .addbutton {
+
+  .addButton {
     margin-right: 3rem;
     font-size: 2rem;
   }
-  .Titleform {
+
+  .titleForm {
     display: flex;
     width: 95%;
     font-size: 1rem;
@@ -59,25 +52,33 @@ export const AlbumForm = styled.div`
   `}
     }
   }
-  .Titleinput {
+
+  .titleDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+
+  .titleInput {
     border: none;
     height: 55px;
     margin-left: 1%;
     width: 90%;
     box-shadow: 0px 4px 10px -8px black;
   }
-  .Titlediv {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .Imgdiv {
+
+  .tmgdiv {
     border: 5px solid #676a72;
     height: 30rem;
     width: 45%;
   }
-  .Contentdiv {
+  .contentdiv {
     width: 45%;
     font: inherit;
     margin-left: 2%;
@@ -90,12 +91,20 @@ export const AlbumForm = styled.div`
     padding: 8px;
     box-shadow: 0px 4px 10px -3px black;
   }
-  .InputIMG {
+
+  .flex {
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .inputIMG {
     display: inline-block;
-    text-align:center;
-    
-    width:90%;
-    height:93%;
+    text-align: center;
+
+    width: 90%;
+    height: 93%;
     padding: 0.5em 0.75em;
     color: #999;
     font-size: inherit;
@@ -117,4 +126,4 @@ export const AlbumForm = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-`;
+`

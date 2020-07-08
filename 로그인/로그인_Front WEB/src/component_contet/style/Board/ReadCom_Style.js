@@ -1,26 +1,28 @@
-import styled from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
-export const Container = styled.div`
-  width: 70%;
-  margin-left: 13%;
-  ${media.board`
-  margin-left: 5%;
-`}
-  ${media.desktop`
-  width:90%;
-  `}
-  ${media.mobile`
-  margin-left: 2%;
-  `}
-  .titlebutton {
-    padding-top: 1%;
-    margin-right: 2%;
-  }
-  .flex {
+export const ReadComForm = styled.div`
+  .topButton {
+    width: 98%;
     display: flex;
+    justify-content: space-between;
+    margin-left: 7%;
+    margin-top: 3%;
+    ${media.mobile`
+margin-top: 10%;  `}
   }
-  .TitleForm {
+  .exitButton {
+    background-color: white;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    border: 0px white;
+    color: #676a72;
+    font-size: 3rem;
+
+    ${media.mobile`
+  font-size: 1.5rem;
+  `}
+  }
+  .titleForm {
     display: flex;
     width: 100%;
     font-size: 3rem;
@@ -51,27 +53,23 @@ export const Container = styled.div`
   `}
     }
   }
-  .TopButton {
-    width: 98%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 7%;
-    margin-top: 3%;
+  .title {
+    min-width: 8rem;
+    padding: 14px 3px 14px 14px;
     ${media.mobile`
-margin-top: 10%;  `}
-  }
-  button.exit {
-    background-color: white;
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-    border: 0px white;
-    color: #676a72;
-    font-size: 3rem;
-
-    ${media.mobile`
-  font-size: 1.5rem;
+    min-width: 4rem;
   `}
   }
-  .ContentForm {
+  .titleContent {
+    padding: 14px 3px 14px 2px;
+    width: 63vw;
+  }
+  .titlebutton {
+    padding-top: 1%;
+    margin-right: 2%;
+  }
+
+  .contentForm {
     width: 100%;
     font-size: 3rem;
     margin-top: 50px;
@@ -101,17 +99,13 @@ margin-top: 10%;  `}
   `}
     }
   }
-
-  .Title {
-    min-width: 8rem;
-    padding: 14px 3px 14px 14px;
-    ${media.mobile`
-    min-width: 4rem;
-  `}
+  .flex {
+    display: flex;
   }
-  .TitleContent{
-    padding: 14px 3px 14px 2px;
-    width: 63vw;
+  .fileForm {
+    overflow: hidden;
+    border-top: 5px solid #676a72;
+    width: 100%;
   }
   pre {
     overflow: auto;
@@ -121,11 +115,7 @@ margin-top: 10%;  `}
     margin-left: 10%;
   `}
   }
-  .FileForm {
-    overflow: hidden;
-    border-top: 5px solid #676a72;
-    width: 100%;
-  }
+
   .FileText {
     margin-left: 34px;
     padding-top: 14px;
@@ -136,7 +126,7 @@ margin-top: 10%;  `}
     padding-top: 14px;
     padding-bottom: 14px;
   }
-  .File{
+  .File {
     cursor: pointer;
   }
-`;
+`

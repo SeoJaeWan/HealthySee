@@ -1,41 +1,41 @@
-import styled from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
 export const AlbumForm = styled.div`
   width: 100%;
   margin-top: 2rem;
   font-size: 2rem;
-  .TitleBar {
+  .titleBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .Title {
+  .title {
     font-size: 3rem;
     margin-left: 2rem;
   }
-  .addbutton {
+  .addButton {
     margin-right: 3rem;
     font-size: 2rem;
   }
   .flexgrow {
     display: flex;
     flex-direction: column;
-    text-align:center;
+    text-align: center;
   }
-  input{
-    font-size:1.5rem;
-    font:inherit;
-    color:#676a72;
-    width:63%;
-    border:none;
+  input {
+    font-size: 1.5rem;
+    font: inherit;
+    color: #676a72;
+    width: 63%;
+    border: none;
   }
-  .flex{
+  .flex {
     margin-right: 1.5rem;
-    align-items:center;
-    justify-content:space-around;
-    text-align:center;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
     margin-top: 2rem;
-    display:flex;
+    display: flex;
   }
-`;
+`
