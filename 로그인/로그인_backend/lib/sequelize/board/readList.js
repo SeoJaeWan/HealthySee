@@ -1,6 +1,7 @@
 const BoardList = require("../../../models").boardlist;
 const { Op } = require("sequelize");
-const readlList = async (req, res, next) => {
+
+const readList = async (req, res, next) => {
   name = req.query.name;
   keyword = req.query.keyword;
   BO_Code = req.query.BO_Code;
@@ -26,5 +27,45 @@ const readlList = async (req, res, next) => {
   return res.json(responseData);
 };
 
+const bestList = async (req, res, next) => {
+  let name = req.params.name
+  let responseData = {};
+//   condition = {  
+//     where: {
+//       [Op.and]: [
+//         { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 72 * 60 * 60 * 1000)}},
+//         { BO_Category: category },
+//       ],
+//     },
+//   order : [[name],"DESC"],
+//   limit: 3}
+// }
 
-module.exports = readlList;
+best3Free = await BoardList.findAll({  
+  where: {
+    [Op.and]: [
+      { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 96 * 60 * 60 * 1000)}},
+      { BO_Category: 0 },
+    ],
+  },
+  order : [[`${name}`, "DESC"]],
+limit: 3});
+
+best3Exer = await BoardList.findAll({  
+  where: {
+    [Op.and]: [
+      { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 96 * 60 * 60 * 1000)}},
+      { BO_Category: 1 },
+    ],
+  },
+order : [[`${name}`, "DESC"]],
+limit: 3});
+
+responseData.free = best3Free;
+responseData.exer = best3Exer;
+res.json(responseData);
+}
+
+
+module.exports = { readList, bestList };
+
