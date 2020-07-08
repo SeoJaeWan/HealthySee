@@ -8,6 +8,7 @@ import post, { postSaga } from "./board/post";
 import posts, { postsSaga } from "./board/posts";
 import evaluation, { evaluationSaga } from "./board/evaluation";
 import loading from "./loading";
+import mypage, { mypageSaga } from "./mypage/mypage";
 
 const rootReducer = combineReducers({
   auth,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   post,
   posts,
   evaluation,
+  mypage,
   loading,
 });
 
@@ -27,6 +29,7 @@ export function* rootSaga() {
     postSaga(),
     postsSaga(),
     evaluationSaga(),
+    mypageSaga(),
   ]);
 }
 
