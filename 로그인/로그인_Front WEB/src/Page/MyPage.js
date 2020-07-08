@@ -18,8 +18,7 @@ class MyPage extends Component {
   render() {
     return (
       <>
-        <HeaderForm />
-        <List />
+        
         <Route exact path="/MyPage" component={MyPageCome} />
         <Route path="/MyPage/edit" component={MyPageEditCome} />
         <Route path="/MyPage/registerTR" component={RegisterTR} />

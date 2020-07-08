@@ -6,13 +6,7 @@ import HeaderForm from "../containers/Header/HeaderForm";
 
 class Main extends Component {
   render() {
-    return (
-      <>
-        <HeaderForm />
-        <List />
-        <MainCom />
-      </>
-    );
+    return <MainCom />;
   }
 }
 export default Main;

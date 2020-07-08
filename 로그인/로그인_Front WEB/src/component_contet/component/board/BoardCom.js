@@ -1,8 +1,8 @@
-import React from "react";
-import { Container } from "../../style/Board/BoardCom_Style";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Container } from "../../style/Board/BoardCom_Style"
+import { Link } from "react-router-dom"
 
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from "react-infinite-scroll-component"
 
 const BoardCom = ({
   match,
@@ -16,34 +16,29 @@ const BoardCom = ({
   onChangeModal,
 }) => {
   if (!posts || loading) {
-    return null;
+    return null
   }
 
   return (
     <Container>
       <div className="Board">
-        <div className="Title">
-          게시판
-          <div className="Searchbox">
+        <div className="boardNav">
+          <h1>게시판</h1>
+          <form className="Searchbox">
             <select name="name" onChange={onChange}>
               <option value="BO_Title">제목</option>
               <option value="BO_Writer_NickName">닉네임</option>
             </select>
             <input className="SearchInput" type="text" name="keyword" onChange={onChange} />
-            <button className="SearchButton" onClick={onSearch}>검색</button>
-          </div>
-          <div>
+            <button type="submit" className="SearchButton" onClick={onSearch}>
+              검색
+            </button>
+          </form>
+          <button type="button" className="writeButton">
             <Link to={`${match.url}/write`}>글쓰기</Link>
-          </div>
+          </button>
         </div>
         <div className="BoardForm">
-          <div className="flex">
-            <div className="BoardTitle">제목</div>
-            <div className="BoardWriter">글쓴이</div>
-            <div className="BoardDate">작성일</div>
-            <div className="BoardHit">조회수</div>
-          </div>
-
           <InfiniteScroll
             className="infinitescroll"
             dataLength={posts.length}
@@ -52,49 +47,45 @@ const BoardCom = ({
             loader={<div className="EndBoard">게시글을 불러오고 있습니다.</div>}
             endMessage={<div className="EndBoard">마지막 게시글 입니다.</div>}
           >
-            {posts.map((post, index) => {
-              return (
-                <BoardItem
-                  post={post}
-                  key={index}
-                  onClick={onClick}
-                  onChangeModal={onChangeModal}
-                />
-              );
-            })}
+            <table>
+              <thead>
+                <tr className="flex">
+                  <th className="BoardTitle">제목</th>
+                  <th className="BoardWriter">글쓴이</th>
+                  <th className="BoardDate">작성일</th>
+                  <th className="BoardHit">조회수</th>
+                </tr>
+              </thead>
+              <tbody>
+                {posts.map((post, index) => {
+                  return (
+                    <BoardItem
+                      post={post}
+                      key={index}
+                      onClick={onClick}
+                      onChangeModal={onChangeModal}
+                    />
+                  )
+                })}
+              </tbody>
+            </table>
           </InfiniteScroll>
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
 const BoardItem = ({ post, onClick, onChangeModal }) => {
-  const {
-    BO_Code,
-    BO_Title,
-    BO_Creation_Date,
-    BO_Writer_NickName,
-    BO_Hit,
-    BO_State,
-  } = post;
+  const { BO_Code, BO_Title, BO_Creation_Date, BO_Writer_NickName, BO_Hit, BO_State } = post
   return (
-    <>
-      <div
-        className="Item"
-        onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}
-      >
-        <div className="ItemTitle">
-          {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
-        </div>
-        <div className="ItemWriter">{BO_Writer_NickName}</div>
-        <div className="ItemDate">
-          {new Date(BO_Creation_Date).toLocaleDateString()}
-        </div>
-        <div className="ItemHit">{BO_Hit}회</div>
-      </div>
-    </>
-  );
-};
+    <tr className="Item" onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}>
+      <td className="ItemTitle">{BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}</td>
+      <td className="ItemWriter">{BO_Writer_NickName}</td>
+      <td className="ItemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
+      <td className="ItemHit">{BO_Hit}회</td>
+    </tr>
+  )
+}
 
-export default BoardCom;
+export default BoardCom

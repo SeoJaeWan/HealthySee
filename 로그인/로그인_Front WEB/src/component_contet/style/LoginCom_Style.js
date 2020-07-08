@@ -5,6 +5,9 @@ export const Container = styled.div`
   width: 70%;
   margin-left: 13%;
 
+  padding-top: 0.7%;
+  padding-left: 0.7%;
+
   .Title {
     font-size: 50pt;
     margin-left: 10%;
@@ -16,28 +19,10 @@ export const Container = styled.div`
 
 `}
   }
-  .platform {
-    width: 50%;
-    height: 100%;
-    flex-direction: column;
-    margin-top: 8%;
-    margin-bottom: 8%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${media.imgs`
-    width: 100%;
-`}
-  }
-  .Login {
-    margin-top: 5%;
-    height: 100%;
-    margin-left: 5%;
-  }
   .LoginForm {
+    position: relative;
     display: flex;
     width: 95%;
-    height: 100%;
     font-size: 1rem;
     border: 5px solid #676a72;
     border-left: solid white;
@@ -46,12 +31,11 @@ export const Container = styled.div`
     &::before {
       content: "";
       position: static;
-      margin: -10px;
-      margin-top: -20px;
+      margin: -26px -10px -10px -10px;
       display: block;
       border-radius: 50%;
       width: 50px;
-      height: 58px;
+      height: 50px;
       background: #676a72;
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;
@@ -61,14 +45,48 @@ export const Container = styled.div`
 `}
     }
   }
-  .rightform {
+  .platform {
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    margin-top: 8%;
+    margin-bottom: 8%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    &::after {
+      content: "";
+      position:absolute;
+      right:50%;
+      width: 0px;
+      height: 50vh;
+      align-items: center;
+      border-left: 3px solid #676a72;
+      ${media.mobile`
+  display:none;
+
+`}
+      ${media.imgs`
+  display:none;
+`}
+    }
+    ${media.imgs`
+    width: 100%;
+`}
+  }
+
+  .rightform {
+    display: flex; 
+    align-items: center;
+    width:50%;
   }
   .rightImg {
-    width: auto;
+    display: block; 
+    margin: 0 auto;
+    
+
+    width: 100%;
     height: auto;
-    margin-right: 10%;
     max-width: 400px;
     max-height: 400px;
     ${media.mobile`
@@ -118,19 +136,5 @@ export const Naver = styled.div`
   width:200px;
   font-size: 2rem;
 
-`}
-`;
-
-export const Label = styled.hr`
-  width: 0px;
-  height: 50vh;
-  align-items: center;
-  border-left: 3px solid #676a72;
-  ${media.mobile`
-  display:none;
-
-`}
-  ${media.imgs`
-  display:none;
 `}
 `;

@@ -1,38 +1,44 @@
 import styled from "styled-components";
 import { media } from "../../ReactiveStyle/ReactiveStyle";
 
-export const Container = styled.div`
-  position: fixed;
+export const Sticky = styled.div`
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100px;
   display: flex;
   background-color: white;
   justify-content: space-between;
-  z-index: 9999;
-  width: 100%;
   border-bottom: 10px solid #676a72;
   .user {
+    font-size: 2.5rem;
     &:hover {
       color: #858994;
       cursor: pointer;
     }
+    ${media.mobile`
+      font-size:1rem;
+    
+    `}
   }
   .logout {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    padding-top: 10px;
     font-size: 1rem;
     &:hover {
       color: #858994;
       cursor: pointer;
     }
+    ${media.mobile`
+      font-size:0.8rem;
+    
+    `}
   }
   .Title {
     display: flex;
     justify-content: center;
-    height: 100%;
     align-items: center;
-    margin-left: 5rem;
-    margin-top: 0.65rem;
-    margin-bottom: 0.65rem;
+    margin: auto;
     font-size: 4rem;
     &:hover {
       color: #858994;
@@ -44,40 +50,34 @@ export const Container = styled.div`
     justify-content: center;
     `}
   }
-  .block {
-    display: flex;
-    ${media.mobile`
-    text-align:center;
-    display:block;
-    `}
-  }
+
   .Login {
     display: flex;
-    width: 14rem;
-    padding-top: 15px;
     align-items: center;
     justify-content: center;
-    font-size: 2em;
+
+    width: 350px;
+    padding-top: 15px;
+
+    font-size: 2rem;
     ${media.mobile`
-     font-size:1rem;
+    font-size:1rem;
+    display:none;
     margin-right: 2%;
     align-items: center;
     justify-content: center;
 
+    text-align:center;
+    flex-wrap:wrap;
 `}
   }
-`;
-export const Sticky = styled.div`
-  position: sticky;
-  z-index: 9999;
-  width: 100%;
-  height: 100px;
 `;
 
 export const MenuForm = styled.div`
   position: absolute;
   top: 15rem;
   width: 250px;
-  border-right: 10px solid#676A72;
-  display: ${(props) => (props.isView ? "none" : "block")};
+  overflow: hidden;
+  transition: all 1s;
+  height: ${(props) => (props.isView ? "0px" : "500px")};
 `;

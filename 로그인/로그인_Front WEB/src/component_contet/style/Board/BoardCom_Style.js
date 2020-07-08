@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
 const slideInTop = keyframes`
   
@@ -20,7 +20,7 @@ const slideInTop = keyframes`
     opacity: 1;
     transform: translateY(0px);
   }
-`;
+`
 
 export const Container = styled.div`
   width: 70%;
@@ -47,7 +47,7 @@ export const Container = styled.div`
     font-size: 1.5rem;
     display:flex;  
     overflow:visible;
-      text-align:center; 
+    text-align:center; 
     animation: ${slideInTop} 2s forwards ease-in;
     ${media.mobile`
      font-size:1rem;
@@ -97,11 +97,10 @@ export const Container = styled.div`
   .Write {
     margin-right: 70px;
   }
-  .Title {
+  .boardNav {
     display: flex;
     color: #676a72;
     justify-content: space-between;
-    font-size: 3rem;
     margin-left: 9%;
     margin-top: 70px;
     ${media.mobile`
@@ -109,10 +108,13 @@ export const Container = styled.div`
 
 `}
   }
+  .writeButton{
+    font-size:2rem;
+  }
   .BoardForm {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     font-size: 1rem;
     border: 5px solid #676a72;
     border-left: solid white;
@@ -137,7 +139,7 @@ export const Container = styled.div`
   }
   .flex{
     display:flex;
-    margin-left: 5%;
+    margin-left:5%;
   }
   .BoardTitle{  
     width: 35vw;
@@ -220,7 +222,9 @@ export const Container = styled.div`
   font-size:1rem;
 `}
   }
-  
+  .itemTable{
+    margin-left:3.6%;
+  }
   
   .EndBoard{
     text-align:center;
@@ -229,4 +233,4 @@ export const Container = styled.div`
   font-size:1rem;
   `}
   }
-`;
+`

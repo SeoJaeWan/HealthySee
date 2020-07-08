@@ -8,7 +8,6 @@ import {
   Home,
   Kakao,
   Google,
-  Label,
   Naver,
 } from "../../style/LoginCom_Style.js";
 import KakaoLogin from "react-kakao-login";
@@ -20,8 +19,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
 
   return (
     <Container>
-      <div className="Login">
-        <div className="Title">로그인</div>
+        <h1 className="Title">로그인</h1>
         <div className="LoginForm">
           <div className="platform">
             <KakaoLogin
@@ -51,12 +49,10 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               onFailure={(result) => console.error(result)}
             />
           </div>
-          <Label/>
           <div className="rightform">
               <img className="rightImg" src={require("../../../Images/Login/H&S.png")} alt="" />
           </div>
         </div>
-      </div>
     </Container>
   );
 };

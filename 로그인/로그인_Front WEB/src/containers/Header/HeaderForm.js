@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "../../component_frame/component/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../modules/account/user";
@@ -15,7 +15,11 @@ const HeaderForm = () => {
     dispatch(initializeForm());
   };
 
-  return <Header user={user} onLogout={onLogout} />;
+  const [isView, setView] = useState(true);
+  const setMenu = () => {
+    return setView(!isView);
+  };
+  return <Header user={user} onLogout={onLogout} isView={isView} setMenu={setMenu} />;
 };
 
 export default HeaderForm;

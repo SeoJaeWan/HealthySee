@@ -6,13 +6,7 @@ import HeaderForm from "../containers/Header/HeaderForm";
 
 class Signup extends Component {
   render() {
-    return (
-      <div>
-        <HeaderForm />
-        <List />
-        <SignupForm />
-      </div>
-    );
+    return <SignupForm />;
   }
 }
 

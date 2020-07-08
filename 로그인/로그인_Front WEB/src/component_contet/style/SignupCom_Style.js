@@ -3,11 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100%;
   width: 70%;
-  margin-left: 260px;
-  .Sign {
-    margin-top: 5%;
-    margin-left: 5%;
-  }
+  margin-top: 0.7%;
+  margin-left: 0.7%;
+ 
   .Title {
     margin-left: 120px;
     font-size: 4rem;
@@ -24,12 +22,11 @@ export const Container = styled.div`
     &::before {
       content: "";
       position: static;
-      margin: -1%;
-      margin-top: -2.3%;
+      margin: -26px -10px -10px -10px;
       display: block;
       border-radius: 50%;
       width: 50px;
-      height: 58px;
+      height: 50px;
       background: #676a72;
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;

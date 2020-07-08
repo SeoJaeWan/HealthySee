@@ -6,13 +6,7 @@ import HeaderForm from "../containers/Header/HeaderForm";
 
 class Login extends Component {
   render() {
-    return (
-      <div>
-        <HeaderForm />
-        <List />
-        <LoginForm />
-      </div>
-    );
+    return <LoginForm />;
   }
 }
 

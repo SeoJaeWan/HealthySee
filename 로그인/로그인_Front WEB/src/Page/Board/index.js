@@ -12,8 +12,6 @@ import BoardPost from "./BoardPost";
 const Board = ({ match }) => {
   return (
     <>
-      <HeaderForm />
-      <List />
       <Route exact path={match.path} component={BoardPost} />
       <Route exact path={`${match.path}/search`} component={BoardPost} />
       <Route path={`${match.path}/write`} component={WritePost} />

@@ -6,19 +6,16 @@ class Menu extends Component {
   render() {
     return (
       <MenuInfo>
-        <div className="Element">
-          <a className="menu-item" href="/Board/0">
-            자유 게시판
-          </a>
+        <li>
+          <Link to="/Board/0">자유 게시판</Link>
+        </li>
+        <li>
+          <Link to="/Board/1">운동 게시판</Link>
+        </li>
 
-          <a className="menu-item" href="/Board/1">
-            운동 게시판
-          </a>
-
-          <a className="menu-item" href="/MyPage">
-            MyPage
-          </a>
-        </div>
+        <li>
+          <Link to="/MyPage">MyPage</Link>
+        </li>
       </MenuInfo>
     );
   }

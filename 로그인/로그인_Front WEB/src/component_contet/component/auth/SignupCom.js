@@ -14,8 +14,7 @@ import {
 const SignupCom = ({ onChange, account, onSubmit, error }) => {
   return (
     <Container>
-      <div className="Sign">
-        <div className="Title">회원가입</div>
+        <h1 className="Title">회원가입</h1>
         <div className="SignForm">
           <Form onSubmit={onSubmit}>
             <Frame>
@@ -63,7 +62,6 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
             </Frame>
           </Form>
         </div>
-      </div>
     </Container>
   );
 };

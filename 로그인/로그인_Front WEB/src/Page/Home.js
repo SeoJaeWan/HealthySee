@@ -7,11 +7,7 @@ import HeaderForm from "../containers/Header/HeaderForm";
 class Home extends Component {
   render() {
     return (
-      <div>
-        <HeaderForm />
-        <List />
         <HomeCom />
-      </div>
     );
   }
 }
