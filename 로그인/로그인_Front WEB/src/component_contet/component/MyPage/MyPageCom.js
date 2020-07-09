@@ -8,7 +8,7 @@ const MypageCom = ({ mypage, user, onUpdate }) => {
   return (
     <Container>
       <InfCom>
-        {user.username === mypage.Account_AC_NickName && (
+        {user === mypage.Account_AC_NickName && (
           <div className="rowrserver">
             <button className="edit" onClick={onUpdate}>
               편집

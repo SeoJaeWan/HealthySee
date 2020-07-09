@@ -74,7 +74,7 @@ const ReadForm = ({ match, history, route }) => {
     <>
       <ReadCom
         post={post}
-        ownPost={(user && user.username) === (post && post.BO_Writer_NickName)}
+        ownPost={user === (post && post.BO_Writer_NickName)}
         actionButton={
           <ActionButton
             onDelete={onDeletePost}

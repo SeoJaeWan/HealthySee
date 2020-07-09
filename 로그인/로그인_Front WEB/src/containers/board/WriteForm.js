@@ -35,7 +35,7 @@ const WriteForm = ({ route, history, match }) => {
     formData.append("files", post.file[0]);
     formData.append("files", post.file[1]);
     formData.append("files", post.file[2]);
-    formData.append("username", user.username);
+    formData.append("username", user);
     const config = {
       headers: {
         "content-type": "multipart/form-data",

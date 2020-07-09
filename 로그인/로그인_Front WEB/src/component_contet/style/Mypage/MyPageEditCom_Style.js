@@ -1,11 +1,7 @@
-import styled, {
-  keyframes
-} from "styled-components";
-import {
-  media
-} from "../../../ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components";
+import { media } from "../../../ReactiveStyle/ReactiveStyle";
 
-export const InfCom = styled.div `
+export const InfCom = styled.div`
   width: 100%;
   margin-top: 2rem;
 
@@ -154,9 +150,9 @@ export const InfCom = styled.div `
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-  .IntroForm{
-    margin-top:3rem;
-    margin-left:5%;
+  .IntroForm {
+    margin-top: 3rem;
+    margin-left: 5%;
   }
   .BoardForm {
     display: flex;
@@ -183,7 +179,7 @@ export const InfCom = styled.div `
       transition: 0.2s;
     }
   }
-  .IntroInfo{
+  .IntroInfo {
     margin-left: 5%;
     color: #676a72;
     font: inherit;
@@ -196,19 +192,20 @@ export const InfCom = styled.div `
     box-shadow: 0px 4px 10px -8px black;
   }
 
-  .Introtitle{
+  .Introtitle {
     margin: 2rem 0 1rem 3rem;
     font-size: 2rem;
   }
 `;
-export const CheckBoxLabel = styled.label `
+
+export const CheckBoxLabel = styled.label`
   position: relative;
   top: 0;
   right: 1%;
   width: 4rem;
   height: 26px;
   border-radius: 15px;
-  background: skyblue;
+  background-color: ${(props) => (props.check ? "skyblue" : "pink")};
   cursor: pointer;
   &::after {
     content: "";
@@ -217,70 +214,17 @@ export const CheckBoxLabel = styled.label `
     width: 18px;
     height: 18px;
     margin: 3px;
-    background: #ffffff;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
-  }
-
-`;
-
-export const CheckBoxLabel1 = styled.label `
-  position: relative;
-  top: 0;
-  right: 1%;
-  width: 4rem;
-  height: 26px;
-  border-radius: 15px;
-  background: skyblue;
-  cursor: pointer;
-  &::after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    margin: 3px;
+    margin-left: ${(props) => (props.check ? "3px" : "40px")};
     background: #ffffff;
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
   }
 `;
 
-export const CheckBox2 = styled.input `
+export const CheckBox = styled.input`
   opacity: 0;
   z-index: 1;
   border-radius: 15px;
   width: 0rem;
   height: 0px;
-  &:checked + ${CheckBoxLabel1} {
-    background: pink;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 40px;
-      transition: 0.2s;
-    }
-  }
-`;
-export const CheckBox1 = styled.input `
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-  width: 0rem;
-  height: 0px;
-  &:checked + ${CheckBoxLabel} {
-    background: pink;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 40px;
-      transition: 0.2s;
-    }
-  }
 `;

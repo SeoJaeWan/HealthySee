@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import { MenuInfo } from "../style/Menu_Style"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { MenuInfo } from "../style/Menu_Style";
 
-const Menu = ({ onClear }) => {
+const Menu = ({ onClear, user }) => {
   return (
     <MenuInfo>
       <li>
@@ -23,11 +23,11 @@ const Menu = ({ onClear }) => {
 
       <li>
         <button onClick={onClear}>
-          <Link to="/MyPage">MyPage</Link>
+          <Link to={`/MyPage/${user}/Home`}>MyPage</Link>
         </button>
       </li>
     </MenuInfo>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

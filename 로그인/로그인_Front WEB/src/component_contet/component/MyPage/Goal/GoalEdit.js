@@ -13,7 +13,7 @@ const GoalEdit = () => {
           <div className="Title">
             목표
             <button className="WriteButton">
-              <Link to="/Mypage/GoalBO">완료</Link>
+              <Link to="/MyPage/GoalBO">완료</Link>
             </button>
           </div>
           <GoalEditAddFormForm />

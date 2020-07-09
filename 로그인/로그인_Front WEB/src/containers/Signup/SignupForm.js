@@ -18,9 +18,9 @@ const SignupForm = ({ history }) => {
   }));
 
   const onChange = (e) => {
-    let { value, name } = e.target;
+    let { value, name, type } = e.target;
 
-    if (name === "gender" || name === "scope") {
+    if ((type = "checkbox")) {
       value = (account[name] - 1) * -1;
     }
 

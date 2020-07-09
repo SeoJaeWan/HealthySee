@@ -1,7 +1,7 @@
-import React from "react"
-import { Container } from "../../../style/Container"
-import { Link } from "react-router-dom"
-import { AlbumForm } from "../../../style/Album/AlbumWrite_Style"
+import React from "react";
+import { Container } from "../../../style/Container";
+import { Link } from "react-router-dom";
+import { AlbumForm } from "../../../style/Album/AlbumWrite_Style";
 
 const AlbumWrite = () => {
   return (
@@ -9,7 +9,7 @@ const AlbumWrite = () => {
       <AlbumForm>
         <div className="titleBar">
           <button className="backButton">
-            <Link to="/Mypage/Album">뒤로가기</Link>
+            <Link to="/MyPage/Album">뒤로가기</Link>
           </button>
           <button className="addButton">완료</button>
         </div>
@@ -29,11 +29,15 @@ const AlbumWrite = () => {
             </label>
           </div>
 
-          <textarea className="contentDiv" type="text" defaultValue="내용을 입력하세요" />
+          <textarea
+            className="contentDiv"
+            type="text"
+            defaultValue="내용을 입력하세요"
+          />
         </div>
       </AlbumForm>
     </Container>
-  )
-}
+  );
+};
 
-export default AlbumWrite
+export default AlbumWrite;

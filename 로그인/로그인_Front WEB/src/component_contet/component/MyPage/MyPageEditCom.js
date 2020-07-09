@@ -3,19 +3,20 @@ import { Container } from "../../style/Container";
 import { Link } from "react-router-dom";
 import {
   InfCom,
-  CheckBox2,
+  CheckBox,
   CheckBoxLabel,
-  CheckBoxLabel1,
-  CheckBox1,
 } from "../../style/Mypage/MyPageEditCom_Style";
 
-const MyPageEditCom = ({ mypage }) => {
+const MyPageEditCom = ({ mypage, onChange, onComplete }) => {
   return (
     <Container>
       <InfCom>
         <div className="rowrserver">
           <button className="edit">
-            <Link to="/Mypage">완료</Link>
+            <Link to={`/MyPage/${mypage.Account_AC_NickName}/Home`}>취소</Link>
+          </button>
+          <button onClick={onComplete} type="submit" className="edit">
+            완료asda
           </button>
         </div>
         <div className="flex">
@@ -34,7 +35,7 @@ const MyPageEditCom = ({ mypage }) => {
                 <input
                   readOnly
                   type="text"
-                  name="nickname"
+                  name="Account_AC_NickName"
                   className="Contents"
                   defaultValue={mypage.Account_AC_NickName}
                 />
@@ -44,8 +45,14 @@ const MyPageEditCom = ({ mypage }) => {
                 <div className="flexInput">
                   <div>On</div>
 
-                  <CheckBox2 name="scope" id="checkbox2" type="checkbox" />
-                  <CheckBoxLabel1 htmlFor="checkbox2" />
+                  <CheckBox
+                    name="ME_Scope"
+                    id="scopeBox"
+                    type="checkbox"
+                    value={mypage.ME_Scope}
+                    onClick={onChange}
+                  />
+                  <CheckBoxLabel htmlFor="scopeBox" check={mypage.ME_Scope} />
 
                   <div className="divwidth">OFF</div>
                 </div>
@@ -54,24 +61,51 @@ const MyPageEditCom = ({ mypage }) => {
             <div className="TowContetns">
               <div className="FlexGrow">
                 무게
-                <input type="text" name="Weight" className="Contents" />
+                <input
+                  type="text"
+                  name="ME_Weight"
+                  className="Contents"
+                  value={mypage.ME_Weight}
+                  onChange={onChange}
+                />
               </div>
               <div className="FlexGrow">
                 키
-                <input type="text" name="Height" className="Contents" />
+                <input
+                  type="text"
+                  name="ME_Height"
+                  className="Contents"
+                  value={mypage.ME_Height}
+                  onChange={onChange}
+                />
               </div>
             </div>
             <div className="TowContetns">
               <div className="FlexGrow">
                 생일
-                <input type="text" name="Birth" className="Contents" />
+                <input
+                  type="date"
+                  name="ME_Birth"
+                  className="Contents"
+                  value={mypage.ME_Birth}
+                  onChange={onChange}
+                />
               </div>
               <div className="FlexGrow">
                 성별
                 <div className="flexInput">
                   <div>남</div>
-                  <CheckBox1 name="gender" id="checkbox" type="checkbox" />
-                  <CheckBoxLabel htmlFor="checkbox" />
+                  <CheckBox
+                    name="ME_Gender"
+                    id="genderBox"
+                    type="checkbox"
+                    value={mypage.ME_Gender}
+                    onClick={onChange}
+                  />
+                  <CheckBoxLabel
+                    htmlFor="genderBox"
+                    check={mypage.ME_Gender === 1 ? true : false}
+                  />
                   <div className="divwidth">여</div>
                 </div>
               </div>

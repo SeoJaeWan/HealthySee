@@ -18,7 +18,7 @@ const GoalBO = () => {
           <div className="Title">
             목표
             <button className="EditButton">
-              <Link to="/Mypage/GoalBO/GoalEdit">편집하기</Link>
+              <Link to="/MyPage/GoalBO/GoalEdit">편집하기</Link>
             </button>
           </div>
           <div className="BoardForm">
@@ -29,7 +29,6 @@ const GoalBO = () => {
               <GraphInfo />
             </GraphForm>
           </div>
-          
         </div>
       </GoalBOForm>
     </Container>

@@ -70,8 +70,8 @@ const CommentsItem = ({
                   <div
                     className="CommentWriter"
                     onClick={() =>
-                      (user && user.username) !==
-                        (comment && BC_Writer_NickName) && onReport(BC_Code)
+                      user !== (comment && BC_Writer_NickName) &&
+                      onReport(BC_Code)
                     }
                   >
                     신고 횟수
@@ -79,8 +79,7 @@ const CommentsItem = ({
                     {BC_Report_Count}
                   </div>
                 </div>
-                {(user && user.username) ===
-                  (comment && BC_Writer_NickName) && (
+                {user === (comment && BC_Writer_NickName) && (
                   <>
                     <div className="DeleteButton">
                       <ActionButton

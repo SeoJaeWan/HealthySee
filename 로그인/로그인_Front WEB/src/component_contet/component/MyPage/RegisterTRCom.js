@@ -16,13 +16,12 @@ const RegisterTR = ({
       <WriteForm>
         <div className="Buttonform">
           <button className="Backbutton" onClick={onCancel}>
-          <Link to="/Mypage">뒤로가기</Link>
+            <Link to="/MyPage">뒤로가기</Link>
           </button>
           <button className="Writebutton" onClick={onClick}>
             제출하기
           </button>
         </div>
-        
 
         <div className="TextTitle">경력</div>
         <div className="TextForm">

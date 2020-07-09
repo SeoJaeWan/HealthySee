@@ -1,6 +1,11 @@
-import React from "react"
-import { SignupForm, CheckBox1, CheckBox2, CheckBoxLabel } from "../../style/SignupCom_Style.js"
-import { Container } from "../../style/Container.js"
+import React from "react";
+import {
+  SignupForm,
+  CheckBox1,
+  CheckBox2,
+  CheckBoxLabel,
+} from "../../style/SignupCom_Style.js";
+import { Container } from "../../style/Container.js";
 
 const SignupCom = ({ onChange, account, onSubmit, error }) => {
   return (
@@ -66,7 +71,7 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
         </form>
       </SignupForm>
     </Container>
-  )
-}
+  );
+};
 
-export default SignupCom
+export default SignupCom;

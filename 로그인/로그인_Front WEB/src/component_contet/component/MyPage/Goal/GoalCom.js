@@ -10,7 +10,7 @@ const GoalCom = () => {
         <div className="TitleForm">
           <div className="Introtitle">목표</div>
           <div className="MoreButton">
-            <Link to="/Mypage/GoalBO">더보기</Link>
+            <Link to="/MyPage/GoalBO">더보기</Link>
           </div>
         </div>
         <div className="BoardForm">

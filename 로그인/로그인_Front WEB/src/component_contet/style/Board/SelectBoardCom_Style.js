@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components"
-import { media } from "../../../ReactiveStyle/ReactiveStyle"
+import styled, { keyframes } from "styled-components";
+import { media } from "../../../ReactiveStyle/ReactiveStyle";
 
 const slideInTop = keyframes`
   
@@ -20,7 +20,7 @@ const slideInTop = keyframes`
     opacity: 1;
     transform: translateY(0px);
   }
-`
+`;
 
 export const SelectBoardForm = styled.div`
   width: 48%;
@@ -229,9 +229,9 @@ export const SelectBoardForm = styled.div`
   font-size:1rem;
   `}
   }
-`
+`;
 export const FlexDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-`
+`;

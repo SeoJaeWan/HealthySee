@@ -14,7 +14,7 @@ const Header = ({ user, onLogout, isView, setMenu }) => {
         Menu
       </button>
       <MenuForm isView={isView}>
-        <Menu />
+        <Menu user={user} />
       </MenuForm>
       <h1 className="title">
         <Link to="/">Health&amp;See</Link>
@@ -23,8 +23,8 @@ const Header = ({ user, onLogout, isView, setMenu }) => {
         {user ? (
           <>
             <button type="button">
-              <Link className="user" to={`/MyPage/${user.username}`}>
-                {user.username}
+              <Link className="user" to={`/MyPage/${user}/Home`}>
+                {user}
               </Link>
             </button>
             <button type="submit" className="logout" onClick={onLogout}>
