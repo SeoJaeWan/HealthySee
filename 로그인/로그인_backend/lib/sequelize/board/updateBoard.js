@@ -23,28 +23,30 @@ const updatePost = async (req, res, next) => {
   let BO_Title = req.body.BO_Title;
   let BO_Content = req.body.BO_Content;
   let leaveFile = req.body.leaveFile;
-  let fileString = leaveFile
-  if(req.files){
-    for(let i = 0; i < req.files.length; i++){
-      if(fileString !== null && fileString !=="")
-      fileString =fileString + "," + (req.files[i].filename);
-      else
-      fileString = req.files[i].filename;
+  let fileString = leaveFile;
+  if (req.files) {
+    for (let i = 0; i < req.files.length; i++) {
+      if (fileString !== null && fileString !== "")
+        fileString = fileString + "," + req.files[i].filename;
+      else fileString = req.files[i].filename;
     }
   }
   let BO_File = req.files ? fileString : "";
   let BO_Writer_NickName = req.body.username;
   let BO_Creation_Date = today;
-  const board = await Board.update({
-    BO_Code,
-    BO_Category,
-    BO_Title,
-    BO_Content,
-    BO_Writer_NickName,
-    BO_File,
-    BO_Creation_Date
-  },{where:{BO_Code}});
- 
+  const board = await Board.update(
+    {
+      BO_Code,
+      BO_Category,
+      BO_Title,
+      BO_Content,
+      BO_Writer_NickName,
+      BO_File,
+      BO_Creation_Date,
+    },
+    { where: { BO_Code } }
+  );
+
   req.body.self = true;
   next();
 };
@@ -52,19 +54,16 @@ const updatePost = async (req, res, next) => {
 const updateComment = async (req, res, next) => {
   var BC_Code = req.body.BC_Code;
   var BC_Content = req.body.BC_Content;
-  
 
   var comment = await B_Comment.findOne({
     where: { BC_Code },
   });
   req.params.BO_Code = comment.Board_BO_Code;
-  
-  await B_Comment.update(
-      {BC_Content},
-    {where: { BC_Code: BC_Code },
-  });
-    req.params.page = req.body.page;
-    next();
+
+  await B_Comment.update({ BC_Content }, { where: { BC_Code: BC_Code } });
+  req.params.page = req.body.page;
+  console.log("asdasd", req.body.page);
+  next();
 };
 
 module.exports = { updatePost, updateComment };

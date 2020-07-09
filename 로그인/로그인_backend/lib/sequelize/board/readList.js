@@ -11,10 +11,8 @@ const readList = async (req, res, next) => {
   var condition = {
     where: {
       [Op.and]: [
-        name
-        &&{[name]: { [Op.like]: "%" + keyword + "%" },},
-        BO_Code
-        &&{ BO_Code: { [Op.lt]: BO_Code } },
+        name && { [name]: { [Op.like]: "%" + keyword + "%" } },
+        BO_Code && { BO_Code: { [Op.lt]: BO_Code } },
         { BO_Category: category },
       ],
     },
@@ -28,44 +26,54 @@ const readList = async (req, res, next) => {
 };
 
 const bestList = async (req, res, next) => {
-  let name = req.params.name
+  let name = req.params.name;
+  let count = Number(req.params.count);
+
   let responseData = {};
-//   condition = {  
-//     where: {
-//       [Op.and]: [
-//         { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 72 * 60 * 60 * 1000)}},
-//         { BO_Category: category },
-//       ],
-//     },
-//   order : [[name],"DESC"],
-//   limit: 3}
-// }
+  //   condition = {
+  //     where: {
+  //       [Op.and]: [
+  //         { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 72 * 60 * 60 * 1000)}},
+  //         { BO_Category: category },
+  //       ],
+  //     },
+  //   order : [[name],"DESC"],
+  //   limit: 3}
+  // }
 
-best3Free = await BoardList.findAll({  
-  where: {
-    [Op.and]: [
-      { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 96 * 60 * 60 * 1000)}},
-      { BO_Category: 0 },
-    ],
-  },
-  order : [[`${name}`, "DESC"]],
-limit: 3});
+  bestListFree = await BoardList.findAll({
+    where: {
+      [Op.and]: [
+        {
+          BO_Creation_Date: {
+            [Op.gt]: new Date(new Date() - 96 * 60 * 60 * 1000),
+          },
+        },
+        { BO_Category: 0 },
+      ],
+    },
+    order: [[`${name}`, "DESC"]],
+    limit: count,
+  });
 
-best3Exer = await BoardList.findAll({  
-  where: {
-    [Op.and]: [
-      { BO_Creation_Date : {[Op.gt]: new Date(new Date() - 96 * 60 * 60 * 1000)}},
-      { BO_Category: 1 },
-    ],
-  },
-order : [[`${name}`, "DESC"]],
-limit: 3});
+  bestListExer = await BoardList.findAll({
+    where: {
+      [Op.and]: [
+        {
+          BO_Creation_Date: {
+            [Op.gt]: new Date(new Date() - 96 * 60 * 60 * 1000),
+          },
+        },
+        { BO_Category: 1 },
+      ],
+    },
+    order: [[`${name}`, "DESC"]],
+    limit: count,
+  });
 
-responseData.free = best3Free;
-responseData.exer = best3Exer;
-res.json(responseData);
-}
-
+  responseData.free = bestListFree;
+  responseData.exer = bestListExer;
+  res.json(responseData);
+};
 
 module.exports = { readList, bestList };
-

@@ -7,10 +7,10 @@ const checkLogin = (req, res, next) => {
 };
 
 const checkOwnBoard = (req, res, next) => {
-  const { user, code } = req.body;
+  const { user, writerNickName } = req.body;
   console.log(req.body);
 
-  if (code !== user.username) {
+  if (writerNickName !== user.username) {
     res.status(403).end();
     return;
   }

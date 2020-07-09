@@ -2,8 +2,6 @@ const BoardDetail = require("../../../models").boarddetail;
 const B_Comment = require("../../../models").b_comment;
 
 const checkPost = async (req, res, next) => {
-
-
   const BO_Code = req.params.BO_Code ? req.params.BO_Code : req.body.BO_Code;
 
   if (!BO_Code) {
@@ -21,7 +19,7 @@ const checkPost = async (req, res, next) => {
     }
     console.log(post);
 
-    req.body.code = post.BO_Writer_NickName;
+    req.body.writerNickName = post.BO_Writer_NickName;
     next();
   } catch (e) {
     console.log(e);
@@ -30,13 +28,11 @@ const checkPost = async (req, res, next) => {
 };
 
 const checkComment = async (req, res, next) => {
-
   let BC_Code;
 
-  if(req.method === "PATCH" || req.method === "POST" )
-   BC_Code = req.body.BC_Code;
-  else
-   BC_Code = req.params.BC_Code;
+  if (req.method === "PATCH" || req.method === "POST")
+    BC_Code = req.body.BC_Code;
+  else BC_Code = req.params.BC_Code;
 
   console.log(BC_Code);
 
@@ -53,7 +49,7 @@ const checkComment = async (req, res, next) => {
       return;
     }
 
-    req.body.code = comment.BC_Writer_NickName;
+    req.body.writerNickName = comment.BC_Writer_NickName;
     next();
   } catch (error) {
     res.status(500).end();
