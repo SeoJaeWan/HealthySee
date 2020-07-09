@@ -7,7 +7,7 @@ const Menu = ({ onClear }) => {
     <MenuInfo>
       <li>
         <button onClick={onClear}>
-          <Link to="/SelectBoard">게시판</Link>
+          <Link to="/Board/Select">게시판</Link>
         </button>
       </li>
       <li>
