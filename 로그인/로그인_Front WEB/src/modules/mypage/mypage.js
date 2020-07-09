@@ -21,22 +21,18 @@ const [
 ] = createRequestActionTypes("mypage/UPDATE_MYPAGE");
 
 const CHANGE_FILED = "mypage/CHANGE_FILED";
+const UPDATE_FILED = "mypage/UPDATE_FILED";
 const INITIALIZE = "write/INITIALIZE";
 
 export const readMypage = createAction(READ_MYPAGE, (username) => username);
-export const updateMypage = createAction(
-  UPDATE_MYPAGE,
-  ({ scope, weight, height, birthday, username }) => ({
-    scope,
-    weight,
-    height,
-    birthday,
-    username,
-  })
-);
-export const changeField = createAction(CHANGE_FILED, ({ key, data }) => ({
+export const updateMypage = createAction(UPDATE_MYPAGE, (mypage) => mypage);
+export const changeField = createAction(CHANGE_FILED, ({ key, value }) => ({
   key,
-  data,
+  value,
+}));
+export const updateField = createAction(UPDATE_FILED, ({ key, value }) => ({
+  key,
+  value,
 }));
 export const initialize = createAction(INITIALIZE);
 
@@ -80,9 +76,14 @@ const mypage = handleActions(
       mypage: {},
       mypageError,
     }),
-    [CHANGE_FILED]: (state, { payload: { key, data } }) =>
+    [CHANGE_FILED]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {
-        draft[key] = data;
+        draft[key] = value;
+      }),
+
+    [UPDATE_FILED]: (state, { payload: { key, value } }) =>
+      produce(state, (draft) => {
+        draft["mypage"][key] = value;
       }),
   },
   initialState

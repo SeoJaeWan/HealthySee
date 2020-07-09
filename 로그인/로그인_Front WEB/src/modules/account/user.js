@@ -59,11 +59,11 @@ const user = handleActions(
   {
     [TEMP_SET_USER]: (state, { payload: user }) => ({
       ...state,
-      user,
+      user: user.username,
     }),
     [CHECK_SUCCESS]: (state, { payload: user }) => ({
       ...state,
-      user,
+      user: user.username,
       checkError: null,
     }),
     [CHECK_FAILURE]: (state, { payload: checkError }) => ({

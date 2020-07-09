@@ -1,6 +1,18 @@
 import client from "./client";
 import qs from "qs";
 
+export const list = ({ id, name, keyword, category }) => {
+  const queryString = qs.stringify({
+    BO_Code: id,
+    name: name,
+    keyword: keyword,
+    category: category,
+  });
+  return client.get(`/board/lists?${queryString}`);
+};
+
+export const bestList = () => client.get(`/board/lists/BO_Healthsee_Count&3`);
+
 export const writePost = (formData, config) =>
   client.post("/board/posts", formData, config);
 export const readPost = (id) => client.get(`/board/posts/${id}`);
@@ -11,28 +23,21 @@ export const deletePost = (id) => {
 
 export const reportPost = ({ BO_Code }) =>
   client.post("/board/posts/report", { BO_Code });
+
 export const undoReportPost = (id) =>
   client.delete(`/board/posts/report/${id}`);
-
-export const reportComments = ({ BC_Code, page, BO_Code }) =>
-  client.post("/board/comments/report", {
-    Board_BO_Code: BO_Code,
-    B_Comment_BC_Code: BC_Code,
-    page,
-  });
 
 export const healthPost = ({ BO_Code }) =>
   client.post("/board/posts/health", { BO_Code });
 
-export const list = ({ id, name, keyword, category }) => {
-  const queryString = qs.stringify({
-    BO_Code: id,
-    name: name,
-    keyword: keyword,
-    category: category,
-  });
-  return client.get(`/board/lists?${queryString}`);
+export const updatePost = ({ id, formData, config }) => {
+  console.log(id);
+  console.log(formData);
+  return client.patch(`/board/posts/${id}`, formData, config);
 };
+
+export const downloadFile = (id) =>
+  client.get(`/board/posts/download/${id}`, { responseType: "blob" });
 
 export const writeComment = ({ content, postId, ref, page }) => {
   console.log(content, postId, ref);
@@ -57,11 +62,9 @@ export const deleteComment = ({ id, page }) =>
 export const readComment = ({ BO_Code, page }) =>
   client.get(`/board/comments/${BO_Code}&${page}`);
 
-export const downloadFile = (id) =>
-  client.get(`/board/posts/download/${id}`, { responseType: "blob" });
-
-export const updatePost = ({ id, formData, config }) => {
-  console.log(id);
-  console.log(formData);
-  return client.patch(`/board/posts/${id}`, formData, config);
-};
+export const reportComments = ({ BC_Code, page, BO_Code }) =>
+  client.post("/board/comments/report", {
+    Board_BO_Code: BO_Code,
+    B_Comment_BC_Code: BC_Code,
+    page,
+  });

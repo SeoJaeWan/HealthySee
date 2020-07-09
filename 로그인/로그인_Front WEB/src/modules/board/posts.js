@@ -12,6 +12,11 @@ const INITIALIZE = "posts/INITIALIZE";
 const [LIST, LIST_SUCCESS, LIST_FAILURE] = createRequestActionTypes(
   "posts/LIST"
 );
+const [
+  BEST_LIST,
+  BEST_LIST_SUCCESS,
+  BEST_LIST_FAILURE,
+] = createRequestActionTypes("posts/BEST_LIST");
 const SETPOSTS = "posts/SETPOSTS";
 const [
   LISTDETAIL,
@@ -40,6 +45,7 @@ export const list = createAction(LIST, ({ id, name, keyword, category }) => ({
   keyword,
   category,
 }));
+export const bestList = createAction(BEST_LIST);
 export const listDetail = createAction(
   LISTDETAIL,
   ({ id, name, keyword, category }) => ({ id, name, keyword, category })
@@ -50,10 +56,12 @@ export const changeField = createAction(
 );
 
 const listSaga = createRequestSaga(LIST, boardAPI.list);
+const bestListSaga = createRequestSaga(BEST_LIST, boardAPI.bestList);
 const listDetailSaga = createRequestSaga(LISTDETAIL, boardAPI.list);
 
 export function* postsSaga() {
   yield takeLatest(LIST, listSaga);
+  yield takeLatest(BEST_LIST, bestListSaga);
   yield takeLatest(LISTDETAIL, listDetailSaga);
 }
 
@@ -64,6 +72,7 @@ const initialState = {
     name: "BO_Title",
     keyword: null,
   },
+  bestPosts: {},
 
   postError: null,
   lastId: null, // 다음 10개를 불러오기 위해서 사용함
@@ -94,6 +103,16 @@ const posts = handleActions(
     [LIST_FAILURE]: (state, { payload: postError }) => ({
       ...state,
       posts: null,
+      postError,
+    }),
+    [BEST_LIST_SUCCESS]: (state, { payload: posts }) => ({
+      ...state,
+      bestPosts: posts,
+      postError: null,
+    }),
+    [BEST_LIST_FAILURE]: (state, { payload: postError }) => ({
+      ...state,
+      bestPosts: null,
       postError,
     }),
   },

@@ -17,7 +17,7 @@ class MyPage extends Component {
   render() {
     return (
       <>
-        <Route path="/MyPage/edit" component={MypageEditForm} />
+        <Route path="/MyPage/Edit" component={MypageEditForm} />
         <Route path="/MyPage/registerTR" component={RegisterTR} />
         <Route exact path="/MyPage/Album" component={Album} />
         <Route path="/MyPage/Album/write" component={AlbumWrite} />
@@ -26,7 +26,7 @@ class MyPage extends Component {
         <Route path="/MyPage/GoalBO/GoalEdit" component={GoalEdit} />
         <Route path="/MyPage/registerBO/write" component={RegisterWrite} />
         <Route path="/MyPage/registerBO/read" component={RegisterRead} />
-        <Route exact path="/MyPage/:username" component={MypageForm} />
+        <Route exact path="/MyPage/:username/Home" component={MypageForm} />
       </>
     );
   }

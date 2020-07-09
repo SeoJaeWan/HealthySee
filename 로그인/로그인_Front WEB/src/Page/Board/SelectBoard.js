@@ -1,6 +1,6 @@
 import React from "react";
 
-import SelectBoardForm from "../../component_contet/component/board/SelectBoardCom";
+import SelectBoardForm from "../../containers/board/SelectBoardForm";
 
 const SelectBoard = () => {
   return <SelectBoardForm />;
