@@ -22,7 +22,7 @@ const [
 
 const CHANGE_FILED = "mypage/CHANGE_FILED";
 const UPDATE_FILED = "mypage/UPDATE_FILED";
-const INITIALIZE = "write/INITIALIZE";
+const INITIALIZE = "mypage/INITIALIZE";
 
 export const readMypage = createAction(READ_MYPAGE, (username) => username);
 export const updateMypage = createAction(UPDATE_MYPAGE, (mypage) => mypage);
@@ -56,14 +56,13 @@ const initialState = {
   },
   owner: null,
   mypageError: null,
+  isUpdate: null,
 };
 
 const mypage = handleActions(
   {
-    [combineActions(READ_MYPAGE_SUCCESS, UPDATE_MYPAGE_SUCCESS)]: (
-      state,
-      { payload: mypage }
-    ) => ({
+    [INITIALIZE]: () => initialState,
+    [combineActions(READ_MYPAGE_SUCCESS)]: (state, { payload: mypage }) => ({
       ...state,
       mypage,
       mypageError: null,
@@ -75,6 +74,10 @@ const mypage = handleActions(
       ...state,
       mypage: {},
       mypageError,
+    }),
+    [UPDATE_MYPAGE_SUCCESS]: (state, { payload: isUpdate }) => ({
+      ...state,
+      isUpdate,
     }),
     [CHANGE_FILED]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {

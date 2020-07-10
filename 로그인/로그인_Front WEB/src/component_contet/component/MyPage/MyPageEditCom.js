@@ -16,7 +16,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete }) => {
             <Link to={`/MyPage/${mypage.Account_AC_NickName}/Home`}>취소</Link>
           </button>
           <button onClick={onComplete} type="submit" className="edit">
-            완료asda
+            완료
           </button>
         </div>
         <div className="flex">
@@ -102,10 +102,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete }) => {
                     value={mypage.ME_Gender}
                     onClick={onChange}
                   />
-                  <CheckBoxLabel
-                    htmlFor="genderBox"
-                    check={mypage.ME_Gender === 1 ? true : false}
-                  />
+                  <CheckBoxLabel htmlFor="genderBox" check={mypage.ME_Gender} />
                   <div className="divwidth">여</div>
                 </div>
               </div>

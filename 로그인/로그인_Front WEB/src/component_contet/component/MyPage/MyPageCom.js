@@ -50,7 +50,7 @@ const MypageCom = ({ mypage, user, onUpdate }) => {
               <div className="FlexGrow">
                 성별
                 <div className="Contents">
-                  {mypage.ME_Gender === "1" ? "남자" : "여자"}
+                  {mypage.ME_Gender === 1 ? "남자" : "여자"}
                 </div>
               </div>
             </div>

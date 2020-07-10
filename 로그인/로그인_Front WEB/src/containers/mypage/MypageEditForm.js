@@ -5,20 +5,22 @@ import {
   changeField,
   updateField,
   updateMypage,
+  initialize,
 } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 const MypageEditForm = ({ history }) => {
   const dispatch = useDispatch();
-  const { mypage, owner } = useSelector(({ mypage }) => ({
+  const { mypage, owner, user, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
     owner: mypage.owner,
+    isUpdate: mypage.isUpdate,
+    user: user.user,
   }));
 
   const onComplete = () => {
     console.log("durl?");
     dispatch(updateMypage(mypage));
-    history.push(`/MyPage/${mypage.Account_AC_NickName}/Home`);
   };
 
   const onChange = (e) => {
@@ -35,10 +37,21 @@ const MypageEditForm = ({ history }) => {
 
   useEffect(() => {
     let mypage = localStorage.getItem("form");
-    console.log(JSON.parse(mypage));
 
     dispatch(changeField({ key: "mypage", value: JSON.parse(mypage) }));
   }, [dispatch, changeField]);
+
+  useEffect(() => {
+    if (!user) {
+      history.push("/");
+    } else if (isUpdate)
+      history.push(`/MyPage/${mypage.Account_AC_NickName}/Home`);
+    return () => {
+      // 언마운트 시 초기화
+      dispatch(initialize());
+      localStorage.setItem("post", "");
+    };
+  }, [user, isUpdate, history]);
 
   return (
     <MyPageEditCom
