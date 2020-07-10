@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MypageCom from "../../component_contet/component/MyPage/MyPageCom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,6 +9,7 @@ import {
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 const MypageForm = ({ match, history }) => {
+  const [img, setImg] = useState(null);
   const dispatch = useDispatch();
   const { mypage, user } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
@@ -19,6 +20,20 @@ const MypageForm = ({ match, history }) => {
     localStorage.setItem("form", JSON.stringify(mypage));
     history.push("/MyPage/Edit");
   };
+
+  // const onRenderImg = (file) => {
+  //   let render = new FileReader();
+  //   render.readAsDataURL(file);
+
+  //   render.onloadend = () => {
+  //     console.log(render.result);
+  //     setImg(render.result);
+  //   };
+  // };
+
+  // useEffect(() => {
+  //   if (mypage.ME_Profile_Photo) onRenderImg(mypage.ME_Profile_Photo);
+  // }, [mypage.ME_Profile_Photo]);
 
   useEffect(() => {
     console.log("여기?");
