@@ -5,7 +5,7 @@ const downloadFile = (req, res) => {
 
   var file = path.join(__dirname, "../../../upload/") + filename;
 
-  res.download(file);
+  res.json(file);
 };
 
 module.exports = downloadFile;

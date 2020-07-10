@@ -1,10 +1,12 @@
 var express = require("express");
 const readMyPage = require("../../lib/sequelize/mypage/readMypage");
-const updateMypage = require("../../lib/sequelize/mypage/updateMypage");
+const updateMypage = require("../../lib/sequelize/mypage/updateMypage")
+  .updateMypage;
+const upload = require("../../lib/sequelize/mypage/updateMypage").upload;
 var router = express.Router();
 
 // 마이페이지 수정
-router.post("/", updateMypage);
+router.post("/", upload.array("ME_Profile_Photo"), updateMypage);
 
 // 마이페이지 조회
 router.get("/:username", readMyPage);
