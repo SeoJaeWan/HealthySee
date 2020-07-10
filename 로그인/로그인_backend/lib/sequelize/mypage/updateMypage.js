@@ -1,26 +1,26 @@
 const Member = require("../../../models").member;
-var today = require("../../../lib/Date/time");
-const updateMypage = async (req, res, next) => {
-  console.log(req.body);
 
+const updateMypage = async (req, res, next) => {
   let {
     ME_Scope,
     ME_Weight,
     ME_Height,
     ME_Birth,
+    ME_Gender,
     Account_AC_NickName,
   } = req.body;
 
-  let mypage = Member.update(
+  let mypage = await Member.update(
     {
       ME_Scope,
       ME_Weight,
       ME_Height,
       ME_Birth,
+      ME_Gender,
     },
     { where: { Account_AC_NickName } }
   );
-  console.log(mypage);
+
   res.json(mypage);
 };
 

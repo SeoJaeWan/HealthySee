@@ -12,7 +12,7 @@ const readMyPage = async (req, res, next) => {
     res.status(401).end();
     return;
   }
-
+  console.log(member);
   res.json(member);
 };
 
