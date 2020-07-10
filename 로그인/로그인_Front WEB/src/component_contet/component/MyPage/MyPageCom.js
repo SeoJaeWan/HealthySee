@@ -3,8 +3,9 @@ import { Container } from "../../style/Container";
 import { Link } from "react-router-dom";
 import { InfCom } from "../../style/Mypage/MyPageCom_Style";
 import GoalCom from "./Goal/GoalCom";
+import defaultImg from "../../../Images/defaultImg.jpg";
 
-const MypageCom = ({ mypage, user, onUpdate }) => {
+const MypageCom = ({ mypage, user, onUpdate, img }) => {
   return (
     <Container>
       <InfCom>
@@ -18,7 +19,11 @@ const MypageCom = ({ mypage, user, onUpdate }) => {
         <div className="flex">
           <div className="leftDiv">
             <div className="Title">프로필 사진</div>
-            <div className="ImgDiv"></div>
+            <img
+              className="ImgDiv"
+              src={img ? img : defaultImg}
+              alt="profile"
+            />
             <div className="PublicDiv">
               공개여부 : {mypage.ME_Scope === 1 ? "공개" : "비공개"}
             </div>

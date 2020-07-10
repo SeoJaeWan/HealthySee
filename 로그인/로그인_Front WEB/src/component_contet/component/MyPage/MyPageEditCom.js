@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "../../style/Container";
-import { Link } from "react-router-dom";
 import {
   InfCom,
   CheckBox,
   CheckBoxLabel,
 } from "../../style/Mypage/MyPageEditCom_Style";
+import defaultImg from "../../../Images/defaultImg.jpg";
 
-const MyPageEditCom = ({ mypage, onChange, onComplete }) => {
+const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack, img }) => {
   return (
     <Container>
       <InfCom>
         <div className="rowrserver">
-          <button className="edit">
-            <Link to={`/MyPage/${mypage.Account_AC_NickName}/Home`}>취소</Link>
+          <button onClick={onGoBack} className="edit">
+            취소
           </button>
           <button onClick={onComplete} type="submit" className="edit">
             완료
@@ -22,11 +22,23 @@ const MyPageEditCom = ({ mypage, onChange, onComplete }) => {
         <div className="flex">
           <div className="leftDiv">
             <div className="Title">프로필 사진</div>
-            <div className="ImgDiv"></div>
+
+            <img
+              className="ImgDiv"
+              src={img ? img : defaultImg}
+              alt="profile"
+            />
+
             <label className="InputIMG" htmlFor="file">
               이미지 업로드
             </label>
-            <input className="hidden" type="file" name="file" id="file" />
+            <input
+              className="hidden"
+              type="file"
+              name="ME_Profile_Photo"
+              id="file"
+              onChange={onChange}
+            />
           </div>
           <div className="rightDiv">
             <div className="TowContetns">
