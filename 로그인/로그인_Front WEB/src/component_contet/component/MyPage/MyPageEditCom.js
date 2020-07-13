@@ -7,7 +7,7 @@ import {
 } from "../../style/Mypage/MyPageEditCom_Style";
 import defaultImg from "../../../Images/defaultImg.jpg";
 
-const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
+const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack, img }) => {
   return (
     <Container>
       <InfCom>
@@ -26,7 +26,8 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
             <img
               className="ImgDiv"
               src={
-                mypage.ME_Profile_Photo ? mypage.ME_Profile_Photo : defaultImg
+                // mypage.ME_Profile_Photo ? mypage.ME_Profile_Photo : defaultImg
+                img ? img : defaultImg
               }
               alt="profile"
             />
@@ -37,7 +38,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
             <input
               className="hidden"
               type="file"
-              name="ME_Profile_Photo"
+              name="originalProfile"
               id="file"
               onChange={onChange}
             />
