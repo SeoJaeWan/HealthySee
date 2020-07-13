@@ -11,7 +11,7 @@ export const list = ({ id, name, keyword, category }) => {
   return client.get(`/board/lists?${queryString}`);
 };
 
-export const bestList = () => client.get(`/board/lists/BO_Healthsee_Count&3`);
+export const bestList = (value) => client.get(`/board/lists/${value}&10`);
 
 export const writePost = (formData, config) =>
   client.post("/board/posts", formData, config);

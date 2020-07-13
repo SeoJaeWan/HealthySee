@@ -45,7 +45,7 @@ export const list = createAction(LIST, ({ id, name, keyword, category }) => ({
   keyword,
   category,
 }));
-export const bestList = createAction(BEST_LIST);
+export const bestList = createAction(BEST_LIST, (value) => value);
 export const listDetail = createAction(
   LISTDETAIL,
   ({ id, name, keyword, category }) => ({ id, name, keyword, category })

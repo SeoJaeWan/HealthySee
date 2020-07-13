@@ -20,8 +20,14 @@ const SelectBoardForm = ({ match, history }) => {
     setModal(!modal);
   };
 
+  const onChange = (e) => {
+    const value = e.target.value;
+
+    dispatch(bestList(value));
+  };
+
   useEffect(() => {
-    dispatch(bestList());
+    dispatch(bestList("BO_Healthsee_Count"));
   }, [dispatch]);
 
   return (
@@ -31,6 +37,7 @@ const SelectBoardForm = ({ match, history }) => {
         match={match}
         onChangeModal={onChangeModal}
         onClick={onClick}
+        onChange={onChange}
       />
       <AskModal
         visible={modal}

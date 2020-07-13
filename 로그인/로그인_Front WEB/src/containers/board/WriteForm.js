@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import WriteCom from "../../component_contet/component/board/WriteCom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +10,11 @@ import {
   setOriginal,
 } from "../../modules/board/write";
 import { withRouter } from "react-router-dom";
+import AskModal from "../../component_contet/common/AskModal";
 
 const WriteForm = ({ route, history, match }) => {
   const dispatch = useDispatch();
-
+  const [error, setError] = useState(null);
   const readUrl = `${route + "/" + match.params.board}`;
 
   const { postInfo, post, user } = useSelector(({ write, user }) => ({
@@ -66,6 +67,14 @@ const WriteForm = ({ route, history, match }) => {
       return e.target.files[key];
     });
 
+    console.log(post.file);
+
+    files = files.concat(post.file);
+
+    if (files.length > 3) {
+      setError("파일은 3개만 올릴 수 있습니다.");
+      return;
+    }
     dispatch(
       changeField({
         form: "post",
@@ -73,6 +82,10 @@ const WriteForm = ({ route, history, match }) => {
         value: files,
       })
     );
+  };
+
+  const onCheck = () => {
+    setError(null);
   };
 
   const onCancel = () => {
@@ -100,14 +113,25 @@ const WriteForm = ({ route, history, match }) => {
   }, [postInfo, readUrl, history]);
 
   return (
-    <WriteCom
-      onChange={onChange}
-      post={post}
-      onClick={onClick}
-      onUpload={onUpload}
-      deleteFile={deleteFile}
-      onCancel={onCancel}
-    />
+    <>
+      <WriteCom
+        onChange={onChange}
+        post={post}
+        error={error}
+        onClick={onClick}
+        onUpload={onUpload}
+        deleteFile={deleteFile}
+        onCancel={onCancel}
+        onCheck={onCheck}
+      />
+      <AskModal
+        title={"오류 발생"}
+        description={error}
+        onCancel={onCheck}
+        visible={error}
+        confirmText={null}
+      />
+    </>
   );
 };
 
