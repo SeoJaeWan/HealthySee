@@ -1,8 +1,15 @@
-import React from "react"
-import { Container } from "../../style/Container"
-import { WriteForm } from "../../style/Board/WriteCom_Style"
+import React from "react";
+import { Container } from "../../style/Container";
+import { WriteForm } from "../../style/Board/WriteCom_Style";
 
-const WriteCom = ({ post, onChange, onClick, onUpload, deleteFile, onCancel }) => {
+const WriteCom = ({
+  post,
+  onChange,
+  onClick,
+  onUpload,
+  deleteFile,
+  onCancel,
+}) => {
   return (
     <Container>
       <WriteForm>
@@ -52,7 +59,7 @@ const WriteCom = ({ post, onChange, onClick, onUpload, deleteFile, onCancel }) =
                       <span key={index}>{file.substring(13)}</span>
                       <button onClick={() => deleteFile(file)}>X</button>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -62,7 +69,7 @@ const WriteCom = ({ post, onChange, onClick, onUpload, deleteFile, onCancel }) =
         </div>
       </WriteForm>
     </Container>
-  )
-}
+  );
+};
 
-export default WriteCom
+export default WriteCom;

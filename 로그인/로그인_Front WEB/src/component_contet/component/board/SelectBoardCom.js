@@ -7,92 +7,61 @@ import {
 import { Container } from "../../style/Container";
 import { Link } from "react-router-dom";
 
-const SelectBoardCom = ({ bestPosts, match, onChangeModal, onClick }) => {
+const SelectBoardCom = ({
+  bestPosts,
+  match,
+  onChangeModal,
+  onClick,
+  onChange,
+}) => {
   const bestFreeList = bestPosts.free;
-  const bestExerList = bestPosts.exer;
 
   return (
     <Container>
-      <FlexDiv>
-        <SelectBoardForm>
-          <div className="Board">
-            <div className="boardNav">
-              <h1>자유 게시판</h1>
-              <button type="button" className="writeButton">
-                <Link to={"/Board/0"}>더보기</Link>
-              </button>
-            </div>
-            <div className="BoardForm">
-              <table>
-                <thead>
-                  <tr className="flex">
-                    <th className="BoardTitle">제목</th>
-                    <th className="BoardWriter">글쓴이</th>
-                    <th className="BoardDate">작성일</th>
-                    <th className="BoardHit">조회수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {bestFreeList && bestFreeList.length > 0 ? (
-                    bestFreeList.map((post, index) => (
-                      <BoardItem
-                        post={post}
-                        onClick={onClick}
-                        onChangeModal={onChangeModal}
-                        key={index}
-                        type={0}
-                      />
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4">게시글이 없습니다.</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+      <SelectBoardForm>
+        <div className="Board">
+          <div className="boardNav">
+            <h1>자유 게시판</h1>
+            <select name="name" onChange={onChange}>
+              <option value="BO_Healthsee_Count">추천수</option>
+              <option value="BO_Comment_Count">댓글수</option>
+              <option value="BO_Hit">조회수</option>
+            </select>
+            <button type="button" className="writeButton">
+              <Link to={"/Board/0"}>더보기</Link>
+            </button>
           </div>
-        </SelectBoardForm>
-        <SelectBoardForm>
-          <div className="Board">
-            <div className="boardNav">
-              <h1>운동 게시판</h1>
-              <button type="button" className="writeButton">
-                <Link to={"/Board/1"}>더보기</Link>
-              </button>
-            </div>
-            <div className="BoardForm">
-              <table>
-                <thead>
-                  <tr className="flex">
-                    <th className="BoardTitle">제목</th>
-                    <th className="BoardWriter">글쓴이</th>
-                    <th className="BoardDate">작성일</th>
-                    <th className="BoardHit">조회수</th>
+          <div className="BoardForm">
+            <table>
+              <thead>
+                <tr className="flex">
+                  <th className="BoardTitle">제목</th>
+                  <th className="BoardWriter">글쓴이</th>
+                  <th className="BoardDate">작성일</th>
+                  <th className="BoardHit">조회수</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bestFreeList && bestFreeList.length > 0 ? (
+                  bestFreeList.map((post, index) => (
+                    <BoardItem
+                      post={post}
+                      onClick={onClick}
+                      onChangeModal={onChangeModal}
+                      key={index}
+                      type={0}
+                    />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4">게시글이 없습니다.</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {bestExerList && bestExerList.length > 0 ? (
-                    bestExerList.map((post, index) => (
-                      <BoardItem
-                        post={post}
-                        onClick={onClick}
-                        onChangeModal={onChangeModal}
-                        key={index}
-                        type={1}
-                      />
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4">게시글이 없습니다.</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                )}
+              </tbody>
+            </table>
           </div>
-        </SelectBoardForm>
-      </FlexDiv>
+        </div>
+      </SelectBoardForm>
     </Container>
   );
 };
