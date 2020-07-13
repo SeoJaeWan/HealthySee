@@ -122,7 +122,7 @@ export const WriteForm = styled.div`
       transition: 0.2s;
       ${media.mobile`    
       margin-top: -20px;
-      z-index:9999;
+      z-index:3;
       width: 30px;
       height: 40px;
   `}

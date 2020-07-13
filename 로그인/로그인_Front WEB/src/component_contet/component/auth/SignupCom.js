@@ -1,11 +1,7 @@
-import React from "react";
-import {
-  SignupForm,
-  CheckBox1,
-  CheckBox2,
-  CheckBoxLabel,
-} from "../../style/SignupCom_Style.js";
-import { Container } from "../../style/Container.js";
+import React from "react"
+import { SignupForm} from "../../style/SignupCom_Style.js"
+import { Container } from "../../style/Container.js"
+import ToggleButton from "../../common/ToggleButton.js"
 
 const SignupCom = ({ onChange, account, onSubmit, error }) => {
   return (
@@ -13,65 +9,68 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
       <SignupForm>
         <h1 className="title">회원가입</h1>
         <form className="signForm" onSubmit={onSubmit}>
-          <div className="leftdiv">
-            <label className="flex">
-              닉&nbsp;네&nbsp;임
+          <ul className="leftdiv">
+            <li>
+              <label htmlFor="nickName">닉 네 임</label>
               <input
+                id="nickName"
                 className="textInput"
                 type="text"
                 name="nickname"
                 value={account.nickname}
                 onChange={onChange}
               />
-            </label>
-            <label className="flex">
-              몸&nbsp;무&nbsp;게
+            </li>
+            <li>
+              <label className="weight">몸 무 게</label>
               <input
+                id="weight"
                 className="textInput"
                 type="text"
                 name="weight"
                 value={account.weight}
                 onChange={onChange}
               />
-            </label>
-            <label className="flex">
-              성&nbsp;&nbsp;&nbsp; 별
-              <label className="genderToggle">
-                남&nbsp;
-                <CheckBox1
-                  name="gender"
-                  id="checkbox"
-                  type="checkbox"
-                  value={account.gender}
-                  onChange={onChange}
-                />
-                <CheckBoxLabel htmlFor="checkbox" />
-                &nbsp;여
+            </li>
+            <li>
+              <label className="flex">
+                성&nbsp;&nbsp;&nbsp;별
+                <label className="genderToggle">
+                  남&nbsp;
+                  <ToggleButton
+                    name="gender"
+                    type="checkbox"
+                    value={account.gender}
+                    onClick={onChange}
+                  />
+                  &nbsp;여
+                </label>
               </label>
-            </label>
-            <label className="flex">
-              공개범위
-              <label className="genderToggle">
-                On&nbsp;
-                <CheckBox2
-                  name="scope"
-                  id="checkbox2"
-                  type="checkbox"
-                  value={account.scope}
-                  onChange={onChange}
-                />
-                <CheckBoxLabel htmlFor="checkbox2" />
-                &nbsp;OFF
+            </li>
+            <li>
+              <label className="flex">
+                공개범위
+                <label className="publicToggle">
+                  On&nbsp;
+                  <ToggleButton
+                    name="scope"
+                    type="checkbox"
+                    value={account.scope}
+                    onClick={onChange}
+                  />
+                  &nbsp;OFF
+                </label>
               </label>
-            </label>
+            </li>
+            <p>{error}</p>
             <button type="submit" className="completeButton">
               완료
             </button>
-          </div>
+          </ul>
         </form>
       </SignupForm>
     </Container>
-  );
-};
+  )
+}
 
-export default SignupCom;
+export default SignupCom

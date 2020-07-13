@@ -27,14 +27,15 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               onSuccess={responseKakao}
               onFailure={errer}
               getProfile="true"
+              
               render={(props) => (
-                <Kakao onClick={props.onClick}>KaKao Login</Kakao>
+                <Kakao src={require("../../../Images/Login/KakaoLogin.png")} alt="" onClick={props.onClick}/>
               )}
             />
             <GoogleLogin
               clientId={"281223087961-0400s5doef0oi7gdg6jdamuuvmi3rkj4"}
               render={(props) => (
-                <Google onClick={props.onClick}>Google Login</Google>
+                <Google src={require("../../../Images/Login/GoogleLogin2.png")} onClick={props.onClick} />
               )}
               onSuccess={responseGoogle}
               onFailure={errer}
@@ -43,7 +44,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               clientId={"nJEBHhkCawrEQWG18VFF"}
               callbackUrl="http://localhost:3000/login"
               render={(props) => (
-                <Naver onClick={props.onClick}>Naver Login</Naver>
+                <Naver src={require("../../../Images/Login/NaverLogin.PNG")} alt="" onClick={props.onClick} />
               )}
               onSuccess={responseNaver}
               onFailure={(result) => console.error(result)}

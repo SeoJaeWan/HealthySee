@@ -40,23 +40,7 @@ export const Container = styled.div`
     width: 100%;
     overflow:visible;
   }
-  .Item {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: 5%;
-    font-size: 1.5rem;
-    display:flex;  
-    overflow:visible;
-    text-align:center; 
-    animation: ${slideInTop} 2s forwards ease-in;
-    ${media.mobile`
-     font-size:1rem;
 
-    margin-top: 15%;
-    margin-bottom: 15%;
-`}
-    cursor: pointer;
-  }
   .Board {
     width: 100%;
   }
@@ -114,7 +98,7 @@ export const Container = styled.div`
   .BoardForm {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
     font-size: 1rem;
     border: 5px solid #676a72;
     border-left: solid white;
@@ -137,95 +121,114 @@ export const Container = styled.div`
       transition: 0.2s;
     }
   }
-  .flex{
-    display:flex;
-    margin-left:5%;
-  }
-  .BoardTitle{  
-    width: 35vw;
-    text-align:center; 
-    font-size: 2rem;
-    ${media.mobile`
-  font-size:1rem;
-`}
-  }
-  
-  .BoardWriter{
-    width: 15rem;  
-    text-align:center; 
-    font-size: 2rem;    
-    ${media.mobile`
-  font-size:1rem;
-`}
-  }
-  .BoardDate{
-    width: 10rem;    
-    text-align:center; 
-    font-size: 2rem;
-    ${media.mobile`
-  font-size:1rem;
+  .BoardTitle {
+    width: 67%;
 
-`}
-  } 
-  .BoardHit{
-    width: 10rem;
-    text-align:center; 
-    font-size: 2rem;    
     ${media.mobile`
-  font-size:1rem;
-  `}
+    max-width:2rem;
+    `}
   }
-  .ItemTitle{
-    width: 35vw;
-    white-space : nowrap;
-    overflow : hidden;
-    text-overflow : ellipsis;
-    text-align:left; 
-    font-size: 2rem;
+  .BoardWriter {
+    width: 10%;
     ${media.mobile`
-  font-size:1rem;
-`}
+    display:none;
+    `}
   }
-  .ItemDate{
-    display:flex;
-    align-items:center;
-    justify-content:center;   
-    width: 10rem;    
-    white-space : nowrap;
-    overflow : hidden;
-    text-overflow : ellipsis;
-    text-align:center; 
-    font-size: 1rem;
+  .BoardDate {
     ${media.mobile`
-  font-size:0.5rem;
-`}
+    display:none;
+    `}
   }
-  .ItemWriter{
-    width: 15rem;     
-    text-align:center; 
-    font-size: 2rem;
+  .BoardHit {
+    
+    width: 5rem;
     ${media.mobile`
-  font-size:1rem;
-`}
+    display:none;
+    `}
   }
-  .ItemHit{
-    width: 10rem;   
-    white-space : nowrap;
-    overflow : hidden;
-    text-overflow : ellipsis;
-    text-align:center; 
-    display:flex;
-    align-items:center;
-    justify-content:center;  
-    font-size: 1rem;
-    ${media.mobile`
-  font-size:1rem;
-`}
-  }
-  .itemTable{
-    margin-left:3.6%;
+
+  
+  .table {
+    width:100%;
+    table-layout: fixed;
+
+    border-collapse: separate;
+    border-spacing: 10px 20px;
   }
   
+  .Item {
+    width:100%;
+    font-size: 1.5rem;
+    text-align: center;
+    animation: ${slideInTop} 2s forwards ease-in;
+    ${media.mobile`
+     display:none;
+     font-size:1rem;
+     width:100%;
+     
+    
+`}
+    cursor: pointer;
+  }
+  
+  .flex{
+    font-size:1.2rem;
+  }
+  .ItemTitle {
+    width: 67%;
+    text-align:left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ItemWriter {
+    width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    ${media.mobile`
+    display:none;
+`}
+  }
+  .ItemDate {
+    width: 20%;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    ${media.mobile`
+    display:none;
+`}
+  }
+  .ItemHit {
+    min-width: 3rem;
+    max-width: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    ${media.mobile`
+    display:none;
+`}
+  }
+  .mobileItem{
+    
+    
+    display:none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 40px;
+    white-space: nowrap;
+    ${media.mobile`
+      display:block;
+      max-width:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    white-space: nowrap;
+  }
+`}
+  }
   .EndBoard{
     text-align:center;
     font-size: 2rem;   

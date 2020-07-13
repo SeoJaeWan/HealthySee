@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MenuForm, Sticky } from "../style/Header_Style.js";
 import Menu from "./Menu.js";
 
-const Header = ({ user, onLogout, isView, setMenu }) => {
+const Header = ({ user, onLogout, isView, setMenu, boardView, menuBoardView }) => {
   return (
     <Sticky>
       <button
@@ -14,7 +14,7 @@ const Header = ({ user, onLogout, isView, setMenu }) => {
         Menu
       </button>
       <MenuForm isView={isView}>
-        <Menu user={user} />
+        <Menu user={user} isView={isView} setMenu={setMenu} menuBoardView={menuBoardView} boardView={boardView} />
       </MenuForm>
       <h1 className="title">
         <Link to="/">Health&amp;See</Link>

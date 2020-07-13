@@ -25,7 +25,7 @@ margin-top: 10%;  `}
   .titleForm {
     display: flex;
     width: 100%;
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 20px;
     margin-left: 2%;
     ${media.mobile`
@@ -35,7 +35,7 @@ margin-top: 10%;  `}
     border-left: solid white;
     &::before {
       content: "";
-      position: static;
+
       margin: -10px;
       margin-top: -30px;
 
@@ -54,8 +54,8 @@ margin-top: 10%;  `}
     }
   }
   .title {
-    min-width: 8rem;
-    padding: 14px 3px 14px 14px;
+    min-width: 5rem;
+    padding: 14px 8px 14px 14px;
     ${media.mobile`
     min-width: 4rem;
   `}
@@ -81,7 +81,6 @@ margin-top: 10%;  `}
     border-left: solid white;
     &::before {
       content: "";
-      position: static;
       margin: -10px;
       margin-top: -30px;
 
@@ -100,33 +99,51 @@ margin-top: 10%;  `}
     }
   }
   .flex {
+    margin: 0.5rem 0;
     display: flex;
   }
   .fileForm {
     overflow: hidden;
-    border-top: 5px solid #676a72;
+    display: flex;
+    margin: 0;
+    font-size: 2rem;
     width: 100%;
   }
   pre {
-    overflow: auto;
     white-space: pre-wrap;
-    margin-left: 4%;
+    word-break: break-all;
+
+    min-height: 15rem;
+    margin: 0rem 1rem;
+    font-size: 2rem;
+
     ${media.mobile`
     margin-left: 10%;
   `}
   }
+  .fileForm {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .fileText {
+    padding: 0.5rem;
+  }
+  .fileInfo {
+    position: absolute;
+    right: 3px;
+    display: flex;
+    flex-direction: column;
 
-  .FileText {
-    margin-left: 34px;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    transform: translateX(-100%);
   }
-  .FileButton {
-    margin-left: 2%;
-    padding-top: 14px;
-    padding-bottom: 14px;
-  }
-  .File {
+  .file {
+    font-size: 2rem;
+    border: 3px solid #676a72;
+    display: flex;
+    margin: 1px 0;
     cursor: pointer;
+  }
+  .filebutton {
+    font-family: none;
   }
 `

@@ -90,7 +90,7 @@ export const Sticky = styled.div`
 
 export const MenuForm = styled.div`
   position: absolute;
-  top: 15rem;
+  top: 5rem;
   width: 250px;
   overflow: hidden;
   transition: all 1s;

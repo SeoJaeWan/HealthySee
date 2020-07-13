@@ -16,29 +16,32 @@ const ReadCom = ({ post, loading, ownPost, actionButton, onGoBack, onClick }) =>
           </button>
           <div className="titleButton">{ownPost && actionButton}</div>
         </div>
-        <div className="titleForm">
-          <div className="title">제목 :</div>
-          <div className="titleContent">{post.BO_Title}</div>
-        </div>
+        <dl className="titleForm">
+          <dt className="title">제목 :</dt>
+          <dd className="titleContent">{post.BO_Title}</dd>
+        </dl>
         <div className="contentForm">
-          <pre>{post.BO_Content}</pre>
           <div className="fileForm">
-            <div className="flex">
-              <div className="fileText">첨부파일 :</div>
-              <div className="fileButton">
-                {post.BO_File
-                  ? post.BO_File.map((file, index) => {
-                      return (
-                        <span className="File" key={index} onClick={() => onClick(file)}>
-                          {file.substring(13)}
-                          <br />
-                        </span>
-                      )
-                    })
-                  : ""}
-              </div>
-            </div>
+            <button type="button" id="file" className="filebutton">
+              &#x25BC;
+            </button>
+            <label className="fileText" htmlFor="file">
+              첨부파일
+            </label>
           </div>
+          <div className="fileInfo">
+            {post.BO_File
+              ? post.BO_File.map((file, index) => {
+                  return (
+                    <button className="file" key={index} onClick={() => onClick(file)}>
+                      {file.substring(13)}
+                      <br />
+                    </button>
+                  )
+                })
+              : ""}
+          </div>
+          <pre>{post.BO_Content}</pre>
         </div>
       </ReadComForm>
     </Container>

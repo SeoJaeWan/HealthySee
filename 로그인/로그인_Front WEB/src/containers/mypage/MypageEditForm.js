@@ -10,9 +10,11 @@ import {
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 const MypageEditForm = ({ history }) => {
+  const [img, setImg] = useState(null);
   const dispatch = useDispatch();
-  const { mypage, user, isUpdate } = useSelector(({ mypage, user }) => ({
+  const { mypage, owner, user, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
+    owner: mypage.owner,
     isUpdate: mypage.isUpdate,
     user: user.user,
   }));
@@ -42,23 +44,22 @@ const MypageEditForm = ({ history }) => {
 
     let { value, name, type } = e.target;
     if (type === "checkbox") value = (mypage[name] - 1) * -1;
-    else if (type === "file") {
-      onRenderImg(e.target.files[0]);
-      return;
-    }
+    else if (type === "file")
+      // value = e.target.value
+      value = e.target.files[0];
 
     dispatch(updateField({ key: name, value }));
   };
 
-  const onRenderImg = (file) => {
-    let render = new FileReader();
-    render.readAsDataURL(file);
+  // const onRenderImg = (file) => {
+  //   let render = new FileReader();
+  //   render.readAsDataURL(file);
 
-    render.onload = () => {
-      console.log(render.result);
-      dispatch(updateField({ key: "ME_Profile_Photo", value: render.result }));
-    };
-  };
+  //   render.onloadend = () => {
+  //     console.log(render.result);
+  //     setImg(render.result);
+  //   };
+  // };
 
   // useEffect(() => {
   //   if (mypage.ME_Profile_Photo) onRenderImg(mypage.ME_Profile_Photo);
@@ -86,6 +87,7 @@ const MypageEditForm = ({ history }) => {
       onChange={onChange}
       onComplete={onComplete}
       onGoBack={onGoBack}
+      img={img}
     />
   );
 };

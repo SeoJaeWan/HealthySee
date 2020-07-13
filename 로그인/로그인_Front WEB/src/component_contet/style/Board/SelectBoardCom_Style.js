@@ -1,10 +1,9 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../ReactiveStyle/ReactiveStyle"
 
 const slideInTop = keyframes`
   
   0% {   
-    
     opacity: 0;
     transform: translateY(-1px);
   }
@@ -20,10 +19,20 @@ const slideInTop = keyframes`
     opacity: 1;
     transform: translateY(0px);
   }
-`;
+`
 
 export const SelectBoardForm = styled.div`
   width: 48%;
+  min-width: 35rem;
+  ${media.imgs`
+  width: 100%;
+  `}
+  ${media.board`
+  width: 90%;
+  `}
+  ${media.mobile`
+  min-width: 20rem;
+  `}
 
   h1 {
     padding-bottom: 0.5rem;
@@ -36,26 +45,7 @@ export const SelectBoardForm = styled.div`
     width: 100%;
     overflow: visible;
   }
-  .Item {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: 5%;
-    font-size: 1.5rem;
-    display: flex;
-    overflow: visible;
-    text-align: center;
-    animation: ${slideInTop} 2s forwards ease-in;
-    ${media.mobile`
-     font-size:1rem;
 
-    margin-top: 15%;
-    margin-bottom: 15%;
-`}
-    cursor: pointer;
-  }
-  .Board {
-    width: 100%;
-  }
   option {
     font-size: 1.3rem;
   }
@@ -104,6 +94,7 @@ export const SelectBoardForm = styled.div`
 
 `}
   }
+  
   .writeButton {
     font-size: 2rem;
   }
@@ -133,105 +124,121 @@ export const SelectBoardForm = styled.div`
       transition: 0.2s;
     }
   }
-  .flex {
-    display: flex;
-    margin-left: 5%;
-  }
   .BoardTitle {
-    width: 17vw;
-    text-align: center;
-    font-size: 1rem;
+    width: 67%;
     ${media.mobile`
-  font-size:1rem;
-`}
+    max-width:2rem;
+    `}
   }
-
   .BoardWriter {
-    width: 7.5rem;
-    text-align: center;
-    font-size: 1rem;
+    width: 10%;
     ${media.mobile`
-  font-size:1rem;
-`}
+    display:none;
+    `}
   }
   .BoardDate {
-    width: 5rem;
-    text-align: center;
-    font-size: 1rem;
+    
+    width: 15%;
     ${media.mobile`
-  font-size:1rem;
-
-`}
+    display:none;
+    `}
   }
   .BoardHit {
+    
     width: 5rem;
-    text-align: center;
-    font-size: 1rem;
     ${media.mobile`
-  font-size:1rem;
-  `}
+    display:none;
+    `}
+  }
+
+  
+  .table {
+    width:100%;
+    table-layout: fixed;
+
+    border-collapse: separate;
+    border-spacing: 10px 20px;
+  }
+  
+  .Item {
+    width:100%;
+    font-size: 1.5rem;
+    text-align: center;
+    animation: ${slideInTop} 2s forwards ease-in;
+    ${media.mobile`
+     display:none;
+     font-size:1rem;
+     width:100%;
+     
+    
+`}
+    cursor: pointer;
+  }
+  
+  .flex{
+    font-size:1.2rem;
   }
   .ItemTitle {
-    width: 17vw;
-    white-space: nowrap;
+    width: 67%;
+    text-align:left;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: left;
-    font-size: 2rem;
+    white-space: nowrap;
+  }
+  .ItemWriter {
+    width: 30%;
+    font-size:1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
     ${media.mobile`
-  font-size:1rem;
+    display:none;
 `}
   }
   .ItemDate {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5rem;
-    white-space: nowrap;
+    width: 20%;
+    font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: center;
-    font-size: 1rem;
+    white-space: nowrap;
     ${media.mobile`
-  font-size:0.5rem;
-`}
-  }
-  .ItemWriter {
-    width: 7.5rem;
-    text-align: center;
-    font-size: 2rem;
-    ${media.mobile`
-  font-size:1rem;
+    display:none;
 `}
   }
   .ItemHit {
-    width: 5rem;
-    white-space: nowrap;
+    min-width: 2rem;
+    max-width: 2rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
+    white-space: nowrap;
     ${media.mobile`
-  font-size:1rem;
+    display:none;
 `}
   }
-  .itemTable {
-    margin-left: 3.6%;
-  }
-
-  .EndBoard {
-    text-align: center;
-    font-size: 2rem;
+  .mobileItem{
+    
+    
+    display:none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 40px;
+    white-space: nowrap;
     ${media.mobile`
-  font-size:1rem;
-  `}
+      display:block;
+      max-width:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    white-space: nowrap;
   }
-`;
+`}
+  }
+`
+
 export const FlexDiv = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-`;
+`

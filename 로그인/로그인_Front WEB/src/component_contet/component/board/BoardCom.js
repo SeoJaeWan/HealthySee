@@ -47,9 +47,9 @@ const BoardCom = ({
             loader={<div className="EndBoard">게시글을 불러오고 있습니다.</div>}
             endMessage={<div className="EndBoard">마지막 게시글 입니다.</div>}
           >
-            <table>
+            <table className="table">
               <thead>
-                <tr className="flex">
+                <tr>
                   <th className="BoardTitle">제목</th>
                   <th className="BoardWriter">글쓴이</th>
                   <th className="BoardDate">작성일</th>
@@ -79,12 +79,26 @@ const BoardCom = ({
 const BoardItem = ({ post, onClick, onChangeModal }) => {
   const { BO_Code, BO_Title, BO_Creation_Date, BO_Writer_NickName, BO_Hit, BO_State } = post
   return (
-    <tr className="Item" onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}>
-      <td className="ItemTitle">{BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}</td>
-      <td className="ItemWriter">{BO_Writer_NickName}</td>
-      <td className="ItemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
-      <td className="ItemHit">{BO_Hit}회</td>
-    </tr>
+    <>
+      <tr className="Item" onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}>
+        <td className="ItemTitle">{BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}</td>
+        <td className="ItemWriter">{BO_Writer_NickName}</td>
+        <td className="ItemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
+        <td className="ItemHit">{BO_Hit}회</td>
+      </tr>
+      <tr>
+        <td
+          colSpan="4"
+          className="mobileItem"
+          onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}
+        >
+          {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
+          <br />
+          {BO_Writer_NickName}&nbsp;&nbsp; {new Date(BO_Creation_Date).toLocaleDateString()}
+          &nbsp;&nbsp; 조회수 : {BO_Hit}
+        </td>
+      </tr>
+    </>
   )
 }
 

@@ -99,7 +99,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Kakao = styled.div`
+export const Kakao = styled.img`
   width: 300px;
   color: #2b0b20;
   background-color: #fcf012;
@@ -112,7 +112,7 @@ export const Kakao = styled.div`
 `}
 `;
 
-export const Google = styled.div`
+export const Google = styled.img`
   width: 300px;
   color: white;
   background-color: #d94d3d;
@@ -125,11 +125,12 @@ export const Google = styled.div`
 
 `}
 `;
-export const Naver = styled.div`
+export const Naver = styled.img`
   color: white;
   background-color: #13d261;
   text-align: center;
   width: 300px;
+  height:50px;
   font-size: 3rem;
   margin-top: 70px;
   ${media.mobile`

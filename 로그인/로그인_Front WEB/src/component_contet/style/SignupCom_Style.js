@@ -41,14 +41,15 @@ export const SignupForm = styled.div`
     width: 50%;
     display: flex;
     flex-direction: column;
-    padding-top:2rem;
+    padding-top: 2rem;
     ${media.desktop`
     width: 100%;
 
 `}
     ${media.mobile`
     width: 100%;
-
+    padding-top:1rem;
+    padding-left:0;
 `}
   }
   .contextform {
@@ -65,6 +66,7 @@ export const SignupForm = styled.div`
   .textInput {
     width: 40%;
     margin-left: 20%;
+    
   }
 
   .completeButton {
@@ -79,86 +81,66 @@ export const SignupForm = styled.div`
   .flex {
     display: flex;
     text-align: center;
-    padding-left: 10%;
     font-size: 2rem;
     margin: 2rem 0;
     word-spacing: 0.3vw;
     ${media.mobile`
-    font-size: 1.5rem;
-
+    font-size:1.5rem;
 `}
+  }
     .genderToggle {
       display: flex;
+      justify-content:center;
+
       text-align: center;
       padding-left: 20%;
+      width:30%;
+      min-width:10rem;
       font-size: 2rem;
       word-spacing: 0.3vw;
       ${media.mobile`
     font-size: 1.5rem;
+      
+    padding-left: 15%;
+`}
+    }
+  
+  .publicToggle {
+      display: flex;
+      justify-content:center;
+
+      text-align: center;
+      padding-left: 20%;
+      
+      min-width:10rem;
+      width:30%;
+      font-size: 1.5rem;
+      word-spacing: 0.3vw;
+      ${media.mobile`
+    font-size: 1.5rem; 
+    padding-left: 15%;
 
 `}
     }
+  
+  p {
+    text-align: center;
+    color: red;
+    font-size: 1rem;
+    height: 2rem;
+    margin: 0;
   }
-`
-
-export const CheckBoxLabel = styled.label`
-  width: 62px;
-  height: 26px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  border-radius: 15px;
-  background: skyblue;
-  cursor: pointer;
-  &::after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    margin: 3px;
-    background: #ffffff;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
+  label {
+    display: inline;
+    font-size: 2rem;
+    ${media.mobile`
+    font-size:1.5rem;
+`}
   }
-`
-
-export const CheckBox1 = styled.input`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-  width: 0px;
-  height: 0px;
-  &:checked + ${CheckBoxLabel} {
-    background: pink;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 40px;
-      transition: 0.2s;
-    }
+  ul{
+    margin:0;
   }
-`
-
-export const CheckBox2 = styled.input`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-
-  width: 0px;
-  height: 0px;
-  &:checked + ${CheckBoxLabel} {
-    background: pink;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 40px;
-      transition: 0.2s;
-    }
+  li {
+    list-style-type: none;
   }
 `
