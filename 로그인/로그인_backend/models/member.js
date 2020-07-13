@@ -9,7 +9,11 @@ module.exports = function (sequelize, DataTypes) {
         autoIncrement: true,
       },
       ME_Profile_Photo: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.BLOB("long"),
+        allowNull: true,
+      },
+      ME_Profile_Type: {
+        type: DataTypes.STRING(16),
         allowNull: true,
       },
       ME_Scope: {

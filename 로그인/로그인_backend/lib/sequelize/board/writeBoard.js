@@ -21,16 +21,16 @@ const writePost = async (req, res, next) => {
   var BO_Category = req.body.BO_Category;
   var BO_Title = req.body.BO_Title;
   var BO_Content = req.body.BO_Content;
-  var fileString = ""
-  if(req.files){
-    for(var i = 0; i < req.files.length; i++){
-      fileString = fileString + (req.files[i].filename);
-      if( i < req.files.length - 1){
-        fileString = fileString + ',';
+  var fileString = "";
+  if (req.files) {
+    for (var i = 0; i < req.files.length; i++) {
+      fileString = fileString + req.files[i].filename;
+      if (i < req.files.length - 1) {
+        fileString = fileString + ",";
       }
-      
     }
   }
+  console.log("adssadsadsadsdadsasda", req.files);
   var BO_File = req.files ? fileString : "";
   var BO_Writer_NickName = req.body.username;
   var BO_Creation_Date = today;
@@ -41,7 +41,7 @@ const writePost = async (req, res, next) => {
     BO_Content,
     BO_Writer_NickName,
     BO_File,
-    BO_Creation_Date
+    BO_Creation_Date,
   });
 
   req.params.BO_Code = board.BO_Code;
@@ -55,7 +55,7 @@ const writeComment = async (req, res, next) => {
   var Board_BO_Code = req.body.Board_BO_Code;
   var BC_Writer_NickName = req.body.user.username;
   var BC_Creation_Date = today;
-  console.log("a",req.body.page,'a');
+  console.log("a", req.body.page, "a");
   if (BC_Re_Ref === "0")
     await B_Comment.create({
       BC_Content,
@@ -77,7 +77,7 @@ const writeComment = async (req, res, next) => {
       BC_Creation_Date,
     });
   req.params.BO_Code = Board_BO_Code;
-  req.params.page = (req.body.page)?req.body.page:1;
+  req.params.page = req.body.page ? req.body.page : 1;
 
   next();
 };

@@ -1,15 +1,8 @@
 const Member = require("../../../models").member;
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: "./upload/profile",
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
 const upload = multer({
-  storage: storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 1000000000 },
 });
 
@@ -23,15 +16,11 @@ const updateMypage = async (req, res, next) => {
     Account_AC_NickName,
   } = req.body;
 
-  console.log("asdasdasdasdsaddsaaaaaa", req.body, req.files);
-  let fileString = "";
-  if (req.files.length > 0) {
-    fileString = req.files[0].filename;
-  }
+  let { buffer, mimetype } = req.file
+    ? req.file
+    : { buffer: null, mimetype: null };
 
-  let ME_Profile_Photo = fileString;
-
-  console.log(ME_Profile_Photo);
+  console.log("dsasadsadsadsda", buffer, mimetype);
   let mypage = await Member.update(
     {
       ME_Scope,
@@ -39,7 +28,8 @@ const updateMypage = async (req, res, next) => {
       ME_Height,
       ME_Birth,
       ME_Gender,
-      ME_Profile_Photo,
+      ME_Profile_Photo: buffer,
+      ME_Profile_Type: mimetype,
     },
     { where: { Account_AC_NickName } }
   );
