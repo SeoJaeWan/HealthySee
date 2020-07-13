@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   readMypage,
   changeField,
-  updateMypage,
+  updateField,
 } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -21,27 +21,41 @@ const MypageForm = ({ match, history }) => {
     history.push("/MyPage/Edit");
   };
 
-  // const onRenderImg = (file) => {
-  //   let render = new FileReader();
-  //   render.readAsDataURL(file);
+  const onRenderImg = (file) => {
+    console.log(file);
+    let render = new FileReader();
+    let data = file.data;
 
-  //   render.onloadend = () => {
-  //     console.log(render.result);
-  //     setImg(render.result);
-  //   };
-  // };
+    console.log(data);
+    const type = mypage.ME_Profile_Type;
+    console.log(type);
+    let blob = new Blob([Uint8Array.from(data).buffer], { type });
+    dispatch(updateField({ key: "originalProfile", value: blob }));
+    render.readAsDataURL(blob);
 
-  // useEffect(() => {
-  //   if (mypage.ME_Profile_Photo) onRenderImg(mypage.ME_Profile_Photo);
-  // }, [mypage.ME_Profile_Photo]);
+    render.onloadend = () => {
+      // console.log(render.result);
+      setImg(render.result);
+    };
+  };
+
+  useEffect(() => {
+    if (mypage.ME_Profile_Photo) {
+      console.log(mypage);
+      console.log(mypage.ME_Profile_Photo);
+      onRenderImg(mypage.ME_Profile_Photo);
+    }
+  }, [mypage.ME_Profile_Photo]);
 
   useEffect(() => {
     console.log("여기?");
     dispatch(changeField({ key: "owner", value: match.params.username }));
     dispatch(readMypage(match.params.username));
-  }, [dispatch, readMypage, changeField]);
+  }, [dispatch, match]);
 
-  return <MypageCom mypage={mypage} user={user} onUpdate={onUpdate} />;
+  return (
+    <MypageCom mypage={mypage} user={user} onUpdate={onUpdate} img={img} />
+  );
 };
 
 export default withRouter(MypageForm);

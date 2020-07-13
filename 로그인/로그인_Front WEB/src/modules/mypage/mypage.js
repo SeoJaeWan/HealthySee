@@ -49,14 +49,20 @@ export function* mypageSaga() {
 
 const initialState = {
   mypage: {
-    scope: null,
-    weight: null,
-    height: null,
-    birthday: null,
+    ME_Code: null,
+    ME_Profile_Photo: null,
+    ME_Scope: 1,
+    ME_Weight: 0,
+    ME_Height: 0,
+    ME_Birth: 0,
+    ME_Gender: 1,
+    ME_Certificate: 0,
+    Account_AC_NickName: 0,
   },
   owner: null,
   mypageError: null,
   isUpdate: null,
+  originalProfile: null,
 };
 
 const mypage = handleActions(

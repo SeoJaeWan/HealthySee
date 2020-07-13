@@ -46,8 +46,16 @@ const ReadForm = ({ match, history, route }) => {
 
   const onClick = async (filename) => {
     const file = await downloadFile(filename);
-    console.log(file);
-    saveAs(file.data, filename.substring(13));
+    console.log(file.data.data);
+
+    const rawData = Object.values(file.data.data).map((data) => {
+      return data;
+    });
+
+    const type = "image/jpeg";
+    let blob = new Blob([Uint8Array.from(rawData).buffer], { type });
+
+    saveAs(blob, filename.substring(13));
   };
 
   const onGoBack = useCallback(() => {
