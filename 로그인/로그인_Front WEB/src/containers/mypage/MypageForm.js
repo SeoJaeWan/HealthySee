@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MypageCom from "../../component_contet/component/MyPage/MyPageCom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  readMypage,
-  changeField,
-  updateField,
-} from "../../modules/mypage/mypage";
+import { readMypage, updateField } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { OnRenderImg } from "../common/OnRenderImg";
 
 const MypageForm = ({ match, history }) => {
-  const [img, setImg] = useState(null);
   const dispatch = useDispatch();
-  const { mypage, user } = useSelector(({ mypage, user }) => ({
+  const { mypage, user, img } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
+    img: mypage.img,
     user: user.user,
   }));
 
@@ -21,35 +18,20 @@ const MypageForm = ({ match, history }) => {
     history.push("/MyPage/Edit");
   };
 
-  const onRenderImg = (file) => {
-    console.log(file);
-    let render = new FileReader();
-    let data = file.data;
-
-    console.log(data);
-    const type = mypage.ME_Profile_Type;
-    console.log(type);
-    let blob = new Blob([Uint8Array.from(data).buffer], { type });
-    dispatch(updateField({ key: "originalProfile", value: blob }));
-    render.readAsDataURL(blob);
-
-    render.onloadend = () => {
-      // console.log(render.result);
-      setImg(render.result);
-    };
-  };
-
   useEffect(() => {
     if (mypage.ME_Profile_Photo) {
-      console.log(mypage);
-      console.log(mypage.ME_Profile_Photo);
-      onRenderImg(mypage.ME_Profile_Photo);
+      let data = mypage.ME_Profile_Photo.data;
+      let type = mypage.ME_Profile_Type;
+
+      let blob = new Blob([Uint8Array.from(data).buffer], { type });
+
+      dispatch(updateField({ key: "originalProfile", value: blob }));
+
+      OnRenderImg(blob, updateField);
     }
-  }, [mypage.ME_Profile_Photo]);
+  }, [mypage.ME_Profile_Photo, mypage.ME_Profile_Type, dispatch]);
 
   useEffect(() => {
-    console.log("여기?");
-    dispatch(changeField({ key: "owner", value: match.params.username }));
     dispatch(readMypage(match.params.username));
   }, [dispatch, match]);
 

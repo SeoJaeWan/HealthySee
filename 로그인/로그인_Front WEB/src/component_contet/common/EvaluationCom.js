@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AskModal from "./AskModal";
+import AskModal from "./Modal/AskModal";
 import { EvaluationComForm } from "./style/EvaluationCom_Style";
 
 const EvaluationCom = ({
@@ -38,7 +38,7 @@ const EvaluationCom = ({
                 </button>
                 <div>{healthseeCount}</div>
               </div>
-              <hr/>
+              <hr />
               <div className="onReport">
                 <button onClick={() => onActionClick(() => onReport)}>
                   신고

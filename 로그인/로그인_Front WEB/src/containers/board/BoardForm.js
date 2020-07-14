@@ -3,7 +3,7 @@ import BoardCom from "../../component_contet/component/board/BoardCom";
 import { useDispatch, useSelector } from "react-redux";
 import { list, listDetail, changeField } from "../../modules/board/posts";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import AskModal from "../../component_contet/common/AskModal";
+import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
 const BoardForm = ({ match, history }) => {
   const [scroll, setScroll] = useState(true);
@@ -117,13 +117,11 @@ const BoardForm = ({ match, history }) => {
         fetchMoreData={fetchMoreData}
         onChangeModal={onChangeModal}
       />
-      <AskModal
+      <AlertModal
         visible={modal}
         title="블라인드"
         description="블라인드 처리된 게시글입니다!"
         onCancel={onChangeModal}
-        confirmText=""
-        cancelText="뒤로가기"
       />
     </>
   );

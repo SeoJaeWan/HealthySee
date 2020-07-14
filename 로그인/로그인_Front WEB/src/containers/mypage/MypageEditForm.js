@@ -1,20 +1,19 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 import MyPageEditCom from "../../component_contet/component/MyPage/MyPageEditCom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  changeField,
   updateField,
   updateMypage,
   initialize,
 } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { OnRenderImg } from "../common/OnRenderImg";
 
 const MypageEditForm = ({ history }) => {
-  const [img, setImg] = useState(null);
   const dispatch = useDispatch();
-  const { mypage, user, isUpdate } = useSelector(({ mypage, user }) => ({
+  const { mypage, user, img, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
-    owner: mypage.owner,
+    img: mypage.img,
     originalProfile: mypage.originalProfile,
     isUpdate: mypage.isUpdate,
     user: user.user,
@@ -51,27 +50,26 @@ const MypageEditForm = ({ history }) => {
     dispatch(updateField({ key: name, value }));
   };
 
-  const onRenderImg = (file) => {
-    console.log(file);
-    let render = new FileReader();
-    render.readAsDataURL(file);
+  // const onRenderImg = (file) => {
+  //   let render = new FileReader();
+  //   render.readAsDataURL(file);
 
-    render.onloadend = () => {
-      // console.log(render.result);
-      setImg(render.result);
-    };
-  };
+  //   render.onloadend = () => {
+  //     // console.log(render.result);
+  //     setImg(render.result);
+  //   };
+  // };
 
   useEffect(() => {
-    console.log(mypage.originalProfile);
-    if (mypage.originalProfile) onRenderImg(mypage.originalProfile);
+    if (mypage.originalProfile)
+      OnRenderImg(mypage.originalProfile, updateField);
   }, [mypage.originalProfile]);
 
   useEffect(() => {
     if (!user) {
       history.push("/");
     } else if (isUpdate) onGoBack();
-  }, [user, isUpdate, history, mypage]);
+  }, [user, isUpdate, history]);
 
   return (
     <MyPageEditCom

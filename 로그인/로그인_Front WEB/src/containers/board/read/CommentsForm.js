@@ -10,7 +10,7 @@ import {
   changePage,
 } from "../../../modules/board/post";
 import { reportComment } from "../../../modules/board/evaluation";
-import CommentsCom from "../../../component_contet/common/CommentsCom";
+import CommentsCom from "../../../component_contet/common/Comments/CommentsCom";
 import Pagenation from "../../../component_contet/common/Pagenation";
 import { useEffect } from "react";
 

@@ -8,7 +8,7 @@ import { saveAs } from "file-saver";
 import ReadCom from "../../component_contet/component/board/ReadCom";
 import EvaluationForm from "./read/EvaluationForm";
 import CommentsForm from "./read/CommentsForm";
-import ActionButton from "../../component_contet/common/ActionButton";
+import ActionButton from "../../component_contet/common/Modal/ActionButton";
 import { useCallback } from "react";
 import { initialize } from "../../modules/board/evaluation";
 

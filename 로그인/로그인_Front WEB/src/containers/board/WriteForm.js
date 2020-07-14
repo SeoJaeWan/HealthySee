@@ -10,7 +10,7 @@ import {
   setOriginal,
 } from "../../modules/board/write";
 import { withRouter } from "react-router-dom";
-import AskModal from "../../component_contet/common/AskModal";
+import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
 const WriteForm = ({ route, history, match }) => {
   const dispatch = useDispatch();
@@ -124,12 +124,11 @@ const WriteForm = ({ route, history, match }) => {
         onCancel={onCancel}
         onCheck={onCheck}
       />
-      <AskModal
+      <AlertModal
         title={"오류 발생"}
         description={error}
         onCancel={onCheck}
         visible={error}
-        confirmText={null}
       />
     </>
   );

@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { media } from "../../../ReactiveStyle/ReactiveStyle"
+import styled from "styled-components";
+import { media } from "../../../ReactiveStyle/ReactiveStyle";
 
 export const AlbumForm = styled.div`
   width: 100%;
@@ -38,4 +38,4 @@ export const AlbumForm = styled.div`
     margin-top: 2rem;
     display: flex;
   }
-`
+`;
