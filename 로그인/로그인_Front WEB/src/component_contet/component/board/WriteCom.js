@@ -13,28 +13,28 @@ const WriteCom = ({
   return (
     <Container>
       <WriteForm>
-        <div className="buttonform">
-          <button type="button" className="backbutton" onClick={onCancel}>
+        <div className="buttonForm">
+          <button className="backButton" onClick={onCancel}>
             돌아가기
           </button>
-          <button type="submit" className="writebutton" onClick={onClick}>
+          <button className="writeButton" onClick={onClick}>
             {post.BO_Code ? "수정" : "글쓰기"}
           </button>
         </div>
-        <div className="titleform">
-          <div className="titlediv">
-            <div className="title">제목 :</div>
+        <dl className="titleform">
+          <dt className="title">제목 :</dt>
+          <dd className="titleInputForm">
             <input
-              className="titleinput"
+              className="titleInput"
               type="text"
               value={post.BO_Title}
               name="BO_Title"
               onChange={onChange}
             />
-          </div>
-        </div>
+          </dd>
+        </dl>
 
-        <div className="textTitle">본문</div>
+        <h1 className="textTitle">본문</h1>
         <div className="textForm">
           <textarea
             className="textArea"
@@ -46,12 +46,21 @@ const WriteCom = ({
         </div>
 
         <div className="fileForm">
-          <div className="fileButton">
-            <input type="file" name="file" onChange={onUpload} multiple />
-          </div>
+          <label className="inputImg" htmlFor="file">
+            파일 업로드
+          </label>
+          <input
+            className="hidden"
+            id="file"
+            type="file"
+            name="file"
+            onChange={onUpload}
+            multiple
+          />
+          <dd>파일명 나올곳</dd>
           {post.BO_File ? (
             <div className="filetext">
-              <div className="title">첨부파일</div>
+              <h2 className="filetitle">첨부파일</h2>
               <div className="storageFileForm">
                 {post.BO_File.map((file, index) => {
                   return (
@@ -59,7 +68,7 @@ const WriteCom = ({
                       <span key={index}>{file.substring(13)}</span>
                       <button onClick={() => deleteFile(file)}>X</button>
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>

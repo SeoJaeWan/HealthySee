@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Container } from "../../style/Container";
 import {
   InfCom,
-  CheckBox,
-  CheckBoxLabel,
 } from "../../style/Mypage/MyPageEditCom_Style";
 import defaultImg from "../../../Images/defaultImg.jpg";
+import ToggleButton from "../../common/ToggleButton"
 
 const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
   return (
     <Container>
       <InfCom>
         <div className="rowrserver">
-          <button type="button" onClick={onGoBack} className="edit">
+          <button onClick={onGoBack} className="edit">
             취소
           </button>
           <button onClick={onComplete} type="submit" className="edit">
@@ -32,7 +31,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
               alt="profile"
             />
 
-            <label className="InputIMG" htmlFor="file">
+<label className="InputIMG" htmlFor="file">
               이미지 업로드
             </label>
             <input
@@ -43,92 +42,85 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
               onChange={onChange}
             />
           </div>
-          <div className="rightDiv">
-            <div className="TowContetns">
-              <div className="FlexGrow">
+          <ul className="rightDiv">
+            <li>
+              <label htmlfor="nickname" className="FlexGrow">
                 닉네임
-                <input
-                  readOnly
-                  type="text"
-                  name="Account_AC_NickName"
-                  className="Contents"
-                  defaultValue={mypage.Account_AC_NickName}
-                />
-              </div>
-              <div className="FlexGrow">
-                공개여부
-                <div className="flexInput">
-                  <div>On</div>
+              </label>
+              <input
+                readOnly
+                type="text"
+                name="Account_AC_NickName"
+                className="Contents"
+                defaultValue={mypage.Account_AC_NickName}
+              />
+            </li>
 
-                  <CheckBox
-                    name="ME_Scope"
-                    id="scopeBox"
-                    type="checkbox"
-                    value={mypage.ME_Scope}
-                    onClick={onChange}
-                  />
-                  <CheckBoxLabel htmlFor="scopeBox" check={mypage.ME_Scope} />
-
-                  <div className="divwidth">OFF</div>
-                </div>
-              </div>
-            </div>
-            <div className="TowContetns">
-              <div className="FlexGrow">
+            <li className="FlexGrow">
+              공개여부 On
+              <ToggleButton
+                name="ME_Scope"
+                type="checkbox"
+                value={mypage.ME_Scope}
+                onClick={onChange}
+              />
+              OFF
+            </li>
+            <li>
+              <label htmlFor="Weight" className="FlexGrow">
                 무게
-                <input
-                  type="text"
-                  name="ME_Weight"
-                  className="Contents"
-                  value={mypage.ME_Weight}
-                  onChange={onChange}
-                />
-              </div>
-              <div className="FlexGrow">
+              </label>
+              <input
+                type="text"
+                name="ME_Weight"
+                Id="Weight"
+                className="Contents"
+                value={mypage.ME_Weight}
+                onChange={onChange}
+              />
+            </li>
+            <li>
+              <label htmlFor="Height" className="FlexGrow">
                 키
-                <input
-                  type="text"
-                  name="ME_Height"
-                  className="Contents"
-                  value={mypage.ME_Height}
-                  onChange={onChange}
-                />
-              </div>
-            </div>
-            <div className="TowContetns">
-              <div className="FlexGrow">
+              </label>
+              <input
+                type="text"
+                name="ME_Height"
+                id="Height"
+                className="Contents"
+                value={mypage.ME_Height}
+                onChange={onChange}
+              />
+            </li>
+            <li>
+              <label htmlFor="Birth" className="FlexGrow">
                 생일
-                <input
-                  type={mypage.ME_Birth ? "date" : "text"}
-                  name="ME_Birth"
-                  className="Contents"
-                  value={mypage.ME_Birth ? mypage.ME_Birth : ""}
-                  onChange={onChange}
-                />
-              </div>
+              </label>
+              <input
+                type="date"
+                name="ME_Birth"
+                Id="Birth"
+                className="Contents"
+                value={mypage.ME_Birth}
+                onChange={onChange}
+              />
+            </li>
+            <li>
               <div className="FlexGrow">
                 성별
                 <div className="flexInput">
-                  <div>남{mypage.ME_Gender}</div>
-                  <CheckBox
+                  <div>남</div>
+                  <ToggleButton
                     name="ME_Gender"
-                    id="genderBox"
                     type="checkbox"
                     value={mypage.ME_Gender}
                     onClick={onChange}
                   />
-                  <CheckBoxLabel htmlFor="genderBox" check={mypage.ME_Gender} />
                   <div className="divwidth">여</div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="IntroForm">
-          <div className="Introtitle">자기소개</div>
-          <div className="BoardForm">
-            <textarea className="IntroInfo"></textarea>ㄴ
-          </div>
+            </li>
+          </ul>
         </div>
       </InfCom>
     </Container>

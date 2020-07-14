@@ -14,43 +14,40 @@ export const EvaluationComForm = styled.div`
   margin-left: 2%;
   `}
   button {
-    font-size: 3rem;
+    font-size: 2rem;
     ${media.mobile`  
     font-size:1.5rem;
   `}
   }
-  .Writer {
-    width: 50%;
-    padding: 2% 2% 2% 3%;
+  .writer {
+    width: 80%;
+    font-weight: normal;
+    padding: 1%;
     display: flex;
     align-items: center;
     justify-content: left;
   }
 
-  hr {
-    width: 5px;
-    height: 100%;
-    background-color: #676a72;
-    border-color: #676a72;
+  table{
+    font-size:1.5rem;
   }
-  .Buttondiv {
-    border: 5px solid #676a72;
+  .buttonForm {
+    border: 4px solid #676a72;
+    margin:1%;
     text-align: center;
-    margin: 0% 2% 1% 1%;
-    display: flex;
     align-items: center;
     justify-content: center;
   }
-  .flex {
-    display: flex;
-    justify-content: space-between;
-  }
-  .ContentForm {
+
+  .contentForm {
     width: 100%;
     font-size: 3rem;
+    height: 30%;
     ${media.mobile` 
     font-size:1.5rem;
   `}
+    display:flex;
+
     margin-top: 50px;
     margin-left: 2%;
     border: 5px solid #676a72;
