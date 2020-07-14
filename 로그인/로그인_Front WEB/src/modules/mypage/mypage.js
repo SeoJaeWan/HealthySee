@@ -58,11 +58,11 @@ const initialState = {
     ME_Gender: 1,
     ME_Certificate: 0,
     Account_AC_NickName: 0,
+    originalProfile: null,
+    img: null,
   },
-  owner: null,
   mypageError: null,
   isUpdate: null,
-  originalProfile: null,
 };
 
 const mypage = handleActions(
