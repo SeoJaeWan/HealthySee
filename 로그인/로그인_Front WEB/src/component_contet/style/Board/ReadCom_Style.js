@@ -61,10 +61,11 @@ margin-top: 10%;  `}
   `}
   }
   .titleContent {
+    margin:0;
     padding: 14px 3px 14px 2px;
     width: 63vw;
   }
-  .titlebutton {
+  .titleButton {
     padding-top: 1%;
     margin-right: 2%;
   }
@@ -114,36 +115,58 @@ margin-top: 10%;  `}
     word-break: break-all;
 
     min-height: 15rem;
-    margin: 0rem 1rem;
+    margin: 1rem 0rem 0rem 1rem;
     font-size: 2rem;
 
     ${media.mobile`
-    margin-left: 10%;
+    margin-left: 3%;
   `}
   }
+
   .fileForm {
     display: flex;
     flex-direction: row-reverse;
   }
+
   .fileText {
+    font-size:1.5rem;
     padding: 0.5rem;
   }
-  .fileInfo {
-    position: absolute;
-    right: 3px;
-    display: flex;
-    flex-direction: column;
 
-    transform: translateX(-100%);
-  }
   .file {
     font-size: 2rem;
     border: 3px solid #676a72;
     display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     margin: 1px 0;
     cursor: pointer;
   }
   .filebutton {
     font-family: none;
   }
+`
+export const FilewViewInfo = styled.div`
+  position: absolute;
+  width:250px;
+  
+  right: 2.2%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 1s;
+  height: ${(props) => (props.isView ? "0px" : "150px")};
+  transform: translateX(-100%);
+  ${media.board` 
+  right: 6%;
+`}
+  ${media.desktop`
+  right: -220px;
+  `}
+  ${media.mobile`
+  
+  width:150px;
+  right: -120px;
+  `}
 `

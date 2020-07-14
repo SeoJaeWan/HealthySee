@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { MenuForm, Sticky } from "../style/Header_Style.js";
 import Menu from "./Menu.js";
@@ -10,6 +10,7 @@ const Header = ({ user, onLogout, isView, setMenu, boardView, menuBoardView }) =
         type="button"
         className="menuButton"
         onClick={() => setMenu(setMenu)}
+        onBlur={() => setMenu(setMenu)}
       >
         Menu
       </button>

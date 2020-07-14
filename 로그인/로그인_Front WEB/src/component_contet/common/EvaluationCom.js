@@ -1,52 +1,49 @@
-import React, { useState } from "react";
-import AskModal from "./Modal/AskModal";
-import { EvaluationComForm } from "./style/EvaluationCom_Style";
+import React, { useState } from "react"
+import AskModal from "./Modal/AskModal"
+import { EvaluationComForm } from "./style/EvaluationCom_Style"
 
-const EvaluationCom = ({
-  onHealth,
-  onReport,
-  healthseeCount,
-  reportCount,
-  Writer,
-}) => {
-  const [modal, setModal] = useState(false);
-  const [action, setAction] = useState(null);
+const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount, Writer }) => {
+  const [modal, setModal] = useState(false)
+  const [action, setAction] = useState(null)
 
   const onActionClick = (action) => {
-    console.log(action);
-    setModal(true);
-    setAction(action);
-  };
+    console.log(action)
+    setModal(true)
+    setAction(action)
+  }
   const onCancel = () => {
-    setModal(false);
-  };
+    setModal(false)
+  }
   const onConfirm = () => {
-    setModal(false);
-    action();
-  };
+    setModal(false)
+    action()
+  }
 
   return (
     <>
       <EvaluationComForm>
-        <div className="ContentForm">
-          <div className="flex">
-            <div className="Writer">작성자 : {Writer}</div>
-            <div className="Buttondiv">
-              <div className="onHealth">
-                <button onClick={() => onActionClick(() => onHealth)}>
-                  추천
-                </button>
-                <div>{healthseeCount}</div>
-              </div>
-              <hr />
-              <div className="onReport">
-                <button onClick={() => onActionClick(() => onReport)}>
-                  신고
-                </button>
-                <div>{reportCount}</div>
-              </div>
-            </div>
-          </div>
+        <div className="contentForm">
+          <h1 className="writer">작성자 : {Writer}</h1>
+          <table className="buttonForm">
+            <thead>
+              <tr>
+                <th>
+                  <button onClick={() => onActionClick(() => onHealth)}>추천</button>
+                </th>
+                <th>
+                  <button onClick={() => onActionClick(() => onReport)}>신고</button>
+                </th>
+              </tr>
+
+              <div></div>
+            </thead>
+            <tbody>
+              <tr>
+                <th>{healthseeCount}</th>
+                <th> {reportCount}</th>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </EvaluationComForm>
 
@@ -58,7 +55,7 @@ const EvaluationCom = ({
         onCancel={onCancel}
       />
     </>
-  );
-};
+  )
+}
 
-export default EvaluationCom;
+export default EvaluationCom

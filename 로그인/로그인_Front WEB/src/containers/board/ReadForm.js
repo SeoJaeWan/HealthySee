@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readPost, setBeforeList } from "../../modules/board/post";
 import { withRouter } from "react-router-dom";
@@ -73,16 +73,25 @@ const ReadForm = ({ match, history, route }) => {
       dispatch(initialize());
     }
   }, [reportError, onGoBack, dispatch]);
+  
+  const [isView, setView] = useState(true);
+  const setFile = () => {
+    return setView(!isView);
+  };
+
 
   if (!post || loading) {
     return null;
   }
+
 
   return (
     <>
       <ReadCom
         post={post}
         ownPost={user === (post && post.BO_Writer_NickName)}
+        setFile={setFile}
+        isView={isView}
         actionButton={
           <ActionButton
             onDelete={onDeletePost}
