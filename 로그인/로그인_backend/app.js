@@ -1,12 +1,12 @@
-let createError = require("http-errors");
-let express = require("express");
-let path = require("path");
-let cookieParser = require("cookie-parser");
-let logger = require("morgan");
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 
-let authRouter = require("./routes/account");
-let boardRouter = require("./routes/board");
-let mypageRouter = require("./routes/mypage");
+var authRouter = require("./routes/account");
+var boardRouter = require("./routes/board");
+var albumRouter = require("./routes/album");
 
 const jwtMiddleware = require("./lib/token/jwtMiddlewares").jwtMiddleware;
 
@@ -23,8 +23,7 @@ app.use(jwtMiddleware);
 
 app.use("/auth", authRouter);
 app.use("/board", boardRouter);
-app.use("/mypages", mypageRouter);
-
+app.use("/album", albumRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
