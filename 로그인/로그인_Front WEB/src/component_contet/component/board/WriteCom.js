@@ -1,15 +1,8 @@
-import React from "react";
-import { Container } from "../../style/Container";
-import { WriteForm } from "../../style/Board/WriteCom_Style";
+import React from "react"
+import { Container } from "../../style/Container"
+import { WriteForm } from "../../style/Board/WriteCom_Style"
 
-const WriteCom = ({
-  post,
-  onChange,
-  onClick,
-  onUpload,
-  deleteFile,
-  onCancel,
-}) => {
+const WriteCom = ({ post, onChange, onClick, onUpload, deleteFile, onCancel }) => {
   return (
     <Container>
       <WriteForm>
@@ -47,7 +40,7 @@ const WriteCom = ({
 
         <div className="fileForm">
           <label className="inputImg" htmlFor="file">
-            파일 업로드
+            첨부 하기
           </label>
           <input
             className="hidden"
@@ -57,28 +50,24 @@ const WriteCom = ({
             onChange={onUpload}
             multiple
           />
-          <dd>파일명 나올곳</dd>
           {post.BO_File ? (
-            <div className="filetext">
-              <h2 className="filetitle">첨부파일</h2>
-              <div className="storageFileForm">
-                {post.BO_File.map((file, index) => {
-                  return (
-                    <div className="storageFile" key={index}>
-                      <span key={index}>{file.substring(13)}</span>
-                      <button onClick={() => deleteFile(file)}>X</button>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
+            <>
+              {post.BO_File.map((file, index) => {
+                return (
+                  <div className="storageFile" key={index}>
+                    <span key={index}>{file.substring(13)}</span>
+                    <button onClick={() => deleteFile(file)}>X</button>
+                  </div>
+                )
+              })}
+            </>
           ) : (
             ""
           )}
         </div>
       </WriteForm>
     </Container>
-  );
-};
+  )
+}
 
-export default WriteCom;
+export default WriteCom

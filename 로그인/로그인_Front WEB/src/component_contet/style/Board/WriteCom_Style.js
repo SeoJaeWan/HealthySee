@@ -211,10 +211,13 @@ export const WriteForm = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
+
   .inputImg{
-    padding-left: 1rem;
+    margin-left: 2rem;
     font-size:2rem;
-    font-weight: bold;
+    
+    border-radius : 10px;
+    border: 2px solid #676a72;
     cursor: pointer;
   }
   .filetext {
