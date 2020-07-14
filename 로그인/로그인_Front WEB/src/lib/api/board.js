@@ -1,4 +1,4 @@
-import client from "./client";
+import client, { config } from "./client";
 import qs from "qs";
 
 export const list = ({ id, name, keyword, category }) => {
@@ -13,7 +13,7 @@ export const list = ({ id, name, keyword, category }) => {
 
 export const bestList = (value) => client.get(`/board/lists/${value}&10`);
 
-export const writePost = (formData, config) =>
+export const writePost = (formData) =>
   client.post("/board/posts", formData, config);
 export const readPost = (id) => client.get(`/board/posts/${id}`);
 export const deletePost = (id) => {
@@ -30,7 +30,7 @@ export const undoReportPost = (id) =>
 export const healthPost = ({ BO_Code }) =>
   client.post("/board/posts/health", { BO_Code });
 
-export const updatePost = ({ id, formData, config }) => {
+export const updatePost = ({ id, formData }) => {
   console.log(id);
   console.log(formData);
   return client.patch(`/board/posts/${id}`, formData, config);
