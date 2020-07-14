@@ -8,7 +8,7 @@ import {
   writePost,
   updatePost,
   setOriginal,
-} from "../../modules/board/write";
+} from "../../modules/board/boardWrite";
 import { withRouter } from "react-router-dom";
 import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
@@ -17,9 +17,9 @@ const WriteForm = ({ route, history, match }) => {
   const [error, setError] = useState(null);
   const readUrl = `${route + "/" + match.params.board}`;
 
-  const { postInfo, post, user } = useSelector(({ write, user }) => ({
-    postInfo: write.postInfo,
-    post: write.post,
+  const { postInfo, post, user } = useSelector(({ boardWrite, user }) => ({
+    postInfo: boardWrite.postInfo,
+    post: boardWrite.post,
     user: user.user,
   }));
 
@@ -37,16 +37,12 @@ const WriteForm = ({ route, history, match }) => {
     formData.append("files", post.file[1]);
     formData.append("files", post.file[2]);
     formData.append("username", user);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
+
     if (post.BO_Code) {
       formData.append("BO_Code", post.BO_Code);
       formData.append("leaveFile", post.BO_File);
-      dispatch(updatePost(post.BO_Code, formData, config));
-    } else dispatch(writePost(formData, config));
+      dispatch(updatePost(post.BO_Code, formData));
+    } else dispatch(writePost(formData));
   };
 
   const onChange = (e) => {

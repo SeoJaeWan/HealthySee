@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { readPost, setBeforeList } from "../../modules/board/post";
+import { readPost, setBeforeList } from "../../modules/board/boardPost";
 import { withRouter } from "react-router-dom";
 import { deletePost, downloadFile } from "../../lib/api/board";
 import { saveAs } from "file-saver";
@@ -12,18 +12,19 @@ import ActionButton from "../../component_contet/common/Modal/ActionButton";
 import { useCallback } from "react";
 import { initialize } from "../../modules/board/evaluation";
 
-const ReadForm = ({ match, history, route }) => {
+const ReadForm = ({ match, history }) => {
   const postId = match.params.postId;
   const rootUrl = `/board/${match.params.board}`;
 
+  const [isView, setView] = useState(true);
   const dispatch = useDispatch();
   const { post, loading, user, isReport, isHealth, reportError } = useSelector(
-    ({ post, loading, user, evaluation }) => ({
-      post: post.post,
+    ({ boardPost, loading, user, evaluation }) => ({
+      post: boardPost.post,
       loading: loading["post/READ_POST"],
       user: user.user,
-      isHealth: post.isHealthsee,
-      isReport: post.isReport,
+      isHealth: boardPost.isHealthsee,
+      isReport: boardPost.isReport,
       reportError: evaluation.reportError,
     })
   );
@@ -73,17 +74,14 @@ const ReadForm = ({ match, history, route }) => {
       dispatch(initialize());
     }
   }, [reportError, onGoBack, dispatch]);
-  
-  const [isView, setView] = useState(true);
+
   const setFile = () => {
     return setView(!isView);
   };
 
-
   if (!post || loading) {
     return null;
   }
-
 
   return (
     <>

@@ -11,7 +11,7 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
       <InfCom>
         {user === mypage.Account_AC_NickName && (
           <div className="rowrserver">
-            <button className="edit" onClick={onUpdate}>
+            <button type="button" className="edit" onClick={onUpdate}>
               편집
             </button>
           </div>
@@ -21,7 +21,7 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
             <div className="Title">프로필 사진</div>
             <img
               className="ImgDiv"
-              src={img ? img : defaultImg}
+              src={mypage.img ? mypage.img : defaultImg}
               alt="profile"
             />
             <div className="PublicDiv">
@@ -60,18 +60,18 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
               </div>
             </div>
             <div className="ButtonDiv">
-              <button className="Buttons">
+              <button type="button" className="Buttons">
                 <Link className="ButtonLink" to="/Mypage/registerTR">
                   트레이너 등록하기
                 </Link>
               </button>
 
-              <button className="Buttons">
+              <button type="button" className="Buttons">
                 <Link className="ButtonLink" to="/Mypage/registerBO">
                   운동 건의
                 </Link>
               </button>
-              <button className="Buttons">
+              <button type="button" className="Buttons">
                 <Link className="ButtonLink" to="/Mypage/Album">
                   앨 범
                 </Link>

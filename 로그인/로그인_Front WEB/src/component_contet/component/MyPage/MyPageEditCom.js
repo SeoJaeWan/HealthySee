@@ -7,12 +7,12 @@ import {
 } from "../../style/Mypage/MyPageEditCom_Style";
 import defaultImg from "../../../Images/defaultImg.jpg";
 
-const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack, img }) => {
+const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
   return (
     <Container>
       <InfCom>
         <div className="rowrserver">
-          <button onClick={onGoBack} className="edit">
+          <button type="button" onClick={onGoBack} className="edit">
             취소
           </button>
           <button onClick={onComplete} type="submit" className="edit">
@@ -27,7 +27,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack, img }) => {
               className="ImgDiv"
               src={
                 // mypage.ME_Profile_Photo ? mypage.ME_Profile_Photo : defaultImg
-                img ? img : defaultImg
+                mypage.img ? mypage.img : defaultImg
               }
               alt="profile"
             />
@@ -99,17 +99,17 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack, img }) => {
               <div className="FlexGrow">
                 생일
                 <input
-                  type="date"
+                  type={mypage.ME_Birth ? "date" : "text"}
                   name="ME_Birth"
                   className="Contents"
-                  value={mypage.ME_Birth}
+                  value={mypage.ME_Birth ? mypage.ME_Birth : ""}
                   onChange={onChange}
                 />
               </div>
               <div className="FlexGrow">
                 성별
                 <div className="flexInput">
-                  <div>남</div>
+                  <div>남{mypage.ME_Gender}</div>
                   <CheckBox
                     name="ME_Gender"
                     id="genderBox"

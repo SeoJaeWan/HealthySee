@@ -113,6 +113,7 @@ const CommentsItem = ({
                 onChange={changeComment}
               />
               <button
+                type="submit"
                 className="writeReply"
                 onClick={() => onWrite(BC_Re_Ref, BC_Code)}
               >

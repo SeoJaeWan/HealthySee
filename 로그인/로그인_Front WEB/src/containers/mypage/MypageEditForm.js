@@ -7,13 +7,12 @@ import {
   initialize,
 } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { OnRenderImg } from "../common/OnRenderImg";
+import { onRenderImg } from "../common/onRenderImg";
 
 const MypageEditForm = ({ history }) => {
   const dispatch = useDispatch();
   const { mypage, user, img, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
-    img: mypage.img,
     originalProfile: mypage.originalProfile,
     isUpdate: mypage.isUpdate,
     user: user.user,
@@ -61,8 +60,10 @@ const MypageEditForm = ({ history }) => {
   // };
 
   useEffect(() => {
-    if (mypage.originalProfile)
-      OnRenderImg(mypage.originalProfile, updateField);
+    if (mypage.originalProfile) {
+      console.log("여ㅑ기");
+      onRenderImg(mypage.originalProfile, updateField, dispatch);
+    }
   }, [mypage.originalProfile]);
 
   useEffect(() => {
@@ -77,7 +78,6 @@ const MypageEditForm = ({ history }) => {
       onChange={onChange}
       onComplete={onComplete}
       onGoBack={onGoBack}
-      img={img}
     />
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BoardCom from "../../component_contet/component/board/BoardCom";
 import { useDispatch, useSelector } from "react-redux";
-import { list, listDetail, changeField } from "../../modules/board/posts";
+import { list, listDetail, changeField } from "../../modules/board/boardList";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
@@ -10,10 +10,10 @@ const BoardForm = ({ match, history }) => {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const { posts, postsCount, loading, options } = useSelector(
-    ({ posts, loading, post }) => ({
-      posts: posts.posts,
-      options: posts.options,
-      postsCount: posts.postsCount,
+    ({ boardList, loading }) => ({
+      posts: boardList.posts,
+      options: boardList.options,
+      postsCount: boardList.postsCount,
       loading: loading["posts/LIST"],
     })
   );
@@ -103,13 +103,14 @@ const BoardForm = ({ match, history }) => {
   const onChangeModal = () => {
     setModal(!modal);
   };
-
+  if (!posts || loading) {
+    return null;
+  }
   return (
     <>
       <BoardCom
         match={match}
         posts={posts}
-        loading={loading}
         scroll={scroll}
         onClick={onClick}
         onChange={onChange}

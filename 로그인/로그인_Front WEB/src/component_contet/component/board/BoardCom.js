@@ -1,13 +1,12 @@
-import React from "react"
-import { Container } from "../../style/Board/BoardCom_Style"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Container } from "../../style/Board/BoardCom_Style";
+import { Link } from "react-router-dom";
 
-import InfiniteScroll from "react-infinite-scroll-component"
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const BoardCom = ({
   match,
   posts,
-  loading,
   scroll,
   onClick,
   onChange,
@@ -15,10 +14,6 @@ const BoardCom = ({
   fetchMoreData,
   onChangeModal,
 }) => {
-  if (!posts || loading) {
-    return null
-  }
-
   return (
     <Container>
       <div className="Board">
@@ -29,7 +24,12 @@ const BoardCom = ({
               <option value="BO_Title">제목</option>
               <option value="BO_Writer_NickName">닉네임</option>
             </select>
-            <input className="SearchInput" type="text" name="keyword" onChange={onChange} />
+            <input
+              className="SearchInput"
+              type="text"
+              name="keyword"
+              onChange={onChange}
+            />
             <button type="submit" className="SearchButton" onClick={onSearch}>
               검색
             </button>
@@ -65,7 +65,7 @@ const BoardCom = ({
                       onClick={onClick}
                       onChangeModal={onChangeModal}
                     />
-                  )
+                  );
                 })}
               </tbody>
             </table>
@@ -73,17 +73,31 @@ const BoardCom = ({
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const BoardItem = ({ post, onClick, onChangeModal }) => {
-  const { BO_Code, BO_Title, BO_Creation_Date, BO_Writer_NickName, BO_Hit, BO_State } = post
+  const {
+    BO_Code,
+    BO_Title,
+    BO_Creation_Date,
+    BO_Writer_NickName,
+    BO_Hit,
+    BO_State,
+  } = post;
   return (
     <>
-      <tr className="Item" onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}>
-        <td className="ItemTitle">{BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}</td>
+      <tr
+        className="Item"
+        onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}
+      >
+        <td className="ItemTitle">
+          {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
+        </td>
         <td className="ItemWriter">{BO_Writer_NickName}</td>
-        <td className="ItemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
+        <td className="ItemDate">
+          {new Date(BO_Creation_Date).toLocaleDateString()}
+        </td>
         <td className="ItemHit">{BO_Hit}회</td>
       </tr>
       <tr>
@@ -94,12 +108,13 @@ const BoardItem = ({ post, onClick, onChangeModal }) => {
         >
           {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
           <br />
-          {BO_Writer_NickName}&nbsp;&nbsp; {new Date(BO_Creation_Date).toLocaleDateString()}
+          {BO_Writer_NickName}&nbsp;&nbsp;{" "}
+          {new Date(BO_Creation_Date).toLocaleDateString()}
           &nbsp;&nbsp; 조회수 : {BO_Hit}
         </td>
       </tr>
     </>
-  )
-}
+  );
+};
 
-export default BoardCom
+export default BoardCom;

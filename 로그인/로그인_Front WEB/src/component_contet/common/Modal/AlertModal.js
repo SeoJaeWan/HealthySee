@@ -2,10 +2,9 @@ import React from "react";
 import Modal from "./Modal";
 
 const AlertModal = ({ visible, title, error, onCheck }) => {
-  if (!visible) return;
+  if (!visible) return null;
   return (
     <Modal
-      visible={true}
       title={title}
       description={error}
       onCancel={onCheck}

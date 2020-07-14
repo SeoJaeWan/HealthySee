@@ -1,54 +1,42 @@
 import styled from "styled-components"
 import { media } from "../../../ReactiveStyle/ReactiveStyle"
+
 export const WriteForm = styled.div`
-  .buttonForm {
+  .buttonform {
     margin-left: 5%;
     margin-top: 2%;
-
     width: 90%;
-
     display: flex;
     justify-content: space-between;
   }
-  .backButton {
+  .backbutton {
     margin-left: 4%;
-
     font-size: 3rem;
-
     ${media.mobile`
-
     margin-left: 2%;
     margin-top: 5%;
     margin-bottom: 5%;
-
-    font-size: 1.5rem;
+  font-size: 1.5rem;
   `}
   }
-  .writeButton {
+  .writebutton {
     margin-left: 4%;
-
     font-size: 3rem;
-
     ${media.mobile`
-
     margin-left: 2%;
     margin-top: 5%;
     margin-bottom: 5%;
-
-    font-size: 1.5rem;
+  font-size: 1.5rem;
   `}
   }
   .titleform {
     display: flex;
     width: 90%;
     font-size: 1rem;
-
     border: 5px solid #676a72;
     border-left: solid white;
-
     margin-top: 1%;
     margin-left: 5%;
-
     ${media.mobile`
     width: 100%;
     margin-left: 2%;
@@ -72,64 +60,50 @@ export const WriteForm = styled.div`
   `}
     }
   }
+  .titlediv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .title {
     font-size: 1.5rem;
     width: 5rem;
-
-    margin: 0;
-    padding: 1rem;
+    margin-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
   }
-
-  .titleInputForm {
-    width: 92%;
-
-    margin: 0;
-    padding-right: 10px;
-  }
-  .titleInput {
+  .titleinput {
     border: none;
-
-    margin-top: 10px;
-
+    height: 55px;
     width: 100%;
-    height: 70%;
     color: #676a72;
     font: inherit;
-    font-size: 1.5rem;
+    font-size: 2rem;
     box-shadow: 0px 4px 10px -8px black;
   }
   .textTitle {
     margin-top: 2%;
     padding-left: 9%;
-
     font-size: 3rem;
     width: 90%;
-
     display: flex;
     justify-content: space-between;
-
     ${media.mobile`
-
     margin-top: 5%;
     margin-bottom: 5%;
-
-   font-size: 1.5rem;
+  font-size: 1.5rem;
   `}
   }
   .textForm {
     display: flex;
-
     width: 90%;
     height: 400px;
-
     font-size: 1rem;
-
     border: 5px solid #676a72;
     border-left: solid white;
-
     margin-top: 1%;
     margin-left: 5%;
-
     ${media.mobile`
     width: 100%;
     margin-left: 2%;
@@ -158,7 +132,7 @@ export const WriteForm = styled.div`
     margin-left: 2%;
     color: #676a72;
     font: inherit;
-    font-size: 1.5rem;
+    font-size: 3rem;
     width: 100%;
     border: none;
     resize: none;
@@ -166,9 +140,6 @@ export const WriteForm = styled.div`
     height: auto;
     padding: 8px;
     box-shadow: 0px 4px 10px -8px black;
-  }
-  h1 {
-    font-weight: normal;
   }
   .fileForm {
     width: 90%;
@@ -201,52 +172,23 @@ export const WriteForm = styled.div`
     }
   }
 
-
-  .hidden {
-    position: absolute;
-    display:visible;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
-  .inputImg{
-    padding-left: 1rem;
-    font-size:2rem;
-    font-weight: bold;
-    cursor: pointer;
+  .fileButton {
+    margin-left: 2%;
+    margin-top: 2%;
   }
   .filetext {
     margin-top: 2%;
     display: flex;
-  }
-  .filetitle {
-    font-size: 1.5rem;
-    width: 5rem;
-
-    margin: 0;
-    padding: 1rem;
-
-    ${media.mobile`    
-      font-size: 1.2rem;
-  `}
   }
   .storageFileForm {
     margin-top: 1.5%;
     width: 75%;
   }
   .storageFile {
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size:1.5rem;
-
-    
+    font-size: 1.5rem;
+    padding-top: 0.8%;
     margin-left: 2%;
-    margin-bottom: 1rem;
-
+    margin-bottom: 1%;
     display: flex;
     align-items: center;
   }

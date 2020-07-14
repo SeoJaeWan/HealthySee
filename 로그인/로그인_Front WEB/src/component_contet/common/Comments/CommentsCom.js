@@ -29,7 +29,11 @@ const CommentsCom = ({
             value={commentValue.content}
             onChange={changeComment}
           />
-          <button className="writeButton" onClick={() => onWrite("0")}>
+          <button
+            type="submit"
+            className="writeButton"
+            onClick={() => onWrite("0")}
+          >
             작성
           </button>
         </div>

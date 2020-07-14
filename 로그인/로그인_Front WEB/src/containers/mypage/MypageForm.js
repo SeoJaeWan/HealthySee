@@ -3,15 +3,17 @@ import MypageCom from "../../component_contet/component/MyPage/MyPageCom";
 import { useDispatch, useSelector } from "react-redux";
 import { readMypage, updateField } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { OnRenderImg } from "../common/OnRenderImg";
+import { onRenderImg } from "../common/onRenderImg";
 
 const MypageForm = ({ match, history }) => {
   const dispatch = useDispatch();
-  const { mypage, user, img } = useSelector(({ mypage, user }) => ({
-    mypage: mypage.mypage,
-    img: mypage.img,
-    user: user.user,
-  }));
+  const { mypage, user, loading } = useSelector(
+    ({ mypage, user, loading }) => ({
+      mypage: mypage.mypage,
+      user: user.user,
+      loading: loading["mypage/READ_MYPAGE"],
+    })
+  );
 
   const onUpdate = () => {
     localStorage.setItem("form", JSON.stringify(mypage));
@@ -27,7 +29,7 @@ const MypageForm = ({ match, history }) => {
 
       dispatch(updateField({ key: "originalProfile", value: blob }));
 
-      OnRenderImg(blob, updateField);
+      onRenderImg(blob, updateField, dispatch);
     }
   }, [mypage.ME_Profile_Photo, mypage.ME_Profile_Type, dispatch]);
 
@@ -35,9 +37,8 @@ const MypageForm = ({ match, history }) => {
     dispatch(readMypage(match.params.username));
   }, [dispatch, match]);
 
-  return (
-    <MypageCom mypage={mypage} user={user} onUpdate={onUpdate} img={img} />
-  );
+  if (!mypage || loading) return null;
+  return <MypageCom mypage={mypage} user={user} onUpdate={onUpdate} />;
 };
 
 export default withRouter(MypageForm);

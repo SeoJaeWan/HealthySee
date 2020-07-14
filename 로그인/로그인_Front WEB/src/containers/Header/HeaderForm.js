@@ -3,7 +3,7 @@ import Header from "../../component_frame/component/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../modules/account/user";
 import { initializeForm } from "../../modules/account/auth";
-import { initialize } from "../../modules/board/posts";
+import { initialize } from "../../modules/board/boardList";
 
 const HeaderForm = () => {
   const dispatch = useDispatch();

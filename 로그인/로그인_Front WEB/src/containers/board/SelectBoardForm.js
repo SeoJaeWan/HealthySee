@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SelectBoardCom from "../../component_contet/component/board/SelectBoardCom";
 import { useSelector, useDispatch } from "react-redux";
-import { bestList } from "../../modules/board/posts";
+import { bestList } from "../../modules/board/boardList";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
 const SelectBoardForm = ({ match, history }) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const { bestPosts, loading } = useSelector(({ posts, loading }) => ({
-    bestPosts: posts.bestPosts,
+  const { bestPosts } = useSelector(({ boardList }) => ({
+    bestPosts: boardList.bestPosts,
   }));
 
   const onClick = (postId, board) => {

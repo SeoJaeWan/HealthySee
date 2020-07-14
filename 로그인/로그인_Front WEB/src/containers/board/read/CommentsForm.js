@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeField, initialize } from "../../../modules/board/write";
+import { changeField, initialize } from "../../../modules/board/boardWrite";
 import {
   writeComment,
   deleteComment,
@@ -8,7 +8,7 @@ import {
   readComment,
   changeEvaluation,
   changePage,
-} from "../../../modules/board/post";
+} from "../../../modules/board/boardPost";
 import { reportComment } from "../../../modules/board/evaluation";
 import CommentsCom from "../../../component_contet/common/Comments/CommentsCom";
 import Pagenation from "../../../component_contet/common/Pagenation";
@@ -23,18 +23,19 @@ const CommentsForm = ({ post, user, onChange }) => {
     count,
     temporaryComments,
     nowPage,
-  } = useSelector(({ write, post, evaluation }) => ({
-    comments: post.comments,
-    comment: write.comment,
-    page: post.page,
-    count: post.count,
+    loading,
+  } = useSelector(({ boardWrite, boardPost, evaluation, loading }) => ({
+    comments: boardPost.comments,
+    comment: boardWrite.comment,
+    page: boardPost.page,
+    count: boardPost.count,
     temporaryComments: evaluation.comments,
-    nowPage: post.nowPage,
+    nowPage: boardPost.nowPage,
+    loading: loading["post/READ_POST"],
   }));
 
   const changeComment = (e) => {
     const { name, value } = e.target;
-    console.log(comment[name]);
 
     dispatch(changeField({ form: "comment", key: name, value }));
   };
@@ -55,7 +56,6 @@ const CommentsForm = ({ post, user, onChange }) => {
   const onUpdate = (edit, code, data) => {
     console.log(code);
     if (edit) {
-      console.log(page);
       dispatch(updateComment({ code, content: comment[code], nowPage }));
       dispatch(changeField({ form: "comment", key: code, value: "" }));
     } else dispatch(changeField({ form: "comment", key: code, value: data }));
@@ -85,6 +85,7 @@ const CommentsForm = ({ post, user, onChange }) => {
     }
   }, [temporaryComments, dispatch]);
 
+  if (!comments || loading) return null;
   return (
     <>
       <CommentsCom

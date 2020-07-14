@@ -1,7 +1,7 @@
-import React from "react"
-import { SignupForm} from "../../style/SignupCom_Style.js"
-import { Container } from "../../style/Container.js"
-import ToggleButton from "../../common/ToggleButton.js"
+import React from "react";
+import { SignupForm } from "../../style/SignupCom_Style.js";
+import { Container } from "../../style/Container.js";
+import ToggleButton from "../../common/ToggleButton.js";
 
 const SignupCom = ({ onChange, account, onSubmit, error }) => {
   return (
@@ -70,7 +70,7 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
         </form>
       </SignupForm>
     </Container>
-  )
-}
+  );
+};
 
-export default SignupCom
+export default SignupCom;

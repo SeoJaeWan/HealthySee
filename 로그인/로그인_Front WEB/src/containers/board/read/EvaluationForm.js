@@ -11,14 +11,10 @@ const EvaluationForm = ({ post, Writer, isHealthsee, isReport }) => {
   const { BO_Healthsee_Count, BO_Report_Count, BO_Code } = post;
 
   const dispatch = useDispatch();
-  const { healthsee, report, healthseeCount, reportCount } = useSelector(
-    ({ evaluation }) => ({
-      healthsee: evaluation.healthsee,
-      report: evaluation.report,
-      healthseeCount: evaluation.healthseeCount,
-      reportCount: evaluation.reportCount,
-    })
-  );
+  const { healthseeCount, reportCount } = useSelector(({ evaluation }) => ({
+    healthseeCount: evaluation.healthseeCount,
+    reportCount: evaluation.reportCount,
+  }));
 
   const onHealth = () => {
     dispatch(healthPost({ BO_Code }));

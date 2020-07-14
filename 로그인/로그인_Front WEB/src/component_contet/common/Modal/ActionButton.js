@@ -9,6 +9,7 @@ const ActionButton = ({ onChange, onDelete }) => {
   };
   const onCancel = () => {
     setModal(false);
+    console.log("sdasadsad");
   };
   const onConfirm = () => {
     setModal(false);
@@ -17,21 +18,26 @@ const ActionButton = ({ onChange, onDelete }) => {
 
   return (
     <>
+      {console.log(modal)}
       <ButtonForm>
-        <button onClick={onChange}>수정</button>
+        <button type="button" onClick={onChange}>
+          수정
+        </button>
 
-        <hr></hr>
-        <button onClick={onRemoveClick}>삭제</button>
+        <button type="submit" onClick={onRemoveClick}>
+          삭제
+        </button>
       </ButtonForm>
-      <Modal
-        visible={modal}
-        title="삭제"
-        description="정말 삭제하시겠습니까?"
-        confirmText="확인"
-        cancelText="취소"
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-      />
+      {modal && (
+        <Modal
+          title="삭제"
+          description="정말 삭제하시겠습니까?"
+          confirmText="확인"
+          cancelText="취소"
+          onConfirm={onConfirm}
+          onCancel={onCancel}
+        />
+      )}
     </>
   );
 };

@@ -7,18 +7,25 @@ const Pagenation = ({ page, getPage }) => {
   return (
     <Container>
       <Pagenationform>
-        <button className="Ltbutton">&lt;</button>
+        <button type="submit" className="Ltbutton">
+          &lt;
+        </button>
         <div className="pageform">
-
           {[...Array(page)].map((count, index) => {
             return (
-              <Button key={index} onClick={() => getPage(index + 1)}>
+              <Button
+                type="submit"
+                key={index}
+                onClick={() => getPage(index + 1)}
+              >
                 {index + 1}
               </Button>
             );
           })}
         </div>
-        <button className="Rtbutton">&gt;</button>
+        <button type="submit" className="Rtbutton">
+          &gt;
+        </button>
       </Pagenationform>
     </Container>
   );
