@@ -1,10 +1,8 @@
 const A_Comment = require("../../../models").a_comment;
 const album = require("../../../models").album;
-const B_Healthsee = require("../../../models").b_healthsee;
-const B_Reporter = require("../../../models").b_reporter;
 const { Op } = require("sequelize");
 const FrontComment = require("../../../models").frontcomment;
-const Picture = require("../../../models/picture").picture;
+const Picture = require("../../../models").picture;
 
 const readPost = async (req, res, next) => {
   var AL_Code = req.params.AL_Code;
@@ -14,12 +12,17 @@ const readPost = async (req, res, next) => {
   var Album = await album.findOne({
     where: { AL_Code },
   });
-  if(Album.AL_Picture !== "" && Album.AL_Picture !== null)
-  Album.AL_Picture = Album.AL_Picture.split(',');
-  else Album.AL_Picture = [];
-  var pictures = await Picture.findOne({
+
+  var pictures = await Picture.findAll({
       where : {Album_AL_Code : Album.AL_Code},
-  })
+  });
+
+  // if(pictures){
+  //     for(i = 0; i < pictures.length ; i++){
+  //       Album.AL_Picture[i] = pictures[i].P_Picture;
+  //     }
+  // }
+  // console.log(Album);
 
   // 댓글 1페이지
 //   comments = await FrontComment.findAndCountAll({
@@ -48,7 +51,8 @@ const readPost = async (req, res, next) => {
 //     {BR_Reporter_NickName : username },
 // ]}})
  
-   responseData.boardDetail = Album;
+   responseData.albumDetail = Album;
+   responseData.picture = pictures;
 //  responseData.comments = comments.rows;
 //  responseData.lastPage = (Math.ceil(comments.count / 20) == 0)?1:Math.ceil(comments.count / 20);
 //   responseData.isHealthsee = isHealthsee;
