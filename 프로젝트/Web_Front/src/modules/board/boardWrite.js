@@ -12,16 +12,16 @@ const [
   WRITE_POST,
   WRITE_POST_SUCCESS,
   WRITE_POST_FAILURE,
-] = createRequestActionTypes("write/WRITE_POST");
+] = createRequestActionTypes("boardWrite/WRITE_POST");
 const [
   UPDATE_POST,
   UPDATE_POST_SUCCESS,
   UPDATE_POST_FAILURE,
-] = createRequestActionTypes("write/UPDATE_POST");
+] = createRequestActionTypes("boardWrite/UPDATE_POST");
 
-const CHANGE_FIELD = "write/CHANGE_FIELD";
-const INITIALIZE = "write/INITIALIZE";
-const SET_ORIGINAL = "write/SET_ORIGINAL";
+const CHANGE_FIELD = "boardWrite/CHANGE_FIELD";
+const INITIALIZE = "boardWrite/INITIALIZE";
+const SET_ORIGINAL = "boardWrite/SET_ORIGINAL";
 
 export const writePost = createAction(WRITE_POST, (formData) => formData);
 export const updatePost = createAction(UPDATE_POST, (id, formData) => ({

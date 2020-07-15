@@ -42,9 +42,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
           </div>
           <ul className="rightDiv">
             <li>
-              <label htmlfor="nickname" className="FlexGrow">
-                닉네임
-              </label>
+              <label className="FlexGrow">닉네임</label>
               <input
                 readOnly
                 type="text"
@@ -71,7 +69,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
               <input
                 type="text"
                 name="ME_Weight"
-                Id="Weight"
+                id="Weight"
                 className="Contents"
                 value={mypage.ME_Weight}
                 onChange={onChange}

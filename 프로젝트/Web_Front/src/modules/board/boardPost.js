@@ -1,5 +1,4 @@
 import * as boardAPI from "../../lib/api/board";
-import produce from "immer";
 
 import { createAction, handleActions, combineActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
@@ -12,32 +11,32 @@ const [
   READ_POST,
   READ_POST_SUCCESS,
   READ_POST_FAILURE,
-] = createRequestActionTypes("post/READ_POST");
+] = createRequestActionTypes("boardPost/READ_POST");
 
-const CHANGE_EVALUATION = "post/CHANGE_EVALUATION";
+const CHANGE_EVALUATION = "boardPost/CHANGE_EVALUATION";
 const [
   WRITE_COMMENT,
   WRITE_COMMENT_SUCCESS,
   WRITE_COMMENT_FAILURE,
-] = createRequestActionTypes("post/WRITE_COMMENT");
+] = createRequestActionTypes("boardPost/WRITE_COMMENT");
 const [
   READ_COMMENT,
   READ_COMMENT_SUCCESS,
   READ_COMMENT_FAILURE,
-] = createRequestActionTypes("post/READ_COMMENT");
+] = createRequestActionTypes("boardPost/READ_COMMENT");
 const [
   UPDATE_COMMENT,
   UPDATE_COMMENT_SUCCESS,
   UPDATE_COMMENT_FAILURE,
-] = createRequestActionTypes("post/UPDATE_COMMENT");
+] = createRequestActionTypes("boardPost/UPDATE_COMMENT");
 const [
   DELETE_COMMENT,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
-] = createRequestActionTypes("post/DELETE_COMMENT");
+] = createRequestActionTypes("boardPost/DELETE_COMMENT");
 
-const SETBEFORELIST = "post/SETBEFORELIST";
-const CHANGEPAGE = "post/CHANGEPAGE";
+const SETBEFORELIST = "boardPost/SETBEFORELIST";
+const CHANGEPAGE = "boardPost/CHANGEPAGE";
 
 export const readPost = createAction(READ_POST, (id) => id);
 export const changeEvaluation = createAction(

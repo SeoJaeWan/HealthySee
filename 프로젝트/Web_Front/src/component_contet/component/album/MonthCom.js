@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MonthForm } from "../../style/Album/MonthCom_style.js";
+import { MonthForm } from "./style/MonthCom_style";
 import AlbumInfo from "./AlbumInfoCom";
 
 const MonthCom = () => {

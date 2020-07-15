@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import ActionButton from "../Modal/ActionButton"
+import React, { useState } from "react";
+import ActionButton from "../Modal/ActionButton";
 
 const CommentsItem = ({
   comment,
@@ -12,15 +12,20 @@ const CommentsItem = ({
   onUpdate,
   onReport,
 }) => {
-  const [edit, setEdit] = useState(false)
-  const { BC_Content, BC_Writer_NickName, BC_Re_Ref, BC_Code, BC_Report_Count, BC_State } = comment
+  const [edit, setEdit] = useState(false);
+  const {
+    BC_Content,
+    BC_Writer_NickName,
+    BC_Re_Ref,
+    BC_Code,
+    BC_Report_Count,
+    BC_State,
+  } = comment;
 
   const ChangeEdit = (code, data) => {
-    console.log(edit)
-    console.log(code, data)
-    onUpdate(edit, code, data)
-    setEdit(!edit)
-  }
+    onUpdate(edit, code, data);
+    setEdit(!edit);
+  };
   return (
     <>
       {edit ? (
@@ -65,7 +70,7 @@ const CommentsItem = ({
                         type="submit"
                         className="reportButton"
                         onClick={() =>
-                          user !== (comment && BC_Writer_NickName) && onReport(BC_Code)
+                          user !== BC_Writer_NickName && onReport(BC_Code)
                         }
                       >
                         신고
@@ -95,7 +100,9 @@ const CommentsItem = ({
             </div>
           ) : (
             <div className="blind">
-              {BC_State === 1 ? "블라인드된 댓글입니다. " : "삭제된 댓글입니다."}
+              {BC_State === 1
+                ? "블라인드된 댓글입니다. "
+                : "삭제된 댓글입니다."}
             </div>
           )}
           {nextcomment !== BC_Re_Ref && (
@@ -110,7 +117,10 @@ const CommentsItem = ({
                 value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
                 onChange={changeComment}
               />
-              <button className="writeReply" onClick={() => onWrite(BC_Re_Ref, BC_Code)}>
+              <button
+                className="writeReply"
+                onClick={() => onWrite(BC_Re_Ref, BC_Code)}
+              >
                 답글
               </button>
             </div>
@@ -118,7 +128,7 @@ const CommentsItem = ({
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default CommentsItem
+export default CommentsItem;

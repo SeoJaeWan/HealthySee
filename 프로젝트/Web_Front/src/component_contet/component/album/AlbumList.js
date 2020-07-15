@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "../../style/Container";
 import { Link } from "react-router-dom";
-import { AlbumForm } from "../../style/Album/Album_Style";
+import { AlbumForm } from "./style/Album_style";
 
 import MonthCom from "./MonthCom";
 

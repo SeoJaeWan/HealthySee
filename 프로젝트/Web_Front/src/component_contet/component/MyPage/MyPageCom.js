@@ -68,7 +68,10 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
                     </Link>
                   </button>
                   <button type="button" className="buttons">
-                    <Link className="buttonLink" to="/Mypage/Album">
+                    <Link
+                      className="buttonLink"
+                      to={`/Album/${mypage.Account_AC_NickName}`}
+                    >
                       앨 범
                     </Link>
                   </button>

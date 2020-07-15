@@ -9,6 +9,8 @@ import boardList, { postsSaga } from "./board/boardList";
 import evaluation, { evaluationSaga } from "./board/evaluation";
 import loading from "./loading";
 import mypage, { mypageSaga } from "./mypage/mypage";
+import albumList, { albumListSaga } from "./album/albumList";
+import albumWrite, { albumWriteSaga } from "./album/albumWrite";
 
 const rootReducer = combineReducers({
   auth,
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
   boardList,
   evaluation,
   mypage,
+  albumList,
+  albumWrite,
   loading,
 });
 
@@ -30,6 +34,8 @@ export function* rootSaga() {
     postsSaga(),
     evaluationSaga(),
     mypageSaga(),
+    albumListSaga(),
+    albumWriteSaga(),
   ]);
 }
 

@@ -1,13 +1,13 @@
 import React from "react";
 import Modal from "./Modal";
 
-const AskModal = ({ visible, title, description, onConfirm, onCancel }) => {
+const AskModal = ({ visible, title, onConfirm, onCancel }) => {
   if (!visible) return null;
   return (
     <>
       <Modal
         title={title}
-        description={description}
+        description={`정말 ${title} 하시겠습니까?`}
         onConfirm={onConfirm}
         onCancel={onCancel}
         confirmText="확인"

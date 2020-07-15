@@ -1,23 +1,29 @@
-import React, { useState } from "react"
-import AskModal from "./Modal/AskModal"
-import { EvaluationComForm } from "./style/EvaluationCom_style"
+import React, { useState } from "react";
+import AskModal from "./Modal/AskModal";
+import { EvaluationComForm } from "./style/EvaluationCom_style";
 
-const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount, Writer }) => {
-  const [modal, setModal] = useState(false)
-  const [action, setAction] = useState(null)
+const EvaluationCom = ({
+  onHealth,
+  onReport,
+  healthseeCount,
+  reportCount,
+  Writer,
+}) => {
+  const [modal, setModal] = useState(false);
+  const [action, setAction] = useState(null);
 
   const onActionClick = (e) => {
-    setModal(true)
-    setAction(e.target.name)
-  }
+    setModal(true);
+    setAction(e.target.name);
+  };
   const onCancel = () => {
-    setModal(false)
-  }
+    setModal(false);
+  };
   const onConfirm = () => {
-    setModal(false)
-    if (action === "health") onHealth()
-    else onReport()
-  }
+    setModal(false);
+    if (action === "추천") onHealth();
+    else onReport();
+  };
 
   return (
     <>
@@ -28,10 +34,14 @@ const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount, Writer
             <thead>
               <tr>
                 <th>
-                  <button onClick={() => onActionClick(() => onHealth)}>추천</button>
+                  <button type="submit" name="추천" onClick={onActionClick}>
+                    추천
+                  </button>
                 </th>
                 <th>
-                  <button onClick={() => onActionClick(() => onReport)}>신고</button>
+                  <button type="submit" name="신고" onClick={onActionClick}>
+                    신고
+                  </button>
                 </th>
               </tr>
             </thead>
@@ -46,13 +56,12 @@ const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount, Writer
       </EvaluationComForm>
       <AskModal
         visible={modal}
-        title="추천&amp;신고"
-        description="정말 하시겠습니까?"
+        title={action}
         onConfirm={onConfirm}
         onCancel={onCancel}
       />
     </>
-  )
-}
+  );
+};
 
-export default EvaluationCom
+export default EvaluationCom;

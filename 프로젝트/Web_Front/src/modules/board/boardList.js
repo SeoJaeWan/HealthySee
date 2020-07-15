@@ -8,23 +8,23 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from "../../lib/createRequestSaga";
 
-const INITIALIZE = "posts/INITIALIZE";
+const INITIALIZE = "boardList/INITIALIZE";
 const [LIST, LIST_SUCCESS, LIST_FAILURE] = createRequestActionTypes(
-  "posts/LIST"
+  "boardList/LIST"
 );
 const [
   BEST_LIST,
   BEST_LIST_SUCCESS,
   BEST_LIST_FAILURE,
-] = createRequestActionTypes("posts/BEST_LIST");
-const SETPOSTS = "posts/SETPOSTS";
+] = createRequestActionTypes("boardList/BEST_LIST");
+const SETPOSTS = "boardList/SETPOSTS";
 const [
   LISTDETAIL,
   LISTDETAIL_SUCCESS,
   LISTDETAIL_FAILURE,
-] = createRequestActionTypes("posts/LISTDETAIL");
+] = createRequestActionTypes("boardList/LISTDETAIL");
 
-const CHANGE_FIELD = "posts/CHANGE_FIELD";
+const CHANGE_FIELD = "boardList/CHANGE_FIELD";
 // export const list = createAction(LIST, ({ search, next }) => ({
 //   search,
 //   next,
