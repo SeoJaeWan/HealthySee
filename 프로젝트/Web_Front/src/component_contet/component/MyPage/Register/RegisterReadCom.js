@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container } from "../../../style/Mypage/RegisterReadCom_style";
+import { Container } from "../style//RegisterReadCom_style";
 
 const RegisterReadCom = ({
   post,
@@ -10,12 +10,11 @@ const RegisterReadCom = ({
   onGoBack,
   onClick,
 }) => {
-
   return (
     <Container>
       <div className="TopButton">
         <button className="exit" onClick={onGoBack}>
-        <Link to="/Mypage/registerBO">뒤로가기</Link>
+          <Link to="/Mypage/registerBO">뒤로가기</Link>
         </button>
         <div className="titlebutton">{ownPost && actionButton}</div>
       </div>
@@ -28,9 +27,7 @@ const RegisterReadCom = ({
         <div className="FileForm">
           <div className="flex">
             <div className="FileText">첨부파일 :</div>
-            <div className="FileButton">
-              
-            </div>
+            <div className="FileButton"></div>
           </div>
         </div>
       </div>

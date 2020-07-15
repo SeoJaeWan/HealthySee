@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "../../style/Container_style";
 import { Link } from "react-router-dom";
-import { InfCom } from "../../style/Mypage/MyPageCom_style";
+import { InfCom } from "./style/MyPageCom_style";
 import defaultImg from "../../../Images/defaultImg.jpg";
 
 const MypageCom = ({ mypage, user, onUpdate, img }) => {

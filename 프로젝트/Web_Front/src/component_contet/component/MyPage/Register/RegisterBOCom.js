@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../../style/Mypage/RegisterBOCom_style";
+import { Container } from "../style/RegisterBOCom_style";
 import { Link } from "react-router-dom";
 
 const RegisterBO = ({ onClick, onChange, onSearch }) => {
@@ -27,21 +27,14 @@ const BoardItem = () => {
   return (
     <>
       <Link to={`/Mypage/registerBO/read`}>
-      <div
-        className="Item"
-      >
-        <div className="ItemTitle">
-          예시용
+        <div className="Item">
+          <div className="ItemTitle">예시용</div>
+          <div className="ItemDate">2020-07-02</div>
+          <div className="ItemResult">완료</div>
         </div>
-        <div className="ItemDate">
-          2020-07-02
-        </div>
-        <div className="ItemResult">완료</div>
-      </div>
       </Link>
     </>
   );
 };
-
 
 export default RegisterBO;

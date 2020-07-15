@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../style/Board/BoardCom_style";
+import { Container } from "./style/BoardCom_style";
 import { Link } from "react-router-dom";
 
 import InfiniteScroll from "react-infinite-scroll-component";

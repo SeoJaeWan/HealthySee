@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "../../../style/Container_style";
 import { Link } from "react-router-dom";
-import { WriteForm } from "../../../style/Mypage/RegisterWriteCom_style";
+import { WriteForm } from "../style//RegisterWriteCom_style";
 
 const RegisterWrite = ({
   post,
@@ -16,7 +16,7 @@ const RegisterWrite = ({
       <WriteForm>
         <div className="Buttonform">
           <button className="Backbutton" onClick={onCancel}>
-          <Link to="/Mypage/registerBO">뒤로가기</Link>
+            <Link to="/Mypage/registerBO">뒤로가기</Link>
           </button>
           <button className="Writebutton" onClick={onClick}>
             제출하기
