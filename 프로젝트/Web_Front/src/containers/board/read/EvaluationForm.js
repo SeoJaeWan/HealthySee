@@ -5,7 +5,7 @@ import {
   reportPost,
   setEvaluation,
 } from "../../../modules/board/evaluation";
-import EvaluationCom from "../../../component_contet/common/EvaluationCom";
+import EvaluationCom from "../../../component_contet/common/Modal/EvaluationCom";
 
 const EvaluationForm = ({ post, Writer, isHealthsee, isReport }) => {
   const { BO_Healthsee_Count, BO_Report_Count, BO_Code } = post;

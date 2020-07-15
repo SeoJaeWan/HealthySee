@@ -24,12 +24,16 @@ const WriteForm = ({ route, history, match }) => {
   }));
 
   const onClick = (e) => {
+    console.log("호출");
     const formData = new FormData();
     var files = post.file.length;
     var oldFiles = post.BO_File.length;
 
     // 파일 크기 3개 이상일 때 return
-    if (files + oldFiles > 3) return;
+    if (files + oldFiles > 3) {
+      setError("파일은 3개만 올릴 수 있습니다.");
+      return;
+    }
 
     formData.append("BO_Title", post.BO_Title);
     formData.append("BO_Content", post.BO_Content);
@@ -38,7 +42,10 @@ const WriteForm = ({ route, history, match }) => {
     formData.append("files", post.file[2]);
     formData.append("username", user);
 
+    console.log("asdsadsad", post.BO_Code);
+
     if (post.BO_Code) {
+      console.log("여기");
       formData.append("BO_Code", post.BO_Code);
       formData.append("leaveFile", post.BO_File);
       dispatch(updatePost(post.BO_Code, formData));
@@ -51,26 +58,27 @@ const WriteForm = ({ route, history, match }) => {
     dispatch(changeField({ form: "post", key: name, value }));
   };
 
-  const deleteFile = (file) => {
-    var files = post.BO_File.slice();
+  const deleteFile = (index, files, e) => {
+    let currentFiles = files.slice();
+    currentFiles.splice(index, 1);
 
-    files.splice(files.indexOf(file), 1);
-    dispatch(changeField({ form: "post", key: "BO_File", value: files }));
+    dispatch(
+      changeField({ form: "post", key: e.target.name, value: currentFiles })
+    );
   };
 
   const onUpload = (e) => {
-    let files = Object.keys(e.target.files).map((key) => {
-      return e.target.files[key];
-    });
+    let files = Object.values(e.target.files).slice();
 
-    console.log(post.file);
+    console.log(files);
 
     files = files.concat(post.file);
 
-    if (files.length > 3) {
+    if (files.length + post.BO_File.length > 3) {
       setError("파일은 3개만 올릴 수 있습니다.");
       return;
     }
+
     dispatch(
       changeField({
         form: "post",
@@ -81,6 +89,7 @@ const WriteForm = ({ route, history, match }) => {
   };
 
   const onCheck = () => {
+    console.log("durl");
     setError(null);
   };
 
@@ -120,6 +129,7 @@ const WriteForm = ({ route, history, match }) => {
         onCancel={onCancel}
         onCheck={onCheck}
       />
+
       <AlertModal
         title={"오류 발생"}
         description={error}

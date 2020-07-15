@@ -13,7 +13,7 @@ export const Fullscreen = styled.div`
   align-items: center;
 `;
 
-export const AskModalBlock = styled.div`
+export const ModalBlock = styled.div`
   width: 320px;
   background: white;
   padding: 1.5rem;

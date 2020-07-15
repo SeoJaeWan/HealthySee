@@ -57,20 +57,37 @@ const WriteCom = ({
             onChange={onUpload}
             multiple
           />
-          {post.BO_File ? (
+          {post.BO_File && (
             <>
               {post.BO_File.map((file, index) => {
                 return (
                   <div className="storageFile" key={index}>
+                    {console.log(file)}
                     <span key={index}>{file.substring(13)}</span>
-                    <button onClick={() => deleteFile(file)}>X</button>
+                    <button
+                      name="BO_File"
+                      onClick={(e) => deleteFile(index, post.BO_File, e)}
+                    >
+                      X
+                    </button>
                   </div>
                 );
               })}
             </>
-          ) : (
-            ""
           )}
+          {post.file.map((file, index) => {
+            return (
+              <div className="storageFile" key={index}>
+                <span key={index}>{file.name}</span>
+                <button
+                  name="file"
+                  onClick={(e) => deleteFile(index, post.file)}
+                >
+                  X
+                </button>
+              </div>
+            );
+          })}
         </div>
       </WriteForm>
     </Container>

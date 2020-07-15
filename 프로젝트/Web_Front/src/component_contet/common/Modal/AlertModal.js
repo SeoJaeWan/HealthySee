@@ -1,15 +1,17 @@
 import React from "react";
 import Modal from "./Modal";
 
-const AlertModal = ({ visible, title, error, onCheck }) => {
+const AlertModal = ({ visible, title, description, onCancel }) => {
   if (!visible) return null;
   return (
-    <Modal
-      title={title}
-      description={error}
-      onCancel={onCheck}
-      cancelText="뒤로가기"
-    />
+    <>
+      <Modal
+        title={title}
+        description={description}
+        onCancel={onCancel}
+        cancelText="뒤로가기"
+      />
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Fullscreen, AskModalBlock, StyledButton } from "./style/Modal_style";
+import { Fullscreen, ModalBlock, StyledButton } from "./style/Modal_style";
 
 const Modal = ({
   title,
@@ -11,7 +11,7 @@ const Modal = ({
 }) => {
   return (
     <Fullscreen>
-      <AskModalBlock>
+      <ModalBlock>
         <h2>{title}</h2>
         <p>{description}</p>
         <div className="buttons">
@@ -26,7 +26,7 @@ const Modal = ({
             ""
           )}
         </div>
-      </AskModalBlock>
+      </ModalBlock>
     </Fullscreen>
   );
 };
