@@ -5,9 +5,10 @@ import { AlbumForm } from "../../style/Album/Album_Style";
 
 import MonthCom from "./MonthCom";
 
-const Album = () => {
+const AlbumList = () => {
   return (
     <Container>
+      {console.log("durls")}
       <AlbumForm>
         <div className="titleBar">
           <div className="title">앨범</div>
@@ -33,4 +34,4 @@ const Album = () => {
   );
 };
 
-export default Album;
+export default AlbumList;

@@ -15,6 +15,7 @@ class MyPage extends Component {
       <>
         <Route path="/MyPage/Edit" component={MypageEditForm} />
         <Route path="/MyPage/registerTR" component={RegisterTR} />
+
         <Route exact path="/MyPage/registerBO" component={RegisterBO} />
         <Route path="/MyPage/registerBO/write" component={RegisterWrite} />
         <Route path="/MyPage/registerBO/read" component={RegisterRead} />
