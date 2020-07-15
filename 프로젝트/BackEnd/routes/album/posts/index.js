@@ -3,7 +3,7 @@ var router = express.Router();
 const upload = require("../../../lib/sequelize/album/writeAlbum").upload;
 const writePost = require("../../../lib/sequelize/album/writeAlbum").writeAlbum;
 const readPost = require("../../../lib/sequelize/album/readAlbum").readPost;
-console.log("오긴오냐?post");
+
 router.post("/" , upload.array("files"), writePost);
 
 router.get("/AL_Code", readPost);
