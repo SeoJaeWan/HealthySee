@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { media } from "../../../../ReactiveStyle/ReactiveStyle"
+import styled from "styled-components";
+import { media } from "../../../../ReactiveStyle/ReactiveStyle";
 
 export const ContentComForm = styled.div`
   width: 100%;
@@ -193,13 +193,12 @@ width:70%  `}
       width: 40%  `}
   }
 
-  th{
-    
-    height:3rem;
-    font-weight:normal;
+  th {
+    height: 3rem;
+    font-weight: normal;
   }
-  .reportButton{
-    font-size:1.5rem;
+  .reportButton {
+    font-size: 1.5rem;
   }
 
   .commentWriter {
@@ -233,4 +232,4 @@ width:70%  `}
     border-width: 3px;
     border-color: #676a72;
   }
-`
+`;
