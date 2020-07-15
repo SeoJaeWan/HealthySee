@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MenuForm, Sticky } from "../style/Header_Style.js";
+import { MenuForm, Sticky } from "../style/Header_style.js";
 import Menu from "./Menu.js";
 
 const Header = ({

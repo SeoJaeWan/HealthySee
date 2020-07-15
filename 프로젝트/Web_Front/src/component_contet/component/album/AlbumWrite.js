@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "../../style/Container";
+import { Container } from "../../style/Container_style";
 import { Link } from "react-router-dom";
-import { AlbumForm } from "../../style/Album/AlbumWrite_Style";
+import { AlbumForm } from "../../style/Album/AlbumWrite_style";
 
 const AlbumWrite = () => {
   return (

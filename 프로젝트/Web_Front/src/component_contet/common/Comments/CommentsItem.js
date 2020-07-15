@@ -24,20 +24,23 @@ const CommentsItem = ({
   return (
     <>
       {edit ? (
-        <div className="commentChange">
+        <div className="comment">
+          <h5>
+            댓글
+            <br />
+            수정
+          </h5>
           <input
-            className="inputReplyChagne"
+            className="commentInput"
             type="text"
             name={BC_Code}
             value={commentValue[BC_Code] ? commentValue[BC_Code] : ""}
             onChange={changeComment}
           />
-          <div>
-            <ActionButton
-              onDelete={onDeleteComment}
-              onChange={() => ChangeEdit(BC_Code, BC_Content)}
-            />
-          </div>
+          <ActionButton
+            onDelete={onDeleteComment}
+            onChange={() => ChangeEdit(BC_Code, BC_Content)}
+          />
         </div>
       ) : (
         <>
@@ -45,42 +48,50 @@ const CommentsItem = ({
             <div className="reply">
               {BC_Re_Ref !== BC_Code ? (
                 <>
-                  <div className="separateREF">ㄴ</div>
-                  <div className="REFContent">{BC_Content}</div>
+                  <h5 className="separateREF">ㄴ</h5>
+                  <pre className="REFContent">{BC_Content}</pre>
                 </>
               ) : (
                 <>
-                  <div className="content">{BC_Content}</div>
+                  <pre className="content">{BC_Content}</pre>
                 </>
               )}
-              <div className="replyContent">
-                <div className="flex">
-                  <div className="commentWriter">
-                    작성자
-                    <br /> {BC_Writer_NickName}
-                  </div>
-                  <div
-                    className="commentWriter"
-                    onClick={() => user !== (comment && BC_Writer_NickName) && onReport(BC_Code)}
-                  >
-                    신고 횟수
-                    <br />
-                    {BC_Report_Count}
-                  </div>
-                </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>작성자</th>
+                    <th>
+                      <button
+                        type="submit"
+                        className="reportButton"
+                        onClick={() =>
+                          user !== (comment && BC_Writer_NickName) && onReport(BC_Code)
+                        }
+                      >
+                        신고
+                      </button>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{BC_Writer_NickName}</td>
+                    <td>{BC_Report_Count}</td>
+                  </tr>
+                </tbody>
                 {user === (comment && BC_Writer_NickName) && (
-                  <>
-                    <div className="deleteButton">
-                      <ActionButton
-                        onDelete={() => onDeleteComment(BC_Code)}
-                        onChange={() => ChangeEdit(BC_Code, BC_Content)}
-                      />
-                    </div>
-
-                    <hr className="bottomHR" />
-                  </>
+                  <tfoot>
+                    <tr>
+                      <td colSpan="2">
+                        <ActionButton
+                          onDelete={() => onDeleteComment(BC_Code)}
+                          onChange={() => ChangeEdit(BC_Code, BC_Content)}
+                        />
+                      </td>
+                    </tr>
+                  </tfoot>
                 )}
-              </div>
+              </table>
             </div>
           ) : (
             <div className="blind">

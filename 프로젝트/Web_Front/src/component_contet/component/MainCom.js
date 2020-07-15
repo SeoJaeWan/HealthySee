@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MainForm, Img, Home } from "../style/MainCom_Style.js";
+import { MainForm, Img, Home } from "../style/MainCom_style.js";
 
 class MainCom extends Component {
   render() {

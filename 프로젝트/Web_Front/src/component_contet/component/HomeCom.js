@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { HomeForm, Img, Home } from "../style/HomeCom_Style.js"
+import { HomeForm, Img, Home } from "../style/HomeCom_style.js"
 
 class HomeCom extends Component {
   render() {

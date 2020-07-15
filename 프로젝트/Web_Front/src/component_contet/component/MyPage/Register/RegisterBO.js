@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../../style/Mypage/RegisterBO_Style";
+import { Container } from "../../../style/Mypage/RegisterBO_style";
 import { Link } from "react-router-dom";
 
 const RegisterBO = ({ onClick, onChange, onSearch }) => {

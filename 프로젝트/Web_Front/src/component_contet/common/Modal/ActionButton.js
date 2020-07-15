@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
-import { ButtonForm } from "./style/ActionButton_Style.js";
+import { ButtonForm } from "./style/ActionButton_style.js";
 
 const ActionButton = ({ onChange, onDelete }) => {
   const [modal, setModal] = useState(false);
@@ -23,7 +23,7 @@ const ActionButton = ({ onChange, onDelete }) => {
         <button type="button" onClick={onChange}>
           수정
         </button>
-
+        <hr/>
         <button type="submit" onClick={onRemoveClick}>
           삭제
         </button>

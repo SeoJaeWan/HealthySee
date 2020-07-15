@@ -1,6 +1,6 @@
 import React from "react";
-import { SignupForm } from "../../style/SignupCom_Style.js";
-import { Container } from "../../style/Container.js";
+import { SignupForm } from "../../style/SignupCom_style.js";
+import { Container } from "../../style/Container_style.js";
 import ToggleButton from "../../common/ToggleButton.js";
 
 const SignupCom = ({ onChange, account, onSubmit, error }) => {

@@ -1,6 +1,6 @@
 import React from "react"
-import { Container } from "../../style/Container"
-import { WriteForm } from "../../style/Board/WriteCom_Style"
+import { Container } from "../../style/Container_style"
+import { WriteForm } from "../../style/Board/WriteCom_style"
 
 const WriteCom = ({ post, onChange, onClick, onUpload, deleteFile, onCancel }) => {
   return (

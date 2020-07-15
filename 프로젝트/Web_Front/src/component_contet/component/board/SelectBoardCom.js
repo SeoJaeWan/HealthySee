@@ -2,9 +2,9 @@ import React from "react";
 import {
   SelectBoardForm,
   FlexDiv,
-} from "../../style/Board/SelectBoardCom_Style";
+} from "../../style/Board/SelectBoardCom_style";
 
-import { Container } from "../../style/Container";
+import { Container } from "../../style/Container_style";
 import { Link } from "react-router-dom";
 
 const SelectBoardCom = ({

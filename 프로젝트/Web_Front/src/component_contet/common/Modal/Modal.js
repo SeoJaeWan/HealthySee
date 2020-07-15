@@ -1,5 +1,5 @@
 import React from "react";
-import { Fullscreen, AskModalBlock, StyledButton } from "./style/Modal_Style";
+import { Fullscreen, AskModalBlock, StyledButton } from "./style/Modal_style";
 
 const Modal = ({
   title,

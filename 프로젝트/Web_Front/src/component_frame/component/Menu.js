@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import { MenuInfo, BoardList } from "../style/Menu_Style"
+import { MenuInfo, BoardList } from "../style/Menu_style"
 
 const Menu = ({ onClear, user,  boardView, menuBoardView }) => {
   return (

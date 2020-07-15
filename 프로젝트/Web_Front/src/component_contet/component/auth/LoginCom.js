@@ -9,7 +9,7 @@ import {
   Kakao,
   Google,
   Naver,
-} from "../../style/LoginCom_Style.js";
+} from "../../style/LoginCom_style.js";
 import KakaoLogin from "react-kakao-login";
 
 const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckBox, CheckBoxLabel } from "./style/ToggleButton_Style";
+import { CheckBox, CheckBoxLabel } from "./style/ToggleButton_style";
 
 const ToggleButton = ({ name, value, onClick }) => {
   return (

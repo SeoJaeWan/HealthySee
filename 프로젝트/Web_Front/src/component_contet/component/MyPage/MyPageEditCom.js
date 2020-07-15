@@ -1,8 +1,10 @@
-import React from "react";
-import { Container } from "../../style/Container";
-import { InfCom } from "../../style/Mypage/MyPageEditCom_Style";
+import React, { useState, useEffect } from "react";
+import { Container } from "../../style/Container_style";
+import {
+  InfCom,
+} from "../../style/Mypage/MyPageEditCom_style";
 import defaultImg from "../../../Images/defaultImg.jpg";
-import ToggleButton from "../../common/ToggleButton";
+import ToggleButton from "../../common/ToggleButton"
 
 const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
   return (
@@ -29,7 +31,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
               alt="profile"
             />
 
-            <label className="InputIMG" htmlFor="file">
+<label className="InputIMG" htmlFor="file">
               이미지 업로드
             </label>
             <input

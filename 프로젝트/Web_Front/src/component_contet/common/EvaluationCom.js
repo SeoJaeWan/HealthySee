@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import AskModal from "./Modal/AskModal"
-import { EvaluationComForm } from "./style/EvaluationCom_Style"
+import { EvaluationComForm } from "./style/EvaluationCom_style"
 
 const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount, Writer }) => {
   const [modal, setModal] = useState(false)
@@ -23,7 +23,7 @@ const EvaluationCom = ({ onHealth, onReport, healthseeCount, reportCount, Writer
     <>
       <EvaluationComForm>
         <div className="contentForm">
-          <h1 className="writer">작성자 : {Writer}</h1>
+          <h3 className="writer">작성자 : {Writer}</h3>
           <table className="buttonForm">
             <thead>
               <tr>

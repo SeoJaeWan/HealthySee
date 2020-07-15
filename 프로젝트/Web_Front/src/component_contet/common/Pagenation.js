@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Container } from "../style/Container.js";
-import { Pagenationform } from "./style/Pagenation_Style.js";
+import { Container } from "../style/Container_style.js";
+import { Pagenationform } from "./style/Pagenation_style.js";
 
 const Pagenation = ({ page, getPage }) => {
   return (

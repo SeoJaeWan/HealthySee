@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Element, Sticky } from "../style/List_Style.js";
+import { Container, Element, Sticky } from "../style/List_style.js";
 
 class List extends Component {
   render() {

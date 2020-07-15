@@ -1,6 +1,6 @@
 import React from "react";
-import { ReadComForm, FilewViewInfo } from "../../style/Board/ReadCom_Style";
-import { Container } from "../../style/Container";
+import { ReadComForm, FilewViewInfo } from "../../style/Board/ReadCom_style";
+import { Container } from "../../style/Container_style";
 
 const ReadCom = ({ post, ownPost, actionButton, onGoBack, onClick, setFile, isView }) => {
   return (

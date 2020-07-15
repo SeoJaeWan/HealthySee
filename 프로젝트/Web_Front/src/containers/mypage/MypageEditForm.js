@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import MyPageEditCom from "../../component_contet/component/MyPage/MyPageEditCom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,7 +11,7 @@ import { onRenderImg } from "../common/onRenderImg";
 
 const MypageEditForm = ({ history }) => {
   const dispatch = useDispatch();
-  const { mypage, user, isUpdate } = useSelector(({ mypage, user }) => ({
+  const { mypage, user, img, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
     originalProfile: mypage.originalProfile,
     isUpdate: mypage.isUpdate,
@@ -32,10 +32,10 @@ const MypageEditForm = ({ history }) => {
     dispatch(updateMypage(formData));
   };
 
-  const onGoBack = useCallback(() => {
+  const onGoBack = () => {
     history.goBack();
     dispatch(initialize());
-  }, [history, dispatch]);
+  };
 
   const onChange = (e) => {
     e.preventDefault();
@@ -49,18 +49,28 @@ const MypageEditForm = ({ history }) => {
     dispatch(updateField({ key: name, value }));
   };
 
+  // const onRenderImg = (file) => {
+  //   let render = new FileReader();
+  //   render.readAsDataURL(file);
+
+  //   render.onloadend = () => {
+  //     // console.log(render.result);
+  //     setImg(render.result);
+  //   };
+  // };
+
   useEffect(() => {
     if (mypage.originalProfile) {
       console.log("여ㅑ기");
       onRenderImg(mypage.originalProfile, updateField, dispatch);
     }
-  }, [mypage.originalProfile, dispatch]);
+  }, [mypage.originalProfile]);
 
   useEffect(() => {
     if (!user) {
       history.push("/");
     } else if (isUpdate) onGoBack();
-  }, [user, isUpdate, history, onGoBack]);
+  }, [user, isUpdate, history]);
 
   return (
     <MyPageEditCom

@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "../../../style/Container";
+import { Container } from "../../../style/Container_style";
 import { Link } from "react-router-dom";
-import { WriteForm } from "../../../style/Mypage/RegisterWriteCom_Style";
+import { WriteForm } from "../../../style/Mypage/RegisterWriteCom_style";
 
 const RegisterWrite = ({
   post,
