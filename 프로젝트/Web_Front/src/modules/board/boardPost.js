@@ -1,4 +1,5 @@
 import * as boardAPI from "../../lib/api/board";
+import produce from "immer";
 
 import { createAction, handleActions, combineActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";

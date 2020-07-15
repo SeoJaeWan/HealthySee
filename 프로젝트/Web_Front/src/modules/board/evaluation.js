@@ -1,6 +1,6 @@
 import * as boardAPI from "../../lib/api/board";
 
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions, combineActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
 
 import createRequestSaga, {

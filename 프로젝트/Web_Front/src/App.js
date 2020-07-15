@@ -9,7 +9,6 @@ import MyPage from "./Page/MyPage";
 
 import { createGlobalStyle } from "styled-components";
 import HeaderForm from "./containers/Header/HeaderForm";
-import Album from "./Page/Album";
 
 const App = () => {
   const GlobalStyle = createGlobalStyle`
@@ -51,7 +50,6 @@ const App = () => {
       <Route path="/Signup" component={Signup} />
       <Route path="/Board/:board" component={Board} />
       <Route path="/MyPage" component={MyPage} />
-      <Route path="/Album/:user" component={Album} />
     </div>
   );
 };
