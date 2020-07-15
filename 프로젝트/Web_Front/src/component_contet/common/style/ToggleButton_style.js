@@ -7,7 +7,7 @@ export const CheckBoxLabel = styled.label`
   width: 4rem;
   height: 2rem;
   border-radius: 50px;
-  background-color: ${(props) => (props.check ? "skyblue" : "pink")};
+  background-color: ${(props) => (props.check ?  "pink":"skyblue")};
   cursor: pointer;
   
   .pointerCursor{
@@ -16,7 +16,7 @@ export const CheckBoxLabel = styled.label`
     width: 1.2rem;
     height: 1.2rem;
     margin: 5px;
-    margin-left: ${(props) => (props.check ? "3px" : "2.5rem")};
+    margin-left: ${(props) => (props.check ?  "2.5rem" : "3px" )};
     background: #ffffff;
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;

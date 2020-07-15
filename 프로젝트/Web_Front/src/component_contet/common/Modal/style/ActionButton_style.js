@@ -3,6 +3,7 @@ import { media } from "../../../../ReactiveStyle/ReactiveStyle";
 
 export const ButtonForm = styled.div`
   display: flex;
+  justify-content:center;
 
   button {
     font-size: 2rem;

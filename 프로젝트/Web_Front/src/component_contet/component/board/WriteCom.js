@@ -46,17 +46,25 @@ const WriteCom = ({
         </div>
 
         <div className="fileForm">
-          <label className="inputImg" htmlFor="file">
-            첨부 하기
-          </label>
-          <input
-            className="hidden"
-            id="file"
-            type="file"
-            name="file"
-            onChange={onUpload}
-            multiple
-          />
+          <div className="fileDiv">
+            <h1>첨부 파일</h1>
+            <div>
+              <label className="inputImg" htmlFor="file">
+                첨부 하기 &nbsp;
+              </label>
+              <label className="fileInput" htmlFor="file">
+                &#8626;
+              </label>
+              <input
+                className="hidden"
+                id="file"
+                type="file"
+                name="file"
+                onChange={onUpload}
+                multiple
+              />
+            </div>
+          </div>
           {post.BO_File && (
             <>
               {post.BO_File.map((file, index) => {

@@ -52,7 +52,7 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
                 <dl>
                   <dt className="contentsTitle">성별</dt>
                   <dd className="contents">
-                    {mypage.ME_Gender === 1 ? "남자" : "여자"}
+                    {mypage.ME_Gender === 1 ?  "여자" : "남자"}
                   </dd>
                 </dl>
                 <div className="buttonDiv">

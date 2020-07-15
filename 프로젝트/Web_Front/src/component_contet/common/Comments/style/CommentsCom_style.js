@@ -20,9 +20,9 @@ export const ContentComForm = styled.div`
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
     ${media.mobile`    
-      margin-top: -27px;
-      min-width: 30px;
-      min-height: 30px;
+      margin-top: -17px;
+      width: 30px;
+      height: 30px;
   `}
   }
 
@@ -40,14 +40,15 @@ export const ContentComForm = styled.div`
   h5 {
     font-weight: normal;
     width: 4rem;
+    margin: 0;
   }
 
   .commentInput {
     width: 75%;
     height: 80%;
     color: #676a72;
-    font-size: 1.5rem;
     font: inherit;
+    font-size: 1.5rem;
     ${media.mobile`
     height: 60%;
   width: 60%;
@@ -70,47 +71,11 @@ export const ContentComForm = styled.div`
   `}
   }
 
-  label {
-    font-size: 2rem;
-    margin-left: 3%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    padding-bottom: 2%;
-    text-align: center;
-    ${media.board`
-  font-size: 1.5rem;
-  `}
-  }
-  .labelReply {
-    font-size: 2rem;
-    margin-left: 3%;
-    margin-top: 3%;
-    margin-bottom: 2%;
-    padding-bottom: 2%;
-    border-bottom: white;
-    ${media.board`
-  font-size: 1.5rem;
-  `}
-  }
-
-  .writeReply {
-    background-color: #676a72;
-    color: white;
-    font-size: 3rem;
-    height: 75%;
-    width: 10%;
-    margin-left: 1.9%;
-    ${media.board`
-  font-size: 1.5rem;
-  `}
-    ${media.mobile`
-    width:16%;
-    height:65%;
-  `}
-  }
   .separateREF {
     padding-left: 2%;
+    padding-right: 2%;
     font: solid;
+    width: 2rem;
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -118,42 +83,7 @@ export const ContentComForm = styled.div`
     ${media.mobile`
     font-size:1.5rem  `}
   }
-  pre {
-    margin: 0;
-  }
-  .inputReply {
-    width: 75%;
-    height: 80%;
-    margin-top: 1%;
-    margin-left: 4%;
-    margin-bottom: 1%;
-    ${media.mobile`
-    height: 60%;
-  width: 60%;
-  `}
-  }
-  .inputReplyChagne {
-    border-right: 5px solid #676a72;
-    width: 75%;
-    height: 80%;
-    font-size: 2rem;
-    margin-top: 1%;
-    margin-left: 4%;
-    margin-bottom: 1%;
-    margin-right: 5%;
-    ${media.mobile`
-    height: 60%;
-  width: 60%;
-  `}
-  }
 
-  .commentChange {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    border-bottom: 5px solid #676a72;
-  }
   .reply {
     font-size: 2rem;
     display: flex;
@@ -165,27 +95,31 @@ export const ContentComForm = styled.div`
   .content {
     width: 77.3%;
     margin-left: 1%;
+    display: flex;
     border-right: 5px solid #676a72;
     padding: 2% 0 2% 2%;
     ${media.board`
-width:80%  `}
+    width:80%  `}
   }
+
   .REFContent {
-    width: 72.3%;
-    border-right: 5px solid #676a72;
-    padding: 2% 0 2% 2%;
+    width: 90%;
     ${media.board`
-width:76%  `}
+ `}
     ${media.mobile`
-width:70%  `}
+ `}
+  }
+
+  .editButton {
+    padding-left: 2.2%;
   }
 
   table {
     width: 20%;
     font-size: 1.5rem;
+    border-collapse: collapse;
     text-align: center;
     height: 100%;
-    border: 5px solid #676a72;
     ${media.board`
   font-size: 1rem;
   `}
@@ -193,29 +127,32 @@ width:70%  `}
       width: 40%  `}
   }
 
+  .separationline {
+    border-right: 3px solid #676a72;
+  }
+
   th {
-    height: 3rem;
+    height: 2.5rem;
+    width: 50%;
     font-weight: normal;
   }
-  .reportButton {
+
+  td {
+    border-bottom: 3px solid #676a72;
+    height: 2.5rem;
     font-size: 1.5rem;
   }
 
-  .commentWriter {
-    padding: 5% 1% 1% 5%;
-    line-height: 140%;
-    width: 70%;
-  }
-  .flex {
+  .reportButton {
+    font-size: 1.5rem;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    height: 100%;
+    display: block;
+    ${media.board`
+  font-size: 1rem;
+  `}
   }
-  .deleteButton {
-    display: flex;
-    border-top: 5px solid #676a72;
-    justify-content: center;
-  }
+
   .blind {
     padding-left: 3%;
     width: 97%;
@@ -224,12 +161,4 @@ width:70%  `}
     align-items: center;
     border-bottom: 5px solid #676a72;
   }
-  .bottomHR {
-    margin: 0 0 0 0;
-
-    border: none;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #676a72;
-  }
-`;
+`

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container } from "../../style/Container_style";
 import { InfCom } from "./style/MyPageEditCom_style";
 import defaultImg from "../../../Images/defaultImg.jpg";
@@ -8,17 +8,17 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
   return (
     <Container>
       <InfCom>
-        <div className="rowrserver">
-          <button onClick={onGoBack} className="edit">
+        <div className="editButton">
+          <button onClick={onGoBack} className="editButton">
             취소
           </button>
-          <button onClick={onComplete} type="submit" className="edit">
+          <button onClick={onComplete} type="submit" className="editButton">
             완료
           </button>
         </div>
         <div className="flex">
           <div className="leftDiv">
-            <div className="Title">프로필 사진</div>
+            <h1>프로필 사진</h1>
 
             <img
               className="ImgDiv"
@@ -42,30 +42,33 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
           </div>
           <ul className="rightDiv">
             <li>
-              <label className="FlexGrow">닉네임</label>
+              <label htmlFor="nickname">닉네임</label>
               <input
                 readOnly
                 type="text"
                 name="Account_AC_NickName"
+                id="nickname"
                 className="Contents"
                 defaultValue={mypage.Account_AC_NickName}
               />
             </li>
 
-            <li className="FlexGrow">
-              공개여부 On
-              <ToggleButton
-                name="ME_Scope"
-                type="checkbox"
-                value={mypage.ME_Scope}
-                onClick={onChange}
-              />
-              OFF
+            <li>
+              <label htmlFor="ME_Scope">공개여부</label>
+
+              <div className="toggleDiv">
+                On
+                <ToggleButton
+                  name="ME_Scope"
+                  type="checkbox"
+                  value={mypage.ME_Scope}
+                  onClick={onChange}
+                />
+                OFF
+              </div>
             </li>
             <li>
-              <label htmlFor="Weight" className="FlexGrow">
-                무게
-              </label>
+              <label htmlFor="Weight">무게</label>
               <input
                 type="text"
                 name="ME_Weight"
@@ -76,9 +79,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
               />
             </li>
             <li>
-              <label htmlFor="Height" className="FlexGrow">
-                키
-              </label>
+              <label htmlFor="Height">키</label>
               <input
                 type="text"
                 name="ME_Height"
@@ -89,38 +90,35 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
               />
             </li>
             <li>
-              <label htmlFor="Birth" className="FlexGrow">
-                생일
-              </label>
+              <label htmlFor="Birth">생일</label>
               <input
                 type="date"
                 name="ME_Birth"
-                Id="Birth"
+                id="Birth"
                 className="Contents"
                 value={mypage.ME_Birth}
                 onChange={onChange}
               />
             </li>
             <li>
-              <div className="FlexGrow">
-                성별
-                <div className="flexInput">
-                  <div>남</div>
-                  <ToggleButton
-                    name="ME_Gender"
-                    type="checkbox"
-                    value={mypage.ME_Gender}
-                    onClick={onChange}
-                  />
-                  <div className="divwidth">여</div>
-                </div>
+              <label htmlFor="ME_Gender">성별</label>
+              <div className="toggleDiv">
+                남
+                <ToggleButton
+                  name="ME_Gender"
+                  type="checkbox"
+                  value={mypage.ME_Gender}
+                  onClick={onChange}
+                />
+                여
               </div>
             </li>
           </ul>
         </div>
       </InfCom>
     </Container>
-  );
-};
+  )
+}
 
-export default MyPageEditCom;
+export default MyPageEditCom
+

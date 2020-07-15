@@ -201,22 +201,21 @@ export const WriteForm = styled.div`
     }
   }
 
+
   .hidden {
     position: absolute;
-    display: visible;
+    display:visible;
     padding: 0;
+    width:0;
     margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
 
-  .inputImg {
-    margin-left: 2rem;
-    font-size: 2rem;
-
-    border-radius: 10px;
-    border: 2px solid #676a72;
+  .inputImg{
+    font-size:1.5rem;
+    
     cursor: pointer;
   }
   .filetext {
@@ -234,20 +233,37 @@ export const WriteForm = styled.div`
       font-size: 1.2rem;
   `}
   }
-  .storageFileForm {
-    margin-top: 1.5%;
-    width: 75%;
-  }
   .storageFile {
+    
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 1.5rem;
+    font-size:1.5rem;
 
+    
     margin-left: 2%;
     margin-bottom: 1rem;
 
     display: flex;
     align-items: center;
   }
-`;
+  
+  h1{
+    font-size: 1.8rem;
+    margin:0;
+  }
+  .fileInput{
+    font-family: none;
+    font-weight:bold;
+    font-size: 1.4rem;
+  }
+  .fileDiv{
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1rem;
+    width: 90%;
+
+    display: flex;
+    justify-content: space-between;
+  }
+`
