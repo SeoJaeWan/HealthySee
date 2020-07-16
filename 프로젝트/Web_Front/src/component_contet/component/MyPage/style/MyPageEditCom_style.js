@@ -14,12 +14,12 @@ export const InfCom = styled.div`
     justify-content: center;
     `}
   }
-  h1{
-    font-weight:normal;
+  h1 {
+    font-weight: normal;
     font-size: 2rem;
   }
 
-  .toggleDiv{
+  .toggleDiv {
     display: flex;
     justify-content: space-around;
 
@@ -32,7 +32,6 @@ export const InfCom = styled.div`
     `}
   }
 
-
   .leftDiv {
     display: flex;
     flex-direction: column;
@@ -44,23 +43,27 @@ export const InfCom = styled.div`
     min-width: 15rem;
   }
 
+  .imgBox {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
 
-  .ImgDiv {
     border: 3px solid #676a72;
-    height: 32vw;
-    width: 18vw;
-    min-height: 22.3rem;
-    min-width: 14rem;
-    max-width: 15rem;
-    max-height: 22.3rem;
+  }
+
+  .imgBox .imgDiv {
+    margin-left: 50%;
+    margin-top: 50%;
+
+    transform: translate(-50%, -50%);
   }
 
   .rightDiv {
     display: flex;
     flex-wrap: wrap;
-    
-    margin:0;
-    padding:0;
+
+    margin: 0;
+    padding: 0;
     height: 80%;
     width: 50%;
     ${media.tablet`
@@ -68,7 +71,7 @@ export const InfCom = styled.div`
     `}
   }
   ul {
-    font-size:2rem;
+    font-size: 2rem;
   }
   li {
     list-style-type: none;
@@ -82,22 +85,22 @@ export const InfCom = styled.div`
     border: 3px solid #676a72;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    color:#676a72;
-    font:inherit;
+    color: #676a72;
+    font: inherit;
     height: 3rem;
     align-items: center;
     ${media.mobile`
     font-size:1rem;
     `}
   }
-  .BirthContents{
+  .BirthContents {
     display: flex;
     border: 3px solid #676a72;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    color:#676a72;
-    font:inherit;
-    font-size:1.5rem;
+    color: #676a72;
+    font: inherit;
+    font-size: 1.5rem;
     height: 3rem;
     align-items: center;
   }
@@ -140,5 +143,4 @@ export const InfCom = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-
-`
+`;

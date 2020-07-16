@@ -4,15 +4,8 @@ const B_Comment = require("../../../models").b_comment;
 var today = require("../../Date/time");
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: "./upload/",
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
 const upload = multer({
-  storage: storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 1000000000 },
 });
 

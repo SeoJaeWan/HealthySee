@@ -49,14 +49,19 @@ export const InfCom = styled.div`
     font-size: 2rem;
   }
 
-  .imgDiv {
+  .imgBox {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+
     border: 3px solid #676a72;
-    height: 32vw;
-    width: 18vw;
-    min-height: 22.3rem;
-    min-width: 14rem;
-    max-width: 15rem;
-    max-height: 22.3rem;
+  }
+
+  .imgBox .imgDiv {
+    margin-left: 50%;
+    margin-top: 50%;
+
+    transform: translate(-50%, -50%);
   }
 
   .publicDiv {

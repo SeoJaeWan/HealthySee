@@ -22,11 +22,13 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
             <div className="flex">
               <div className="leftDiv">
                 <h1 className="title">프로필 사진</h1>
-                <img
-                  className="imgDiv"
-                  src={mypage.img ? mypage.img : defaultImg}
-                  alt="profile"
-                />
+                <div className="imgBox">
+                  <img
+                    className="imgDiv"
+                    src={mypage.img ? mypage.img : defaultImg}
+                    alt="profile"
+                  />
+                </div>
               </div>
               <div className="rightDiv">
                 <dl>
@@ -52,7 +54,7 @@ const MypageCom = ({ mypage, user, onUpdate, img }) => {
                 <dl>
                   <dt className="contentsTitle">성별</dt>
                   <dd className="contents">
-                    {mypage.ME_Gender === 1 ?  "여자" : "남자"}
+                    {mypage.ME_Gender === 1 ? "여자" : "남자"}
                   </dd>
                 </dl>
                 <div className="buttonDiv">

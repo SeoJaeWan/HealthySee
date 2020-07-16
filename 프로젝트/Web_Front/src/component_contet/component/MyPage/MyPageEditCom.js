@@ -19,15 +19,16 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
         <div className="flex">
           <div className="leftDiv">
             <h1>프로필 사진</h1>
-
-            <img
-              className="ImgDiv"
-              src={
-                // mypage.ME_Profile_Photo ? mypage.ME_Profile_Photo : defaultImg
-                mypage.img ? mypage.img : defaultImg
-              }
-              alt="profile"
-            />
+            <div className="imgBox">
+              <img
+                className="imgDiv"
+                src={
+                  // mypage.ME_Profile_Photo ? mypage.ME_Profile_Photo : defaultImg
+                  mypage.img ? mypage.img : defaultImg
+                }
+                alt="profile"
+              />
+            </div>
 
             <label className="InputIMG" htmlFor="file">
               이미지 업로드
@@ -117,8 +118,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
         </div>
       </InfCom>
     </Container>
-  )
-}
+  );
+};
 
-export default MyPageEditCom
-
+export default MyPageEditCom;
