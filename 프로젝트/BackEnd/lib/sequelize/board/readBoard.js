@@ -78,7 +78,7 @@ const readComment = async (req, res, next) => {
   }
 
   var responseData = {};
-  comments = await FrontComment.findAndCountAll({
+  comments = await B_comment_view.findAndCountAll({
     where: { Board_BO_Code: BO_Code },
     order: [
       ["BC_Re_Ref", "DESC"],

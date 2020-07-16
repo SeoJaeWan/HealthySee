@@ -18,8 +18,6 @@ const updatePost = async (req, res, next) => {
   let BO_Content = req.body.BO_Content;
   let leaveFile = req.body.leaveFile.split(",");
 
-  console.log(leaveFile);
-
   let uploadFile = req.files ? req.files : null;
   let BO_Writer_NickName = req.body.username;
   let BO_Creation_Date = today;
@@ -34,7 +32,6 @@ const updatePost = async (req, res, next) => {
     },
     { where: { BO_Code } }
   );
-  console.log("saddsasadsad", uploadFile);
 
   if (req.files) {
     for (var i = 0; i < req.files.length; i++) {

@@ -52,18 +52,12 @@ const ReadForm = ({ match, history }) => {
     history.push(`${rootUrl}/write`);
   };
 
-  const onClick = async (filename) => {
-    const file = await downloadFile(filename);
-    console.log(file.data.data);
-
-    const rawData = Object.values(file.data.data).map((data) => {
-      return data;
+  const onClick = (file) => {
+    let blob = new Blob([Uint8Array.from(file.BF_Files.data).buffer], {
+      type: file.BF_Type,
     });
 
-    const type = "image/jpeg";
-    let blob = new Blob([Uint8Array.from(rawData).buffer], { type });
-
-    saveAs(blob, filename.substring(13));
+    saveAs(blob, file.BF_Name);
   };
 
   const onGoBack = useCallback(() => {

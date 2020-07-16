@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express.Router();
-const downloadFile = require("../../../lib/sequelize/board/downloadFile");
 const writePost = require("../../../lib/sequelize/board/writeBoard").writePost;
 const upload = require("../../../lib/sequelize/board/writeBoard").upload;
 const readPost = require("../../../lib/sequelize/board/readBoard").readPost;
@@ -16,8 +15,6 @@ const updatePost = require("../../../lib/sequelize/board/updateBoard")
 
 // 게시글 작성
 router.post("/", checkLogin, upload.array("files"), writePost, readPost);
-
-router.get("/download/:filename", downloadFile);
 
 // 해당 BO_CODE의 게시글 조회
 router.get("/:BO_Code", readPost);
