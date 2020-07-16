@@ -29,7 +29,7 @@ const WriteForm = ({ route, history, match }) => {
   const onClick = (e) => {
     console.log("호출");
     const formData = new FormData();
-    var files = post.file.length;
+    var files = post.files.length;
 
     // 파일 크기 3개 이상일 때 return
     if (files + post.oldFiles.length > 3) {
@@ -37,19 +37,18 @@ const WriteForm = ({ route, history, match }) => {
       return;
     }
 
-    console.log("adssdaasdsaddsasad", post.file[0], post.oldFiles);
-
     formData.append("BO_Title", post.BO_Title);
     formData.append("BO_Content", post.BO_Content);
-    formData.append("files", post.file[0]);
-    formData.append("files", post.file[1]);
-    formData.append("files", post.file[2]);
+    formData.append("files", post.files[0]);
+    formData.append("files", post.files[1]);
+    formData.append("files", post.files[2]);
     formData.append("username", user);
-    formData.append("test", post.oldFiles);
+
+    console.log(post.leaveFiles);
 
     if (post.BO_Code) {
       formData.append("BO_Code", post.BO_Code);
-      formData.append("leaveFile", post.oldFiles[0]);
+      formData.append("leaveFile", post.leaveFiles);
       dispatch(updatePost(post.BO_Code, formData));
     } else dispatch(writePost(formData));
   };
@@ -65,9 +64,15 @@ const WriteForm = ({ route, history, match }) => {
     let currentFiles = files.slice();
     let leaveFile = currentFiles.splice(index, 1);
 
-    if (e.target.name === "file") {
-      currentFiles = post.file.concat(leaveFile);
+    if (e.target.name === "leaveFiles") {
+      dispatch(
+        changeField({ form: "post", key: "oldFiles", value: currentFiles })
+      );
+      console.log("asdsdaasdsad", currentFiles);
+      currentFiles = post.leaveFiles.concat(leaveFile[0].BF_Code);
     }
+
+    console.log(currentFiles);
 
     dispatch(
       changeField({ form: "post", key: e.target.name, value: currentFiles })

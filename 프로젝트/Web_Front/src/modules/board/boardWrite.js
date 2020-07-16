@@ -92,7 +92,12 @@ const boardWrite = handleActions(
     }),
     [SET_ORIGINAL]: (state, { payload: data }) => ({
       ...state,
-      post: { ...data.post, file: [], oldFiles: data.files },
+      post: {
+        ...data.post,
+        oldFiles: data.files,
+        files: [],
+        leaveFiles: [],
+      },
     }),
   },
   initialState

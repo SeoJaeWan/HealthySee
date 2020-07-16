@@ -1,5 +1,6 @@
 const BoardDetail = require("../../../models").boarddetail;
 const B_Comment = require("../../../models").b_comment;
+const B_Files = require("../../../models/").b_files;
 const Board = require("../../../models").board;
 var today = require("../../Date/time");
 const multer = require("multer");
@@ -15,9 +16,9 @@ const updatePost = async (req, res, next) => {
   let BO_Category = req.body.BO_Category;
   let BO_Title = req.body.BO_Title;
   let BO_Content = req.body.BO_Content;
-  let leaveFile = req.body.leaveFile;
+  let leaveFile = req.body.leaveFile.split(",");
 
-  console.log(req.files);
+  console.log(leaveFile);
 
   let uploadFile = leaveFile ? leaveFile : null;
   let BO_Writer_NickName = req.body.username;
@@ -33,6 +34,7 @@ const updatePost = async (req, res, next) => {
     },
     { where: { BO_Code } }
   );
+  console.log(leaveFile.length);
 
   if (req.files) {
     for (var i = 0; i < req.files.length; i++) {
@@ -45,7 +47,11 @@ const updatePost = async (req, res, next) => {
     }
   }
 
-  if()
+  if (leaveFile) {
+    for (var i = 0; i < leaveFile.length; i++) {
+      await B_Files.destroy({ where: { BF_Code: leaveFile[i] } });
+    }
+  }
 
   req.body.self = true;
   next();

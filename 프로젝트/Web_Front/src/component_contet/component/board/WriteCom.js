@@ -66,6 +66,7 @@ const WriteCom = ({
               />
             </div>
           </div>
+          {console.log(post.files)}
           {post.oldFiles && (
             <>
               {post.oldFiles.map((file, index) => {
@@ -73,7 +74,7 @@ const WriteCom = ({
                   <div className="storageFile" key={index}>
                     <span key={index}>{file.BF_Name}</span>
                     <button
-                      name="oldFiles"
+                      name="leaveFiles"
                       onClick={(e) => deleteFile(index, post.oldFiles, e)}
                     >
                       X
@@ -83,19 +84,20 @@ const WriteCom = ({
               })}
             </>
           )}
-          {post.file.map((file, index) => {
-            return (
-              <div className="storageFile" key={index}>
-                <span key={index}>{file.name}</span>
-                <button
-                  name="file"
-                  onClick={(e) => deleteFile(index, post.file)}
-                >
-                  X
-                </button>
-              </div>
-            );
-          })}
+          {post.files &&
+            post.files.map((file, index) => {
+              return (
+                <div className="storageFile" key={index}>
+                  <span key={index}>{file.name}</span>
+                  <button
+                    name="files"
+                    onClick={(e) => deleteFile(index, post.file)}
+                  >
+                    X
+                  </button>
+                </div>
+              );
+            })}
         </div>
       </WriteForm>
     </Container>
