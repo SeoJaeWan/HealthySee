@@ -33,7 +33,6 @@ const writePost = async (req, res, next) => {
     BO_Title,
     BO_Content,
     BO_Writer_NickName,
-    BO_File,
     BO_Creation_Date,
   });
 
