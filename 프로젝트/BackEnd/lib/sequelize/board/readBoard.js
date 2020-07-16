@@ -18,9 +18,9 @@ const readPost = async (req, res, next) => {
   var BoardD = await BoardDetail.findOne({
     where: { BO_Code },
   });
-  if (BoardD.BO_File !== "" && BoardD.BO_File !== null)
-    BoardD.BO_File = BoardD.BO_File.split(",");
-  else BoardD.BO_File = [];
+  // if (BoardD.BO_File !== "" && BoardD.BO_File !== null)
+  //   BoardD.BO_File = BoardD.BO_File.split(",");
+  // else BoardD.BO_File = [];
 
   console.log(Board.BO_State);
   if (BoardD.BO_State === 1) return res.status(406).end();
