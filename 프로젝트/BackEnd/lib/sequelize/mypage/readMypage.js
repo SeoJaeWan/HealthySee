@@ -8,23 +8,14 @@ const readMyPage = async (req, res, next) => {
     where: { Account_AC_NickName: owner },
   });
 
-  console.log(
-    member.ME_Scope === 1 && !user && user !== owner,
-    user,
-    owner,
-    req.params
-  );
-
   if (!member) {
     console.log("DB조회 결과 없음");
     res.status(401).end();
     return;
-  } else if (member.ME_Scope === 1 && !user && user !== owner) {
+  } else if (member.ME_Scope === 1 && user !== owner) {
     res.status(406).end();
     return;
   }
-
-  console.log(member);
 
   res.json(member);
 };
