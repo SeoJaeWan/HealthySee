@@ -1,9 +1,9 @@
-const Member = require("../../../models").member;
+const Member_View = require("../../../models").member_view;
 
 const readMyPage = async (req, res, next) => {
   let user = req.params.username;
 
-  let member = await Member.findOne({
+  let member = await Member_View.findOne({
     where: { Account_AC_NickName: user },
   });
 
@@ -20,4 +20,6 @@ const readMyPage = async (req, res, next) => {
 
 // 파일 다운로드
 
+
 module.exports = readMyPage;
+

@@ -33,8 +33,9 @@ const updateMypage = async (req, res, next) => {
     },
     { where: { Account_AC_NickName } }
   );
-
-  res.json(mypage);
+    req.params.username = req.body.Account_AC_NickName;
+  next();
 };
 
 module.exports = { updateMypage, upload };
+
