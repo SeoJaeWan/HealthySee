@@ -7,7 +7,7 @@ const upload = require("../../lib/sequelize/mypage/updateMypage").upload;
 var router = express.Router();
 
 // 마이페이지 수정
-router.post("/", upload.single("ME_Profile_Photo"), updateMypage);
+router.post("/", upload.single("ME_Profile_Photo"), updateMypage, readMyPage);
 
 // 마이페이지 조회
 router.get("/:username", readMyPage);
@@ -17,3 +17,4 @@ router.get("/:username", readMyPage);
 // 운동 건의
 
 module.exports = router;
+
