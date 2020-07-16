@@ -5,7 +5,7 @@ const B_Files = require("../../../models/").b_files;
 const B_Healthsee = require("../../../models").b_healthsee;
 const B_Reporter = require("../../../models").b_reporter;
 const { Op } = require("sequelize");
-const FrontComment = require("../../../models").frontcomment;
+const B_comment_view = require("../../../models").b_comment_view;
 
 const readPost = async (req, res, next) => {
   var BO_Code = req.params.BO_Code;
@@ -29,7 +29,7 @@ const readPost = async (req, res, next) => {
   if (BoardD.BO_State === 1) return res.status(406).end();
 
   // 댓글 1페이지
-  comments = await FrontComment.findAndCountAll({
+  comments = await B_comment_view.findAndCountAll({
     where: { Board_BO_Code: BO_Code },
     order: [
       ["BC_Re_Ref", "DESC"],

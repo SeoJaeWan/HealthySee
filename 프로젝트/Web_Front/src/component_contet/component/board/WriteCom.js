@@ -91,7 +91,7 @@ const WriteCom = ({
                   <span key={index}>{file.name}</span>
                   <button
                     name="files"
-                    onClick={(e) => deleteFile(index, post.file)}
+                    onClick={(e) => deleteFile(index, post.files, e)}
                   >
                     X
                   </button>

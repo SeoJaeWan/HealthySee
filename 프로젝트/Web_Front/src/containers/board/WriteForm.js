@@ -82,9 +82,7 @@ const WriteForm = ({ route, history, match }) => {
   const onUpload = (e) => {
     let files = Object.values(e.target.files).slice();
 
-    console.log(files);
-
-    files = files.concat(post.file);
+    files = files.concat(post.files);
 
     if (files.length + post.oldFiles.length > 3) {
       setError("파일은 3개만 올릴 수 있습니다.");
@@ -94,7 +92,7 @@ const WriteForm = ({ route, history, match }) => {
     dispatch(
       changeField({
         form: "post",
-        key: "file",
+        key: "files",
         value: files,
       })
     );

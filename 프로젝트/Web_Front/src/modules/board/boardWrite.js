@@ -53,8 +53,8 @@ const initialState = {
   post: {
     BO_Title: "",
     BO_Content: "",
-    BO_File: [],
-    file: [],
+    oldFiles: [],
+    files: [],
   },
 
   comment: {

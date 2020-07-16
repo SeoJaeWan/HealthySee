@@ -20,7 +20,7 @@ const updatePost = async (req, res, next) => {
 
   console.log(leaveFile);
 
-  let uploadFile = leaveFile ? leaveFile : null;
+  let uploadFile = req.files ? req.files : null;
   let BO_Writer_NickName = req.body.username;
   let BO_Creation_Date = today;
   const board = await Board.update(
@@ -34,7 +34,7 @@ const updatePost = async (req, res, next) => {
     },
     { where: { BO_Code } }
   );
-  console.log(leaveFile.length);
+  console.log("saddsasadsad", uploadFile);
 
   if (req.files) {
     for (var i = 0; i < req.files.length; i++) {
@@ -42,7 +42,7 @@ const updatePost = async (req, res, next) => {
         BF_Name: uploadFile[i].originalname,
         BF_Type: uploadFile[i].mimetype,
         BF_Files: uploadFile[i].buffer,
-        Board_BO_Code: board.BO_Code,
+        Board_BO_Code: BO_Code,
       });
     }
   }
