@@ -18,29 +18,36 @@ const ReadForm = ({ match, history }) => {
 
   const [isView, setView] = useState(true);
   const dispatch = useDispatch();
-  const { post, loading, user, isReport, isHealth, reportError } = useSelector(
-    ({ boardPost, loading, user, evaluation }) => ({
-      post: boardPost.post,
-      loading: loading["post/READ_POST"],
-      user: user.user,
-      isHealth: boardPost.isHealthsee,
-      isReport: boardPost.isReport,
-      reportError: evaluation.reportError,
-    })
-  );
+  const {
+    post,
+    files,
+    loading,
+    user,
+    isReport,
+    isHealth,
+    reportError,
+  } = useSelector(({ boardPost, loading, user, evaluation }) => ({
+    post: boardPost.post,
+    files: boardPost.files,
+    loading: loading["post/READ_POST"],
+    user: user.user,
+    isHealth: boardPost.isHealthsee,
+    isReport: boardPost.isReport,
+    reportError: evaluation.reportError,
+  }));
 
   const onDeletePost = async () => {
     await deletePost(post.BO_Code);
     history.push(rootUrl);
   };
 
-  const onChange = (form, data) => {
-    var post = {
-      ...data,
-      file: [],
+  const onChange = () => {
+    var data = {
+      post,
+      files,
     };
-    console.log(post);
-    localStorage.setItem(form, JSON.stringify(post));
+    console.log(JSON.stringify(data));
+    localStorage.setItem("post", JSON.stringify(data));
 
     history.push(`${rootUrl}/write`);
   };
@@ -87,14 +94,12 @@ const ReadForm = ({ match, history }) => {
     <>
       <ReadCom
         post={post}
+        files={files}
         ownPost={user === (post && post.BO_Writer_NickName)}
         setFile={setFile}
         isView={isView}
         actionButton={
-          <ActionButton
-            onDelete={onDeletePost}
-            onChange={() => onChange("post", post)}
-          />
+          <ActionButton onDelete={onDeletePost} onChange={onChange} />
         }
         onGoBack={onGoBack}
         onDeletePost={onDeletePost}

@@ -4,6 +4,7 @@ import { Container } from "../../style/Container_style";
 
 const ReadCom = ({
   post,
+  files,
   ownPost,
   actionButton,
   onGoBack,
@@ -25,7 +26,7 @@ const ReadCom = ({
           <dd className="titleContent">{post.BO_Title}</dd>
         </dl>
         <div className="contentForm">
-          {post.BO_File.length !== 0 ? (
+          {files.length !== 0 ? (
             <div className="fileForm">
               <button
                 type="button"
@@ -45,21 +46,20 @@ const ReadCom = ({
           )}
 
           <FilewViewInfo isView={isView}>
-            {post.BO_File
-              ? post.BO_File.map((file, index) => {
-                  return (
-                    <button
-                      type="submit"
-                      className="file"
-                      key={index}
-                      onClick={() => onClick(file)}
-                    >
-                      {file.substring(13)}
-                      <br />
-                    </button>
-                  );
-                })
-              : ""}
+            {files &&
+              files.map((file, index) => {
+                return (
+                  <button
+                    type="submit"
+                    className="file"
+                    key={index}
+                    onClick={() => onClick(file)}
+                  >
+                    {file.BF_Name}
+                    <br />
+                  </button>
+                );
+              })}
           </FilewViewInfo>
           <pre>{post.BO_Content}</pre>
         </div>

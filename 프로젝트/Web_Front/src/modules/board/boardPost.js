@@ -97,6 +97,7 @@ export function* postSaga() {
 
 const initialState = {
   post: null,
+  files: null,
   comments: null,
   page: null,
   readError: null,
@@ -112,6 +113,7 @@ const boardPost = handleActions(
     [READ_POST_SUCCESS]: (state, { payload: post }) => ({
       ...state,
       post: post.boardDetail,
+      files: post.boardFile,
       comments: post.comments,
       page: post.lastPage,
       count: post.commentsCount,

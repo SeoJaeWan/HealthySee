@@ -4,15 +4,8 @@ const Board = require("../../../models").board;
 var today = require("../../Date/time");
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: "./upload/",
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
 const upload = multer({
-  storage: storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 1000000000 },
 });
 
@@ -23,15 +16,10 @@ const updatePost = async (req, res, next) => {
   let BO_Title = req.body.BO_Title;
   let BO_Content = req.body.BO_Content;
   let leaveFile = req.body.leaveFile;
-  let fileString = leaveFile;
-  if (req.files) {
-    for (let i = 0; i < req.files.length; i++) {
-      if (fileString !== null && fileString !== "")
-        fileString = fileString + "," + req.files[i].filename;
-      else fileString = req.files[i].filename;
-    }
-  }
-  let BO_File = req.files ? fileString : "";
+
+  console.log(req.files);
+
+  let uploadFile = leaveFile ? leaveFile : null;
   let BO_Writer_NickName = req.body.username;
   let BO_Creation_Date = today;
   const board = await Board.update(
@@ -45,6 +33,19 @@ const updatePost = async (req, res, next) => {
     },
     { where: { BO_Code } }
   );
+
+  if (req.files) {
+    for (var i = 0; i < req.files.length; i++) {
+      await B_Files.create({
+        BF_Name: uploadFile[i].originalname,
+        BF_Type: uploadFile[i].mimetype,
+        BF_Files: uploadFile[i].buffer,
+        Board_BO_Code: board.BO_Code,
+      });
+    }
+  }
+
+  if()
 
   req.body.self = true;
   next();

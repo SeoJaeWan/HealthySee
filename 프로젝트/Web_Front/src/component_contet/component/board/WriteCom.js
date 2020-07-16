@@ -4,6 +4,7 @@ import { WriteForm } from "./style/WriteCom_style";
 
 const WriteCom = ({
   post,
+  oldFiles,
   onChange,
   onClick,
   onUpload,
@@ -65,16 +66,15 @@ const WriteCom = ({
               />
             </div>
           </div>
-          {post.BO_File && (
+          {post.oldFiles && (
             <>
-              {post.BO_File.map((file, index) => {
+              {post.oldFiles.map((file, index) => {
                 return (
                   <div className="storageFile" key={index}>
-                    {console.log(file)}
-                    <span key={index}>{file.substring(13)}</span>
+                    <span key={index}>{file.BF_Name}</span>
                     <button
-                      name="BO_File"
-                      onClick={(e) => deleteFile(index, post.BO_File, e)}
+                      name="oldFiles"
+                      onClick={(e) => deleteFile(index, post.oldFiles, e)}
                     >
                       X
                     </button>

@@ -1,5 +1,6 @@
 const Board = require("../../../models").board;
 const B_Comment = require("../../../models").b_comment;
+const B_Files = require("../../../models/").b_files;
 
 var today = require("../../Date/time");
 const multer = require("multer");
@@ -14,17 +15,6 @@ const writePost = async (req, res, next) => {
   var BO_Category = req.body.BO_Category;
   var BO_Title = req.body.BO_Title;
   var BO_Content = req.body.BO_Content;
-  var fileString = "";
-  if (req.files) {
-    for (var i = 0; i < req.files.length; i++) {
-      fileString = fileString + req.files[i].filename;
-      if (i < req.files.length - 1) {
-        fileString = fileString + ",";
-      }
-    }
-  }
-  console.log("adssadsadsadsdadsasda", req.files);
-  var BO_File = req.files ? fileString : "";
   var BO_Writer_NickName = req.body.username;
   var BO_Creation_Date = today;
 
@@ -35,6 +25,17 @@ const writePost = async (req, res, next) => {
     BO_Writer_NickName,
     BO_Creation_Date,
   });
+
+  if (req.files) {
+    for (var i = 0; i < req.files.length; i++) {
+      await B_Files.create({
+        BF_Name: req.files[i].originalname,
+        BF_Type: req.files[i].mimetype,
+        BF_Files: req.files[i].buffer,
+        Board_BO_Code: board.BO_Code,
+      });
+    }
+  }
 
   req.params.BO_Code = board.BO_Code;
   req.body.self = true;

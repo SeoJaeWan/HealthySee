@@ -29,10 +29,7 @@ export const updatePost = createAction(UPDATE_POST, (id, formData) => ({
   formData,
 }));
 
-export const setOriginal = createAction(SET_ORIGINAL, ({ form, data }) => ({
-  form,
-  data,
-}));
+export const setOriginal = createAction(SET_ORIGINAL, (data) => data);
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
@@ -93,10 +90,10 @@ const boardWrite = handleActions(
       postInfo: null,
       postError,
     }),
-    [SET_ORIGINAL]: (state, { payload: { form, data } }) =>
-      produce(state, (draft) => {
-        draft[form] = data;
-      }),
+    [SET_ORIGINAL]: (state, { payload: data }) => ({
+      ...state,
+      post: { ...data.post, file: [], oldFiles: data.files },
+    }),
   },
   initialState
 );

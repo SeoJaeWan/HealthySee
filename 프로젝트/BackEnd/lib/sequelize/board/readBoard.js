@@ -1,6 +1,7 @@
 const BoardDetail = require("../../../models").boarddetail;
 const B_Comment = require("../../../models").b_comment;
 const Board = require("../../../models").board;
+const B_Files = require("../../../models/").b_files;
 const B_Healthsee = require("../../../models").b_healthsee;
 const B_Reporter = require("../../../models").b_reporter;
 const { Op } = require("sequelize");
@@ -22,7 +23,9 @@ const readPost = async (req, res, next) => {
   //   BoardD.BO_File = BoardD.BO_File.split(",");
   // else BoardD.BO_File = [];
 
-  console.log(Board.BO_State);
+  let BoardF = await B_Files.findAll({
+    where: { Board_BO_Code: BO_Code },
+  });
   if (BoardD.BO_State === 1) return res.status(406).end();
 
   // 댓글 1페이지
@@ -53,6 +56,7 @@ const readPost = async (req, res, next) => {
   });
 
   responseData.boardDetail = BoardD;
+  responseData.boardFile = BoardF;
   responseData.comments = comments.rows;
   responseData.lastPage =
     Math.ceil(comments.count / 20) == 0 ? 1 : Math.ceil(comments.count / 20);
