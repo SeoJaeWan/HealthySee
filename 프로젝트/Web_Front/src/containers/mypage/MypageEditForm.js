@@ -11,9 +11,9 @@ import { onRenderImg } from "../common/onRenderImg";
 
 const MypageEditForm = ({ history }) => {
   const dispatch = useDispatch();
-  const { mypage, user, img, isUpdate } = useSelector(({ mypage, user }) => ({
+  const { mypage, user, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
-    originalProfile: mypage.originalProfile,
+
     isUpdate: mypage.isUpdate,
     user: user.user,
   }));

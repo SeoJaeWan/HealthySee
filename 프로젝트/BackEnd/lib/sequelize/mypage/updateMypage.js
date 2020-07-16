@@ -16,6 +16,8 @@ const updateMypage = async (req, res, next) => {
     Account_AC_NickName,
   } = req.body;
 
+  console.log(req.body);
+
   let { buffer, mimetype } = req.file
     ? req.file
     : { buffer: null, mimetype: null };
@@ -33,9 +35,9 @@ const updateMypage = async (req, res, next) => {
     },
     { where: { Account_AC_NickName } }
   );
-    req.params.username = req.body.Account_AC_NickName;
+  req.params.username = req.body.Account_AC_NickName;
+  req.params.owner = req.body.Account_AC_NickName;
   next();
 };
 
 module.exports = { updateMypage, upload };
-

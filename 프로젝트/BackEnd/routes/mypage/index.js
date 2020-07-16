@@ -10,11 +10,10 @@ var router = express.Router();
 router.post("/", upload.single("ME_Profile_Photo"), updateMypage, readMyPage);
 
 // 마이페이지 조회
-router.get("/:username", readMyPage);
+router.get("/:owner&:username", readMyPage);
 
 // 트레이너 등록
 
 // 운동 건의
 
 module.exports = router;
-
