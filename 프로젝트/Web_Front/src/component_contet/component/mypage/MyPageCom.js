@@ -1,121 +1,90 @@
 import React from "react";
 import { Container } from "../../style/Container_style";
-import { InfCom } from "./style/MyPageEditCom_style";
+import { Link } from "react-router-dom";
+import { InfCom } from "./style/MyPageCom_style";
 import defaultImg from "../../../Images/defaultImg.jpg";
-import ToggleButton from "../../common/ToggleButton";
 
-const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
+const MypageCom = ({ mypage, user, onUpdate, mypageError }) => {
   return (
     <Container>
       <InfCom>
-        <div className="editButton">
-          <button onClick={onGoBack} className="editButton">
-            취소
-          </button>
-          <button onClick={onComplete} type="submit" className="editButton">
-            완료
-          </button>
-        </div>
-        <div className="flex">
-          <div className="leftDiv">
-            <h1>프로필 사진</h1>
-            <div className="imgBox">
-              <img
-                className="imgDiv"
-                src={mypage.img ? mypage.img : defaultImg}
-                alt="profile"
-              />
+        {mypageError ? (
+          <div>비공개 페이지입니다.</div>
+        ) : (
+          <>
+            {user === mypage.Account_AC_NickName && (
+              <div className="rowReverse">
+                <button type="button" className="editButton" onClick={onUpdate}>
+                  편집
+                </button>
+              </div>
+            )}
+            <div className="flex">
+              <div className="leftDiv">
+                <h1 className="title">프로필 사진</h1>
+                <div className="imgBox">
+                  <img
+                    className="imgDiv"
+                    src={mypage.img ? mypage.img : defaultImg}
+                    alt="profile"
+                  />
+                </div>
+              </div>
+              <div className="rightDiv">
+                <dl>
+                  <dt className="contentsTitle">이름</dt>
+                  <dd className="contents">{mypage.Account_AC_NickName}</dd>
+                </dl>
+                <dl>
+                  <dt className="contentsTitle">상태</dt>
+                  <dd className="contents">{mypage.ME_Certificate}</dd>
+                </dl>
+                <dl>
+                  <dt className="contentsTitle">무게</dt>
+                  <dd className="contents">{mypage.ME_Weight}</dd>
+                </dl>
+                <dl>
+                  <dt className="contentsTitle">키</dt>
+                  <dd className="contents">{mypage.ME_Height}</dd>
+                </dl>
+                <dl>
+                  <dt className="contentsTitle">생일</dt>
+                  <dd className="contents">{mypage.ME_Birth}</dd>
+                </dl>
+                <dl>
+                  <dt className="contentsTitle">성별</dt>
+                  <dd className="contents">
+                    {mypage.ME_Gender === 1 ? "여자" : "남자"}
+                  </dd>
+                </dl>
+                <div className="buttonDiv">
+                  <button type="button" className="buttons">
+                    <Link className="buttonLink" to="/Mypage/registerTR">
+                      트레이너 등록
+                    </Link>
+                  </button>
+
+                  <button type="button" className="buttons">
+                    <Link className="buttonLink" to="/Mypage/registerBO">
+                      운동 건의
+                    </Link>
+                  </button>
+                  <button type="button" className="buttons">
+                    <Link
+                      className="buttonLink"
+                      to={`/Album/${mypage.Account_AC_NickName}`}
+                    >
+                      앨 범
+                    </Link>
+                  </button>
+                </div>
+              </div>
             </div>
-
-            <label className="inputIMG" htmlFor="file">
-              이미지 업로드
-            </label>
-            <input
-              className="hidden"
-              type="file"
-              name="originalProfile"
-              id="file"
-              onChange={onChange}
-            />
-          </div>
-          <ul className="rightDiv">
-            <li>
-              <label htmlFor="nickname">닉네임</label>
-              <input
-                readOnly
-                type="text"
-                name="Account_AC_NickName"
-                id="nickname"
-                className="contents"
-                defaultValue={mypage.Account_AC_NickName}
-              />
-            </li>
-
-            <li>
-              <label htmlFor="ME_Scope">공개여부</label>
-
-              <div className="toggleDiv">
-                On
-                <ToggleButton
-                  name="ME_Scope"
-                  type="checkbox"
-                  value={mypage.ME_Scope}
-                  onClick={onChange}
-                />
-                OFF
-              </div>
-            </li>
-            <li>
-              <label htmlFor="Weight">무게</label>
-              <input
-                type="text"
-                name="ME_Weight"
-                id="Weight"
-                className="contents"
-                value={mypage.ME_Weight}
-                onChange={onChange}
-              />
-            </li>
-            <li>
-              <label htmlFor="Height">키</label>
-              <input
-                type="text"
-                name="ME_Height"
-                id="Height"
-                className="contents"
-                value={mypage.ME_Height}
-                onChange={onChange}
-              />
-            </li>
-            <li>
-              <label htmlFor="Birth">생일</label>
-              <input
-                type="date"
-                name="ME_Birth"
-                id="Birth"
-                className="contents"
-                value={mypage.ME_Birth}
-                onChange={onChange}
-              />
-            </li>
-            <li>
-              <label htmlFor="ME_Gender">성별</label>
-              <div className="toggleDiv">
-                남
-                <ToggleButton
-                  name="ME_Gender"
-                  type="checkbox"
-                  value={mypage.ME_Gender}
-                  onClick={onChange}
-                />
-                여
-              </div>
-            </li>
-          </ul>
-        </div>
+          </>
+        )}
       </InfCom>
     </Container>
   );
 };
 
-export default MyPageEditCom;
+export default MypageCom;
