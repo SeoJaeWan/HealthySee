@@ -7,7 +7,7 @@ const upload = require("../../lib/sequelize/mypage/updateMypage").upload;
 var router = express.Router();
 
 // 마이페이지 수정
-router.post("/", upload.single("ME_Profile_Photo"), updateMypage, readMyPage);
+router.post("/", upload.single("files"), updateMypage, readMyPage);
 
 // 마이페이지 조회
 router.get("/:owner&:username", readMyPage);
