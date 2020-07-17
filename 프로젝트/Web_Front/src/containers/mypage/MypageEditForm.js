@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import MyPageEditCom from "../../component_contet/component/MyPage/MyPageEditCom";
+import MyPageEditCom from "../../component_contet/component/mypage/MyPageEditCom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateField,
@@ -27,7 +27,7 @@ const MypageEditForm = ({ history }) => {
     formData.append("ME_Birth", mypage.ME_Birth);
     formData.append("ME_Gender", mypage.ME_Gender);
     formData.append("Account_AC_NickName", mypage.Account_AC_NickName);
-    formData.append("ME_Profile_Photo", mypage.originalProfile);
+    formData.append("files", mypage.originalProfile);
 
     dispatch(updateMypage(formData));
   };

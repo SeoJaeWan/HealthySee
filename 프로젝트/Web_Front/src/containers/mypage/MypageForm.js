@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import MypageCom from "../../component_contet/component/MyPage/MyPageCom";
+import MypageCom from "../../component_contet/component/mypage/MyPageCom";
 import { useDispatch, useSelector } from "react-redux";
 import { readMypage, updateField } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";

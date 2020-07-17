@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import List from "../component_frame/component/List";
-import LoginForm from "../containers/Login/LoginForm";
-import HeaderForm from "../containers/Header/HeaderForm";
+import LoginForm from "../containers/login/LoginForm";
 
 class Login extends Component {
   render() {

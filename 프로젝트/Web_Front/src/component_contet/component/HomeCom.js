@@ -1,5 +1,6 @@
-import React, { Component } from "react"
-import { HomeForm, Img, Home } from "../style/HomeCom_style.js"
+import React, { Component } from "react";
+import { HomeForm, Img, Home } from "../style/HomeCom_style.js";
+import { Link } from "react-router-dom";
 
 class HomeCom extends Component {
   render() {
@@ -9,8 +10,9 @@ class HomeCom extends Component {
           <h1 className="title">Health&amp;See</h1>
           <h2 className="title2">"나만의 작은 트레이너"</h2>
           <button type="button" className="startButton">
-            시작하기
+            <Link to="/Training/squat">시작하기</Link>
           </button>
+
           <ul className="Lng">
             <li>
               <Img src={require("../../Images/Main/react-logo.png")} alt="" />
@@ -26,10 +28,14 @@ class HomeCom extends Component {
             </li>
           </ul>
         </div>
-        <Home out="visible" src={require("../../Images/Login/H&S.png")} alt="" />
+        <Home
+          out="visible"
+          src={require("../../Images/Login/H&S.png")}
+          alt=""
+        />
       </HomeForm>
-    )
+    );
   }
 }
 
-export default HomeCom
+export default HomeCom;
