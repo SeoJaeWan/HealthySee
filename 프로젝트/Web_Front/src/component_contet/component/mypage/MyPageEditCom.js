@@ -10,7 +10,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
       <InfCom>
         <div className="editButton">
           <button onClick={onGoBack} className="editButton">
-            취소
+            취소 
           </button>
           <button onClick={onComplete} type="submit" className="editButton">
             완료
