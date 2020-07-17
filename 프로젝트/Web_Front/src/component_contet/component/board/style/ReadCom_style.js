@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../ReactiveStyle/ReactiveStyle";
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
 
 export const ReadComForm = styled.div`
   .topButton {
@@ -47,9 +47,9 @@ margin-top: 10%;  `}
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;
       ${media.mobile`    
-      margin-top: -20px;
+      margin-top: -17px;
       width: 30px;
-      height: 40px;
+      max-height: 30px;
   `}
     }
   }
@@ -82,6 +82,7 @@ margin-top: 10%;  `}
     border-left: solid white;
     &::before {
       content: "";
+
       margin: -10px;
       margin-top: -30px;
 
@@ -93,23 +94,23 @@ margin-top: 10%;  `}
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;
       ${media.mobile`    
-      margin-top: -20px;
+      margin-top: -17px;
       width: 30px;
-      height: 40px;
+      max-height: 30px;
   `}
     }
   }
-  .flex {
-    margin: 0.5rem 0;
-    display: flex;
-  }
+
   .fileForm {
-    overflow: hidden;
     display: flex;
+
+    overflow: hidden;
     margin: 0;
+
     font-size: 2rem;
     width: 100%;
   }
+
   pre {
     white-space: pre-wrap;
     word-break: break-all;
@@ -134,12 +135,13 @@ margin-top: 10%;  `}
   }
 
   .file {
+    display: flex;
+    white-space: nowrap;
+    
     font-size: 2rem;
     border: 3px solid #676a72;
-    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     margin: 1px 0;
     cursor: pointer;
   }
@@ -147,6 +149,7 @@ margin-top: 10%;  `}
     font-family: none;
   }
 `;
+
 export const FilewViewInfo = styled.div`
   position: absolute;
   width:250px;

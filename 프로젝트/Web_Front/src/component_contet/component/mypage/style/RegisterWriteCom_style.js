@@ -2,143 +2,71 @@ import styled from "styled-components";
 import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
 
 export const WriteForm = styled.div`
-
-  .buttonForm {
+  .Filetext {
+    margin-top: 2%;
+    display: flex;
+  }
+  .Buttonform {
     margin-left: 5%;
     margin-top: 2%;
-
     width: 90%;
-
     display: flex;
     justify-content: space-between;
   }
-  .backButton {
+  .Backbutton {
     margin-left: 4%;
-
     font-size: 3rem;
-
     ${media.mobile`
-
     margin-left: 2%;
     margin-top: 5%;
     margin-bottom: 5%;
-
-    font-size: 1.5rem;
+  font-size: 1.5rem;
   `}
   }
-  .writeButton {
+  .Writebutton {
     margin-left: 4%;
-
     font-size: 3rem;
-
     ${media.mobile`
-
     margin-left: 2%;
     margin-top: 5%;
     margin-bottom: 5%;
-
-    font-size: 1.5rem;
+  font-size: 1.5rem;
   `}
   }
-  .titleform {
+  .Titlediv {
+    width: 100%;
     display: flex;
-
-    width: 90%;
-    font-size: 1rem;
-
-    border: 5px solid #676a72;
-    border-left: solid white;
-
-    margin-top: 1%;
-    margin-left: 5%;
-
-    ${media.mobile`
-    width: 100%;
-    margin-left: 2%;
-    `}
-    &::before {
-      content: "";
-
-      display: block;
-      position: static;
-
-      margin: -10px;
-      margin-top: -30px;
-
-      
-      border-radius: 50%;
-
-      width: 50px;
-      height: 58px;
-
-      background: #676a72;
-      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-      transition: 0.2s;
-      ${media.mobile`    
-      margin-top: -20px;
-      width: 30px;
-      height: 40px;
-  `}
-    }
+    align-items: center;
+    justify-content: center;
   }
-  .title {
-    font-size: 1.5rem;
-    width: 5rem;
-
-    margin: 0;
-    padding: 1rem;
-  }
-
-  .titleInputForm {
-    width: 92%;
-
-    margin: 0;
-    padding-right: 10px;
-  }
-  .titleInput {
-    border: none;
-
-    margin-top: 10px;
-
-    width: 100%;
-    height: 70%;
-    color: #676a72;
-    font: inherit;
-    font-size: 1.5rem;
-    box-shadow: 0px 4px 10px -8px black;
-  }
-  .textTitle {
+  .TextTitle {
     margin-top: 2%;
     padding-left: 9%;
-
     font-size: 3rem;
     width: 90%;
-
     display: flex;
     justify-content: space-between;
 
     ${media.mobile`
-
     margin-top: 5%;
     margin-bottom: 5%;
-
-   font-size: 1.5rem;
+  font-size: 1.5rem;
   `}
   }
-  .textForm {
-    display: flex;
-
+  .Title {
+    font-size: 1.5rem;
+    width: 5rem;
+    margin-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .FileForm {
     width: 90%;
-    height: 400px;
-
     font-size: 1rem;
-
     border: 5px solid #676a72;
     border-left: solid white;
-
-    margin-top: 1%;
+    margin-top: 5%;
     margin-left: 5%;
-
     ${media.mobile`
     width: 100%;
     margin-left: 2%;
@@ -157,135 +85,111 @@ export const WriteForm = styled.div`
       transition: 0.2s;
       ${media.mobile`    
       margin-top: -20px;
-      z-index:3;
       width: 30px;
       height: 40px;
   `}
     }
   }
-
-  .textArea {
-    margin-left: 2%;
-    padding: 8px;
-    
-    color: #676a72;
-    font: inherit;
-    font-size: 1.5rem;
+  .Titleform {
+    display: flex;
+    width: 90%;
+    font-size: 1rem;
+    border: 5px solid #676a72;
+    border-left: solid white;
+    margin-top: 1%;
+    margin-left: 5%;
+    ${media.mobile`
     width: 100%;
+    margin-left: 2%;
+    `}
+    &::before {
+      content: "";
+      position: static;
+      margin: -10px;
+      margin-top: -30px;
+      display: block;
+      border-radius: 50%;
+      width: 50px;
+      height: 58px;
+      background: #676a72;
+      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+      transition: 0.2s;
+      ${media.mobile`    
+      margin-top: -20px;
+      width: 30px;
+      height: 40px;
+  `}
+    }
+  }
+  .Titleinput {
+    border: none;
+    font: inherit;
+    color: #676a72;
+    font-size: 2rem;
+    height: 55px;
+    width: 100%;
+    box-shadow: 0px 4px 10px -8px black;
+  }
+  .FileButton {
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+  .StorageFileForm {
+    margin-top: 1.5%;
+    width: 75%;
+  }
+  .StorageFile {
+    font-size: 1.5rem;
+    margin-left: 2%;
+    margin-bottom: 1%;
+    display: flex;
+    align-items: center;
+  }
+  .TextForm {
+    display: flex;
+    width: 90%;
+    height: 400px;
+    font-size: 1rem;
+    border: 5px solid #676a72;
+    border-left: solid white;
+    margin-top: 1%;
+    margin-left: 5%;
+    ${media.mobile`
+    width: 100%;
+    margin-left: 2%;
+    `}
+    &::before {
+      content: "";
+      position: static;
+      margin: -10px;
+      margin-top: -30px;
+      display: block;
+      border-radius: 50%;
+      width: 50px;
+      height: 58px;
+      background: #676a72;
+      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+      transition: 0.2s;
+      ${media.mobile`    
+      margin-top: -20px;
+      z-index:9999;
+      width: 30px;
+      height: 40px;
+  `}
+    }
+  }
+  .TextArea {
+    margin-left: 2%;
+    height: 100%;
+    width: 100%;
+    font: inherit;
+    color: #676a72;
+    font-size: 2rem;
     border: none;
     resize: none;
     overflow: auto;
     height: auto;
+    padding: 8px;
     box-shadow: 0px 4px 10px -8px black;
   }
-
-  h1 {
-    font-weight: normal;
-  }
-
-  .fileForm {
-
-    width: 90%;
-    font-size: 1rem;
-
-    border: 5px solid #676a72;
-    border-left: solid white;
-
-    margin-top: 5%;
-    margin-left: 5%;
-    ${media.mobile`
-    width: 100%;
-    margin-left: 2%;
-    `}
-    &::before {
-      content: "";
-      position: static;
-      margin: -10px;
-      margin-top: -30px;
-      display: block;
-      border-radius: 50%;
-      width: 50px;
-      height: 58px;
-      background: #676a72;
-      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-      transition: 0.2s;
-      ${media.mobile`    
-      margin-top: -20px;
-      width: 30px;
-      height: 40px;
-  `}
-    }
-  }
-
-
-  .hidden {
-    position: absolute;
-    display:visible;
-
-    width:0;
-
-    padding: 0;
-    margin: -1px;
-    border: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-  }
-
-  .inputImg{
-    font-size:1.5rem;
-    
-    cursor: pointer;
-  }
-  .filetext {
-    margin-top: 2%;
-    display: flex;
-  }
-  .filetitle {
-    font-size: 1.5rem;
-    width: 5rem;
-
-    margin: 0;
-    padding: 1rem;
-
-    ${media.mobile`    
-      font-size: 1.2rem;
-  `}
-  }
-  .storageFile {
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    font-size:1.5rem;
-    
-    margin-left: 2%;
-    margin-bottom: 1rem;
-
-    display: flex;
-    align-items: center;
-  }
-  
-  h1{
-
-    font-size: 1.8rem;
-    margin:0;
-
-  }
-
-  .fileInput{
-    font-family:none;
-    font-weight:bold;
-    font-size: 1.4rem;
-  }
-  
-  .fileDiv{
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1rem;
-    width: 90%;
-
-    display: flex;
-    justify-content: space-between;
-  }
-`
+`;

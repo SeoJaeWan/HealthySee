@@ -1,8 +1,10 @@
-import React from "react";
-import { Container } from "./style/BoardCom_style";
-import { Link } from "react-router-dom";
+import React from "react"
+import { BoardForm } from "./style/BoardCom_style"
 
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Link } from "react-router-dom"
+
+import InfiniteScroll from "react-infinite-scroll-component"
+import { Container } from "../../style/Container_style"
 
 const BoardCom = ({
   match,
@@ -16,21 +18,16 @@ const BoardCom = ({
 }) => {
   return (
     <Container>
-      <div className="Board">
+      <BoardForm>
         <div className="boardNav">
-          <h1>게시판</h1>
-          <form className="Searchbox">
+          <h1 className="title">게시판</h1>
+          <form className="searchbox">
             <select name="name" onChange={onChange}>
               <option value="BO_Title">제목</option>
               <option value="BO_Writer_NickName">닉네임</option>
             </select>
-            <input
-              className="SearchInput"
-              type="text"
-              name="keyword"
-              onChange={onChange}
-            />
-            <button type="submit" className="SearchButton" onClick={onSearch}>
+            <input className="searchInput" type="text" name="keyword" onChange={onChange} />
+            <button type="submit" className="searchButton" onClick={onSearch}>
               검색
             </button>
           </form>
@@ -38,22 +35,22 @@ const BoardCom = ({
             <Link to={`${match.url}/write`}>글쓰기</Link>
           </button>
         </div>
-        <div className="BoardForm">
+        <div className="boardForm">
           <InfiniteScroll
             className="infinitescroll"
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={scroll}
-            loader={<div className="EndBoard">게시글을 불러오고 있습니다.</div>}
-            endMessage={<div className="EndBoard">마지막 게시글 입니다.</div>}
+            loader={<div className="endBoard">게시글을 불러오고 있습니다.</div>}
+            endMessage={<div className="endBoard">마지막 게시글 입니다.</div>}
           >
             <table className="table">
               <thead>
                 <tr>
-                  <th className="BoardTitle">제목</th>
-                  <th className="BoardWriter">글쓴이</th>
-                  <th className="BoardDate">작성일</th>
-                  <th className="BoardHit">조회수</th>
+                  <th className="boardTitle">제목</th>
+                  <th className="boardWriter">글쓴이</th>
+                  <th className="boardDate">작성일</th>
+                  <th className="boardHit">조회수</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,40 +62,26 @@ const BoardCom = ({
                       onClick={onClick}
                       onChangeModal={onChangeModal}
                     />
-                  );
+                  )
                 })}
               </tbody>
             </table>
           </InfiniteScroll>
         </div>
-      </div>
+      </BoardForm>
     </Container>
-  );
-};
+  )
+}
 
 const BoardItem = ({ post, onClick, onChangeModal }) => {
-  const {
-    BO_Code,
-    BO_Title,
-    BO_Creation_Date,
-    BO_Writer_NickName,
-    BO_Hit,
-    BO_State,
-  } = post;
+  const { BO_Code, BO_Title, BO_Creation_Date, BO_Writer_NickName, BO_Hit, BO_State } = post
   return (
     <>
-      <tr
-        className="Item"
-        onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}
-      >
-        <td className="ItemTitle">
-          {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
-        </td>
-        <td className="ItemWriter">{BO_Writer_NickName}</td>
-        <td className="ItemDate">
-          {new Date(BO_Creation_Date).toLocaleDateString()}
-        </td>
-        <td className="ItemHit">{BO_Hit}회</td>
+      <tr className="item" onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}>
+        <td className="itemTitle">{BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}</td>
+        <td className="itemWriter">{BO_Writer_NickName}</td>
+        <td className="itemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
+        <td className="itemHit">{BO_Hit}회</td>
       </tr>
       <tr>
         <td
@@ -108,13 +91,12 @@ const BoardItem = ({ post, onClick, onChangeModal }) => {
         >
           {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
           <br />
-          {BO_Writer_NickName}&nbsp;&nbsp;{" "}
-          {new Date(BO_Creation_Date).toLocaleDateString()}
+          {BO_Writer_NickName}&nbsp;&nbsp; {new Date(BO_Creation_Date).toLocaleDateString()}
           &nbsp;&nbsp; 조회수 : {BO_Hit}
         </td>
       </tr>
     </>
-  );
-};
+  )
+}
 
-export default BoardCom;
+export default BoardCom

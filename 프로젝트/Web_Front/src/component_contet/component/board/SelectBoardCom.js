@@ -23,7 +23,7 @@ const SelectBoardCom = ({
             <option value="BO_Comment_Count">댓글수</option>
             <option value="BO_Hit">조회수</option>
           </select>
-          <button type="button" className="writeButton">
+          <button type="button" className="moreButton">
             <Link to={"/Board/0"}>더보기</Link>
           </button>
         </div>

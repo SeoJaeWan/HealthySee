@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components"
-import { media } from "../../../../ReactiveStyle/ReactiveStyle"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 const slideInTop = keyframes`
   
@@ -34,9 +34,16 @@ export const SelectBoardForm = styled.div`
   `}
 
   h1 {
+
     padding-bottom: 0.5rem;
     padding-left: 1.5rem;
+
     font-size: 2rem;
+    ${media.mobile`
+    font-size: 1.5rem;
+
+    padding-bottom: 0;
+  `}
   }
 
   option {
@@ -52,30 +59,43 @@ export const SelectBoardForm = styled.div`
     border-radius: 0px;
     color: #676a72;
   }
-  .Write {
-    margin-right: 70px;
-  }
+
   .boardNav {
+
     display: flex;
-    color: #676a72;
     justify-content: space-between;
+    align-items:center;
+
+    color: #676a72;
+
     margin-left: 9%;
     margin-top: 70px;
+    ${media.mobile`
+    
+    margin-top: 20px;
+  font-size:1rem;
+
+`}
+  }
+
+  .moreButton{
+    font-size:2rem;
     ${media.mobile`
   font-size:1rem;
 
 `}
   }
-  .writeButton{
-    font-size:2rem;
-  }
   .boardForm {
+    position:relative;
     display: flex;
     flex-direction: column;
+
     width: 95%;
     font-size: 1rem;
+
     border: 5px solid #676a72;
     border-left: solid white;
+
     max-height: 100%;
     margin-left: 5%;
     ${media.mobile`
@@ -83,9 +103,10 @@ export const SelectBoardForm = styled.div`
     `}
     &::before {
       content: "";
-      position: static;
+
       margin: -10px;
       margin-top: -30px;
+
       display: block;
       border-radius: 50%;
       width: 50px;
@@ -93,8 +114,18 @@ export const SelectBoardForm = styled.div`
       background: #676a72;
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;
+      ${media.mobile`    
+      margin-top: -17px;
+      width: 30px;
+      max-height: 30px;
+  `}
     }
   }
+
+  th{
+    padding-top:1.5rem;
+  }
+
   .boardTitle {
     width: 67%;
 
@@ -102,17 +133,20 @@ export const SelectBoardForm = styled.div`
     max-width:2rem;
     `}
   }
+
   .boardWriter {
     width: 10%;
     ${media.mobile`
     display:none;
     `}
   }
+
   .boardDate {
     ${media.mobile`
     display:none;
     `}
   }
+
   .boardHit {
     
     width: 5rem;
@@ -138,18 +172,15 @@ export const SelectBoardForm = styled.div`
     ${media.mobile`
      display:none;
      font-size:1rem;
-     width:100%;
-     
-    
+     width:100%;   
 `}
     cursor: pointer;
   }
-  
-  .flex{
-    font-size:1.2rem;
-  }
+
   .itemTitle {
+    
     width: 67%;
+
     text-align:left;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -166,8 +197,10 @@ export const SelectBoardForm = styled.div`
 `}
   }
   .itemDate {
+
     width: 20%;
     font-size: 1rem;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -176,8 +209,10 @@ export const SelectBoardForm = styled.div`
 `}
   }
   .itemHit {
+
     min-width: 3rem;
     max-width: 3rem;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -186,13 +221,14 @@ export const SelectBoardForm = styled.div`
 `}
   }
   .mobileItem{
-    
-    
+
     display:none;
+
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 40px;
     white-space: nowrap;
+
     ${media.mobile`
       display:block;
       max-width:100%;

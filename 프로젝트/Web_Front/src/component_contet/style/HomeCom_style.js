@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../lib/ReactiveStyle/ReactiveStyle"
 
 const slideInTop = keyframes`
   
@@ -19,16 +19,20 @@ const slideInTop = keyframes`
     opacity: 4;
     transform: translateY(0px);
   }
-`;
+`
 
 export const HomeForm = styled.div`
   padding-left: 30%;
-  width: 60%;
   margin-top: 100px;
 
+  width: 60%;
+  height: 200vh;
+  
   display: flex;
+
+  animation: ${slideInTop} 3s forwards ease-in;
   ${media.mobile`
-    
+    padding-left: 18%;
     margin-left: 0%;
 `}
 
@@ -38,8 +42,6 @@ export const HomeForm = styled.div`
     color: #676a72;
     font-size: 4.5rem;
     margin-top: 40px;
-
-    animation: ${slideInTop} 3s forwards ease-in;
     ${media.mobile`
     
     font-size: 3rem;
@@ -57,7 +59,6 @@ export const HomeForm = styled.div`
     color: #676a72;
     font-size: 2rem;
     visibility: none;
-    animation: ${slideInTop} 3s ease-in;
     ${media.mobile`
     
     font-size: 1.5rem;
@@ -68,49 +69,42 @@ export const HomeForm = styled.div`
     font-size: 3rem;
     width: 200px;
     height: 100px;
-
     background-color: #676a72;
-    border: none;
+    border-color: #676a72;
     color: white;
-
     border-radius: 50%;
     margin-top: 50px;
     margin-left: 20%;
-    animation: ${slideInTop} 3s ease-in;
     ${media.mobile`
+    
     margin-left: 10%;
 `}
-  }
-
-  .startButton > a {
-    color: white;
   }
 
   li {
     display: inline;
   }
-  .Lng {
+
+  .lng {
     list-style: none;
     width: 120%;
     margin-top: 50px;
-    margin-left: -90px;
-    animation: ${slideInTop} 3s ease-in;
+    margin-left: -100px;
     ${media.mobile`
     
-    margin-left: -20%;
+    margin-left: -23%;
 `}
   }
-`;
+`
 
 export const Home = styled.img`
   height: auto;
   max-height: 100%;
   animation-delay: 3s;
-  animation: ${slideInTop} 3s ease-in;
   ${media.imgs`
   display:none;
 `}
-`;
+`
 
 export const Img = styled.img`
   width: auto;
@@ -119,8 +113,8 @@ export const Img = styled.img`
   max-width: 100px;
   max-height: 100px;
   ${media.mobile`
-  width: 50%;
+  width: 18%;
   top:10%;
   left:25%;
 `}
-`;
+`

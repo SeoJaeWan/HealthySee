@@ -1,8 +1,7 @@
 import styled from "styled-components"
-import { media } from "../../ReactiveStyle/ReactiveStyle"
+import { media } from "../../lib/ReactiveStyle/ReactiveStyle"
 
 export const Sticky = styled.div`
-  position: sticky;
   top: 0px;
   z-index: 10;
   width: 100%;
@@ -11,6 +10,7 @@ export const Sticky = styled.div`
   background-color: white;
   justify-content: space-between;
   border-bottom: 10px solid #676a72;
+
   .user {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -26,6 +26,7 @@ export const Sticky = styled.div`
     
     `}
   }
+
   .logout {
     padding-top: 10px;
     font-size: 1rem;
@@ -38,9 +39,7 @@ export const Sticky = styled.div`
     
     `}
   }
-  .leftdiv {
-    width: 50%;
-  }
+
   .title {
     text-align: center;
     margin: auto;
@@ -90,6 +89,7 @@ export const Sticky = styled.div`
 
 export const MenuForm = styled.div`
   position: absolute;
+  z-index: 10;
   top: 5rem;
   width: 250px;
   overflow: hidden;

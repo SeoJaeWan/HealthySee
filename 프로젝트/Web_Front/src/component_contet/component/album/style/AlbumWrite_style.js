@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../ReactiveStyle/ReactiveStyle";
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
 
 export const AlbumForm = styled.div`
   width: 100%;

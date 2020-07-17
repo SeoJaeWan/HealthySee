@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { MenuForm, Sticky } from "../style/Header_style.js";
-import Menu from "./Menu.js";
+import React from "react"
+import { Link } from "react-router-dom"
+import { MenuForm, Sticky, MenuOutside } from "../style/Header_style.js"
+import Menu from "./Menu.js"
 
 const Header = ({
   user,
@@ -10,6 +10,7 @@ const Header = ({
   setMenu,
   boardView,
   menuBoardView,
+  ScrollingElement,
 }) => {
   return (
     <Sticky>
@@ -23,7 +24,9 @@ const Header = ({
       </button>
       <MenuForm isView={isView}>
         <Menu
+          ScrollingElement={ScrollingElement}
           user={user}
+          onLogout={onLogout}
           isView={isView}
           setMenu={setMenu}
           menuBoardView={menuBoardView}
@@ -52,7 +55,7 @@ const Header = ({
         )}
       </div>
     </Sticky>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

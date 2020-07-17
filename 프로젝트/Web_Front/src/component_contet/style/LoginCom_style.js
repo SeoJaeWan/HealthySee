@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../ReactiveStyle/ReactiveStyle";
+import { media } from "../../lib/ReactiveStyle/ReactiveStyle";
 
 export const Container = styled.div`
   width: 70%;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding-top: 0.7%;
   padding-left: 0.7%;
 
-  .Title {
+  .title {
     font-size: 50pt;
     margin-left: 10%;
     color: #676a72;
@@ -19,7 +19,7 @@ export const Container = styled.div`
 
 `}
   }
-  .LoginForm {
+  .loginForm {
     position: relative;
     display: flex;
     width: 95%;
@@ -45,6 +45,7 @@ export const Container = styled.div`
 `}
     }
   }
+  
   .platform {
     width: 50%;
     height: 100%;

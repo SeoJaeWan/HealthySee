@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readPost, setBeforeList } from "../../modules/board/boardPost";
 import { withRouter } from "react-router-dom";
-import { deletePost } from "../../lib/api/board";
+import { deletePost, downloadFile } from "../../lib/api/board";
 import { saveAs } from "file-saver";
 
 import ReadCom from "../../component_contet/component/board/ReadCom";

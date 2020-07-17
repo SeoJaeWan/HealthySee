@@ -1,20 +1,24 @@
 import styled from "styled-components"
-import { media } from "../../ReactiveStyle/ReactiveStyle"
+import { media } from "../../lib/ReactiveStyle/ReactiveStyle"
 
 export const SignupForm = styled.div`
   width: 100%;
   margin-top: 5%;
   margin-left: 5%;
+
   .title {
+
     margin-left: 10%;
     font-size: 4rem;
     color: #676a72;
+
     ${media.mobile`
     margin-left: 20%;
     font-size: 3rem;
 
 `}
   }
+  
   .signForm {
     display: flex;
     height: 60vh;
@@ -38,9 +42,10 @@ export const SignupForm = styled.div`
   }
 
   .leftdiv {
-    width: 50%;
     display: flex;
     flex-direction: column;
+
+    width: 50%;
     padding-top: 2rem;
     ${media.desktop`
     width: 100%;
@@ -52,6 +57,7 @@ export const SignupForm = styled.div`
     padding-left:0;
 `}
   }
+  
   .contextform {
     display: flex;
 
@@ -63,6 +69,7 @@ export const SignupForm = styled.div`
     box-shadow: 0px 3px 0px 0px #676a72;
     border: 0px;
   }
+
   .textInput {
     width: 40%;
     margin-left: 20%;
@@ -78,10 +85,13 @@ export const SignupForm = styled.div`
     display: block;
     margin: 0 auto;
   }
+
   .flex {
+
     display: flex;
     text-align: center;
     font-size: 2rem;
+
     margin: 2rem 0;
     word-spacing: 0.3vw;
     ${media.mobile`
@@ -130,6 +140,7 @@ export const SignupForm = styled.div`
     height: 2rem;
     margin: 0;
   }
+
   label {
     display: inline;
     font-size: 2rem;
@@ -137,9 +148,11 @@ export const SignupForm = styled.div`
     font-size:1.5rem;
 `}
   }
+
   ul{
     margin:0;
   }
+
   li {
     list-style-type: none;
   }

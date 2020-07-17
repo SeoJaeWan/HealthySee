@@ -5,7 +5,6 @@ import NaverLogin from "react-naver-login";
 
 import {
   Container,
-  Home,
   Kakao,
   Google,
   Naver,
@@ -19,8 +18,8 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
 
   return (
     <Container>
-        <h1 className="Title">로그인</h1>
-        <div className="LoginForm">
+        <h1 className="title">로그인</h1>
+        <div className="loginForm">
           <div className="platform">
             <KakaoLogin
               jsKey={"2f70e141f23b6a78e4b7fdd56b7be83e"}

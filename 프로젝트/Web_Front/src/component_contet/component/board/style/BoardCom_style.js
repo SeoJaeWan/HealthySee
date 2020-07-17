@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../../ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 const slideInTop = keyframes`
   
@@ -20,82 +20,107 @@ const slideInTop = keyframes`
     opacity: 1;
     transform: translateY(0px);
   }
-`;
+`
 
-export const Container = styled.div`
-  width: 70%;
-  margin-left: 13%;
+export const BoardForm = styled.div`
+  min-width: 35rem;
+  ${media.imgs`
+  width: 100%;
+  `}
   ${media.board`
-  margin-left: 5%;
-`}
-  ${media.desktop`
-  width:90%;
+  width: 90%;
   `}
   ${media.mobile`
-  width: 90%;
-  margin-left: 0%;
+  min-width: 20rem;
+  `}
+
+  .boardNav {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    flex-wrap: wrap;
+
+    color: #676a72;
+    margin-top: 70px;
+    margin-left: 9%;
+    ${media.mobile`
+    margin-top: 20px;
+    width:96%;
+    font-size:1rem;
+
 `}
-  .infinitescroll {
-    margin: 0;
-    width: 100%;
-    overflow:visible;
+
+  .title{
+
+    ${media.mobile`
+    font-size:1.5rem;
+    order: 0;
+  `}
   }
 
-  .Board {
-    width: 100%;
-  }
-  option{
-    font-size:1.3rem;
-  }
-  .Searchbox {
+  .searchbox {
     width:50%;
+    height:100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    margin-bottom: 0.5rem;
+    
+    ${media.mobile`
+    font-size:1.5rem;
+    margin-left:1rem;
+    width:100%;
+    order: 3;
+  `}
   }
+
   select {
     width: 5rem;
-    padding: 0.8em 0.5em;
+    padding: 0.6em 0.5em;
     border: 1px solid #999;
     font-size: 1rem;
     font-family: inherit;
     border-radius: 0px;
     color: #676a72;
   }
-  .SearchInput{
+
+  .searchInput{
     width: 70%;
     font: inherit;
-    font-size: 2rem; 
+    font-size: 1.5rem; 
     color: #676a72;
-    height: 80%;
+    height:2.2rem;
   }
-  .SearchButton{
-    border: 2px solid #676a72;
-    width:5rem;
-    height: 90%;
-    font-size:2rem;
-    ${media.desktop`
-    font-size:1rem;
-  `}
-  }
-  .Write {
-    margin-right: 70px;
-  }
-  .boardNav {
-    display: flex;
-    color: #676a72;
-    justify-content: space-between;
-    margin-left: 9%;
-    margin-top: 70px;
-    ${media.mobile`
-  font-size:1rem;
 
-`}
+  .searchButton{
+    border: 2px solid #676a72;
+    min-width:5rem;
+    height:100%;
+    font-size:2rem;
+  }
+
+  .infinitescroll {
+    margin: 0;
+    width: 100%;
+    overflow:visible;
+  }
+
+  option{
+    font-size:1.3rem;
+  }
+
   }
   .writeButton{
     font-size:2rem;
+    ${media.mobile`
+    font-size:1.5rem;
+    padding: 1rem 0;
+
+`}
   }
-  .BoardForm {
+
+  .boardForm {
     display: flex;
     flex-direction: column;
     width: 95%;
@@ -109,9 +134,11 @@ export const Container = styled.div`
     `}
     &::before {
       content: "";
-      position: static;
+
+    
       margin: -10px;
       margin-top: -30px;
+
       display: block;
       border-radius: 50%;
       width: 50px;
@@ -119,35 +146,43 @@ export const Container = styled.div`
       background: #676a72;
       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
       transition: 0.2s;
+      ${media.mobile`    
+      margin-top: -17px;
+      width: 30px;
+      max-height: 30px;
+  `}
     }
   }
-  .BoardTitle {
+
+  .boardTitle {
     width: 67%;
 
     ${media.mobile`
     max-width:2rem;
     `}
   }
-  .BoardWriter {
+
+  .boardWriter {
     width: 10%;
     ${media.mobile`
     display:none;
     `}
   }
-  .BoardDate {
+
+  .boardDate {
     ${media.mobile`
     display:none;
     `}
   }
-  .BoardHit {
+
+  .boardHit {
     
     width: 5rem;
     ${media.mobile`
     display:none;
     `}
   }
-
-  
+ 
   .table {
     width:100%;
     table-layout: fixed;
@@ -156,7 +191,7 @@ export const Container = styled.div`
     border-spacing: 10px 20px;
   }
   
-  .Item {
+  .item {
     width:100%;
     font-size: 1.5rem;
     text-align: center;
@@ -171,17 +206,14 @@ export const Container = styled.div`
     cursor: pointer;
   }
   
-  .flex{
-    font-size:1.2rem;
-  }
-  .ItemTitle {
+  .itemTitle {
     width: 67%;
     text-align:left;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .ItemWriter {
+  .itemWriter {
     width: 30%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -191,7 +223,7 @@ export const Container = styled.div`
     display:none;
 `}
   }
-  .ItemDate {
+  .itemDate {
     width: 20%;
     font-size: 1rem;
     overflow: hidden;
@@ -201,7 +233,7 @@ export const Container = styled.div`
     display:none;
 `}
   }
-  .ItemHit {
+  .itemHit {
     min-width: 3rem;
     max-width: 3rem;
     overflow: hidden;
@@ -229,11 +261,11 @@ export const Container = styled.div`
   }
 `}
   }
-  .EndBoard{
+  .endBoard{
     text-align:center;
     font-size: 2rem;   
     ${media.mobile`
   font-size:1rem;
   `}
   }
-`;
+`
