@@ -11,7 +11,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer, { rootSaga } from "./modules/index";
 
 import App from "./App";
-import { tempSetUser, check } from "./modules/account/user";
+import { check } from "./modules/account/user";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -26,7 +26,7 @@ function loadUser() {
 
     if (!user) return;
 
-    store.dispatch(tempSetUser(user));
+    // store.dispatch(tempSetUser(user));
     store.dispatch(check());
   } catch (error) {
     console.log("loadUser is not working");
