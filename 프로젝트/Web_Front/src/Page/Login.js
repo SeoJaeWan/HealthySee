@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react"
 
-import LoginForm from "../containers/login/LoginForm";
+import LoginForm from "../containers/login/LoginForm"
 
-class Login extends Component {
-  render() {
-    return <LoginForm />;
-  }
+const Login = () => {
+  return <LoginForm />
 }
 
-export default Login;
+export default Login

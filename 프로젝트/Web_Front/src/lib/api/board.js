@@ -36,6 +36,8 @@ export const updatePost = ({ id, formData }) => {
   return client.patch(`/board/posts/${id}`, formData, config);
 };
 
+export const downloadFile = (id) => client.get(`/board/posts/download/${id}`);
+
 export const writeComment = ({ content, postId, ref, page }) => {
   console.log(content, postId, ref);
 

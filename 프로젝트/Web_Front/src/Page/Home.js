@@ -1,10 +1,9 @@
-import React, { Component } from "react"
+import React from "react"
 
 import HomeCom from "../component_contet/component/HomeCom"
 
-class Home extends Component {
-  render() {
+const Home = () => {
     return <HomeCom />
-  }
+  
 }
 export default Home

@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
 import MainCom from "../component_contet/component/MainCom";
 
-class Main extends Component {
-  render() {
+const Main = () => {
     return <MainCom />;
-  }
+  
 }
 export default Main;
