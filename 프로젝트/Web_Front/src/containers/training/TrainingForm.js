@@ -54,6 +54,29 @@ const TrainingForm = ({ match }) => {
     classifyPose();
   };
 
+  const gotPoses = (poses) => {
+    if (poses.length > 0) {
+      pose = poses[0].pose;
+      skeleton = poses[0].skeleton;
+
+      // if (state === "collecting") {   사용 할수록 성능이 증가하게끔 만드는건 고려중
+      //   console.log(pose);
+      //   console.log(targetLabel);
+      //   let inputs = [];
+      //   for (let i = 0; i < pose.keypoints.length; i++) {
+      //     let x = pose.keypoints[i].position.x;
+      //     let y = pose.keypoints[i].position.y;
+      //     console.log(pose.keypoints[i]);
+      //     inputs.push(x);
+      //     inputs.push(y);
+      //   }
+      //   console.log(inputs);
+      //   let target = [targetLabel];
+      //   brain.addData(inputs, target);
+      // }
+    }
+  };
+
   const setup = (p5) => {
     p5.createCanvas(640, 720);
 
@@ -68,6 +91,9 @@ const TrainingForm = ({ match }) => {
 
     capture.hide();
 
+    poseNet = ml5.poseNet(capture, option);
+    poseNet.on("pose", gotPoses);
+
     brain = ml5.neuralNetwork(options);
     const modelInfo = {
       model: process.env.PUBLIC_URL + "/model.json",
@@ -77,7 +103,35 @@ const TrainingForm = ({ match }) => {
     brain.load(modelInfo, brainLoaded);
   };
 
-  const draw = (p5) => {};
+  const draw = (p5) => {
+    p5.push(); // 새로운 도면 시작
+    p5.translate(0, 0); // 실제 그려지는 동영상의 위치 이동
+
+    if (pose) {
+      for (let i = 0; i < skeleton.length; i++) {
+        let a = skeleton[i][0];
+        let b = skeleton[i][1];
+
+        p5.strokeWeight(1);
+        p5.stroke(0);
+
+        p5.line(a.position.x, a.position.y, b.position.x, b.position.y);
+      }
+
+      for (let i = 0; i < pose.keypoints.length; i++) {
+        let x = pose.keypoints[i].position.x;
+        let y = pose.keypoints[i].position.y;
+
+        p5.fill(0);
+        p5.stroke(255);
+        p5.ellipse(x, y, 8, 8);
+      }
+    }
+
+    p5.pop();
+    p5.fill(255, 0, 255);
+    p5.noStroke();
+  };
 
   return <TrainingCom match={match} />;
 };
