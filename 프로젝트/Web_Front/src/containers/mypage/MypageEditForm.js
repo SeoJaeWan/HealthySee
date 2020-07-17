@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import MyPageEditCom from "../../component_contet/component/mypage/MyPageEditCom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -32,10 +32,10 @@ const MypageEditForm = ({ history }) => {
     dispatch(updateMypage(formData));
   };
 
-  const onGoBack = () => {
+  const onGoBack = useCallback(() => {
     history.goBack();
     dispatch(initialize());
-  };
+  }, [history, dispatch]);
 
   const onChange = (e) => {
     e.preventDefault();
@@ -64,13 +64,13 @@ const MypageEditForm = ({ history }) => {
       console.log("여ㅑ기");
       onRenderImg(mypage.originalProfile, updateField, dispatch);
     }
-  }, [mypage.originalProfile]);
+  }, [mypage.originalProfile, dispatch]);
 
   useEffect(() => {
     if (!user) {
       history.push("/");
     } else if (isUpdate) onGoBack();
-  }, [user, isUpdate, history]);
+  }, [user, isUpdate, history, onGoBack]);
 
   return (
     <MyPageEditCom

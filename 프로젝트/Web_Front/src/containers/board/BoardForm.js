@@ -83,8 +83,6 @@ const BoardForm = ({ match, history }) => {
       );
       localStorage.removeItem("search");
     } else if (posts.length !== 0) {
-      console.log("여기?", posts.length, options, postsCount);
-      console.log(posts);
       sessionStorage.removeItem("beforeList");
     } else {
       console.log("여기까지 왔나요?");
