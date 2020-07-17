@@ -22,10 +22,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
             <div className="imgBox">
               <img
                 className="imgDiv"
-                src={
-                  // mypage.ME_Profile_Photo ? mypage.ME_Profile_Photo : defaultImg
-                  mypage.img ? mypage.img : defaultImg
-                }
+                src={mypage.img ? mypage.img : defaultImg}
                 alt="profile"
               />
             </div>

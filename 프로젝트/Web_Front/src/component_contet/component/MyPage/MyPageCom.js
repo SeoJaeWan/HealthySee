@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { InfCom } from "./style/MyPageCom_style";
 import defaultImg from "../../../Images/defaultImg.jpg";
 
-const MypageCom = ({ mypage, user, onUpdate, img }) => {
+const MypageCom = ({ mypage, user, onUpdate, mypageError }) => {
   return (
     <Container>
       <InfCom>
-        {!(user === mypage.Account_AC_NickName) && mypage.ME_Scope === 0 ? (
+        {mypageError ? (
           <div>비공개 페이지입니다.</div>
         ) : (
           <>

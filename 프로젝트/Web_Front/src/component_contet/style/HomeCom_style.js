@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components"
-import { media } from "../../lib/ReactiveStyle/ReactiveStyle"
+import styled, { keyframes } from "styled-components";
+import { media } from "../../lib/ReactiveStyle/ReactiveStyle";
 
 const slideInTop = keyframes`
   
@@ -19,7 +19,7 @@ const slideInTop = keyframes`
     opacity: 4;
     transform: translateY(0px);
   }
-`
+`;
 
 export const HomeForm = styled.div`
   padding-left: 30%;
@@ -27,7 +27,7 @@ export const HomeForm = styled.div`
 
   width: 60%;
   height: 200vh;
-  
+
   display: flex;
 
   animation: ${slideInTop} 3s forwards ease-in;
@@ -70,15 +70,18 @@ export const HomeForm = styled.div`
     width: 200px;
     height: 100px;
     background-color: #676a72;
-    border-color: #676a72;
+
+    border: none;
+
     color: white;
     border-radius: 50%;
     margin-top: 50px;
     margin-left: 20%;
     ${media.mobile`
-    
+
     margin-left: 10%;
-`}
+    
+    `}
   }
 
   li {
@@ -93,9 +96,9 @@ export const HomeForm = styled.div`
     ${media.mobile`
     
     margin-left: -23%;
-`}
+    `}
   }
-`
+`;
 
 export const Home = styled.img`
   height: auto;
@@ -104,7 +107,7 @@ export const Home = styled.img`
   ${media.imgs`
   display:none;
 `}
-`
+`;
 
 export const Img = styled.img`
   width: auto;
@@ -117,4 +120,4 @@ export const Img = styled.img`
   top:10%;
   left:25%;
 `}
-`
+`;

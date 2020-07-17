@@ -5,13 +5,13 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from "../../lib/createRequestSaga";
 
-const TEMP_SET_USER = "user/TEMP_SET_USER";
+// const TEMP_SET_USER = "user/TEMP_SET_USER";
 const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes(
   "user/CHECK"
 );
 const LOGOUT = "user/LOGOUT";
 
-export const tempSetUser = createAction(TEMP_SET_USER, (user) => user);
+// export const tempSetUser = createAction(TEMP_SET_USER, (user) => user);
 export const check = createAction(CHECK);
 export const logout = createAction(LOGOUT);
 
@@ -57,10 +57,10 @@ const initialState = {
 
 const user = handleActions(
   {
-    [TEMP_SET_USER]: (state, { payload: user }) => ({
-      ...state,
-      user: user.username,
-    }),
+    // [TEMP_SET_USER]: (state, { payload: user }) => ({ 써야할지 의문
+    //   ...state,
+    //   user: user.username,
+    // }),
     [CHECK_SUCCESS]: (state, { payload: user }) => ({
       ...state,
       user: user.username,

@@ -6,10 +6,11 @@ import Login from "./Page/Login";
 import Signup from "./Page/Signup";
 import Board from "./Page/Board";
 import MyPage from "./Page/MyPage";
+import Album from "./Page/Album";
+import Training from "./Page/Training";
 
 import { createGlobalStyle } from "styled-components";
 import HeaderForm from "./containers/header/HeaderForm";
-import Album from "./Page/Album";
 
 const App = () => {
   const GlobalStyle = createGlobalStyle`
@@ -52,6 +53,7 @@ const App = () => {
       <Route path="/Board/:board" component={Board} />
       <Route path="/MyPage" component={MyPage} />
       <Route path="/Album/:username" component={Album} />
+      <Route path="/Training/:type" component={Training} />
     </div>
   );
 };

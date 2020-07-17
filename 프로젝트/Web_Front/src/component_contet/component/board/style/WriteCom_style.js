@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
 
 export const WriteForm = styled.div`
-
   .buttonForm {
     margin-left: 5%;
     margin-top: 2%;
@@ -24,7 +23,7 @@ export const WriteForm = styled.div`
     margin-bottom: 5%;
 
     font-size: 1.5rem;
-  `}
+    `}
   }
   .writeButton {
     margin-left: 4%;
@@ -65,7 +64,6 @@ export const WriteForm = styled.div`
       margin: -10px;
       margin-top: -30px;
 
-      
       border-radius: 50%;
 
       width: 50px;
@@ -167,7 +165,7 @@ export const WriteForm = styled.div`
   .textArea {
     margin-left: 2%;
     padding: 8px;
-    
+
     color: #676a72;
     font: inherit;
     font-size: 1.5rem;
@@ -184,7 +182,6 @@ export const WriteForm = styled.div`
   }
 
   .fileForm {
-
     width: 90%;
     font-size: 1rem;
 
@@ -217,12 +214,11 @@ export const WriteForm = styled.div`
     }
   }
 
-
   .hidden {
     position: absolute;
-    display:visible;
+    display: visible;
 
-    width:0;
+    width: 0;
 
     padding: 0;
     margin: -1px;
@@ -231,9 +227,9 @@ export const WriteForm = styled.div`
     clip: rect(0, 0, 0, 0);
   }
 
-  .inputImg{
-    font-size:1.5rem;
-    
+  .inputImg {
+    font-size: 1.5rem;
+
     cursor: pointer;
   }
   .filetext {
@@ -252,34 +248,31 @@ export const WriteForm = styled.div`
   `}
   }
   .storageFile {
-    
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    font-size:1.5rem;
-    
+    font-size: 1.5rem;
+
     margin-left: 2%;
     margin-bottom: 1rem;
 
     display: flex;
     align-items: center;
   }
-  
-  h1{
 
+  h1 {
     font-size: 1.8rem;
-    margin:0;
-
+    margin: 0;
   }
 
-  .fileInput{
-    font-family:none;
-    font-weight:bold;
+  .fileInput {
+    font-family: none;
+    font-weight: bold;
     font-size: 1.4rem;
   }
-  
-  .fileDiv{
+
+  .fileDiv {
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1rem;
@@ -288,4 +281,4 @@ export const WriteForm = styled.div`
     display: flex;
     justify-content: space-between;
   }
-`
+`;

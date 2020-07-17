@@ -7,11 +7,12 @@ import { onRenderImg } from "../common/onRenderImg";
 
 const MypageForm = ({ match, history }) => {
   const dispatch = useDispatch();
-  const { mypage, user, loading } = useSelector(
+  const { mypage, user, loading, mypageError } = useSelector(
     ({ mypage, user, loading }) => ({
       mypage: mypage.mypage,
       user: user.user,
       loading: loading["mypage/READ_MYPAGE"],
+      mypageError: mypage.mypageError,
     })
   );
 
@@ -39,7 +40,14 @@ const MypageForm = ({ match, history }) => {
   }, [dispatch, match, user]);
 
   if (!mypage || loading) return null;
-  return <MypageCom mypage={mypage} user={user} onUpdate={onUpdate} />;
+  return (
+    <MypageCom
+      mypage={mypage}
+      user={user}
+      onUpdate={onUpdate}
+      mypageError={mypageError}
+    />
+  );
 };
 
 export default withRouter(MypageForm);

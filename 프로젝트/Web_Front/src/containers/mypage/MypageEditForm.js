@@ -13,7 +13,6 @@ const MypageEditForm = ({ history }) => {
   const dispatch = useDispatch();
   const { mypage, user, isUpdate } = useSelector(({ mypage, user }) => ({
     mypage: mypage.mypage,
-
     isUpdate: mypage.isUpdate,
     user: user.user,
   }));
@@ -27,7 +26,7 @@ const MypageEditForm = ({ history }) => {
     formData.append("ME_Birth", mypage.ME_Birth);
     formData.append("ME_Gender", mypage.ME_Gender);
     formData.append("Account_AC_NickName", mypage.Account_AC_NickName);
-    formData.append("ME_Profile_Photo", mypage.originalProfile);
+    formData.append("files", mypage.originalProfile);
 
     dispatch(updateMypage(formData));
   };
