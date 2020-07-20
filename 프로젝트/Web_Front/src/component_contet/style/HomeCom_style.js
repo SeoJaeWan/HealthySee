@@ -73,7 +73,6 @@ export const HomeForm = styled.div`
 
     border: none;
 
-    color: white;
     border-radius: 50%;
     margin-top: 50px;
     margin-left: 20%;
@@ -82,6 +81,10 @@ export const HomeForm = styled.div`
     margin-left: 10%;
     
     `}
+  }
+
+  .startButton a {
+    color: #fff;
   }
 
   li {

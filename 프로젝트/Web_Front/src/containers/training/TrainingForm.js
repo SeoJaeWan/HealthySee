@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TrainingCom from "../../component_contet/component/training/TrainingCom";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import * as ml5 from "ml5";
@@ -7,6 +7,13 @@ const TrainingForm = ({ match }) => {
   let brain;
   let poseNet;
 
+  let poses;
+  let [info, setInfo] = useState({
+    capture: null,
+    pose: null,
+    skeleton: null,
+    count: 0,
+  });
   let capture;
 
   let pose;
@@ -18,21 +25,25 @@ const TrainingForm = ({ match }) => {
     outputStride: 16,
     flipHorizontal: false,
     minConfidence: 0.75,
-    maxPoseDetections: 5,
+    maxPoseDetections: 1,
     scoreThreshold: 0.7,
     nmsRadius: 20,
     detectionType: "multiple",
-    inputResolution: 257,
-    multiplier: 0.5,
+    inputResolution: 321,
+    multiplier: 0.75,
     quantBytes: 2,
   };
 
   const brainLoaded = () => {
     console.log("pose classification ready!");
-    classifyPose();
+
+    poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues;
+    poses = poses.concat(poses[0]);
+
+    setTimeout(() => classifyPose(0), 5000);
   };
 
-  const classifyPose = () => {
+  const classifyPose = (state) => {
     if (pose) {
       let inputs = [];
       for (let i = 0; i < pose.keypoints.length; i++) {
@@ -41,23 +52,39 @@ const TrainingForm = ({ match }) => {
         inputs.push(x);
         inputs.push(y);
       }
-      brain.classify(inputs, gotResult);
+      brain.classify(inputs, (error, results) =>
+        gotResult(error, results, state)
+      );
     } else {
-      setTimeout(classifyPose, 100);
+      setTimeout(() => classifyPose(state), 100);
     }
   };
 
-  const gotResult = (error, results) => {
-    // if (results[0].confidence > 0.75) {
-    //   poseLabel = results[0].label.toUpperCase(); // results[0].label 이 어떤 것인지를 나타냄 동작의 이름
-    // }
-    classifyPose();
+  const gotResult = (error, results, state) => {
+    if (results[0].confidence > 0.75 && results[0].label === poses[state]) {
+      state = state + 1;
+
+      if (state === poses.length) {
+        state = 1;
+
+        setInfo((pre) => ({ ...pre, count: pre.count + 1 }));
+      }
+
+      // console.log(results[0].label.toUpperCase()); // results[0].label 이 어떤 것인지를 나타냄 동작의 이름
+    }
+    classifyPose(state);
   };
 
   const gotPoses = (poses) => {
     if (poses.length > 0) {
       pose = poses[0].pose;
       skeleton = poses[0].skeleton;
+      setInfo((pre) => ({
+        ...pre,
+        pose,
+        skeleton,
+      }));
+      // console.log(poses);
 
       // if (state === "collecting") {   사용 할수록 성능이 증가하게끔 만드는건 고려중
       //   console.log(pose);
@@ -78,34 +105,30 @@ const TrainingForm = ({ match }) => {
   };
 
   const setup = (p5) => {
-    p5.createCanvas(640, 720);
+    let canvas = p5.createCanvas(640, 480);
+    let div = p5.select(".trainCapture");
 
-    let options = {
-      inputs: 34,
-      outputs: 2,
-      task: "classification",
-      debug: true,
-    };
+    div.child(canvas);
 
     capture = p5.createCapture(p5.VIDEO);
-
     capture.hide();
 
     poseNet = ml5.poseNet(capture, option);
     poseNet.on("pose", gotPoses);
 
-    brain = ml5.neuralNetwork(options);
+    brain = ml5.neuralNetwork();
     const modelInfo = {
       model: process.env.PUBLIC_URL + "/model.json",
       metadata: process.env.PUBLIC_URL + "/model_meta.json",
       weights: process.env.PUBLIC_URL + "/model.weights.bin",
     };
     brain.load(modelInfo, brainLoaded);
+    setInfo((pre) => ({ ...pre, capture }));
   };
 
-  const draw = (p5) => {
+  const draw = (p5, pose, skeleton) => {
     p5.push(); // 새로운 도면 시작
-    p5.translate(0, 0); // 실제 그려지는 동영상의 위치 이동
+    p5.image(info.capture, 0, 0, 640, 480);
 
     if (pose) {
       for (let i = 0; i < skeleton.length; i++) {
@@ -133,7 +156,18 @@ const TrainingForm = ({ match }) => {
     p5.noStroke();
   };
 
-  return <TrainingCom match={match} />;
+  return (
+    <>
+      <h1>{info.count}</h1>
+      <TrainingCom
+        match={match}
+        setup={setup}
+        draw={draw}
+        pose={info.pose}
+        skeleton={info.skeleton}
+      />
+    </>
+  );
 };
 
 export default withRouter(TrainingForm);

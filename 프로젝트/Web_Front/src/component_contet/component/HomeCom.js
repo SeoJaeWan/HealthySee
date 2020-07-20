@@ -10,7 +10,6 @@ class HomeCom extends Component {
           <h1 className="title">Health&amp;See</h1>
           <h2 className="title2">"나만의 작은 트레이너"</h2>
           <button type="button" className="startButton">
-            시작하기
             <Link to="/Training/squat">시작하기</Link>
           </button>
           <ul className="lng">
