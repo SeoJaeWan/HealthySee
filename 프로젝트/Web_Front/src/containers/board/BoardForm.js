@@ -83,8 +83,6 @@ const BoardForm = ({ match, history }) => {
       );
       localStorage.removeItem("search");
     } else if (posts.length !== 0) {
-      console.log("여기?", posts.length, options, postsCount);
-      console.log(posts);
       sessionStorage.removeItem("beforeList");
     } else {
       console.log("여기까지 왔나요?");
@@ -97,7 +95,7 @@ const BoardForm = ({ match, history }) => {
         })
       );
     }
-    // 페이지네이션도 끝 리스트 페이지도 끝 , 검색어는 localstorigy를 사용할 것을 고려해보자
+    // posts를 []안에 넣지 않아 경고 상태가 계속 나옴 해결방법 생각해보자
   }, [dispatch, match]);
 
   const onChangeModal = () => {

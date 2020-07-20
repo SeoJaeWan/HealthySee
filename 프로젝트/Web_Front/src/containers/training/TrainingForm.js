@@ -45,6 +45,7 @@ const TrainingForm = ({ match }) => {
 
   const classifyPose = (state) => {
     if (pose) {
+      // useState에 poses를 넣으면 무한재귀함수이기때문에 해당 poses를 사용할 수 없다.
       let inputs = [];
       for (let i = 0; i < pose.keypoints.length; i++) {
         let x = pose.keypoints[i].position.x;
