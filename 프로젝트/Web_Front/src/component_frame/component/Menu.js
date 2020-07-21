@@ -1,43 +1,56 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { MenuInfo } from "../style/Menu_style"
+import { MenuInfo, UserButton } from "../style/Menu_style"
 
-const Menu = ({ onClear, user, onLogout, ScrollingElement }) => {
+const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu }) => {
   return (
-    <>
-      <MenuInfo>
-        <li className="mobileLogin">
-          {user ? (
-            <>
-              <button type="button">
-                <Link to={`/MyPage/${user}/Home`}>{user}</Link>
-              </button>
-              <button type="submit" className="logout" onClick={onLogout}>
+    <MenuInfo scrollY={scrollY}>
+      <UserButton scrollY={scrollY}>
+        {user ? (
+          <>
+            <div className="userBox">
+              <dl>
+                <dt>이름 :</dt>
+                <dd className="userForm">
+                  <button type="" className="userButton">
+                    <Link to={`/MyPage/${user}/Home`}>{user}</Link>
+                  </button>
+                </dd>
+              </dl>
+              <button type="submit" className="logoutButton" onClick={onLogout}>
                 Logout
               </button>
-            </>
-          ) : (
-            <button type="button">
-              <Link to="/Login">로그인</Link>
-            </button>
-          )}
-        </li>
-        <li>
-          <button onClick={onClear}>
-            <Link className="linkbutton" to="/Board/Select">
-              게시판
-            </Link>
+            </div>
+          </>
+        ) : (
+          <button type="button" onClick={() => setMenu(setMenu)}>
+            <Link to="/Login">로그인</Link>
           </button>
-        </li>
-        <li>
-          <button onClick={onClear}>
-            <Link className="linkbutton" to={`/MyPage/${user}/Home`}>
-              MyPage
-            </Link>
+        )}
+      </UserButton>
+      <li className="saerchList">
+        <form>
+          <input type="text" onChange={onChange} />
+          <button type="submit" className="searchButton" onClick={onSearch}>
+            검색
           </button>
-        </li>
-      </MenuInfo>
-    </>
+        </form>
+      </li>
+      <li>
+        <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
+          <Link className="linkbutton" to="/Board/Select">
+            게시판
+          </Link>
+        </button>
+      </li>
+      <li>
+        <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
+          <Link className="linkbutton" to={`/MyPage/${user}/Home`}>
+            MyPage
+          </Link>
+        </button>
+      </li>
+    </MenuInfo>
   )
 }
 

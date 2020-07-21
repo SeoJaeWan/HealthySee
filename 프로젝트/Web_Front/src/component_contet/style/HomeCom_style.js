@@ -26,7 +26,6 @@ export const HomeForm = styled.div`
   margin-top: 100px;
 
   width: 60%;
-  height: 200vh;
 
   display: flex;
 
@@ -124,3 +123,8 @@ export const Img = styled.img`
   left:25%;
 `}
 `;
+
+export const ScrollDiv = styled.div`
+  border: 5px solid #676a72;
+  height: 11000px;
+`

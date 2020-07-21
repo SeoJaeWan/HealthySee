@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 
 import InfiniteScroll from "react-infinite-scroll-component"
 import { Container } from "../../style/Container_style"
+import ReactHelmet from "../../../containers/common/ReactHelmet"
 
 const BoardCom = ({
   match,
@@ -17,59 +18,63 @@ const BoardCom = ({
   onChangeModal,
 }) => {
   return (
-    <Container>
-      <BoardForm>
-        <div className="boardNav">
-          <h1 className="title">게시판</h1>
-          <form className="searchbox">
-            <select name="name" onChange={onChange}>
-              <option value="BO_Title">제목</option>
-              <option value="BO_Writer_NickName">닉네임</option>
-            </select>
-            <input className="searchInput" type="text" name="keyword" onChange={onChange} />
-            <button type="submit" className="searchButton" onClick={onSearch}>
-              검색
+    <>
+      <ReactHelmet title={`Board`} />
+      <Container>
+        <title>board</title>
+        <BoardForm>
+          <div className="boardNav">
+            <h1 className="title">게시판</h1>
+            <form className="searchbox">
+              <select name="name" onChange={onChange}>
+                <option value="BO_Title">제목</option>
+                <option value="BO_Writer_NickName">닉네임</option>
+              </select>
+              <input className="searchInput" type="text" name="keyword" onChange={onChange} />
+              <button type="submit" className="searchButton" onClick={onSearch}>
+                검색
+              </button>
+            </form>
+            <button type="button" className="writeButton">
+              <Link to={`${match.url}/write`}>글쓰기</Link>
             </button>
-          </form>
-          <button type="button" className="writeButton">
-            <Link to={`${match.url}/write`}>글쓰기</Link>
-          </button>
-        </div>
-        <div className="boardForm">
-          <InfiniteScroll
-            className="infinitescroll"
-            dataLength={posts.length}
-            next={fetchMoreData}
-            hasMore={scroll}
-            loader={<div className="endBoard">게시글을 불러오고 있습니다.</div>}
-            endMessage={<div className="endBoard">마지막 게시글 입니다.</div>}
-          >
-            <table className="table">
-              <thead>
-                <tr>
-                  <th className="boardTitle">제목</th>
-                  <th className="boardWriter">글쓴이</th>
-                  <th className="boardDate">작성일</th>
-                  <th className="boardHit">조회수</th>
-                </tr>
-              </thead>
-              <tbody>
-                {posts.map((post, index) => {
-                  return (
-                    <BoardItem
-                      post={post}
-                      key={index}
-                      onClick={onClick}
-                      onChangeModal={onChangeModal}
-                    />
-                  )
-                })}
-              </tbody>
-            </table>
-          </InfiniteScroll>
-        </div>
-      </BoardForm>
-    </Container>
+          </div>
+          <div className="boardForm">
+            <InfiniteScroll
+              className="infinitescroll"
+              dataLength={posts.length}
+              next={fetchMoreData}
+              hasMore={scroll}
+              loader={<div className="endBoard">게시글을 불러오고 있습니다.</div>}
+              endMessage={<div className="endBoard">마지막 게시글 입니다.</div>}
+            >
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th className="boardTitle">제목</th>
+                    <th className="boardWriter">글쓴이</th>
+                    <th className="boardDate">작성일</th>
+                    <th className="boardHit">조회수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {posts.map((post, index) => {
+                    return (
+                      <BoardItem
+                        post={post}
+                        key={index}
+                        onClick={onClick}
+                        onChangeModal={onChangeModal}
+                      />
+                    )
+                  })}
+                </tbody>
+              </table>
+            </InfiniteScroll>
+          </div>
+        </BoardForm>
+      </Container>
+    </>
   )
 }
 

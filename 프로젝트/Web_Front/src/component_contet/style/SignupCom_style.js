@@ -7,7 +7,6 @@ export const SignupForm = styled.div`
   margin-left: 5%;
 
   .title {
-
     margin-left: 10%;
     font-size: 4rem;
     color: #676a72;
@@ -18,10 +17,10 @@ export const SignupForm = styled.div`
 
 `}
   }
-  
+
   .signForm {
     display: flex;
-    height: 60vh;
+    height: 30rem;
     width: 90%;
     font-size: 50pt;
     border: 5px solid #676a72;
@@ -57,7 +56,7 @@ export const SignupForm = styled.div`
     padding-left:0;
 `}
   }
-  
+
   .contextform {
     display: flex;
 
@@ -73,7 +72,6 @@ export const SignupForm = styled.div`
   .textInput {
     width: 40%;
     margin-left: 20%;
-    
   }
 
   .completeButton {
@@ -87,7 +85,6 @@ export const SignupForm = styled.div`
   }
 
   .flex {
-
     display: flex;
     text-align: center;
     font-size: 2rem;
@@ -96,43 +93,56 @@ export const SignupForm = styled.div`
     word-spacing: 0.3vw;
     ${media.mobile`
     font-size:1.5rem;
-`}
+    `}
   }
-    .genderToggle {
-      display: flex;
-      justify-content:center;
+  .publicBox {
+    display: flex;
+    text-align: center;
+    font-size: 1.75rem;
 
-      text-align: center;
-      padding-left: 20%;
-      width:30%;
-      min-width:10rem;
-      font-size: 2rem;
-      word-spacing: 0.3vw;
-      ${media.mobile`
+    margin: 2rem 0;
+    word-spacing: 0.3vw;
+    ${media.mobile`
+    font-size:1.3rem;
+    `}
+  }
+
+
+  .genderToggle {
+    display: flex;
+    justify-content: center;
+
+    text-align: center;
+    padding-left: 20%;
+    width: 30%;
+    min-width: 10rem;
+    font-size: 2rem;
+    word-spacing: 0.3vw;
+    ${media.mobile`
     font-size: 1.5rem;
       
     padding-left: 15%;
 `}
-    }
-  
-  .publicToggle {
-      display: flex;
-      justify-content:center;
+  }
 
-      text-align: center;
-      padding-left: 20%;
-      
-      min-width:10rem;
-      width:30%;
-      font-size: 1.5rem;
-      word-spacing: 0.3vw;
-      ${media.mobile`
+  .publicToggle {
+    display: flex;
+    justify-content: center;
+
+    text-align: center;
+    padding-left: 20%;
+
+    min-width: 10rem;
+    width: 30%;
+    font-size: 1.5rem;
+    word-spacing: 0.3vw;
+    ${media.mobile`
     font-size: 1.5rem; 
     padding-left: 15%;
 
 `}
-    }
-  
+  }
+
   p {
     text-align: center;
     color: red;
@@ -149,8 +159,8 @@ export const SignupForm = styled.div`
 `}
   }
 
-  ul{
-    margin:0;
+  ul {
+    margin: 0;
   }
 
   li {

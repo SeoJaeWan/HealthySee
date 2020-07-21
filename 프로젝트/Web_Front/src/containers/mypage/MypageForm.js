@@ -44,6 +44,7 @@ const MypageForm = ({ match, history }) => {
     <MypageCom
       mypage={mypage}
       user={user}
+      owner={match.params.username}
       onUpdate={onUpdate}
       mypageError={mypageError}
     />

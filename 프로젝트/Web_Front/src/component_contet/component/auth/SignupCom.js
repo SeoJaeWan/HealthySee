@@ -2,9 +2,12 @@ import React from "react";
 import { SignupForm } from "../../style/SignupCom_style.js";
 import { Container } from "../../style/Container_style.js";
 import ToggleButton from "../../common/ToggleButton.js";
+import ReactHelmet from "../../../containers/common/ReactHelmet.js";
 
 const SignupCom = ({ onChange, account, onSubmit, error }) => {
   return (
+    <>
+    <ReactHelmet title="SignUp" />
     <Container>
       <SignupForm>
         <h1 className="title">회원가입</h1>
@@ -34,7 +37,7 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
             </li>
             <li>
               <label className="flex">
-                성&nbsp;&nbsp;&nbsp;별
+                성&nbsp;&nbsp;&nbsp;&nbsp;별
                 <label className="genderToggle">
                   남&nbsp;
                   <ToggleButton
@@ -48,8 +51,8 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
               </label>
             </li>
             <li>
-              <label className="flex">
-                공개범위
+              <label className="publicBox">
+                공개범위&nbsp;
                 <label className="publicToggle">
                   On&nbsp;
                   <ToggleButton
@@ -70,6 +73,7 @@ const SignupCom = ({ onChange, account, onSubmit, error }) => {
         </form>
       </SignupForm>
     </Container>
+    </>
   );
 };
 
