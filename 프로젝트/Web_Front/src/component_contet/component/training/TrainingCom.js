@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import styled from "styled-components";
 
-const TrainingCom = ({ match, setup, draw, pose, skeleton }) => {
+const TrainingCom = ({ match, setup, draw, pose, skeleton, onCheck }) => {
   return (
     <TrainContainer>
       <div className="trainImg"></div>
@@ -10,6 +10,8 @@ const TrainingCom = ({ match, setup, draw, pose, skeleton }) => {
         {/* {console.log(pose)} */}
         <Sketch setup={setup} draw={(p5) => draw(p5, pose, skeleton)} />
       </div>
+
+      <button onClick={onCheck}>asd</button>
     </TrainContainer>
   );
 };
