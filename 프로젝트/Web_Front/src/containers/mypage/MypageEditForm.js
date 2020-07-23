@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import MyPageEditCom from "../../component_contet/component/mypage/MyPageEditCom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,6 +16,12 @@ const MypageEditForm = ({ history }) => {
     isUpdate: mypage.isUpdate,
     user: user.user,
   }));
+
+  const [imgSize, setImgSize] = useState({
+    img: null,
+    width: 250,
+    height: 250,
+  });
 
   const onComplete = () => {
     const formData = new FormData();
@@ -41,11 +47,39 @@ const MypageEditForm = ({ history }) => {
 
     let { value, name, type } = e.target;
     if (type === "checkbox") value = (mypage[name] - 1) * -1;
-    else if (type === "file")
-      // value = e.target.value
-      value = e.target.files[0];
 
     dispatch(updateField({ key: name, value }));
+  };
+
+  // 2020 07 23
+  // 서재완
+  // 프로필 사진을 받아와서 blob을 이미지로 변경 후 해당 이미지를 state에 넣음
+
+  const inputProfile = (e, p5) => {
+    let imgs;
+    console.log(e.target.files[0].type);
+    if (e.target.files[0].type.indexOf("image") != -1) {
+      let blobUrl = URL.createObjectURL(e.target.files[0]);
+      imgs = p5.createImg(blobUrl, "profile", "", () =>
+        setImgSize((pre) => ({ ...pre, img: imgs }))
+      );
+
+      dispatch(
+        updateField({ key: "originalProfile", value: e.target.files[0] })
+      );
+    }
+  };
+
+  const setup = (p5) => {
+    let div = p5.select(".leftDiv");
+    let inp = p5.select("#file");
+
+    div && inp.input((e) => inputProfile(e, p5));
+
+    console.log(div);
+    div && div.child(inp);
+
+    // console.log(img.width ? img.width : "zz");
   };
 
   // const onRenderImg = (file) => {
@@ -57,6 +91,37 @@ const MypageEditForm = ({ history }) => {
   //     setImg(render.result);
   //   };
   // };
+
+  // 2020 07 23
+  // 서재완
+  // 이미지를 state에 정상적으로 들어오게 한 경우 width와 height 값을 계산하여 추가로 마이페이지에 나오게 하기 위해서 저장
+  useEffect(() => {
+    if (imgSize.img) {
+      console.log(imgSize.img.height);
+      let width;
+      let height;
+
+      if (imgSize.img.width + imgSize.img.height < 500) {
+        width = imgSize.img.width;
+        height = imgSize.img.height;
+      } else if (imgSize.img.width >= imgSize.img.height) {
+        height = 250;
+        width = imgSize.img.width / (imgSize.img.height / 250);
+      } else {
+        console.log(imgSize.img.width / 250, width);
+        width = 250;
+        height = imgSize.img.height / (imgSize.img.width / 250);
+      }
+
+      console.log(imgSize.img.height, imgSize.img.width, imgSize.img);
+      console.log(width, height);
+      setImgSize((pre) => ({
+        ...pre,
+        width,
+        height,
+      }));
+    }
+  }, [imgSize.img]);
 
   useEffect(() => {
     if (mypage.originalProfile) {
@@ -77,6 +142,8 @@ const MypageEditForm = ({ history }) => {
       onChange={onChange}
       onComplete={onComplete}
       onGoBack={onGoBack}
+      setup={setup}
+      imgSize={imgSize}
     />
   );
 };

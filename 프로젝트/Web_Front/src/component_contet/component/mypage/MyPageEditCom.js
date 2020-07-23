@@ -1,11 +1,19 @@
-import React from "react"
-import { Container } from "../../style/Container_style"
-import { InfCom } from "./style/MyPageEditCom_style"
-import defaultImg from "../../../Images/defaultImg.jpg"
-import ToggleButton from "../../common/ToggleButton"
-import ReactHelmet from "../../../containers/common/ReactHelmet"
+import React from "react";
+import { Container } from "../../style/Container_style";
+import { InfCom } from "./style/MyPageEditCom_style";
+import defaultImg from "../../../Images/defaultImg.jpg";
+import ToggleButton from "../../common/ToggleButton";
+import ReactHelmet from "../../../containers/common/ReactHelmet";
+import Sketch from "react-p5";
 
-const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
+const MyPageEditCom = ({
+  mypage,
+  onChange,
+  onComplete,
+  onGoBack,
+  setup,
+  imgSize,
+}) => {
   return (
     <>
       <ReactHelmet title={`MyPage Edit`} />
@@ -23,7 +31,14 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
             <div className="leftDiv">
               <h1>프로필 사진</h1>
               <div className="imgBox">
-                <img className="imgDiv" src={mypage.img ? mypage.img : defaultImg} alt="profile" />
+                {console.log(imgSize.width, imgSize.height)}
+                <img
+                  className="imgDiv"
+                  src={mypage.img ? mypage.img : defaultImg}
+                  alt="profile"
+                  width={imgSize.width}
+                  height={imgSize.height}
+                />
               </div>
 
               <label className="inputIMG" htmlFor="file">
@@ -34,7 +49,7 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
                 type="file"
                 name="originalProfile"
                 id="file"
-                onChange={onChange}
+                // onChange={onChange}
               />
             </div>
             <ul className="rightDiv">
@@ -114,8 +129,9 @@ const MyPageEditCom = ({ mypage, onChange, onComplete, onGoBack }) => {
           </div>
         </InfCom>
       </Container>
+      <Sketch setup={setup} />
     </>
-  )
-}
+  );
+};
 
-export default MyPageEditCom
+export default MyPageEditCom;

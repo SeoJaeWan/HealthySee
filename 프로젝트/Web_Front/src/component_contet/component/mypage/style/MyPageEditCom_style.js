@@ -57,7 +57,7 @@ export const InfCom = styled.div`
   .imgBox {
     height: 250px;
     width: 250px;
-    overflow: hidden;
+    object-fit: none;
 
     border: 3px solid #676a72;
   }
@@ -132,5 +132,4 @@ export const InfCom = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-
 `;

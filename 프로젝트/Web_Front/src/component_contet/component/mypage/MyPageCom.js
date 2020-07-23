@@ -1,9 +1,9 @@
-import React from "react"
-import { Container } from "../../style/Container_style"
-import { Link } from "react-router-dom"
-import { InfCom } from "./style/MyPageCom_style"
-import defaultImg from "../../../Images/defaultImg.jpg"
-import ReactHelmet from "../../../containers/common/ReactHelmet"
+import React from "react";
+import { Container } from "../../style/Container_style";
+import { Link } from "react-router-dom";
+import { InfCom } from "./style/MyPageCom_style";
+import defaultImg from "../../../Images/defaultImg.jpg";
+import ReactHelmet from "../../../containers/common/ReactHelmet";
 
 const MypageCom = ({ mypage, user, onUpdate, mypageError, owner }) => {
   return (
@@ -17,7 +17,11 @@ const MypageCom = ({ mypage, user, onUpdate, mypageError, owner }) => {
             <>
               {user === mypage.Account_AC_NickName && (
                 <div className="rowReverse">
-                  <button type="button" className="editButton" onClick={onUpdate}>
+                  <button
+                    type="button"
+                    className="editButton"
+                    onClick={onUpdate}
+                  >
                     편집
                   </button>
                 </div>
@@ -56,7 +60,9 @@ const MypageCom = ({ mypage, user, onUpdate, mypageError, owner }) => {
                   </dl>
                   <dl>
                     <dt className="contentsTitle">성별</dt>
-                    <dd className="contents">{mypage.ME_Gender === 1 ? "여자" : "남자"}</dd>
+                    <dd className="contents">
+                      {mypage.ME_Gender === 1 ? "여자" : "남자"}
+                    </dd>
                   </dl>
                   <div className="buttonDiv">
                     <button type="button" className="buttons">
@@ -71,7 +77,10 @@ const MypageCom = ({ mypage, user, onUpdate, mypageError, owner }) => {
                       </Link>
                     </button>
                     <button type="button" className="buttons">
-                      <Link className="buttonLink" to={`/Album/${mypage.Account_AC_NickName}`}>
+                      <Link
+                        className="buttonLink"
+                        to={`/Album/${mypage.Account_AC_NickName}`}
+                      >
                         앨 범
                       </Link>
                     </button>
@@ -83,7 +92,7 @@ const MypageCom = ({ mypage, user, onUpdate, mypageError, owner }) => {
         </InfCom>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default MypageCom
+export default MypageCom;
