@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { MenuForm, Sticky, MenuOutside, MenuButton } from "../style/Header_style.js"
+import { Icon } from "semantic-ui-react"
 import Menu from "./Menu.js"
 
 const Header = ({ user, onLogout, isView, setMenu, scrollY, onChange, onSearch }) => {
@@ -20,10 +21,10 @@ const Header = ({ user, onLogout, isView, setMenu, scrollY, onChange, onSearch }
       <MenuOutside isView={isView} onClick={() => setMenu(setMenu)} />
       <Sticky>
         <MenuButton type="button" onClick={() => setMenu(setMenu)} scrollY={scrollY}>
-          Menu
+          <Icon name="bars" />
         </MenuButton>
         <h1 className="title">
-          <Link to="/">Health&amp;See</Link>
+          <Link to="/">Health &amp; See</Link>
         </h1>
         <div className="login">
           {user ? (

@@ -4,8 +4,9 @@ export const MonthForm = styled.div`
   width: 95%;
   display: flex;
   position: sticky;
-  margin-left: 2rem;
-  margin-top: 3rem;
+  margin-left: 10%;
+  margin-top: 1%;
+  height: 3.5rem;
   justify-content: space-between;
   font-size: 2rem;
   border: 5px solid #676a72;
@@ -20,8 +21,8 @@ export const MonthForm = styled.div`
     top: 1.23rem;
     right: -5.02px;
     order: 1;
-    width: 3.43rem;
-    height: 2rem;
+    width: 3.7rem;
+    height: 2.1rem;
     border-bottom: 5px solid #676a72;
     border-right: 5px solid #676a72;
     border-bottom-left-radius: 30px;
@@ -42,19 +43,19 @@ export const MonthForm = styled.div`
     border-radius: 50%;
   }
 
-  button {
+  label {
     background-color: #676a72;
+    text-align:center;
+    padding-bottom:15px;
     order: 2;
     color: white;
-    margin: 2px;
-    width: 3rem;
-    height: 3rem;
-    margin-right: 3px;
+    margin: 3px 3.4px 2px 0px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    z-index: 999;
-    font-size: 3rem;
+    z-index: 2;
+    
+    font-size: 2.5rem;
   }
-  .plusButton {
-    color: white;
-  }
+
 `;

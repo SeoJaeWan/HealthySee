@@ -55,7 +55,6 @@ export const Sticky = styled.div`
     `}
     ${media.desktop`
     font-size:2.5rem;
-    padding-left: 2%;
     `}
   }
 
@@ -111,12 +110,16 @@ export const MenuOutside = styled.div`
 
 export const MenuButton = styled.button`
   font-size: 3rem;
-  margin-left: 60px;
+  margin-left: 30px;
   background-color: rgba(0, 0, 0, 0);
   transition: all 0.5s;
   position: ${(props) => (props.scrollY >= 100 ? "fixed" : "none")};
+  
   z-index: 11;
   cursor: pointer;
+  :hover{
+    color:#aeb0b7;
+  }
   top: ${(props) => (props.scrollY >= 100 ? "30px" : "0px")};
 
   ${media.mobile`

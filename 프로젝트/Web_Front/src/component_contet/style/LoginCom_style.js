@@ -60,7 +60,7 @@ export const Container = styled.div`
       position:absolute;
       right:50%;
       width: 0px;
-      height: 50vh;
+      height: 80%;
       align-items: center;
       border-left: 3px solid #676a72;
       ${media.mobile`
@@ -101,8 +101,8 @@ export const Container = styled.div`
 `;
 
 export const Kakao = styled.img`
-  width: 300px;
-  color: #2b0b20;
+  width: 440px;
+  height: 50px;
   background-color: #fcf012;
   text-align: center;
   font-size: 3rem;
@@ -114,7 +114,8 @@ export const Kakao = styled.img`
 `;
 
 export const Google = styled.img`
-  width: 300px;
+  width: 440px;
+  height: 50px;
   color: white;
   background-color: #d94d3d;
   text-align: center;
@@ -130,8 +131,8 @@ export const Naver = styled.img`
   color: white;
   background-color: #13d261;
   text-align: center;
-  width: 300px;
-  height:50px;
+  width: 440px;
+  height: 50px;
   font-size: 3rem;
   margin-top: 70px;
   ${media.mobile`

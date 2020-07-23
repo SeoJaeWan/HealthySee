@@ -36,7 +36,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               clientId={"281223087961-0400s5doef0oi7gdg6jdamuuvmi3rkj4"}
               render={(props) => (
                 <Google
-                  src={require("../../../Images/Login/GoogleLogin2.png")}
+                  src={require("../../../Images/Login/GoogleLogin.png")}
                   onClick={props.onClick}
                 />
               )}
@@ -48,7 +48,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               callbackUrl="http://localhost:3000/login"
               render={(props) => (
                 <Naver
-                  src={require("../../../Images/Login/NaverLogin.PNG")}
+                  src={require("../../../Images/Login/NaverLogin.png")}
                   alt=""
                   onClick={props.onClick}
                 />

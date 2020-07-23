@@ -52,25 +52,15 @@ export const AlbumForm = styled.div`
   `}
     }
   }
-
-  .titleDiv {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  dl{
+    display:flex;
+    border: 1px solid #676a72;
   }
-
-  .title {
-    font-size: 2rem;
-    margin-left: 1rem;
+  dt{
+    border: 1px solid #676a72;
   }
-
-  .titleInput {
-    border: none;
-    height: 55px;
-    margin-left: 1%;
-    width: 90%;
-    box-shadow: 0px 4px 10px -8px black;
+  dd{
+    border: 1px solid #676a72;
   }
 
   .tmgdiv {
@@ -91,7 +81,9 @@ export const AlbumForm = styled.div`
     padding: 8px;
     box-shadow: 0px 4px 10px -3px black;
   }
-
+  .fileForm{
+    position: relative;
+  }
   .flex {
     width: 100%;
     margin-top: 1.5rem;
@@ -100,15 +92,14 @@ export const AlbumForm = styled.div`
   }
 
   .inputIMG {
+    position: absolute;
     display: inline-block;
     text-align: center;
-
-    width: 90%;
-    height: 93%;
-    padding: 0.5em 0.75em;
+    right: 0 ;
+    width: 3rem;
+    height: 3rem;
     color: #999;
     font-size: inherit;
-    line-height: 25rem;
     vertical-align: middle;
     background-color: #fdfdfd;
     cursor: pointer;

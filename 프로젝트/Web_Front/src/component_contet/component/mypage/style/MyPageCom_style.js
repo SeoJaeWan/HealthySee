@@ -61,7 +61,9 @@ export const InfCom = styled.div`
   .imgDiv {
     margin-left: 50%;
     margin-top: 50%;
-
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
     transform: translate(-50%, -50%);
   }
 

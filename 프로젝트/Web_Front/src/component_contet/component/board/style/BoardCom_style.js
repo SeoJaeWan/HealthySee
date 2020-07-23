@@ -102,8 +102,9 @@ export const BoardForm = styled.div`
 
   .infinitescroll {
     margin: 0;
-    width: 100%;
-    overflow:visible;
+    width: 1rem;
+    
+    overflow:hidden;
   }
 
   option{
@@ -119,7 +120,9 @@ export const BoardForm = styled.div`
 
 `}
   }
-
+  div{
+    overflow:hidden;
+  }
   .boardForm {
     display: flex;
     flex-direction: column;
@@ -129,6 +132,7 @@ export const BoardForm = styled.div`
     border-left: solid white;
     max-height: 100%;
     margin-left: 5%;
+    overflow:visible;
     ${media.mobile`
     width: 100%;
     `}
@@ -186,7 +190,7 @@ export const BoardForm = styled.div`
   .table {
     width:100%;
     table-layout: fixed;
-
+    
     border-collapse: separate;
     border-spacing: 10px 20px;
   }
@@ -263,7 +267,7 @@ export const BoardForm = styled.div`
   }
   .endBoard{
     text-align:center;
-    font-size: 2rem;   
+    font-size: 1.5rem;   
     ${media.mobile`
   font-size:1rem;
   `}

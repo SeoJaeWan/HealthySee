@@ -1,37 +1,38 @@
-import React from "react";
-import { Container } from "../../style/Container_style";
-import { Link } from "react-router-dom";
-import { AlbumForm } from "./style/Album_style";
-
-import MonthCom from "./MonthCom";
+import React from "react"
+import { Container } from "../../style/Container_style"
+import { Link } from "react-router-dom"
+import { AlbumForm } from "./style/AlbumList_style"
+import AlbumItemCom from "./AlbumItemCom"
+import Selectyear from "../../common/Selectyear"
+import { Icon } from "semantic-ui-react"
 
 const AlbumList = () => {
   return (
     <Container>
-      {console.log("durls")}
       <AlbumForm>
+        {/* 타이틀 바는 픽스드로 고정  */}
         <div className="titleBar">
-          <div className="title">앨범</div>
+          <h2 className="title">앨범</h2>
           <div className="flexgrow">
-            <button className="addButton">
-              <Link to={`/MyPage/Album/write`}>편집하기</Link>
+            <button >
+              <Link className="buttonLink" to={`/Album/1/Write`}>
+                <Icon link name="write"></Icon>
+              </Link>
             </button>
-            <div className="flex">
-              <input
-                type="number"
-                min="1900"
-                max="2099"
-                step="1"
-                defaultValue={2016}
-              />
-              년
-            </div>
+            <button >
+              <Link className="buttonLink" to={`/Album/1/Edit`}>
+                <Icon link name="edit"></Icon>
+              </Link>
+            </button>
+            {/* 셀렉트로 년도 선택   */}
+            <Selectyear />
           </div>
         </div>
-        <MonthCom />
+        {/* 앨범 아이템  */}
+        <AlbumItemCom />
       </AlbumForm>
     </Container>
-  );
-};
+  )
+}
 
-export default AlbumList;
+export default AlbumList

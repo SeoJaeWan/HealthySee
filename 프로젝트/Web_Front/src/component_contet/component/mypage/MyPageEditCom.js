@@ -18,7 +18,7 @@ const MyPageEditCom = ({
     <>
       <ReactHelmet title={`MyPage Edit`} />
       <Container>
-        <InfCom>
+        <InfCom width={imgSize.width} height={imgSize.height}>
           <div className="editButton">
             <button onClick={onGoBack} className="editButton">
               취소

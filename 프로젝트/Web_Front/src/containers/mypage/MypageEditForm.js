@@ -64,6 +64,8 @@ const MypageEditForm = ({ history }) => {
         setImgSize((pre) => ({ ...pre, img: imgs }))
       );
 
+      imgs.hide();
+
       dispatch(
         updateField({ key: "originalProfile", value: e.target.files[0] })
       );
@@ -105,11 +107,13 @@ const MypageEditForm = ({ history }) => {
         width = imgSize.img.width;
         height = imgSize.img.height;
       } else if (imgSize.img.width >= imgSize.img.height) {
-        height = 250;
+        if(imgSize.img.height < 250) height=imgSize.img.height;
+        else height = 250;
         width = imgSize.img.width / (imgSize.img.height / 250);
       } else {
         console.log(imgSize.img.width / 250, width);
-        width = 250;
+        if(imgSize.img.width < 250) height=imgSize.img.width;
+        else width = 250;
         height = imgSize.img.height / (imgSize.img.width / 250);
       }
 

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 export const InfCom = styled.div`
   width: 100%;
   margin-top: 2rem;
@@ -57,7 +57,6 @@ export const InfCom = styled.div`
   .imgBox {
     height: 250px;
     width: 250px;
-    object-fit: none;
 
     border: 3px solid #676a72;
   }
@@ -66,6 +65,11 @@ export const InfCom = styled.div`
     margin-left: 50%;
     margin-top: 50%;
 
+    height: ${(props) => (props.height > 250 ? "250px": `${props.height}px`)};
+    width:${(props) => (props.width > 250 ? "250px": `${props.width}px`)};
+
+    object-fit:cover;
+    object-position: 50% 50%;
     transform: translate(-50%, -50%);
   }
 
@@ -132,4 +136,4 @@ export const InfCom = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-`;
+`

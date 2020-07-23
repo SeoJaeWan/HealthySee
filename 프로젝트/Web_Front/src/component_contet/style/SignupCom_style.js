@@ -20,7 +20,7 @@ export const SignupForm = styled.div`
 
   .signForm {
     display: flex;
-    height: 30rem;
+    height: 35rem;
     width: 90%;
     font-size: 50pt;
     border: 5px solid #676a72;
@@ -57,21 +57,12 @@ export const SignupForm = styled.div`
 `}
   }
 
-  .contextform {
-    display: flex;
-
-    width: 100%;
-    height: 80%;
-  }
-
-  input {
-    box-shadow: 0px 3px 0px 0px #676a72;
-    border: 0px;
-  }
-
   .textInput {
     width: 40%;
-    margin-left: 20%;
+    font-size: 2rem;
+    margin: 1rem 0 1rem 20%;
+    box-shadow: 0px 3px 0px 0px #676a72;
+    border: none;
   }
 
   .completeButton {
@@ -89,8 +80,8 @@ export const SignupForm = styled.div`
     text-align: center;
     font-size: 2rem;
 
-    margin: 2rem 0;
-    word-spacing: 0.3vw;
+    margin: 1rem 0;
+    word-spacing: 0.5vw;
     ${media.mobile`
     font-size:1.5rem;
     `}
@@ -98,49 +89,61 @@ export const SignupForm = styled.div`
   .publicBox {
     display: flex;
     text-align: center;
+    align-items: center;
     font-size: 1.75rem;
 
-    margin: 2rem 0;
+    margin: 1rem 0;
     word-spacing: 0.3vw;
+    ${media.mobile`
+    font-size:1.35rem;
+    `}
+  }
+  h1 {
+    font-weight: normal;
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+    overflow: visible;
+    font-weight: normal;
+    ${media.mobile`
+    font-size:1.6rem;
+    `}
+  }
+
+  .publicTitle {
+    font-size: 1.8rem;
+    overflow: visible;
+    font-weight: normal;
     ${media.mobile`
     font-size:1.3rem;
     `}
   }
 
-
-  .genderToggle {
+  .Toggle {
     display: flex;
     justify-content: center;
+    align-items: center;
+    
+    margin-left: 30%;
 
-    text-align: center;
-    padding-left: 20%;
-    width: 30%;
-    min-width: 10rem;
-    font-size: 2rem;
-    word-spacing: 0.3vw;
+    min-width: 1rem;
+    width: 5rem;
+
     ${media.mobile`
-    font-size: 1.5rem;
-      
-    padding-left: 15%;
-`}
-  }
+    padding: 0;
+    margin-left: 5%;
+    min-width: 1rem;
+    width:5rem;
+    `}
 
-  .publicToggle {
-    display: flex;
-    justify-content: center;
 
-    text-align: center;
-    padding-left: 20%;
-
-    min-width: 10rem;
-    width: 30%;
-    font-size: 1.5rem;
-    word-spacing: 0.3vw;
-    ${media.mobile`
-    font-size: 1.5rem; 
-    padding-left: 15%;
-
-`}
+    ${media.desktop`
+    padding: 0;
+    margin-left: 35%;
+    min-width: 1rem;
+    width:5rem;
+    `}
   }
 
   p {

@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../lib/ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../lib/ReactiveStyle/ReactiveStyle"
 
 const slideInTop = keyframes`
   
@@ -19,28 +19,31 @@ const slideInTop = keyframes`
     opacity: 4;
     transform: translateY(0px);
   }
-`;
+`
 
 export const HomeForm = styled.div`
-  padding-left: 30%;
+  margin-left: 10%;
   margin-top: 100px;
 
-  width: 60%;
+  width: 100%;
 
   display: flex;
+  justify-content: center;
 
   animation: ${slideInTop} 3s forwards ease-in;
   ${media.mobile`
-    padding-left: 18%;
     margin-left: 0%;
-`}
+  `}
+  ${media.desktop`
+    margin-left: 0%;
+  `}
 
   .title {
     display: flex;
-    font-weight: bold;
+    text-align: center;
     color: #676a72;
     font-size: 4.5rem;
-    margin-top: 40px;
+    margin: 1rem auto;
     ${media.mobile`
     
     font-size: 3rem;
@@ -48,12 +51,18 @@ export const HomeForm = styled.div`
   }
 
   .leftCon {
+    width: 50%;
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    ${media.mobile`
+    margin-left: 2rem;
+    width: 90%;
+    `}
   }
 
   .title2 {
-    margin-left: 10%;
+    margin: 1rem auto;
     font-weight: bold;
     color: #676a72;
     font-size: 2rem;
@@ -71,15 +80,9 @@ export const HomeForm = styled.div`
     background-color: #676a72;
 
     border: none;
-
     border-radius: 50%;
-    margin-top: 50px;
-    margin-left: 20%;
-    ${media.mobile`
 
-    margin-left: 10%;
-    
-    `}
+    margin: 1rem auto;
   }
 
   .startButton a {
@@ -88,19 +91,21 @@ export const HomeForm = styled.div`
 
   li {
     display: inline;
+    justify-content: space-around;
   }
 
   .lng {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    padding: 0;
     list-style: none;
-    width: 120%;
-    margin-top: 50px;
-    margin-left: -100px;
+    margin: 1rem auto;
     ${media.mobile`
     
-    margin-left: -23%;
     `}
   }
-`;
+`
 
 export const Home = styled.img`
   height: auto;
@@ -109,20 +114,19 @@ export const Home = styled.img`
   ${media.imgs`
   display:none;
 `}
-`;
+`
 
 export const Img = styled.img`
   width: auto;
   height: auto;
-  margin-right: 20px;
-  max-width: 100px;
+  margin-right: 4%;
+  max-width: 75px;
   max-height: 100px;
   ${media.mobile`
-  width: 18%;
-  top:10%;
-  left:25%;
+  max-width: 55px;
+  margin: 0 0.5rem;
 `}
-`;
+`
 
 export const ScrollDiv = styled.div`
   border: 5px solid #676a72;
