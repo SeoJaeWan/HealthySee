@@ -4,14 +4,14 @@ var today = require("../Date/time");
 var moment = require("moment");
 
 const getToken = ({ username, email }) => {
+
   const token = jwt.sign(
-    {
-      username: username,
+  {
+    username: username,
       email: email,
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: "30m" }
-  );
+  }, 
+  process.env.JWT_SECRET, 
+  { expiresIn: '30m' });
 
   return token;
 };
@@ -42,19 +42,22 @@ const jwtMiddleware = async (req, res, next) => {
     //쿠키가 있는 경우
     console.log("토큰 발견!");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
+    console.log(decoded.exp - now);
     console.log("엑세스 토큰 유효함");
     req.body.user = {
       username: decoded.username,
       email: decoded.email,
     };
 
+    console.log(req.body.user);
     const now = Math.floor(Date.now() / 1000);
 
     if (decoded.exp - now < 60 * 5) {
       //쿠키의 유효기간이 5분 남은 경우
       console.log("액세스 토큰 유효기간 얼마 안남음, 액세스 토큰 재생성");
       const token = getToken(req.body.user);
-      console.log("엑세스토큰 재생성 완료");
+      console.log("엑세스토큰 재생성 완료", token);
       res.cookie("access_token", token, {
         maxAge: 1000 * 60 * 30, // 30분
         httpOnly: true,
@@ -130,6 +133,11 @@ const jwtMiddleware = async (req, res, next) => {
               TK_Creation_Date: today,
             });
             console.log("리프레쉬 토큰 & 엑세스 토큰 재생성후 db세팅 완료");
+            console.log("마지막 보내기 작업" ,token);
+          res.cookie("access_token", token, {
+            maxAge: 1000 * 60 * 30, // 30분
+            httpOnly: true,
+          });
             res.cookie("refresh_token", newRfToken, {
               maxAge: 1000 * 60 * 30,
               httpOnly: true,
@@ -138,15 +146,17 @@ const jwtMiddleware = async (req, res, next) => {
             console.log("리프레쉬 토큰 & 엑세스 토큰 삭제후 재생성 + 쿠키 재세팅 완료");
           }else{
             console.log("리프레시 유효시간 넉넉함, 액세스 토큰만 교체 진행함");
+            console.log("마지막 보내기 작업" ,token);
+          res.cookie("access_token", token, {
+            maxAge: 1000 * 60 * 30, // 30분
+            httpOnly: true,
+          });
             res.cookie("refresh_token", req.cookies.refresh, {
               maxAge: 1000 * 60 * 30,
               httpOnly: true,
             });
           }
-          res.cookie("access_token", token, {
-            maxAge: 1000 * 60 * 30, // 30분
-            httpOnly: true,
-          });
+          
           return next();
         } else {
           // 리프레시 토큰기간 만료, db에서 삭제
