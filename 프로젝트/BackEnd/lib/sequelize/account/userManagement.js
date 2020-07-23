@@ -1,9 +1,7 @@
 const checkUser = (req, res) => {
   const { user } = req.body;
 
-  if (!user) {
-    res.status(401).end();
-  }
+
   res.json(user);
 };
 
