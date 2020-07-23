@@ -13,6 +13,9 @@ import rootReducer, { rootSaga } from "./modules/index";
 import App from "./App";
 import { check } from "./modules/account/user";
 
+
+import 'semantic-ui-css/semantic.min.css';
+
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
