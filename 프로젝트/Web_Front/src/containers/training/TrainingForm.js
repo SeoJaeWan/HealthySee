@@ -2,20 +2,24 @@ import React, { useState } from "react";
 import TrainingCom from "../../component_contet/component/training/TrainingCom";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import * as ml5 from "ml5";
+import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
-const TrainingForm = ({ match }) => {
+const TrainingForm = ({ history }) => {
   let brain;
   let poseNet;
 
-  let poses;
+  let [view, setView] = useState(true);
   let [info, setInfo] = useState({
     capture: null,
     pose: null,
     skeleton: null,
     count: 0,
+    nextPose: 0,
+    poses: null,
   });
-  let capture;
 
+  let poses;
+  let capture;
   let pose;
   let skeleton;
 
@@ -40,9 +44,11 @@ const TrainingForm = ({ match }) => {
     poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues;
     poses = poses.concat(poses[0]);
 
+    setInfo((pre) => ({ ...pre, poses }));
+
     let beforePose;
 
-    setTimeout(() => classifyPose(0, beforePose, 0), 5000);
+    classifyPose(0, beforePose, 0);
   };
 
   const classifyPose = (state, beforePose, samePose) => {
@@ -66,6 +72,7 @@ const TrainingForm = ({ match }) => {
 
   const gotResult = (error, results, state, beforePose, samePose) => {
     console.log(
+      results,
       "내포즈",
       results[0].label,
       "해야하는 포즈",
@@ -81,24 +88,22 @@ const TrainingForm = ({ match }) => {
 
     if (results[0].confidence > 0.65 && results[0].label === poses[state]) {
       state = state + 1;
-      console.log("dsaadssadsadsad123", state === poses.length);
       if (state === poses.length) {
         state = 1;
-        console.log("여기 왔어요!");
-        setInfo((pre) => ({ ...pre, count: pre.count + 1 }));
+        setInfo((pre) => ({ ...pre, count: pre.count + 1, nextPose: state }));
+      } else {
+        setInfo((pre) => ({ ...pre, nextPose: state }));
       }
-      console.log("dsaadssadsadsad", results[0].label.toUpperCase());
     }
 
     if (pose.score === beforePose.score) {
       samePose++;
       if (samePose === 100) {
-        canvas = null;
         return;
       }
     } else samePose = 0;
 
-    console.log(results[0].confidence > 0.75, results[0].label.toUpperCase());
+    // console.log(results[0].confidence > 0.75, results[0].label.toUpperCase());
     classifyPose(state, beforePose, samePose);
   };
 
@@ -111,15 +116,6 @@ const TrainingForm = ({ match }) => {
         pose,
         skeleton,
       }));
-      console.log(!poseNet, poseNet, poses, canvas);
-      if (!poseNet) {
-        console.log("sdasadsda");
-        return;
-      }
-      console.log("sadsdasadsadsdsadasd");
-
-      // console.log(poses);
-
       // if (state === "collecting") {   사용 할수록 성능이 증가하게끔 만드는건 고려중
       //   console.log(pose);
       //   console.log(targetLabel);
@@ -137,9 +133,13 @@ const TrainingForm = ({ match }) => {
       // }
     }
   };
-  let canvas;
+
+  const goBack = () => {
+    history.goBack();
+  };
+
   const setup = (p5) => {
-    canvas = p5.createCanvas(640, 480);
+    let canvas = p5.createCanvas(640, 480);
     let div = p5.select(".trainCapture");
 
     div.child(canvas);
@@ -150,13 +150,17 @@ const TrainingForm = ({ match }) => {
     poseNet = ml5.poseNet(capture, option);
     poseNet.on("pose", gotPoses);
 
-    brain = ml5.neuralNetwork();
-    const modelInfo = {
-      model: process.env.PUBLIC_URL + "/lol/model.json",
-      metadata: process.env.PUBLIC_URL + "/lol/model_meta.json",
-      weights: process.env.PUBLIC_URL + "/lol/model.weights.bin",
-    };
-    brain.load(modelInfo, brainLoaded);
+    setTimeout(() => {
+      setView(false);
+      brain = ml5.neuralNetwork();
+      const modelInfo = {
+        model: process.env.PUBLIC_URL + "/2lol/model.json",
+        metadata: process.env.PUBLIC_URL + "/2lol/model_meta.json",
+        weights: process.env.PUBLIC_URL + "/2lol/model.weights.bin",
+      };
+      brain.load(modelInfo, brainLoaded);
+    }, 1000);
+
     setInfo((pre) => ({ ...pre, capture }));
   };
 
@@ -192,13 +196,17 @@ const TrainingForm = ({ match }) => {
 
   return (
     <>
-      <h1>{info.count}</h1>
-      <TrainingCom
-        match={match}
-        setup={setup}
-        draw={draw}
-        pose={info.pose}
-        skeleton={info.skeleton}
+      <h1>
+        {info.count}
+        {info.poses}
+      </h1>
+      <TrainingCom setup={setup} draw={draw} info={info} />
+
+      <AlertModal
+        visible={view}
+        title={"준비!"}
+        description={"10초 뒤에 시작합니다! 준비!! (뒤로가기 : 화면)"}
+        onCancel={goBack}
       />
     </>
   );

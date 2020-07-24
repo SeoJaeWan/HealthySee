@@ -4,14 +4,14 @@ var today = require("../Date/time");
 var moment = require("moment");
 
 const getToken = ({ username, email }) => {
-
   const token = jwt.sign(
-  {
-    username: username,
+    {
+      username: username,
       email: email,
-  }, 
-  process.env.JWT_SECRET, 
-  { expiresIn: '30m' });
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "30m" }
+  );
 
   return token;
 };
@@ -22,13 +22,12 @@ const getRefreshToken = () => {
   return token;
 };
 
-
 const jwtMiddleware = async (req, res, next) => {
   const token = req.cookies.access_token;
   console.dir("쿠키 조회 결과 : ", req.cookies);
   console.log("엑세스 토큰만 검사", token);
 
-  if(req.url ==="/auth/login"||req.url === "/auth/register"){
+  if (req.url === "/auth/login" || req.url === "/auth/register") {
     return next();
   }
 
@@ -42,8 +41,11 @@ const jwtMiddleware = async (req, res, next) => {
     //쿠키가 있는 경우
     console.log("토큰 발견!");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("sdasadsadsad");
     console.log(decoded);
-    console.log(decoded.exp - now);
+    console.log("sdasadsadsad");
+    // console.log(decoded.exp - now);
+    console.log("sdasadsadsad");
     console.log("엑세스 토큰 유효함");
     req.body.user = {
       username: decoded.username,
@@ -94,17 +96,29 @@ const jwtMiddleware = async (req, res, next) => {
         //리프레쉬가 db에 있는지 검사
         console.log("리프레쉬 토큰 & 엑세스 토큰 재생성 시작");
         console.log("시간 체크");
-        console.log(moment.duration(moment().diff(moment(refreshToken.TK_Creation_Date).format("YYYY-MM-DD HH:mm:ss"))).asSeconds());
-        if (moment
-          .duration(
-            moment().diff(
-              moment(refreshToken.TK_Creation_Date).format(
-                "YYYY-MM-DD HH:mm:ss"
+        console.log(
+          moment
+            .duration(
+              moment().diff(
+                moment(refreshToken.TK_Creation_Date).format(
+                  "YYYY-MM-DD HH:mm:ss"
+                )
               )
             )
-          )
-          .asSeconds() <
-          60 * 60 * 24 * 30 ) {
+            .asSeconds()
+        );
+        if (
+          moment
+            .duration(
+              moment().diff(
+                moment(refreshToken.TK_Creation_Date).format(
+                  "YYYY-MM-DD HH:mm:ss"
+                )
+              )
+            )
+            .asSeconds() <
+          60 * 60 * 24 * 30
+        ) {
           //쿠기의 유효한지 남았는지 검사
           console.log("리프레쉬토큰 사용 가능");
           req.body.user = {
@@ -114,12 +128,22 @@ const jwtMiddleware = async (req, res, next) => {
           const token = getToken(req.body.user);
           console.log(req.body);
 
-          if (60 * 60 * 24 * 30  - 
-            moment.duration(moment().diff(moment(refreshToken.TK_Creation_Date).format("YYYY-MM-DD HH:mm:ss"))).asSeconds() <
-            60 * 5) {
+          if (
+            60 * 60 * 24 * 30 -
+              moment
+                .duration(
+                  moment().diff(
+                    moment(refreshToken.TK_Creation_Date).format(
+                      "YYYY-MM-DD HH:mm:ss"
+                    )
+                  )
+                )
+                .asSeconds() <
+            60 * 5
+          ) {
             //5분 남았는지 검사
             console.log("리프레시 유효시간 5분 남았음, 교체 필요함");
-            
+
             const newRfToken = getRefreshToken();
             Token.destroy({
               where: {
@@ -133,34 +157,38 @@ const jwtMiddleware = async (req, res, next) => {
               TK_Creation_Date: today,
             });
             console.log("리프레쉬 토큰 & 엑세스 토큰 재생성후 db세팅 완료");
-            console.log("마지막 보내기 작업" ,token);
-          res.cookie("access_token", token, {
-            maxAge: 1000 * 60 * 30, // 30분
-            httpOnly: true,
-          });
+            console.log("마지막 보내기 작업", token);
+            res.cookie("access_token", token, {
+              maxAge: 1000 * 60 * 30, // 30분
+              httpOnly: true,
+            });
             res.cookie("refresh_token", newRfToken, {
               maxAge: 1000 * 60 * 30,
               httpOnly: true,
             });
-            console.log("새로 맨든 리프레쉬 jwtMiddleWares : ",newRfToken);
-            console.log("리프레쉬 토큰 & 엑세스 토큰 삭제후 재생성 + 쿠키 재세팅 완료");
-          }else{
+            console.log("새로 맨든 리프레쉬 jwtMiddleWares : ", newRfToken);
+            console.log(
+              "리프레쉬 토큰 & 엑세스 토큰 삭제후 재생성 + 쿠키 재세팅 완료"
+            );
+          } else {
             console.log("리프레시 유효시간 넉넉함, 액세스 토큰만 교체 진행함");
-            console.log("마지막 보내기 작업" ,token);
-          res.cookie("access_token", token, {
-            maxAge: 1000 * 60 * 30, // 30분
-            httpOnly: true,
-          });
+            console.log("마지막 보내기 작업", token);
+            res.cookie("access_token", token, {
+              maxAge: 1000 * 60 * 30, // 30분
+              httpOnly: true,
+            });
             res.cookie("refresh_token", req.cookies.refresh, {
               maxAge: 1000 * 60 * 30,
               httpOnly: true,
             });
           }
-          
+
           return next();
         } else {
           // 리프레시 토큰기간 만료, db에서 삭제
-          console.log("리프레시 토큰 기간 만료, 디비 삭제 조치 다시 로그인 하시오");
+          console.log(
+            "리프레시 토큰 기간 만료, 디비 삭제 조치 다시 로그인 하시오"
+          );
           Token.destroy({
             where: {
               TK_Refresh_Token: rftoken,

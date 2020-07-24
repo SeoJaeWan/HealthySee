@@ -1,7 +1,7 @@
 import React from "react";
 
 import { GoogleLogin } from "react-google-login";
-import NaverLogin from "react-naver-login";
+import NaverLogin from "react-naver-login-not-babel";
 
 import { Container, Kakao, Google, Naver } from "../../style/LoginCom_style.js";
 import KakaoLogin from "react-kakao-login";
@@ -48,7 +48,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               callbackUrl="http://localhost:3000/login"
               render={(props) => (
                 <Naver
-                  src={require("../../../Images/Login/NaverLogin.PNG")}
+                  src={require("../../../Images/Login/NaverLogin.png")}
                   alt=""
                   onClick={props.onClick}
                 />

@@ -2,16 +2,19 @@ import React from "react";
 import Sketch from "react-p5";
 import styled from "styled-components";
 
-const TrainingCom = ({ match, setup, draw, pose, skeleton, onCheck }) => {
+const TrainingCom = ({ setup, draw, info }) => {
   return (
     <TrainContainer>
-      <div className="trainImg"></div>
+      <div className="trainImg">
+        <p>{info.poses && info.poses[info.nextPose]}</p>
+      </div>
       <div className="trainCapture">
         {/* {console.log(pose)} */}
-        <Sketch setup={setup} draw={(p5) => draw(p5, pose, skeleton)} />
+        <Sketch
+          setup={setup}
+          draw={(p5) => draw(p5, info.pose, info.skeleton)}
+        />
       </div>
-
-      <button onClick={onCheck}>asd</button>
     </TrainContainer>
   );
 };
@@ -28,7 +31,9 @@ const TrainContainer = styled.div`
     width: 630px;
     height: 480px;
 
-    background-color: black;
+    background-color: yellow;
+    font-size: 300px;
+    text-align: center;
   }
 
   .trainCapture {
