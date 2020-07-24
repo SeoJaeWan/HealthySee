@@ -107,12 +107,12 @@ const MypageEditForm = ({ history }) => {
         width = imgSize.img.width;
         height = imgSize.img.height;
       } else if (imgSize.img.width >= imgSize.img.height) {
-        if(imgSize.img.height < 250) height=imgSize.img.height;
+        if (imgSize.img.height < 250) height = imgSize.img.height;
         else height = 250;
         width = imgSize.img.width / (imgSize.img.height / 250);
       } else {
         console.log(imgSize.img.width / 250, width);
-        if(imgSize.img.width < 250) height=imgSize.img.width;
+        if (imgSize.img.width < 250) height = imgSize.img.width;
         else width = 250;
         height = imgSize.img.height / (imgSize.img.width / 250);
       }

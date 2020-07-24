@@ -1,16 +1,16 @@
-import React from "react"
+import React from "react";
 
-import { GoogleLogin } from "react-google-login"
-import NaverLogin from "react-naver-login"
+import { GoogleLogin } from "react-google-login";
+import NaverLogin from "react-naver-login";
 
-import { Container, Kakao, Google, Naver } from "../../style/LoginCom_style.js"
-import KakaoLogin from "react-kakao-login"
-import ReactHelmet from "../../../containers/common/ReactHelmet.js"
+import { Container, Kakao, Google, Naver } from "../../style/LoginCom_style.js";
+import KakaoLogin from "react-kakao-login";
+import ReactHelmet from "../../../containers/common/ReactHelmet.js";
 
 const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
   const errer = (err) => {
-    console.log(err)
-  }
+    console.log(err);
+  };
 
   return (
     <>
@@ -48,7 +48,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               callbackUrl="http://localhost:3000/login"
               render={(props) => (
                 <Naver
-                  src={require("../../../Images/Login/NaverLogin.png")}
+                  src={require("../../../Images/Login/NaverLogin.PNG")}
                   alt=""
                   onClick={props.onClick}
                 />
@@ -58,12 +58,16 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
             />
           </div>
           <div className="rightform">
-            <img className="rightImg" src={require("../../../Images/Login/H&S.png")} alt="" />
+            <img
+              className="rightImg"
+              src={require("../../../Images/Login/H&S.png")}
+              alt=""
+            />
           </div>
         </div>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default LoginCom
+export default LoginCom;
