@@ -43,7 +43,7 @@ const jwtMiddleware = async (req, res, next) => {
     console.log("토큰 발견!");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log(decoded);
-    console.log(decoded.exp - now);
+    console.log(decoded.exp - now);  // 여기서 오류 발생 
     console.log("엑세스 토큰 유효함");
     req.body.user = {
       username: decoded.username,
