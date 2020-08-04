@@ -1,10 +1,10 @@
-import React from "react";
-import { Container } from "../../style/Container_style";
-import { InfCom } from "./style/MyPageEditCom_style";
-import defaultImg from "../../../Images/defaultImg.jpg";
-import ToggleButton from "../../common/ToggleButton";
-import ReactHelmet from "../../../containers/common/ReactHelmet";
-import Sketch from "react-p5";
+import React from "react"
+import { Container } from "../../style/Container_style"
+import { InfCom } from "./style/MyPageEditCom_style"
+import defaultImg from "../../../Images/defaultImg.jpg"
+import ToggleButton from "../../common/ToggleButton"
+import ReactHelmet from "../../../containers/common/ReactHelmet"
+import Sketch from "react-p5"
 
 const MyPageEditCom = ({
   mypage,
@@ -13,6 +13,11 @@ const MyPageEditCom = ({
   onGoBack,
   setup,
   imgSize,
+  preview,
+  setPreview,
+  getImagePreview,
+  onChangeModal,
+  cropper,
 }) => {
   return (
     <>
@@ -30,17 +35,19 @@ const MyPageEditCom = ({
           <div className="flex">
             <div className="leftDiv">
               <h1>프로필 사진</h1>
-              <div className="imgBox">
-                {console.log(imgSize.width, imgSize.height)}
-                <img
-                  className="imgDiv"
-                  src={mypage.img ? mypage.img : defaultImg}
-                  alt="profile"
-                  width={imgSize.width}
-                  height={imgSize.height}
-                />
+              <div name="Wim Mostmans" className="imgBox">
+                {preview ? (
+                  <img alt="" style={{ maxWidth: "100%" }} src={preview} />
+                ) : (
+                  <img
+                    className="imgDiv"
+                    src={mypage.img ? mypage.img : defaultImg}
+                    alt="profile"
+                    width={imgSize.width}
+                    height={imgSize.height}
+                  />
+                )}
               </div>
-
               <label className="inputIMG" htmlFor="file">
                 이미지 업로드
               </label>
@@ -49,6 +56,7 @@ const MyPageEditCom = ({
                 type="file"
                 name="originalProfile"
                 id="file"
+                onClick={onChangeModal}
                 // onChange={onChange}
               />
             </div>
@@ -131,7 +139,7 @@ const MyPageEditCom = ({
       </Container>
       <Sketch setup={setup} />
     </>
-  );
-};
+  )
+}
 
-export default MyPageEditCom;
+export default MyPageEditCom
