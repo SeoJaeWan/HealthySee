@@ -8,11 +8,6 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '0',
 			primaryKey: true,
 		},	
-		BO_Category : {
-			type: DataTypes.BOOLEAN,
-			allowNull : false,
-			defaultValue : 0
-		},
 		BO_Writer_NickName: {
 			type: DataTypes.STRING(16),
 			allowNull: false

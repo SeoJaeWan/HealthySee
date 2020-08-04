@@ -1,8 +1,9 @@
 const Member_View = require("../../../models").member_view;
+const { Op } = require("sequelize");
 
 const readMyPage = async (req, res, next) => {
   let owner = req.params.owner;
-  let user = req.params.username;
+  let user = req.body.user.username;
 
   let member = await Member_View.findOne({
     where: { Account_AC_NickName: owner },
@@ -20,6 +21,33 @@ const readMyPage = async (req, res, next) => {
   res.json(member);
 };
 
-// 파일 다운로드
+/**
+ * 사람을 검색할 때 프로필 사진, 이름을 받아오는 메소드.
+ */
+const readMyPages = async (req, res, next) => {
+  let user = req.body.user.username;
+  let keyword = req.query.keyword;
+  let ME_Code = req.query.ME_Code;
+  let responseData = {}
+  console.log(user, keyword, ME_Code);
+  let condition = {
+    where: {
+      [Op.and]: [
+        { Account_AC_NickName : {  [Op.like]: "%" + keyword + "%" },},
+        {Account_AC_NickName : {[Op.ne]: user }},
+        ME_Code && { ME_Code: { [Op.lt]: BO_Code } },
+      ],
+    }, 
+    order: [ ["ME_Code", "DESC"],],
+    limit: 10,
+  };
 
-module.exports = readMyPage;
+  let member = await Member_View.findAndCountAll(condition);
+
+  responseData.userList = member.rows;
+  responseData.userCount = member.count;
+
+  res.json(responseData);
+}
+
+module.exports = {readMyPage, readMyPages};
