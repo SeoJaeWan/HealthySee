@@ -14,6 +14,10 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.BLOB("long"),
         allowNull: true,
       },
+      AP_Picture_Type: {
+        type: DataTypes.STRING(16),
+        allowNull: false,
+      },
       Album_AL_Code: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
