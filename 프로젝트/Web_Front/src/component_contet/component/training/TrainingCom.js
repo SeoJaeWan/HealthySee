@@ -6,7 +6,7 @@ const TrainingCom = ({ setup, draw, info }) => {
   return (
     <TrainContainer>
       <div className="trainImg">
-        <p>{info.poses && info.poses[info.nextPose]}</p>
+        <p>{info.my && info.my}</p>
       </div>
       <div className="trainCapture">
         {/* {console.log(pose)} */}

@@ -23,21 +23,6 @@ const TrainingForm = ({ history }) => {
   let pose;
   let skeleton;
 
-  const option = {
-    architecture: "MobileNetV1",
-    imageScaleFactor: 0.3,
-    outputStride: 16,
-    flipHorizontal: false,
-    minConfidence: 0.75,
-    maxPoseDetections: 1,
-    scoreThreshold: 0.7,
-    nmsRadius: 20,
-    detectionType: "multiple",
-    inputResolution: 321,
-    multiplier: 0.75,
-    quantBytes: 2,
-  };
-
   const brainLoaded = () => {
     console.log("pose classification ready!");
 
@@ -86,7 +71,7 @@ const TrainingForm = ({ history }) => {
       state
     );
 
-    if (results[0].confidence > 0.65 && results[0].label === poses[state]) {
+    if (results[0].confidence > 0.75 && results[0].label === poses[state]) {
       state = state + 1;
       if (state === poses.length) {
         state = 1;
@@ -103,6 +88,7 @@ const TrainingForm = ({ history }) => {
       }
     } else samePose = 0;
 
+    setInfo((pre) => ({ ...pre, my: results[0].label }));
     // console.log(results[0].confidence > 0.75, results[0].label.toUpperCase());
     classifyPose(state, beforePose, samePose);
   };
@@ -147,16 +133,23 @@ const TrainingForm = ({ history }) => {
     capture = p5.createCapture(p5.VIDEO);
     capture.hide();
 
-    poseNet = ml5.poseNet(capture, option);
+    poseNet = ml5.poseNet(capture);
     poseNet.on("pose", gotPoses);
+
+    let options = {
+      inputs: 34,
+      outputs: 3,
+      task: "classification",
+      debug: true,
+    };
 
     setTimeout(() => {
       setView(false);
-      brain = ml5.neuralNetwork();
+      brain = ml5.neuralNetwork(options);
       const modelInfo = {
-        model: process.env.PUBLIC_URL + "/2lol/model.json",
-        metadata: process.env.PUBLIC_URL + "/2lol/model_meta.json",
-        weights: process.env.PUBLIC_URL + "/2lol/model.weights.bin",
+        model: process.env.PUBLIC_URL + "/3pose_Test3/model.json",
+        metadata: process.env.PUBLIC_URL + "/3pose_Test3/model_meta.json",
+        weights: process.env.PUBLIC_URL + "/3pose_Test3/model.weights.bin",
       };
       brain.load(modelInfo, brainLoaded);
     }, 1000);
