@@ -9,7 +9,7 @@ const platforms = {
 
 const createAccount = async (req, res, next) => {
   const { nickname, gender, weight, scope, name, platform, email } = req.body;
-
+  console.log(req.body);
   const user = await Account.findOne({
     where: {
       AC_NickName: nickname,
@@ -20,6 +20,7 @@ const createAccount = async (req, res, next) => {
     res.status(409).end();
     return;
   } else {
+    console.log(name);
     await Account.create({
       AC_NickName: nickname,
       AC_Name: name,
@@ -28,7 +29,7 @@ const createAccount = async (req, res, next) => {
       AC_Creation_Date: today,
       AC_Last_Access_Date: today,
     });
-
+    
     await Member.create({
       ME_Scope: scope,
       ME_Weight: weight,

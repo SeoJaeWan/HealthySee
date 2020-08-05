@@ -17,13 +17,10 @@ const readMyPage = async (req, res, next) => {
     res.status(406).end();
     return;
   }
-
+  console.log(member)
   res.json(member);
 };
 
-/**
- * 사람을 검색할 때 프로필 사진, 이름을 받아오는 메소드.
- */
 const readMyPages = async (req, res, next) => {
   let user = req.body.user.username;
   let keyword = req.query.keyword;

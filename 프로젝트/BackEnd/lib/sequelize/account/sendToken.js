@@ -1,6 +1,6 @@
 const getToken = require("../../token/jwtMiddlewares").getToken;
 const getRefresh = require("../../token/jwtMiddlewares").getRefreshToken;
-const Token = require("../../../lib/token/jwtMiddlewares").token;
+const Token = require("../../../models").token;
 var today = require("../../../lib/Date/time");
 
 const sendToken = async (req, res) => {
@@ -30,6 +30,7 @@ const sendToken = async (req, res) => {
       TK_Creation_Date: today,
     });
   }
+  console.log("새로 맨든 리프레시sendtoken : ",refresh);
 
   res.json(tokenInfo);
 };

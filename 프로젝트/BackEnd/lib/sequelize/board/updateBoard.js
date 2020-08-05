@@ -13,7 +13,7 @@ const upload = multer({
 const updatePost = async (req, res, next) => {
   console.log(req.body);
   let BO_Code = req.params.BO_Code;
- 
+  let BO_Category = req.body.BO_Category;
   let BO_Title = req.body.BO_Title;
   let BO_Content = req.body.BO_Content;
   let leaveFile = req.body.leaveFile.split(",");
@@ -24,6 +24,7 @@ const updatePost = async (req, res, next) => {
   const board = await Board.update(
     {
       BO_Code,
+      BO_Category,
       BO_Title,
       BO_Content,
       BO_Writer_NickName,

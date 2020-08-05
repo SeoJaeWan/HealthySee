@@ -8,17 +8,18 @@ const { Op } = require("sequelize");
 const B_comment_view = require("../../../models").b_comment_view;
 
 
+
 const readPost = async (req, res, next) => {
 
-  let BO_Code = req.params.BO_Code;
+  var BO_Code = req.params.BO_Code;
 
-  let self = req.body.self;
+  var self = req.body.self;
 
-  let responseData = {};
+  var responseData = {};
 
   if (!self) Board.increment("BO_Hit", { where: { BO_Code: BO_Code } });
 
-  let BoardD = await BoardDetail.findOne({
+  var BoardD = await BoardDetail.findOne({
     where: { BO_Code },
   });
 
@@ -41,12 +42,12 @@ const readPost = async (req, res, next) => {
   if (req.method === "GET") username = req.body.user.username;
   else username = req.body.username;
 
-  let isHealthsee = await B_Healthsee.count({
+  var isHealthsee = await B_Healthsee.count({
     where: {
       [Op.and]: [{ Board_BO_Code: BO_Code }, { BH_Push_NickName: username }],
     },
   });
-  let isReport = await B_Reporter.count({
+  var isReport = await B_Reporter.count({
     where: {
       [Op.and]: [
         { Board_BO_Code: BO_Code },
@@ -68,16 +69,16 @@ const readPost = async (req, res, next) => {
 };
 
 const readComment = async (req, res, next) => {
-  let BO_Code = req.params.BO_Code;
-  let offset = 0;
-  let page = req.params.page;
+  var BO_Code = req.params.BO_Code;
+  var offset = 0;
+  var page = req.params.page;
 
   if (page > 1) offset = (page - 1) * 20;
   else if (page < 1) {
     // 에러 발생
   }
 
-  let responseData = {};
+  var responseData = {};
   comments = await B_comment_view.findAndCountAll({
     where: { Board_BO_Code: BO_Code },
     order: [
@@ -93,25 +94,4 @@ const readComment = async (req, res, next) => {
   res.json(responseData);
 };
 
-
-const usersComments = async (req, res, next) => {
-  console.log("asdasd");
-  name = req.query.name;
-  BC_Code = req.query.BC_Code;
-  let responseData = {};
-
-  comments = await B_comment_view.findAndCountAll({
-    where: {
-      [Op.and]: [
-      {BC_Writer_NickName : name},
-      BC_Code && { BC_Code: { [Op.lt]: BC_Code } },
-      ]
-    },
-    limit: 20,
-  });
-  responseData.comments = comments.rows;
-  responseData.commentsCount = comments.count;
-  res.json(responseData);
-};
-
-module.exports = { readPost, readComment, usersComments };
+module.exports = { readPost, readComment };

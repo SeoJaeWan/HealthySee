@@ -12,13 +12,14 @@ const upload = multer({
 
 const writePost = async (req, res, next) => {
   console.log(req.body);
- 
+  var BO_Category = req.body.BO_Category;
   var BO_Title = req.body.BO_Title;
   var BO_Content = req.body.BO_Content;
   var BO_Writer_NickName = req.body.username;
   var BO_Creation_Date = today;
 
   const board = await Board.create({
+    BO_Category,
     BO_Title,
     BO_Content,
     BO_Writer_NickName,

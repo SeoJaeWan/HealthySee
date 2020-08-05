@@ -16,13 +16,9 @@ const updateMypage = async (req, res, next) => {
     Account_AC_NickName,
   } = req.body;
 
-  console.log(req.body);
-
   let { buffer, mimetype } = req.file
     ? req.file
     : { buffer: null, mimetype: null };
-
-  console.log("dsasadsadsadsda", buffer, mimetype);
   let mypage = await Member.update(
     {
       ME_Scope,
@@ -35,9 +31,8 @@ const updateMypage = async (req, res, next) => {
     },
     { where: { Account_AC_NickName } }
   );
-  req.params.username = req.body.Account_AC_NickName;
-  req.params.owner = req.body.Account_AC_NickName;
-  next();
+  res.status(204).end();
 };
 
 module.exports = { updateMypage, upload };
+
