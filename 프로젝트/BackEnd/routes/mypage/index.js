@@ -1,5 +1,5 @@
 var express = require("express");
-const readMyPage = require("../../lib/sequelize/mypage/readMypage");
+const readMyPage = require("../../lib/sequelize/mypage/readMypage").readMyPage;
 const updateMypage = require("../../lib/sequelize/mypage/updateMypage")
   .updateMypage;
 const upload = require("../../lib/sequelize/mypage/updateMypage").upload;
