@@ -13,7 +13,7 @@ const SelectBoardForm = ({ match, history }) => {
   }));
 
   const onClick = (postId, board) => {
-    history.push(`/Board/${board}/read/${postId}`);
+    history.push(`/Board/read/${postId}`);
   };
 
   const onChangeModal = () => {

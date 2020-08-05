@@ -1,16 +1,16 @@
-import React from "react"
-import { Route } from "react-router-dom"
+import React from "react";
+import { Route } from "react-router-dom";
 
-import Home from "./Page/Home"
-import Login from "./Page/Login"
-import Signup from "./Page/Signup"
-import Board from "./Page/Board"
-import MyPage from "./Page/MyPage"
-import Album from "./Page/Album"
-import Training from "./Page/Training"
+import Home from "./Page/Home";
+import Login from "./Page/Login";
+import Signup from "./Page/Signup";
+import Board from "./Page/Board";
+import MyPage from "./Page/MyPage";
+import Album from "./Page/Album";
+import Training from "./Page/Training";
 
-import { createGlobalStyle } from "styled-components"
-import HeaderForm from "./containers/header/HeaderForm"
+import { createGlobalStyle } from "styled-components";
+import HeaderForm from "./containers/header/HeaderForm";
 
 const App = () => {
   const GlobalStyle = createGlobalStyle`
@@ -45,7 +45,7 @@ const App = () => {
     pre{font-family: "font"}
     h1{margin: 0; font-size:3rem;}
     input{font-family: "font"}
-    `
+    `;
 
   return (
     <div>
@@ -54,12 +54,12 @@ const App = () => {
       <Route exact path="/" component={Home} />
       <Route path="/Login" component={Login} />
       <Route path="/Signup" component={Signup} />
-      <Route path="/Board/:board" component={Board} />
+      <Route path="/Board" component={Board} />
       <Route path="/MyPage" component={MyPage} />
       <Route path="/Album/:username" component={Album} />
       <Route path="/Training/:type" component={Training} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

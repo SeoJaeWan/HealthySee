@@ -1,12 +1,11 @@
 import client, { config } from "./client";
 import qs from "qs";
 
-export const list = ({ id, name, keyword, category }) => {
+export const list = ({ id, name, keyword }) => {
   const queryString = qs.stringify({
     BO_Code: id,
     name: name,
     keyword: keyword,
-    category: category,
   });
   return client.get(`/board/lists?${queryString}`);
 };

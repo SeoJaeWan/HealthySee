@@ -1,11 +1,11 @@
-import React from "react"
-import { BoardForm } from "./style/BoardCom_style"
+import React from "react";
+import { BoardForm } from "./style/BoardCom_style";
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-import InfiniteScroll from "react-infinite-scroll-component"
-import { Container } from "../../style/Container_style"
-import ReactHelmet from "../../../containers/common/ReactHelmet"
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Container } from "../../style/Container_style";
+import ReactHelmet from "../../../containers/common/ReactHelmet";
 
 const BoardCom = ({
   match,
@@ -30,7 +30,12 @@ const BoardCom = ({
                 <option value="BO_Title">제목</option>
                 <option value="BO_Writer_NickName">닉네임</option>
               </select>
-              <input className="searchInput" type="text" name="keyword" onChange={onChange} />
+              <input
+                className="searchInput"
+                type="text"
+                name="keyword"
+                onChange={onChange}
+              />
               <button type="submit" className="searchButton" onClick={onSearch}>
                 검색
               </button>
@@ -45,7 +50,9 @@ const BoardCom = ({
               dataLength={posts.length}
               next={fetchMoreData}
               hasMore={scroll}
-              loader={<div className="endBoard">게시글을 불러오고 있습니다.</div>}
+              loader={
+                <div className="endBoard">게시글을 불러오고 있습니다.</div>
+              }
               endMessage={<div className="endBoard">마지막 게시글 입니다.</div>}
             >
               <table className="table">
@@ -66,7 +73,7 @@ const BoardCom = ({
                         onClick={onClick}
                         onChangeModal={onChangeModal}
                       />
-                    )
+                    );
                   })}
                 </tbody>
               </table>
@@ -75,17 +82,31 @@ const BoardCom = ({
         </BoardForm>
       </Container>
     </>
-  )
-}
+  );
+};
 
 const BoardItem = ({ post, onClick, onChangeModal }) => {
-  const { BO_Code, BO_Title, BO_Creation_Date, BO_Writer_NickName, BO_Hit, BO_State } = post
+  const {
+    BO_Code,
+    BO_Title,
+    BO_Creation_Date,
+    BO_Writer_NickName,
+    BO_Hit,
+    BO_State,
+  } = post;
   return (
     <>
-      <tr className="item" onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}>
-        <td className="itemTitle">{BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}</td>
+      <tr
+        className="item"
+        onClick={() => (BO_State === 0 ? onClick(BO_Code) : onChangeModal())}
+      >
+        <td className="itemTitle">
+          {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
+        </td>
         <td className="itemWriter">{BO_Writer_NickName}</td>
-        <td className="itemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
+        <td className="itemDate">
+          {new Date(BO_Creation_Date).toLocaleDateString()}
+        </td>
         <td className="itemHit">{BO_Hit}회</td>
       </tr>
       <tr>
@@ -96,12 +117,13 @@ const BoardItem = ({ post, onClick, onChangeModal }) => {
         >
           {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
           <br />
-          {BO_Writer_NickName}&nbsp;&nbsp; {new Date(BO_Creation_Date).toLocaleDateString()}
+          {BO_Writer_NickName}&nbsp;&nbsp;{" "}
+          {new Date(BO_Creation_Date).toLocaleDateString()}
           &nbsp;&nbsp; 조회수 : {BO_Hit}
         </td>
       </tr>
     </>
-  )
-}
+  );
+};
 
-export default BoardCom
+export default BoardCom;

@@ -32,7 +32,6 @@ const BoardForm = ({ match, history }) => {
           id: posts[posts.length - 1].BO_Code,
           name: options.name,
           keyword: options.keyword,
-          category: match.params.board,
         })
       );
     }, 1500);
@@ -51,16 +50,15 @@ const BoardForm = ({ match, history }) => {
         id: null,
         name: options.name,
         keyword: options.keyword,
-        category: match.params.board,
       })
     );
-    history.push(`/Board/${match.params.board}/search`);
+    history.push(`/Board/search`);
   };
 
   const onClick = (postId) => {
     const beforeInfo = { posts, options, postsCount };
     sessionStorage.setItem("beforeList", JSON.stringify(beforeInfo));
-    history.push(`/Board/${match.params.board}/read/${postId}`);
+    history.push(`/Board/read/${postId}`);
   };
 
   useEffect(() => {
@@ -91,7 +89,6 @@ const BoardForm = ({ match, history }) => {
           id: null,
           name: null,
           keyword: null,
-          category: match.params.board,
         })
       );
     }

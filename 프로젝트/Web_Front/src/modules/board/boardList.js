@@ -39,17 +39,17 @@ export const setPosts = createAction(
     postsCount,
   })
 );
-export const list = createAction(LIST, ({ id, name, keyword, category }) => ({
+export const list = createAction(LIST, ({ id, name, keyword }) => ({
   id,
   name,
   keyword,
-  category,
 }));
 export const bestList = createAction(BEST_LIST);
-export const listDetail = createAction(
-  LISTDETAIL,
-  ({ id, name, keyword, category }) => ({ id, name, keyword, category })
-);
+export const listDetail = createAction(LISTDETAIL, ({ id, name, keyword }) => ({
+  id,
+  name,
+  keyword,
+}));
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({ form, key, value })

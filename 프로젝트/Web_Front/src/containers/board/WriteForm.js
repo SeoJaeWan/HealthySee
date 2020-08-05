@@ -12,10 +12,9 @@ import {
 import { withRouter } from "react-router-dom";
 import AlertModal from "../../component_contet/common/Modal/AlertModal";
 
-const WriteForm = ({ route, history, match }) => {
+const WriteForm = ({ route, history }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
-  const readUrl = `${route + "/" + match.params.board}`;
 
   const { postInfo, post, user, oldFiles } = useSelector(
     ({ boardWrite, user, boardPost }) => ({
@@ -27,7 +26,6 @@ const WriteForm = ({ route, history, match }) => {
   );
 
   const onClick = (e) => {
-    console.log("호출");
     const formData = new FormData();
     var files = post.files.length;
 
@@ -44,8 +42,6 @@ const WriteForm = ({ route, history, match }) => {
     formData.append("files", post.files[2]);
     formData.append("username", user);
 
-    console.log(post.leaveFiles);
-
     if (post.BO_Code) {
       formData.append("BO_Code", post.BO_Code);
       formData.append("leaveFile", post.leaveFiles);
@@ -60,7 +56,6 @@ const WriteForm = ({ route, history, match }) => {
   };
 
   const deleteFile = (index, files, e) => {
-    console.log(files);
     let currentFiles = files.slice();
     let leaveFile = currentFiles.splice(index, 1);
 
@@ -71,8 +66,6 @@ const WriteForm = ({ route, history, match }) => {
       console.log("asdsdaasdsad", currentFiles);
       currentFiles = post.leaveFiles.concat(leaveFile[0].BF_Code);
     }
-
-    console.log(currentFiles);
 
     dispatch(
       changeField({ form: "post", key: e.target.name, value: currentFiles })
@@ -124,9 +117,9 @@ const WriteForm = ({ route, history, match }) => {
     if (postInfo) {
       const postId = postInfo.boardDetail.BO_Code;
 
-      history.push(`${readUrl}/read/${postId}`);
+      history.push(`${route}/read/${postId}`);
     }
-  }, [postInfo, readUrl, history]);
+  }, [postInfo, route, history]);
 
   return (
     <>
