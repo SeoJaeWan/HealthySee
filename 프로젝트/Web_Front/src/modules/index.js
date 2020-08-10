@@ -11,6 +11,7 @@ import loading from "./loading";
 import mypage, { mypageSaga } from "./mypage/mypage";
 import albumList, { albumListSaga } from "./album/albumList";
 import albumWrite, { albumWriteSaga } from "./album/albumWrite";
+import training from "./training/training";
 
 const rootReducer = combineReducers({
   auth,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   mypage,
   albumList,
   albumWrite,
+  training,
   loading,
 });
 

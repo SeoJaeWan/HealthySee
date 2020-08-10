@@ -2,25 +2,22 @@ import React from "react";
 import Sketch from "react-p5";
 import styled from "styled-components";
 
-const TrainingCom = ({ setup, draw, info }) => {
+const TrainingCom = ({ setup, draw }) => {
   return (
     <>
       <TrainBox>
         <div className="trainImg">
-          <p>{info.poses[info.nextPose]}</p>
+          {/* <p>{info.poses[info.nextPose]}</p> */}
         </div>
         <div className="trainCapture">
           {/* {console.log(pose)} */}
-          <Sketch
-            setup={setup}
-            draw={(p5) => draw(p5, info.pose, info.skeleton)}
-          />
+          <Sketch setup={setup} draw={draw} />
         </div>
       </TrainBox>
 
       <div>
-        <div>asdsdaads</div>
-        <div>sadsadasd</div>
+        {/* <div>횟수 : {info.count}</div>
+        <div>시간 : {time}</div> */}
       </div>
     </>
   );
