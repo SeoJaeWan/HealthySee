@@ -1,17 +1,23 @@
-import React from "react";
-import Sketch from "react-p5";
-import styled from "styled-components";
+import React from "react"
+import Sketch from "react-p5"
+import { TrainBox, Progress } from "./style/TrainingCom_style"
 
 const TrainingCom = ({ setup, draw, count, training }) => {
   return (
-    <>
+    <>   
+      <Progress value="1" max="10"></Progress>
+      {/* 시간 넣을곳 퍼센트 바로 해서 사용*/}
+
       <TrainBox>
         <h1>{count}</h1>
         {/* {console.log(count)} */}
         <div className="trainImg">
           {/* <p>{training.poses[training.state]}</p> */}
           {/* <p>{count}</p> */}
+          
           <p>{training.state}</p>
+
+          {/* 숫자 이미지 띄울곳 테두리 시계방향 에니메이션 + 개수 표현 */}
         </div>
         <div className="trainCapture">
           {/* {console.log(pose)} */}
@@ -19,34 +25,10 @@ const TrainingCom = ({ setup, draw, count, training }) => {
         </div>
       </TrainBox>
 
-      <div>
-        {/* <div>횟수 : {info.count}</div>
-        <div>시간 : {time}</div> */}
-      </div>
+      <div>{/* <div>횟수 : {info.count}</div>
+        <div>시간 : {time}</div> */}</div>
     </>
-  );
-};
+  )
+}
 
-const TrainBox = styled.div`
-  width: 100%;
-
-  padding-top: 100px;
-
-  display: flex;
-  justify-content: center;
-
-  .trainImg {
-    width: 630px;
-    height: 480px;
-
-    background-color: yellow;
-    font-size: 300px;
-    text-align: center;
-  }
-
-  .trainCapture {
-    width: 630px;
-  }
-`;
-
-export default TrainingCom;
+export default TrainingCom
