@@ -16,8 +16,6 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
 const initialState = {
   timmer: 90,
   count: 0,
-  nextPose: 0,
-  poses: [],
 };
 
 const training = handleActions(

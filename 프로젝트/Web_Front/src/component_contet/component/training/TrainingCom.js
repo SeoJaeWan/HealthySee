@@ -2,12 +2,16 @@ import React from "react";
 import Sketch from "react-p5";
 import styled from "styled-components";
 
-const TrainingCom = ({ setup, draw }) => {
+const TrainingCom = ({ setup, draw, count, training }) => {
   return (
     <>
       <TrainBox>
+        <h1>{count}</h1>
+        {/* {console.log(count)} */}
         <div className="trainImg">
-          {/* <p>{info.poses[info.nextPose]}</p> */}
+          {/* <p>{training.poses[training.state]}</p> */}
+          {/* <p>{count}</p> */}
+          <p>{training.state}</p>
         </div>
         <div className="trainCapture">
           {/* {console.log(pose)} */}

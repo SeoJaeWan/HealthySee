@@ -12,45 +12,36 @@ const TrainingForm = ({ history }) => {
   let poseNet; // 카메라를 통해 사용자의 동작을 입력받음
 
   let dispatch = useDispatch();
-  // let { timmer, count, nextPose, poses } = useSelector(({ training }) => ({
-  //   timmer: training.timmer,
-  //   count: training.count,
-  //   nextPose: training.nextPose,
-  //   poses: training.poses,
-  // }));
+  let { timmer, count } = useSelector(({ training }) => ({
+    timmer: training.timmer,
+    count: training.count,
+  }));
 
   let [view, setView] = useState(true); // 시작 전 모달창을 출력시카기 위해서 사용
+  let [training, setTraining] = useState({
+    pose: null,
+    skeleton: null,
 
-  let capture;
-  let pose;
-  let poses;
-  let count = 0;
-  let beforePose = 0;
-  let samePose = 0;
-  let state = 0;
-  let skeleton;
+    poseLabel: null,
 
-  let bad = true;
+    beforePose: 0,
+    samePose: 0,
 
-  // 학습 결과물을 로드하여 판단하는 재귀 함수를 실행시킨다.
+    state: 0,
+    poses: [],
+  });
+
   const brainLoaded = () => {
     console.log("pose classification ready!");
 
-    poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues;
+    let poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues;
     poses.pop();
     poses = poses.concat(poses[0]);
 
-    // console.log(capture);
-
-    // dispatch(changeField({ key: "poses", value: poses }));
+    setTraining((prev) => ({ ...prev, poses }));
   };
 
-  // 무한 재귀함수를 통해 동작은 계속 판단
-  // state : 해야할 포즈
-  // beforePose : 이전 포즈
-  // samePose : 같은 위치에 있는 경우 탈출을 하기위한 변수
-  const classifyPose = () => {
-    // pose가 확인될 경우
+  const classifyPose = (pose) => {
     let inputs = [];
     for (let i = 0; i < pose.keypoints.length; i++) {
       let x = pose.keypoints[i].position.x;
@@ -58,53 +49,24 @@ const TrainingForm = ({ history }) => {
       inputs.push(x);
       inputs.push(y);
     }
-
-    beforePose = pose;
-    brain.classify(inputs, gotResult);
-    // pose가 없다면 다시 자기 자신을 호출
+    brain.classify(inputs, (error, results) => gotResult(error, results, pose));
   };
 
   // 동작 검증
-  const gotResult = (error, results) => {
-    // console.log(results[0].label);
-    // 동작의 정확도가 75% 이상이며 해야할 동작과 같은 경우
-    if (results[0].confidence > 0.75 && results[0].label === poses[state]) {
-      state = state + 1;
-      // state이 poses.length와 같다면 한 동작을 완료하였다고 판단
-      if (state === poses.length) {
-        state = 0; // 상태를 0으로 만든 후 count를 증가
-        dispatch(changeField({ key: "count", value: ++count }));
-      }
-      dispatch(changeField({ key: "nextPose", value: state }));
-      // 동작이 배드일 경우 state을 0으로 초기화
-    } else if (results[0].label === "배드" && bad) {
-      state = 0;
-      bad = !bad; // 동시에 여러번 bad가 뜰경우 진행이 불가능 하니 제한을 걸어줌
-
-      // 5초동안 bad가 나오지 않게 설정
-      setTimeout(() => {
-        bad = !bad;
-      }, 5000);
+  const gotResult = (error, results, pose) => {
+    if (results[0].confidence > 0.75) {
+      console.log(results[0].label);
+      setTraining((prev) => ({ ...prev, poseLabel: results[0].label }));
     }
-
-    // 한 동작에서 멈춰있을 경우(화면 밖, 종료 같은 상황) 탈출
-    if (pose.score === beforePose.score) {
-      samePose++;
-      if (samePose === 100) {
-        return;
-      }
-    } else samePose = 0;
   };
 
-  // 카메라를 통해 사용자의 동작을 입력받는 함수
   const gotPoses = (poses) => {
     if (poses.length > 0) {
-      pose = poses[0].pose;
-      skeleton = poses[0].skeleton;
+      let pose = poses[0].pose;
+      let skeleton = poses[0].skeleton;
 
-      // console.log("???");
-
-      classifyPose();
+      setTraining((prev) => ({ ...prev, pose, skeleton }));
+      classifyPose(pose);
       // if (state === "collecting") {   사용 할수록 성능이 증가하게끔 만드는건 고려중
       //   console.log(pose);
       //   console.log(targetLabel);
@@ -141,8 +103,7 @@ const TrainingForm = ({ history }) => {
     let div = p5.select(".trainCapture");
 
     div.child(canvas);
-
-    capture = p5.createCapture(p5.VIDEO);
+    let capture = p5.createCapture(p5.VIDEO);
     capture.hide();
 
     poseNet = ml5.poseNet(capture);
@@ -162,21 +123,23 @@ const TrainingForm = ({ history }) => {
       weights: process.env.PUBLIC_URL + "/3pose_Test2/model.weights.bin",
     };
     brain.load(modelInfo, brainLoaded);
-
+    setTraining((prev) => ({ ...prev, capture }));
     // console.log(capture);
   };
 
   const draw = (p5) => {
-    // console.log(capture, pose);
-
-    if (capture) {
+    // console.log(training.capture);
+    // console.log(training.poses);
+    if (training.capture) {
       p5.push(); // 새로운 도면 시작
-      p5.image(capture, 0, 0, 640, 480);
+      p5.image(training.capture, 0, 0, 640, 480);
 
-      if (pose) {
-        for (let i = 0; i < skeleton.length; i++) {
-          let a = skeleton[i][0];
-          let b = skeleton[i][1];
+      if (training.pose) {
+        let currentPose = training.pose;
+        let currentSkeleton = training.skeleton;
+        for (let i = 0; i < currentSkeleton.length; i++) {
+          let a = currentSkeleton[i][0];
+          let b = currentSkeleton[i][1];
 
           p5.strokeWeight(1);
           p5.stroke(0);
@@ -184,9 +147,9 @@ const TrainingForm = ({ history }) => {
           p5.line(a.position.x, a.position.y, b.position.x, b.position.y);
         }
 
-        for (let i = 0; i < pose.keypoints.length; i++) {
-          let x = pose.keypoints[i].position.x;
-          let y = pose.keypoints[i].position.y;
+        for (let i = 0; i < currentPose.keypoints.length; i++) {
+          let x = currentPose.keypoints[i].position.x;
+          let y = currentPose.keypoints[i].position.y;
 
           p5.fill(0);
           p5.stroke(255);
@@ -206,6 +169,22 @@ const TrainingForm = ({ history }) => {
     }, 1000);
   }, []);
 
+  useEffect(() => {
+    if (training.poseLabel === training.poses[training.state]) {
+      if (
+        training.poses.length > 0 &&
+        training.state + 1 === training.poses.length
+      ) {
+        setTraining((prev) => ({ ...prev, state: 0 }));
+        dispatch(changeField({ key: "count", value: count + 1 }));
+      } else {
+        setTraining((prev) => ({ ...prev, state: training.state + 1 }));
+      }
+    } else {
+      setTraining((prev) => ({ ...prev, state: 0 }));
+    }
+  }, [training.poseLabel]);
+
   return view ? (
     <AlertModal
       visible={view}
@@ -214,7 +193,7 @@ const TrainingForm = ({ history }) => {
       onCancel={goBack}
     />
   ) : (
-    <TrainingCom setup={setup} draw={draw} />
+    <TrainingCom setup={setup} draw={draw} count={count} training={training} />
   );
 };
 
