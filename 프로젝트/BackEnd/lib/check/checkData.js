@@ -1,5 +1,11 @@
 const Album = require("../../models").album;
 
+const checkUser = (req, res) => {
+  const { user } = req.body;
+
+  res.json(user);
+};
+
 const checkLogin = (req, res, next) => {
   if (!req.body.user) {
     res.status(401).end();
@@ -23,23 +29,28 @@ const checkOwnBoard = (req, res, next) => {
   next();
 };
 
-const checkOwnAlbum = async (req, res, next)  => {
-  const { user, writerNickName ,AL_Code } = req.body;
+const checkOwnAlbum = async (req, res, next) => {
+  const { user, writerNickName, AL_Code } = req.body;
   console.log(req.body);
-  if(req.method === "POST"){
+  if (req.method === "POST") {
     let album = await Album.findOne({
-      where : {AL_Code}
+      where: { AL_Code },
     });
-    if(album.Account_AC_NickName !== user.username){
+    if (album.Account_AC_NickName !== user.username) {
       res.status(403).end();
       return;
     }
-  }else if (writerNickName !== user.username) {
+  } else if (writerNickName !== user.username) {
     res.status(403).end();
     return;
   }
   next();
 };
 
-module.exports = { checkLogin, checkOwnBoard, checkOwnAlbum, checkToken };
-
+module.exports = {
+  checkUser,
+  checkLogin,
+  checkOwnBoard,
+  checkOwnAlbum,
+  checkToken,
+};

@@ -114,6 +114,8 @@ const TrainingForm = ({ history }) => {
 
     poseNet = ml5.poseNet(capture); // 카메라를 통해 받은 입력에서 동작을 추출
     poseNet.on("pose", gotPoses);
+
+    // 종료 분기
     poseNet.video = null;
 
     console.log(poseNet);
