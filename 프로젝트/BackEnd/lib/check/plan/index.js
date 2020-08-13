@@ -1,26 +1,26 @@
-const plan = require("../../../models").plan;
+const LevelOfDifficulty = require("../../../models").levelOfDifficulty;
 
 const checkOwnPlan = async (req, res, next) => {
-  const { Plan_PL_Code } = req.body;
+  const { LOD_Code } = req.body;
 
-  if (!Plan_PL_Code) {
+  if (!LOD_Code) {
     res.status(400).end();
     return;
   }
-  console.log(Plan_PL_Code);
+  console.log(LOD_Code);
 
   try {
-    let Plan = await plan.findOne({
-      where: { Plan_PL_Code },
+    let LOD = await LevelOfDifficulty.findOne({
+      where: { LOD_Code },
     });
 
-    if (!Plan) {
+    if (!LOD) {
       res.status(404).end();
       return;
     }
-    console.log(Plan);
+    console.log(LOD);
 
-    req.body.LO_Time = plan.LO_Time;
+    req.body.LO_Time = LOD.LO_Time;
     next();
   } catch (e) {
     console.log(e);
