@@ -1,4 +1,4 @@
-const PlanLog = require("../../../models").p_log;
+const planLog = require("../../../models").p_log;
 const today = require("../../../lib/Date/time");
 
 const loggingExercise = async (req, res, next) => {
@@ -11,7 +11,7 @@ const loggingExercise = async (req, res, next) => {
     user,
   } = req.body;
 
-  await PlanLog.create({
+  await planLog.create({
     LO_Time,
     LO_Success_Count,
     LO_Fault_Count,

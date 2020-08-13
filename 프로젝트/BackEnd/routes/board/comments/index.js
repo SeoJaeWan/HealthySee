@@ -4,10 +4,8 @@ const writeComment = require("../../../lib/sequelize/board/writeBoard")
   .writeComment;
 const readComment = require("../../../lib/sequelize/board/readBoard")
   .readComment;
-const checkLogin = require("../../../lib/check/checkData").checkLogin;
-const checkOwnBoard = require("../../../lib/check/checkData").checkOwnBoard;
-const checkComment = require("../../../lib/sequelize/board/checkBoard")
-  .checkComment;
+const { checkLogin } = require("../../../lib/check/user");
+const { checkComment } = require("../../../lib/check/board");
 const deleteComment = require("../../../lib/sequelize/board/deleteBoard")
   .deleteComment;
 const updateComment = require("../../../lib/sequelize/board/updateBoard")
@@ -21,21 +19,13 @@ router.post("/report", reportComment, readComment);
 // 해당 BO_CODE의 댓글 조회
 router.get("/:BO_Code&:page", readComment);
 
-router.patch(
-  "/",
-  checkComment,
-  checkLogin,
-  checkOwnBoard,
-  updateComment,
-  readComment
-);
+router.patch("/", checkComment, checkLogin, updateComment, readComment);
 
 //router.delete("/:BC_Code",deleteComment, readComment);
 router.delete(
   "/:BC_Code&:page",
   checkComment,
   checkLogin,
-  checkOwnBoard,
   deleteComment,
   readComment
 );
