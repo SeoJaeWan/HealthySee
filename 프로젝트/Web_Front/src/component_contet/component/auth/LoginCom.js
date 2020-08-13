@@ -20,7 +20,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
         <div className="loginForm">
           <div className="platform">
             <KakaoLogin
-              jsKey={"2f70e141f23b6a78e4b7fdd56b7be83e"}
+              jsKey={process.env.REACT_APP_KAKAO}
               onSuccess={responseKakao}
               onFailure={errer}
               getProfile="true"
@@ -33,7 +33,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               )}
             />
             <GoogleLogin
-              clientId={"281223087961-0400s5doef0oi7gdg6jdamuuvmi3rkj4"}
+              clientId={process.env.REACT_APP_GOOGLE}
               render={(props) => (
                 <Google
                   src={require("../../../Images/Login/GoogleLogin.png")}
@@ -44,7 +44,7 @@ const LoginCom = ({ responseGoogle, responseKakao, responseNaver }) => {
               onFailure={errer}
             />
             <NaverLogin
-              clientId={"nJEBHhkCawrEQWG18VFF"}
+              clientId={process.env.REACT_APP_NAVER}
               callbackUrl="http://localhost:3000/login"
               render={(props) => (
                 <Naver
