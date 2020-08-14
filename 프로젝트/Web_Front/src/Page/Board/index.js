@@ -1,15 +1,16 @@
-import React from "react"
+import React from "react";
 
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom";
 
-import ReadPost from "./ReadPost"
-import WritePost from "./WritePost"
-import BoardPost from "./BoardPost"
-import SelectBoard from "./SelectBoard"
+import ReadPost from "./ReadPost";
+import WritePost from "./WritePost";
+import BoardPost from "./BoardPost";
+import SelectBoard from "./SelectBoard";
 
 const Board = ({ match }) => {
   return (
     <>
+      {console.log(match)}
       <Switch>
         <Route exact path="/Board/Select" component={SelectBoard} />
         <Route exact path={match.path} component={BoardPost} />
@@ -18,7 +19,7 @@ const Board = ({ match }) => {
       <Route path={`${match.path}/write`} component={WritePost} />
       <Route path={`${match.path}/read/:postId`} component={ReadPost} />
     </>
-  )
-}
+  );
+};
 
-export default Board
+export default Board;

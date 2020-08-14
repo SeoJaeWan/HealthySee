@@ -18,9 +18,7 @@ const checkOwnPlan = async (req, res, next) => {
       res.status(404).end();
       return;
     }
-    console.log(LOD);
 
-    req.body.LO_Time = LOD.LO_Time;
     next();
   } catch (e) {
     console.log(e);

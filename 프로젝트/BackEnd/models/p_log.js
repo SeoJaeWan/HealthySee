@@ -37,9 +37,8 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         comment: "null",
       },
-      LO_Index_Date: {
-        type: DataTypes.DATE,
-        allowNull: false,
+      LO_Re_Ref: {
+        type: DataTypes.INTEGER(11),
         comment: "null",
       },
       Plan_PL_Code: {

@@ -103,6 +103,7 @@ const BoardForm = ({ match, history }) => {
   }
   return (
     <>
+      {console.log("sadsad")}
       <BoardCom
         match={match}
         posts={posts}

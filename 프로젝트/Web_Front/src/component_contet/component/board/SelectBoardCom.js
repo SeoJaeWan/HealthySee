@@ -1,12 +1,18 @@
-import React from "react"
-import { SelectBoardForm } from "./style/SelectBoardCom_style"
+import React from "react";
+import { SelectBoardForm } from "./style/SelectBoardCom_style";
 
-import { Container } from "../../style/Container_style"
-import { Link } from "react-router-dom"
-import ReactHelmet from "../../../containers/common/ReactHelmet"
+import { Container } from "../../style/Container_style";
+import { Link } from "react-router-dom";
+import ReactHelmet from "../../../containers/common/ReactHelmet";
 
-const SelectBoardCom = ({ bestPosts, match, onChangeModal, onClick, onChange }) => {
-  const bestFreeList = bestPosts.free
+const SelectBoardCom = ({
+  bestPosts,
+  match,
+  onChangeModal,
+  onClick,
+  onChange,
+}) => {
+  const bestFreeList = bestPosts.free;
 
   return (
     <>
@@ -21,7 +27,7 @@ const SelectBoardCom = ({ bestPosts, match, onChangeModal, onClick, onChange }) 
               <option value="BO_Hit">조회수</option>
             </select>
             <button type="button" className="moreButton">
-              <Link to={"/Board/0"}>더보기</Link>
+              <Link to={"/Board"}>더보기</Link>
             </button>
           </div>
           <div className="boardForm">
@@ -56,21 +62,32 @@ const SelectBoardCom = ({ bestPosts, match, onChangeModal, onClick, onChange }) 
         </SelectBoardForm>
       </Container>
     </>
-  )
-}
+  );
+};
 
 const BoardItem = ({ post, onClick, onChangeModal, type }) => {
-  const { BO_Code, BO_Title, BO_Creation_Date, BO_Writer_NickName, BO_Hit, BO_State } = post
+  const {
+    BO_Code,
+    BO_Title,
+    BO_Creation_Date,
+    BO_Writer_NickName,
+    BO_Hit,
+    BO_State,
+  } = post;
 
   return (
     <>
       <tr
         className="item"
-        onClick={() => (BO_State === 0 ? onClick(BO_Code, type) : onChangeModal())}
+        onClick={() =>
+          BO_State === 0 ? onClick(BO_Code, type) : onChangeModal()
+        }
       >
         <td className="itemTitle">{BO_Title}</td>
         <td className="itemWriter">{BO_Writer_NickName}</td>
-        <td className="itemDate">{new Date(BO_Creation_Date).toLocaleDateString()}</td>
+        <td className="itemDate">
+          {new Date(BO_Creation_Date).toLocaleDateString()}
+        </td>
         <td className="itemHit">{BO_Hit}</td>
       </tr>
       <tr>
@@ -81,12 +98,13 @@ const BoardItem = ({ post, onClick, onChangeModal, type }) => {
         >
           {BO_State === 0 ? BO_Title : "블라인드된 게시글입니다."}
           <br />
-          {BO_Writer_NickName}&nbsp;&nbsp; {new Date(BO_Creation_Date).toLocaleDateString()}
+          {BO_Writer_NickName}&nbsp;&nbsp;{" "}
+          {new Date(BO_Creation_Date).toLocaleDateString()}
           &nbsp;&nbsp; 조회수 : {BO_Hit}
         </td>
       </tr>
     </>
-  )
-}
+  );
+};
 
-export default SelectBoardCom
+export default SelectBoardCom;
