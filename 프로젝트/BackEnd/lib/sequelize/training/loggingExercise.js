@@ -8,13 +8,16 @@ const loggingExercise = async (req, res, next) => {
     LO_Fault_Count,
     LO_Re_Ref, // 하나의 로그에 ref를 추가하여 댓글과 대댓글처럼 DB에 저장
     Plan_PL_Code,
+    LOD_Code,
     user,
   } = req.body;
+  console.log(req.body, LOD_Code % 5);
 
   if (LO_Re_Ref === "0")
     await P_Log.create({
       LO_Time,
       LO_Success_Count,
+      LO_Level: LOD_Code % 5,
       LO_Fault_Count,
       Plan_PL_Code,
       LO_Player_NickName: user.username,
@@ -29,6 +32,7 @@ const loggingExercise = async (req, res, next) => {
     await P_Log.create({
       LO_Time,
       LO_Success_Count,
+      LO_Level: LOD_Code % 5,
       LO_Fault_Count,
       Plan_PL_Code,
       LO_Player_NickName: user.username,

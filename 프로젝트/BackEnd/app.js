@@ -8,6 +8,7 @@ let authRouter = require("./routes/account");
 let boardRouter = require("./routes/board");
 let mypageRouter = require("./routes/mypage");
 let albumRouter = require("./routes/album");
+let trainingRouter = require("./routes/training");
 
 const jwtMiddleware = require("./lib/token/jwtMiddlewares").jwtMiddleware;
 
@@ -26,6 +27,7 @@ app.use("/auth", authRouter);
 app.use("/board", boardRouter);
 app.use("/mypages", mypageRouter);
 app.use("/album", albumRouter);
+app.use("/training", trainingRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

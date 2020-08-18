@@ -10,12 +10,12 @@ module.exports = function (sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true,
       },
-      LOD_Time: {
+      LOD_Value: {
         type: DataTypes.INTEGER(11),
         allowNull: true,
       },
-      LOD_Count: {
-        type: DataTypes.INTEGER(11),
+      LOD_Type: {
+        type: DataTypes.INTEGER(2),
         allowNull: true,
       },
       Exercise_EX_Name: {

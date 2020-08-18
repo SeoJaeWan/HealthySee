@@ -5,7 +5,7 @@ import * as ml5 from "ml5";
 import { useDispatch, useSelector } from "react-redux";
 
 import AlertModal from "../../component_contet/common/Modal/AlertModal";
-import { changeField } from "../../modules/training/training";
+import { loggingExercise, checkGoal } from "../../modules/training/training";
 
 const TrainingForm = ({ history }) => {
   let brain; // AI를 사용하기 위한 변수
@@ -13,9 +13,9 @@ const TrainingForm = ({ history }) => {
 
   let dispatch = useDispatch();
   // 서버에 전송할 정보
-  let { timmer, count } = useSelector(({ training }) => ({
-    timmer: training.timmer, // 운동한 시간
-    count: training.count, // 동작 횟수
+  let { success_count, finish } = useSelector(({ training }) => ({
+    success_count: training.success_count,
+    finish: training.finish,
   }));
 
   let [view, setView] = useState(true); // 시작 전 모달창을 출력시카기 위해서 사용
@@ -67,8 +67,6 @@ const TrainingForm = ({ history }) => {
       let pose = poses[0].pose;
       let skeleton = poses[0].skeleton;
 
-      console.log("sadsads");
-
       setTraining((prev) => ({ ...prev, pose, skeleton }));
       classifyPose(pose);
       // if (state === "collecting") {   사용 할수록 성능이 증가하게끔 만드는건 고려중
@@ -89,15 +87,6 @@ const TrainingForm = ({ history }) => {
     }
   };
 
-  // let [time, setTime] = useState(90);
-
-  // const timmer = () => {
-  //   setInterval(() => {
-  //     setTime(--time);
-  //     console.log(time);
-  //   }, 1000);
-  // };
-
   // 뒤로가기
   const goBack = () => {
     history.goBack();
@@ -114,9 +103,6 @@ const TrainingForm = ({ history }) => {
 
     poseNet = ml5.poseNet(capture); // 카메라를 통해 받은 입력에서 동작을 추출
     poseNet.on("pose", gotPoses);
-
-    // 종료 분기
-    poseNet.video = null;
 
     console.log(poseNet);
 
@@ -181,8 +167,26 @@ const TrainingForm = ({ history }) => {
   useEffect(() => {
     setTimeout(() => {
       setView(false);
+      setInterval(() => {
+        dispatch(checkGoal("timmer"));
+      }, 1000);
     }, 1000);
-  }, []);
+
+    return () => {
+      clearInterval();
+    };
+  }, [finish, dispatch]);
+
+  useEffect(() => {
+    if (finish) {
+      // 종료 분기
+      // poseNet.video = null;
+      // brain = null;
+      goBack();
+
+      dispatch(loggingExercise());
+    }
+  }, [dispatch, finish]);
 
   // 동작을 입력하면 해당 포즈에 따라 기능 수행
   useEffect(() => {
@@ -193,7 +197,7 @@ const TrainingForm = ({ history }) => {
         training.state + 1 === training.poses.length
       ) {
         setTraining((prev) => ({ ...prev, state: 0 }));
-        dispatch(changeField({ key: "count", value: count + 1 }));
+        dispatch(checkGoal("success_count"));
       } else {
         // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
         setTraining((prev) => ({ ...prev, state: training.state + 1 }));
@@ -201,6 +205,7 @@ const TrainingForm = ({ history }) => {
     } else {
       // 잘못된 자세를 취할 경우 상태를 0으로 초기화
       setTraining((prev) => ({ ...prev, state: 0 }));
+      dispatch(checkGoal("fault_count"));
     }
   }, [training.poseLabel]);
 
@@ -212,7 +217,12 @@ const TrainingForm = ({ history }) => {
       onCancel={goBack}
     />
   ) : (
-    <TrainingCom setup={setup} draw={draw} count={count} training={training} />
+    <TrainingCom
+      setup={setup}
+      draw={draw}
+      count={success_count}
+      training={training}
+    />
   );
 };
 

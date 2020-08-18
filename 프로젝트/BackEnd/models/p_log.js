@@ -17,6 +17,11 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         comment: "null",
       },
+      LO_Level: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        comment: "null",
+      },
       LO_Player_NickName: {
         type: DataTypes.STRING(16),
         allowNull: false,

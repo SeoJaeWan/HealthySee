@@ -11,7 +11,7 @@ import loading from "./loading";
 import mypage, { mypageSaga } from "./mypage/mypage";
 import albumList, { albumListSaga } from "./album/albumList";
 import albumWrite, { albumWriteSaga } from "./album/albumWrite";
-import training from "./training/training";
+import training, { trainingSaga } from "./training/training";
 
 const rootReducer = combineReducers({
   auth,
@@ -38,6 +38,7 @@ export function* rootSaga() {
     mypageSaga(),
     albumListSaga(),
     albumWriteSaga(),
+    trainingSaga(),
   ]);
 }
 
