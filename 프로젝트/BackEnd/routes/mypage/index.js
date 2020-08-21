@@ -1,19 +1,17 @@
 var express = require("express");
 const readMyPage = require("../../lib/sequelize/mypage/readMypage").readMyPage;
-const updateMypage = require("../../lib/sequelize/mypage/updateMypage")
-  .updateMypage;
+const readUserList = require("../../lib/sequelize/mypage/readMypage").readUserList;
+const updateMypage = require("../../lib/sequelize/mypage/updateMypage").updateMypage;
+
 const upload = require("../../lib/sequelize/mypage/updateMypage").upload;
 
 var router = express.Router();
 
 // 마이페이지 수정
-router.post("/", upload.single("files"), updateMypage, readMyPage);
+router.patch("/", upload.single("files"), updateMypage);
 
 // 마이페이지 조회
-router.get("/:owner&:username", readMyPage);
-
-// 트레이너 등록
-
-// 운동 건의
+router.get("/:owner", readMyPage);
+router.get("/", readUserList);
 
 module.exports = router;
