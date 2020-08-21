@@ -13,11 +13,22 @@ const readMyPage = async (req, res, next) => {
     console.log("DB조회 결과 없음");
     res.status(401).end();
     return;
-  } else if (member.ME_Scope === 1 && user !== owner) {
+  }else if (member.ME_Scope === 1 && user !== owner) {
     res.status(406).end();
     return;
   }
-  console.log(member)
+  console.log(member.ME_Album_Count);
+  if(user === owner){
+    member.dataValues.ME_Album_Count = member.ME_My_Album_Count;
+    delete member.dataValues.ME_My_Album_Count;
+    delete member.dataValues.ME_Others_Album_Count;
+  }else{
+    member.dataValues.ME_Album_Count = member.ME_Others_Album_Count
+    delete member.dataValues.ME_My_Album_Count;
+    delete member.dataValues.ME_Others_Album_Count;
+  }
+  
+  console.log(member);
   res.json(member);
 };
 
