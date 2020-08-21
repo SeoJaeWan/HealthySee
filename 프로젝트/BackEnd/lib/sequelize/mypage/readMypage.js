@@ -21,18 +21,20 @@ const readMyPage = async (req, res, next) => {
   res.json(member);
 };
 
-const readMyPages = async (req, res, next) => {
+const readUserList = async (req, res, next) => {
   let user = req.body.user.username;
   let keyword = req.query.keyword;
   let ME_Code = req.query.ME_Code;
   let responseData = {}
   console.log(user, keyword, ME_Code);
   let condition = {
+    attributes : 
+    ['ME_Code', 'ME_Profile_Photo','ME_Profile_Type','ME_Scope','Account_AC_NickName'],
     where: {
       [Op.and]: [
         { Account_AC_NickName : {  [Op.like]: "%" + keyword + "%" },},
         {Account_AC_NickName : {[Op.ne]: user }},
-        ME_Code && { ME_Code: { [Op.lt]: BO_Code } },
+        ME_Code && { ME_Code: { [Op.lt]: ME_Code } },
       ],
     }, 
     order: [ ["ME_Code", "DESC"],],
@@ -47,4 +49,4 @@ const readMyPages = async (req, res, next) => {
   res.json(responseData);
 }
 
-module.exports = {readMyPage, readMyPages};
+module.exports = {readMyPage, readUserList};
