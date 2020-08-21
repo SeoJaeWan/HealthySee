@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
         comment: "null",
       },
       PL_Routine: {
-        type: DataTypes.STRING(2000),
+        type: DataTypes.STRING(1000),
         allowNull: false,
         comment: "null",
       },

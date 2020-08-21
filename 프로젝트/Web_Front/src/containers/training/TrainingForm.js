@@ -5,15 +5,24 @@ import * as ml5 from "ml5";
 import { useDispatch, useSelector } from "react-redux";
 
 import AlertModal from "../../component_contet/common/Modal/AlertModal";
-import { loggingExercise, checkGoal } from "../../modules/training/training";
+import {
+  loggingExercise,
+  increaseField,
+  changeField,
+} from "../../modules/training/training";
 
 const TrainingForm = ({ history }) => {
   let brain; // AI를 사용하기 위한 변수
   let poseNet; // 카메라를 통해 사용자의 동작을 입력받음
+  let poses;
+  let timmer;
+  let state = 0;
+  let count = 0;
 
   let dispatch = useDispatch();
   // 서버에 전송할 정보
-  let { success_count, finish } = useSelector(({ training }) => ({
+  let { goal, success_count, finish } = useSelector(({ training }) => ({
+    goal: training.goal,
     success_count: training.success_count,
     finish: training.finish,
   }));
@@ -28,17 +37,17 @@ const TrainingForm = ({ history }) => {
 
     state: 0, // 다음 해야할 동작
     poses: [], // 운동 포즈
+
+    poseNet: null,
   });
 
   // AI 입력 및 해야할 운동 저장
   const brainLoaded = () => {
     console.log("pose classification ready!");
 
-    let poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues;
+    poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues;
     poses.pop();
     poses = poses.concat(poses[0]);
-
-    setTraining((prev) => ({ ...prev, poses }));
   };
 
   // 동작 검증을 위해 AI에 입력
@@ -50,14 +59,39 @@ const TrainingForm = ({ history }) => {
       inputs.push(x);
       inputs.push(y);
     }
-    brain.classify(inputs, (error, results) => gotResult(error, results, pose));
+    brain.classify(inputs, gotResult);
   };
 
   //  75% 이상 정확도가 있는 사용자의 동작을 저장
-  const gotResult = (error, results, pose) => {
+  const gotResult = (error, results) => {
     if (results[0].confidence > 0.75) {
-      console.log(results[0].label);
-      setTraining((prev) => ({ ...prev, poseLabel: results[0].label }));
+      if (results[0].label === poses[state]) {
+        if (
+          // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
+          poses.length > 0 &&
+          state + 1 === poses.length
+        ) {
+          state = 0;
+          count++;
+          timmer = new Date().getMilliseconds() - timmer;
+          dispatch(changeField({ key: "success_count", value: timmer }));
+
+          if (count === goal) {
+            poseNet.video = null;
+            dispatch(loggingExercise());
+          }
+        } else {
+          // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
+          if (state === 0) timmer = new Date().getMilliseconds();
+          state++;
+        }
+      } else if (results[0].label === "배드") {
+        // 잘못된 자세를 취할 경우 상태를 0으로 초기화
+        state = 0;
+        dispatch(increaseField("fault_count"));
+      }
+
+      setTraining((prev) => ({ ...prev, state }));
     }
   };
 
@@ -69,21 +103,6 @@ const TrainingForm = ({ history }) => {
 
       setTraining((prev) => ({ ...prev, pose, skeleton }));
       classifyPose(pose);
-      // if (state === "collecting") {   사용 할수록 성능이 증가하게끔 만드는건 고려중
-      //   console.log(pose);
-      //   console.log(targetLabel);
-      //   let inputs = [];
-      //   for (let i = 0; i < pose.keypoints.length; i++) {
-      //     let x = pose.keypoints[i].position.x;
-      //     let y = pose.keypoints[i].position.y;
-      //     console.log(pose.keypoints[i]);
-      //     inputs.push(x);
-      //     inputs.push(y);
-      //   }
-      //   console.log(inputs);
-      //   let target = [targetLabel];
-      //   brain.addData(inputs, target);
-      // }
     }
   };
 
@@ -104,8 +123,6 @@ const TrainingForm = ({ history }) => {
     poseNet = ml5.poseNet(capture); // 카메라를 통해 받은 입력에서 동작을 추출
     poseNet.on("pose", gotPoses);
 
-    console.log(poseNet);
-
     let options = {
       // 학습 정보 설정
       inputs: 34,
@@ -122,13 +139,10 @@ const TrainingForm = ({ history }) => {
     };
     brain.load(modelInfo, brainLoaded); // AI 모듈 로드
     setTraining((prev) => ({ ...prev, capture }));
-    // console.log(capture);
   };
 
   // 최초 화면 세팅 후 자체 반복하며 화면에 출력
   const draw = (p5) => {
-    // console.log(training.capture);
-    // console.log(training.poses);
     if (training.capture) {
       p5.push(); // 새로운 도면 시작
       p5.image(training.capture, 0, 0, 640, 480);
@@ -165,64 +179,60 @@ const TrainingForm = ({ history }) => {
 
   // 제일 처음 모달창 10초 뒤 제거
   useEffect(() => {
+    if (finish) {
+      history.goBack();
+    }
+
     setTimeout(() => {
       setView(false);
+
       setInterval(() => {
-        dispatch(checkGoal("timmer"));
+        dispatch(increaseField("timmer"));
       }, 1000);
     }, 1000);
 
     return () => {
       clearInterval();
     };
-  }, [finish, dispatch]);
-
-  useEffect(() => {
-    if (finish) {
-      // 종료 분기
-      // poseNet.video = null;
-      // brain = null;
-      goBack();
-
-      dispatch(loggingExercise());
-    }
   }, [dispatch, finish]);
 
   // 동작을 입력하면 해당 포즈에 따라 기능 수행
-  useEffect(() => {
-    if (training.poseLabel === training.poses[training.state]) {
-      if (
-        // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
-        training.poses.length > 0 &&
-        training.state + 1 === training.poses.length
-      ) {
-        setTraining((prev) => ({ ...prev, state: 0 }));
-        dispatch(checkGoal("success_count"));
-      } else {
-        // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
-        setTraining((prev) => ({ ...prev, state: training.state + 1 }));
-      }
-    } else {
-      // 잘못된 자세를 취할 경우 상태를 0으로 초기화
-      setTraining((prev) => ({ ...prev, state: 0 }));
-      dispatch(checkGoal("fault_count"));
-    }
-  }, [training.poseLabel]);
+  // useEffect(() => {
+  //   console.log(training.state);
+  //   if (training.poseLabel === training.poses[training.state]) {
+  //     if (
+  //       // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
+  //       training.poses.length > 0 &&
+  //       training.state + 1 === training.poses.length
+  //     ) {
+  //       setTraining((prev) => ({ ...prev, state: 1 }));
+  //       dispatch(checkGoal("success_count"));
+  //     } else {
+  //       // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
+  //       setTraining((prev) => ({ ...prev, state: training.state + 1 }));
+  //     }
+  //   } else {
+  //     // 잘못된 자세를 취할 경우 상태를 0으로 초기화
+  //     setTraining((prev) => ({ ...prev, state: 0 }));
+  //     dispatch(checkGoal("fault_count"));
+  //   }
+  // }, [training.poseLabel, dispatch]);
 
-  return view ? (
-    <AlertModal
-      visible={view}
-      title={"준비!"}
-      description={"10초 뒤에 시작합니다! 준비!! (뒤로가기 : 화면)"}
-      onCancel={goBack}
-    />
-  ) : (
-    <TrainingCom
-      setup={setup}
-      draw={draw}
-      count={success_count}
-      training={training}
-    />
+  return (
+    <>
+      <AlertModal
+        visible={view}
+        title={"준비!"}
+        description={"10초 뒤에 시작합니다! 준비!! (뒤로가기 : 화면)"}
+        onCancel={goBack}
+      />
+      <TrainingCom
+        setup={setup}
+        draw={draw}
+        count={success_count}
+        training={training}
+      />
+    </>
   );
 };
 

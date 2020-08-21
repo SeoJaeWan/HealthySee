@@ -7,17 +7,16 @@ import createRequestSaga, {
 } from "../../lib/createRequestSaga";
 import * as trainingAPI from "../../lib/api/training";
 
-const LOGGING_EXERCISE = "training/LOGGING_EXERCISE";
+const [LOGGING_EXERCISE] = "training/LOGGING_EXERCISE";
 const CHANGE_FIELD = "training/CHANGE_FILED";
-const UPVALUE = "training/UPVALUE";
-const CHECK_GOAL = "training/CHECK_GOAL";
+const INCREASE_FIELD = "training/INCREASE_FIELD";
 
 export const loggingExercise = createAction(LOGGING_EXERCISE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
-export const checkGoal = createAction(CHECK_GOAL, (key) => key);
+export const increaseField = createAction(INCREASE_FIELD, (key) => key);
 
 export function* trainingSaga() {}
 
@@ -42,24 +41,10 @@ const training = handleActions(
         draft[key] = value;
       });
     },
-    [UPVALUE]: (state, { payload: key }) => {
-      return produce(state, (draft) => {
+    [INCREASE_FIELD]: (state, { payload: key }) =>
+      produce(state, (draft) => {
         draft[key] = state[key] + 1;
-      });
-    },
-    [CHECK_GOAL]: (state, { payload: key }) => {
-      if (
-        (state.type === 0 && state.goal === state.timmer) ||
-        (state.type === 1 && state.goal === state.success_count)
-      )
-        return produce(state, (draft) => {
-          draft["finish"] = true;
-        });
-      else
-        return produce(state, (draft) => {
-          draft[key] = state[key] + 1;
-        });
-    },
+      }),
     [LOGGING_EXERCISE]: (state) => {
       trainingAPI.logExercise({
         LO_Time: state.timmer,
@@ -71,6 +56,7 @@ const training = handleActions(
 
       return {
         ...state,
+        finish: true,
       };
     },
   },
