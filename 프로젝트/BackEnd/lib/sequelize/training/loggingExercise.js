@@ -42,5 +42,41 @@ const loggingExercise = async (req, res, next) => {
 
   res.status(201).end();
 };
+// 2020-08-21 LO_Detail 및 LO_Index 적용 버전
+// const loggingExercise = async (req, res, next) => {
+//   let {
+//     LO_Detail,
+//     LO_Re_Ref, // 하나의 로그에 ref를 추가하여 댓글과 대댓글처럼 DB에 저장
+//     LO_Index,
+//     Plan_PL_Code,
+//     LOD_Code,
+//     user,
+//   } = req.body;
+//   console.log(req.body, LOD_Code % 5);
 
+//   if (LO_Re_Ref === "0")
+//     await P_Log.create({
+//       LO_Detail,
+//       Plan_PL_Code,
+//       LO_Player_NickName: user.username,
+//       LO_Creation_Date: today,
+//       LO_Index : LO_Index
+//     }).then(async (log) => {
+//       await P_Log.update(
+//         { BC_Re_Ref: log.LO_Code },
+//         { where: { LO_Code: log.LO_Code } }
+//       );
+//     });
+//   else
+//     await P_Log.create({
+//       LO_Detail,
+//       Plan_PL_Code,
+//       LO_Player_NickName: user.username,
+//       LO_Re_Ref,
+//       LO_Index : LO_Index,
+//       LO_Creation_Date: today,
+//     });
+
+//   res.status(201).end();
+// };
 module.exports = loggingExercise;
