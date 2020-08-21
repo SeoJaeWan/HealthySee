@@ -2,9 +2,9 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "p_log",
+    "E_Healthsee",
     {
-      LO_Code: {
+      EHE_Code: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         primaryKey: true,
@@ -12,38 +12,29 @@ module.exports = function (sequelize, DataTypes) {
         comment: "null",
         autoIncrement: true,
       },
-      LO_Player_NickName: {
+      EHE_Push_NickName: {
         type: DataTypes.STRING(16),
         allowNull: false,
         comment: "null",
       },
-      LO_Detail: {
-        type : DataTypes.STRING(1000),
-      },
-      LO_Creation_Date: {
+      EHE_Creation: {
         type: DataTypes.DATE,
         allowNull: false,
         comment: "null",
       },
-      LO_Re_Ref: {
-        type: DataTypes.INTEGER(11),
-        comment: "null",
-      },
-      LO_Index:{
-        type: DataTypes.INTEGER(11),
-      },
-      Plan_PL_Code: {
-        type: DataTypes.INTEGER(11),
+      Exercise_EX_Name: {
+        type: DataTypes.STRING(20),
         allowNull: false,
+        primaryKey: true,
         comment: "null",
         references: {
-          model: "plan",
-          key: "PL_Code",
+          model: "Exercise",
+          key: "EX_Name",
         },
       },
     },
     {
-      tableName: "p_log",
+      tableName: "E_Healthsee",
       timestamps: false,
     }
   );

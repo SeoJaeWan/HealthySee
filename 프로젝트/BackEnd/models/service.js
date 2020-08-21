@@ -2,9 +2,9 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "plan",
+    "service",
     {
-      PL_Code: {
+      S_Code: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         primaryKey: true,
@@ -12,46 +12,49 @@ module.exports = function (sequelize, DataTypes) {
         comment: "null",
         autoIncrement: true,
       },
-      PL_Writer_NickName: {
+      S_Writer_NickName: {
         type: DataTypes.STRING(16),
         allowNull: false,
         comment: "null",
       },
-      PL_Title: {
-        type: DataTypes.STRING(16),
+      S_Title: {
+        type: DataTypes.STRING(20),
         allowNull: false,
         comment: "null",
       },
-      PL_RestTIme: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-        defaultValue: "0",
+      S_File: {
+        type: DataTypes.STRING(45),
+        allowNull: true,
         comment: "null",
       },
-      PL_Description: {
+      S_Description: {
         type: DataTypes.STRING(1000),
         allowNull: false,
         comment: "null",
       },
-      PL_Creation_Date: {
+      S_State: {
+        type: DataTypes.INTEGER(4),
+        allowNull: false,
+        comment: "null",
+      },
+      S_Answer: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        comment: "null",
+      },
+      S_Category: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        comment: "null",
+      },
+      S_Creation_Date: {
         type: DataTypes.DATE,
         allowNull: false,
         comment: "null",
       },
-      PL_Routine: {
-        type: DataTypes.STRING(2000),
-        allowNull: false,
-        comment: "null",
-      },
-      PL_Scope: {
-        type: DataTypes.INTEGER(4),
-        allowNull: false,
-        defaultValue: "1",
-        comment: "null",
-      },
     },
     {
-      tableName: "plan",
+      tableName: "service",
       timestamps: false,
     }
   );
