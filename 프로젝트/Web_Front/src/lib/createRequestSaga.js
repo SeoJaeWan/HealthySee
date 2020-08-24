@@ -1,4 +1,4 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import { startLoading, finishLoading } from "../modules/loading";
 
 export const createRequestActionTypes = (type) => {
@@ -13,11 +13,13 @@ export default function createRequestSaga(type, requset) {
   const FAILURE = `${type}_FAILURE`;
 
   return function* (action) {
-    console.log(action);
+    console.log(action, action.payload);
+    const state = yield select(); // State를 반환하는 함수
+    console.log(state.training);
     yield put(startLoading(type));
 
     try {
-      const response = yield call(requset, action.payload);
+      const response = yield call(requset, action.payload, state.training);
       console.log(response);
       yield put({
         type: SUCCESS,

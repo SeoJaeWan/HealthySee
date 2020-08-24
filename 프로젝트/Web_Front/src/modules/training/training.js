@@ -1,64 +1,78 @@
 import produce from "immer";
 import { createAction, handleActions } from "redux-actions";
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest, select } from "redux-saga/effects";
 
 import createRequestSaga, {
   createRequestActionTypes,
 } from "../../lib/createRequestSaga";
 import * as trainingAPI from "../../lib/api/training";
 
-const [LOGGING_EXERCISE] = "training/LOGGING_EXERCISE";
+const [
+  LOGGING_EXERCISE,
+  LOGGING_EXERCISE_SUCCESS,
+  LOGGING_EXERCISE_FAILURE,
+] = createRequestActionTypes("training/LOGGING_EXERCISE");
 const CHANGE_FIELD = "training/CHANGE_FILED";
 const INCREASE_FIELD = "training/INCREASE_FIELD";
 
 export const loggingExercise = createAction(LOGGING_EXERCISE);
-export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
+export const changeField = createAction(
+  CHANGE_FIELD,
+  ({ key, value = null }) => ({
+    key,
+    value,
+  })
+);
+export const increaseField = createAction(INCREASE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
-export const increaseField = createAction(INCREASE_FIELD, (key) => key);
 
-export function* trainingSaga() {}
+const loggingExerciseSaga = createRequestSaga(
+  LOGGING_EXERCISE,
+  trainingAPI.logExercise
+);
+
+export function* trainingSaga() {
+  yield takeLatest(LOGGING_EXERCISE, loggingExerciseSaga);
+}
 
 const initialState = {
-  Plan_PL_Code: 1,
-  LOD_Code: 1,
-  type: 0,
+  plan_code: 1,
   goal: 5,
 
-  timmer: 0,
-  success_count: 0,
-  fault_count: 0,
+  trainingInfo: {
+    timmer: 0,
+    success_count: [],
+    fault_count: 0,
+  },
 
   finish: false,
 };
 
 const training = handleActions(
   {
-    [CHANGE_FIELD]: (state, { payload: { key, value } }) => {
-      console.log(key, value);
-      return produce(state, (draft) => {
-        draft[key] = value;
-      });
-    },
-    [INCREASE_FIELD]: (state, { payload: key }) =>
+    [CHANGE_FIELD]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {
-        draft[key] = state[key] + 1;
+        draft[key] = value;
       }),
-    [LOGGING_EXERCISE]: (state) => {
-      trainingAPI.logExercise({
-        LO_Time: state.timmer,
-        LO_Success_Count: state.success_count,
-        LO_Fault_Count: state.fault_count,
-        Plan_PL_Code: state.Plan_PL_Code,
-        LOD_Code: state.LOD_Code,
-      });
-
-      return {
-        ...state,
-        finish: true,
-      };
+    [INCREASE_FIELD]: (state, { payload: { key, value } }) => {
+      let train = "trainingInfo";
+      console.log(key);
+      if (value) {
+        return produce(state, (draft) => {
+          draft[train][key] = state[train][key].concat(value);
+        });
+      } else
+        return produce(state, (draft) => {
+          draft[train][key] = state[train][key] + 1;
+        });
     },
+
+    [LOGGING_EXERCISE_SUCCESS]: (state) => ({
+      ...state,
+      finish: true,
+    }),
   },
   initialState
 );

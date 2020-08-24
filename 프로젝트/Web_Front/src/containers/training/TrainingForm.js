@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import TrainingCom from "../../component_contet/component/training/TrainingCom";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import * as ml5 from "ml5";
@@ -14,10 +14,13 @@ import {
 const TrainingForm = ({ history }) => {
   let brain; // AI를 사용하기 위한 변수
   let poseNet; // 카메라를 통해 사용자의 동작을 입력받음
-  let poses;
-  let timmer;
-  let state = 0;
-  let count = 0;
+
+  let poses; // 사용자의 포즈
+
+  //  poseNet 함수 안에서 사용됨
+  let timmer; // 사용자의 횟수 별 시간 측정
+  let state = 0; // 현재 상태
+  let count = 0; // 현재 횟수
 
   let dispatch = useDispatch();
   // 서버에 전송할 정보
@@ -64,35 +67,36 @@ const TrainingForm = ({ history }) => {
 
   //  75% 이상 정확도가 있는 사용자의 동작을 저장
   const gotResult = (error, results) => {
-    if (results[0].confidence > 0.75) {
-      if (results[0].label === poses[state]) {
-        if (
-          // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
-          poses.length > 0 &&
-          state + 1 === poses.length
-        ) {
-          state = 0;
-          count++;
-          timmer = new Date().getMilliseconds() - timmer;
-          dispatch(changeField({ key: "success_count", value: timmer }));
-
-          if (count === goal) {
-            poseNet.video = null;
-            dispatch(loggingExercise());
-          }
-        } else {
-          // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
-          if (state === 0) timmer = new Date().getMilliseconds();
-          state++;
-        }
-      } else if (results[0].label === "배드") {
-        // 잘못된 자세를 취할 경우 상태를 0으로 초기화
+    if (results[0].label === poses[state]) {
+      if (
+        // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
+        poses.length > 0 &&
+        state + 1 === poses.length
+      ) {
         state = 0;
-        dispatch(increaseField("fault_count"));
-      }
+        count++;
+        console.log(new Date().getTime());
+        timmer = new Date().getTime() - timmer;
+        dispatch(increaseField({ key: "success_count", value: timmer }));
 
-      setTraining((prev) => ({ ...prev, state }));
+        if (count === goal) {
+          poseNet.video = null;
+          dispatch(loggingExercise());
+        }
+      } else {
+        // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
+        if (state === 0) {
+          timmer = new Date().getTime();
+        }
+        state++;
+      }
+    } else if (results[0].label === "배드") {
+      // 잘못된 자세를 취할 경우 상태를 0으로 초기화
+      state = 0;
+      dispatch(increaseField({ key: "fault_count" }));
     }
+
+    setTraining((prev) => ({ ...prev, state }));
   };
 
   // 사용자의 포즈를 카메라를 통해 입력받아 추출
@@ -107,9 +111,9 @@ const TrainingForm = ({ history }) => {
   };
 
   // 뒤로가기
-  const goBack = () => {
+  const goBack = useCallback(() => {
     history.goBack();
-  };
+  }, [history]);
 
   // 최초 화면 설정
   const setup = (p5) => {
@@ -179,44 +183,22 @@ const TrainingForm = ({ history }) => {
 
   // 제일 처음 모달창 10초 뒤 제거
   useEffect(() => {
-    if (finish) {
-      history.goBack();
-    }
-
+    let timmer;
     setTimeout(() => {
       setView(false);
-
-      setInterval(() => {
-        dispatch(increaseField("timmer"));
+      timmer = setInterval(() => {
+        dispatch(increaseField({ key: "timmer" }));
       }, 1000);
     }, 1000);
 
     return () => {
-      clearInterval();
+      clearInterval(timmer);
     };
-  }, [dispatch, finish]);
+  }, [dispatch]);
 
-  // 동작을 입력하면 해당 포즈에 따라 기능 수행
-  // useEffect(() => {
-  //   console.log(training.state);
-  //   if (training.poseLabel === training.poses[training.state]) {
-  //     if (
-  //       // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
-  //       training.poses.length > 0 &&
-  //       training.state + 1 === training.poses.length
-  //     ) {
-  //       setTraining((prev) => ({ ...prev, state: 1 }));
-  //       dispatch(checkGoal("success_count"));
-  //     } else {
-  //       // 구분 동작으로 한 동작을 수행 후 다음 동작으로 넘김
-  //       setTraining((prev) => ({ ...prev, state: training.state + 1 }));
-  //     }
-  //   } else {
-  //     // 잘못된 자세를 취할 경우 상태를 0으로 초기화
-  //     setTraining((prev) => ({ ...prev, state: 0 }));
-  //     dispatch(checkGoal("fault_count"));
-  //   }
-  // }, [training.poseLabel, dispatch]);
+  useEffect(() => {
+    if (finish) goBack();
+  }, [finish, goBack]);
 
   return (
     <>

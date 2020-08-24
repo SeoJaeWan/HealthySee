@@ -14,7 +14,7 @@ const HomeCom = () => {
             <h2 className="title">Health&amp;See</h2>
             <p className="title2">"나만의 작은 트레이너"</p>
             <button type="button" className="startButton">
-              <a href="http://localhost:3000/Training/squat">시작하기</a>
+              <Link to="/Training/squat">시작하기</Link>
             </button>
             <ul className="lng">
               <li>
