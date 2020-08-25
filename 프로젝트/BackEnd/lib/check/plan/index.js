@@ -1,5 +1,3 @@
-const LevelOfDifficulty = require("../../../models").levelOfDifficulty;
-
 const checkOwnPlan = async (req, res, next) => {
   const { LOD_Code } = req.body;
 

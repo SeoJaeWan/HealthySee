@@ -1,82 +1,36 @@
 const P_Log = require("../../../models").p_log;
 const today = require("../../../lib/Date/time");
 
-const loggingExercise = async (req, res, next) => {
-  let {
-    LO_Time,
-    LO_Success_Count,
-    LO_Fault_Count,
-    LO_Re_Ref, // 하나의 로그에 ref를 추가하여 댓글과 대댓글처럼 DB에 저장
-    Plan_PL_Code,
-    LOD_Code,
-    user,
-  } = req.body;
-  console.log(req.body, LOD_Code % 5);
-
-  if (LO_Re_Ref === "0")
-    await P_Log.create({
-      LO_Time,
-      LO_Success_Count,
-      LO_Level: LOD_Code % 5,
-      LO_Fault_Count,
-      Plan_PL_Code,
-      LO_Player_NickName: user.username,
-      LO_Creation_Date: today,
-    }).then(async (log) => {
-      await P_Log.update(
-        { BC_Re_Ref: log.LO_Code },
-        { where: { LO_Code: log.LO_Code } }
-      );
-    });
-  else
-    await P_Log.create({
-      LO_Time,
-      LO_Success_Count,
-      LO_Level: LOD_Code % 5,
-      LO_Fault_Count,
-      Plan_PL_Code,
-      LO_Player_NickName: user.username,
-      LO_Re_Ref,
-      LO_Creation_Date: today,
-    });
-
-  res.status(201).end();
-};
 // 2020-08-21 LO_Detail 및 LO_Index 적용 버전
-// const loggingExercise = async (req, res, next) => {
-//   let {
-//     LO_Detail,
-//     LO_Re_Ref, // 하나의 로그에 ref를 추가하여 댓글과 대댓글처럼 DB에 저장
-//     LO_Index,
-//     Plan_PL_Code,
-//     LOD_Code,
-//     user,
-//   } = req.body;
-//   console.log(req.body, LOD_Code % 5);
+const loggingExercise = async (req, res, next) => {
+  let { training, user } = req.body;
 
-//   if (LO_Re_Ref === "0")
-//     await P_Log.create({
-//       LO_Detail,
-//       Plan_PL_Code,
-//       LO_Player_NickName: user.username,
-//       LO_Creation_Date: today,
-//       LO_Index : LO_Index
-//     }).then(async (log) => {
-//       await P_Log.update(
-//         { BC_Re_Ref: log.LO_Code },
-//         { where: { LO_Code: log.LO_Code } }
-//       );
-//     });
-//   else
-//     await P_Log.create({
-//       LO_Detail,
-//       Plan_PL_Code,
-//       LO_Player_NickName: user.username,
-//       LO_Re_Ref,
-//       LO_Index : LO_Index,
-//       LO_Creation_Date: today,
-//     });
+  console.log(training);
 
-//   res.status(201).end();
-// };
+  let { timmer, success_count, fault_count, ref } = training.logData;
+
+  let query = {
+    LO_Re_Ref: ref,
+    LO_Detail: success_count.toString(),
+    LO_Timmer: timmer,
+    LO_Fault: fault_count,
+
+    LO_Index: training.index,
+
+    Plan_PL_Code: training.plan,
+    LO_Player_NickName: user.username,
+
+    LO_Creation_Date: today,
+  };
+
+  let log = await P_Log.create(query);
+
+  if (ref === "0")
+    log = await P_Log.update(
+      { BC_Re_Ref: log.LO_Code },
+      { where: { LO_Code: log.LO_Code } }
+    );
+
+  res.json(log).end();
+};
 module.exports = loggingExercise;

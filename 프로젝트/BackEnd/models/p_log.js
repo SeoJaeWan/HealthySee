@@ -18,7 +18,15 @@ module.exports = function (sequelize, DataTypes) {
         comment: "null",
       },
       LO_Detail: {
-        type : DataTypes.STRING(1000),
+        type: DataTypes.STRING(1000),
+      },
+      LO_Timmer: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+      },
+      LO_Fault: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
       },
       LO_Creation_Date: {
         type: DataTypes.DATE,
@@ -29,7 +37,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER(11),
         comment: "null",
       },
-      LO_Index:{
+      LO_Index: {
         type: DataTypes.INTEGER(11),
       },
       Plan_PL_Code: {
