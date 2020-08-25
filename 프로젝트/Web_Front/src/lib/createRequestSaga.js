@@ -19,7 +19,7 @@ export default function createRequestSaga(type, requset) {
     yield put(startLoading(type));
 
     try {
-      const response = yield call(requset, action.payload, state.training);
+      const response = yield call(requset, action.payload, state);
       console.log(response);
       yield put({
         type: SUCCESS,

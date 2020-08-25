@@ -38,16 +38,20 @@ export function* trainingSaga() {
 }
 
 const initialState = {
-  plan_code: 1,
-  goal: 5,
+  plan: 1,
+  set: 0,
 
-  trainingInfo: {
+  index: 0,
+  routin: [1, 2, 1, 1],
+
+  logData: {
     timmer: 0,
     success_count: [],
     fault_count: 0,
+    ref: 0,
   },
 
-  finish: false,
+  logging: false,
 };
 
 const training = handleActions(
@@ -57,7 +61,7 @@ const training = handleActions(
         draft[key] = value;
       }),
     [INCREASE_FIELD]: (state, { payload: { key, value } }) => {
-      let train = "trainingInfo";
+      let train = "logData";
       console.log(key);
       if (value) {
         return produce(state, (draft) => {
@@ -69,9 +73,16 @@ const training = handleActions(
         });
     },
 
-    [LOGGING_EXERCISE_SUCCESS]: (state) => ({
+    [LOGGING_EXERCISE_SUCCESS]: (state, { payload: log }) => ({
       ...state,
-      finish: true,
+
+      logData: {
+        ...state.logData,
+        ref: log.LO_Re_Ref,
+      },
+
+      logging: true,
+      index: state.index + 1,
     }),
   },
   initialState

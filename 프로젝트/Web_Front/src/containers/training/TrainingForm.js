@@ -8,7 +8,6 @@ import AlertModal from "../../component_contet/common/Modal/AlertModal";
 import {
   loggingExercise,
   increaseField,
-  changeField,
 } from "../../modules/training/training";
 
 const TrainingForm = ({ history }) => {
@@ -24,11 +23,14 @@ const TrainingForm = ({ history }) => {
 
   let dispatch = useDispatch();
   // 서버에 전송할 정보
-  let { goal, success_count, finish } = useSelector(({ training }) => ({
-    goal: training.goal,
-    success_count: training.success_count,
-    finish: training.finish,
-  }));
+  let { routin, index, success_count, logging } = useSelector(
+    ({ training }) => ({
+      routin: training.routin,
+      index: training.index,
+      success_count: training.success_count,
+      logging: training.logging,
+    })
+  );
 
   let [view, setView] = useState(true); // 시작 전 모달창을 출력시카기 위해서 사용
   // 운동 페이지에서만 쓰일 정보
@@ -67,6 +69,11 @@ const TrainingForm = ({ history }) => {
 
   //  75% 이상 정확도가 있는 사용자의 동작을 저장
   const gotResult = (error, results) => {
+    console.log(
+      results[0].label === poses[state],
+      results[0].label,
+      poses[state]
+    );
     if (results[0].label === poses[state]) {
       if (
         // 한 동작을 완료하여 상태를 0으로 초기화 및 카운트 증가
@@ -79,7 +86,7 @@ const TrainingForm = ({ history }) => {
         timmer = new Date().getTime() - timmer;
         dispatch(increaseField({ key: "success_count", value: timmer }));
 
-        if (count === goal) {
+        if (count === routin[index + 1]) {
           poseNet.video = null;
           dispatch(loggingExercise());
         }
@@ -197,8 +204,8 @@ const TrainingForm = ({ history }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (finish) goBack();
-  }, [finish, goBack]);
+    if (logging) goBack();
+  }, [logging, goBack]);
 
   return (
     <>
