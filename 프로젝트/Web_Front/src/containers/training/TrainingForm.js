@@ -117,11 +117,6 @@ const TrainingForm = ({ history }) => {
     }
   };
 
-  // 뒤로가기
-  const goBack = useCallback(() => {
-    history.goBack();
-  }, [history]);
-
   // 최초 화면 설정
   const setup = (p5) => {
     let canvas = p5.createCanvas(640, 480);
@@ -204,8 +199,11 @@ const TrainingForm = ({ history }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (logging) goBack();
-  }, [logging, goBack]);
+    // 운동이 끝나서 로그를 DB에 넣었을 때
+    if (logging) history.goBack();
+    // 새로고침, 혹은 잘못된 접근을 했을 경우
+    else if (!routin) history.push("/Home");
+  }, [logging, history]);
 
   return (
     <>

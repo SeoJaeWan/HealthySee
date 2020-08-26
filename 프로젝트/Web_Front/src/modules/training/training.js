@@ -42,7 +42,7 @@ const initialState = {
   set: 0,
 
   index: 0,
-  routin: [1, 2, 1, 1],
+  routin: ["스쿼트", 2, "스쿼트", 1],
 
   logData: {
     timmer: 0,
