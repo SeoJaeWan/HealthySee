@@ -1,18 +1,19 @@
-const checkOwnPlan = async (req, res, next) => {
-  const { LOD_Code } = req.body;
+const Plan = require("../../../models").plan;
 
-  if (!LOD_Code) {
-    res.status(400).end();
-    return;
+// Plan Code가 존재하는지 확인
+const checkOwnPlan = async (req, res, next) => {
+  const { plan } = req.body;
+
+  if (!plan) {
+    next();
   }
-  console.log(LOD_Code);
 
   try {
-    let LOD = await LevelOfDifficulty.findOne({
-      where: { LOD_Code },
+    let plan = await Plan.findOne({
+      where: { PL_Code: plan },
     });
 
-    if (!LOD) {
+    if (!plan) {
       res.status(404).end();
       return;
     }

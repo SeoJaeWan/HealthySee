@@ -42,7 +42,6 @@ module.exports = function (sequelize, DataTypes) {
       },
       Plan_PL_Code: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
         comment: "null",
         references: {
           model: "plan",
