@@ -1,8 +1,8 @@
 import React from "react";
 import Sketch from "react-p5";
-import { TrainBox, Progress } from "./style/TrainingCom_style";
+import { TrainBox, Progress } from "../style/TrainingCom_style";
 
-const TrainingCom = ({ setup, draw, count, training }) => {
+const ExerciseCom = ({ setup, draw, count, training }) => {
   return (
     <>
       <Progress value="1" max="10"></Progress>
@@ -33,4 +33,4 @@ const TrainingCom = ({ setup, draw, count, training }) => {
   );
 };
 
-export default TrainingCom;
+export default ExerciseCom;

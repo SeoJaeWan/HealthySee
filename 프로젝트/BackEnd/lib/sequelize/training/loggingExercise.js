@@ -17,7 +17,7 @@ const loggingExercise = async (req, res, next) => {
 
     LO_Index: training.index,
 
-    Plan_PL_Code: training.plan,
+    PL_Code: training.plan,
     LO_Player_NickName: user.username,
 
     LO_Creation_Date: today,

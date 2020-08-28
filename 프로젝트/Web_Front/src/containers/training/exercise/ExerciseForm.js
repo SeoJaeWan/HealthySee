@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useCallback } from "react";
-import TrainingCom from "../../component_contet/component/training/TrainingCom";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import * as ml5 from "ml5";
 import { useDispatch, useSelector } from "react-redux";
 
-import AlertModal from "../../component_contet/common/Modal/AlertModal";
+import AlertModal from "../../../component_contet/common/Modal/AlertModal";
 import {
   loggingExercise,
   increaseField,
-} from "../../modules/training/training";
+} from "../../../modules/training/training";
+import ExerciseCom from "../../../component_contet/component/training/exercise/ExerciseCom";
 
-const TrainingForm = ({ history }) => {
+const ExerciseForm = ({ history }) => {
   let brain; // AI를 사용하기 위한 변수
   let poseNet; // 카메라를 통해 사용자의 동작을 입력받음
 
@@ -20,6 +20,8 @@ const TrainingForm = ({ history }) => {
   let timmer; // 사용자의 횟수 별 시간 측정
   let state = 0; // 현재 상태
   let count = 0; // 현재 횟수
+
+  let clock;
 
   let dispatch = useDispatch();
   // 서버에 전송할 정보
@@ -185,25 +187,17 @@ const TrainingForm = ({ history }) => {
 
   // 제일 처음 모달창 10초 뒤 제거
   useEffect(() => {
-    let timmer;
     setTimeout(() => {
       setView(false);
-      timmer = setInterval(() => {
+      clock = setInterval(() => {
         dispatch(increaseField({ key: "timmer" }));
       }, 1000);
     }, 1000);
 
     return () => {
-      clearInterval(timmer);
+      clearInterval(clock);
     };
   }, [dispatch]);
-
-  useEffect(() => {
-    // 운동이 끝나서 로그를 DB에 넣었을 때
-    if (logging) history.goBack();
-    // 새로고침, 혹은 잘못된 접근을 했을 경우
-    else if (!routin) history.push("/Home");
-  }, [logging, history]);
 
   return (
     <>
@@ -211,9 +205,9 @@ const TrainingForm = ({ history }) => {
         visible={view}
         title={"준비!"}
         description={"10초 뒤에 시작합니다! 준비!! (뒤로가기 : 화면)"}
-        onCancel={goBack}
+        onCancel={() => history.goBack()}
       />
-      <TrainingCom
+      <ExerciseCom
         setup={setup}
         draw={draw}
         count={success_count}
@@ -223,4 +217,4 @@ const TrainingForm = ({ history }) => {
   );
 };
 
-export default withRouter(TrainingForm);
+export default withRouter(ExerciseForm);

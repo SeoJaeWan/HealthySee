@@ -2,15 +2,17 @@ const Plan = require("../../../models").plan;
 
 // Plan Code가 존재하는지 확인
 const checkOwnPlan = async (req, res, next) => {
-  const { plan } = req.body;
+  const { planCode } = req.body.training;
 
-  if (!plan) {
+  console.log("asdsadsad", planCode);
+
+  if (!planCode) {
     next();
   }
 
   try {
     let plan = await Plan.findOne({
-      where: { PL_Code: plan },
+      where: { PL_Code: planCode },
     });
 
     if (!plan) {
