@@ -183,6 +183,10 @@ const TrainingForm = ({ history }) => {
     }
   };
 
+  const goBack = () => {
+    history.goBack();
+  };
+
   // 제일 처음 모달창 10초 뒤 제거
   useEffect(() => {
     let timmer;
