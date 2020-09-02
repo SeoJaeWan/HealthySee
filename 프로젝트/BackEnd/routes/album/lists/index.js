@@ -3,6 +3,6 @@ var router = express.Router();
 const readList = require("../../../lib/sequelize/album/readAlbumList").readAlbumList;
 
 
-router.get("/:name&:year", readList);
+router.get("/", readList);
 
 module.exports = router;
