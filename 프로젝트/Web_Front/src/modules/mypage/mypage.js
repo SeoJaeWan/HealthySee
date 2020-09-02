@@ -24,10 +24,7 @@ const CHANGE_FILED = "mypage/CHANGE_FILED";
 const UPDATE_FILED = "mypage/UPDATE_FILED";
 const INITIALIZE = "mypage/INITIALIZE";
 
-export const readMypage = createAction(READ_MYPAGE, ({ owner, username }) => ({
-  owner,
-  username,
-}));
+export const readMypage = createAction(READ_MYPAGE, (owner) => owner);
 export const updateMypage = createAction(UPDATE_MYPAGE, (mypage) => mypage);
 export const changeField = createAction(CHANGE_FILED, ({ key, value }) => ({
   key,

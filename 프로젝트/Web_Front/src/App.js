@@ -56,7 +56,7 @@ const App = () => {
       <Route path="/Signup" component={Signup} />
       <Route path="/Board" component={Board} />
       <Route path="/MyPage" component={MyPage} />
-      <Route path="/Album/:username" component={Album} />
+      <Route path="/Album/:name" component={Album} />
       <Route path="/Training" component={Training} />
     </div>
   );

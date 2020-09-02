@@ -1,12 +1,12 @@
-import React from "react"
-import { Container } from "../../style/Container_style"
-import { Link } from "react-router-dom"
-import { AlbumForm, Flex } from "./style/AlbumList_style"
-import AlbumItemCom from "./AlbumItemCom"
-import Selectyear from "../../common/Selectyear"
-import { Icon } from "semantic-ui-react"
+import React from "react";
+import { Container } from "../../style/Container_style";
+import { Link } from "react-router-dom";
+import { AlbumForm, Flex } from "./style/AlbumList_style";
+import AlbumItemCom from "./AlbumItemCom";
+import Selectyear from "../../common/Selectyear";
+import { Icon } from "semantic-ui-react";
 
-const AlbumList = () => {
+const AlbumList = ({ album, onChange }) => {
   return (
     <Container>
       <AlbumForm>
@@ -25,19 +25,17 @@ const AlbumList = () => {
               </Link>
             </button>
             {/* 셀렉트로 년도 선택   */}
-            <Selectyear />
+            <Selectyear onChange={onChange} />
           </div>
         </div>
       </AlbumForm>
       <Flex>
-        {/* 앨범 아이템  */}
-        <AlbumItemCom />
-        <AlbumItemCom />
-        <AlbumItemCom />
-        <AlbumItemCom />
+        {album.map((item, index) => (
+          <AlbumItemCom albumItem={item} key={index} />
+        ))}
       </Flex>
     </Container>
-  )
-}
+  );
+};
 
-export default AlbumList
+export default AlbumList;

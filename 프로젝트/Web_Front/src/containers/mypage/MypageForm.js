@@ -35,8 +35,8 @@ const MypageForm = ({ match, history }) => {
   }, [mypage.ME_Profile_Photo, mypage.ME_Profile_Type, dispatch]);
 
   useEffect(() => {
-    console.log(user);
-    dispatch(readMypage({ owner: match.params.username, username: user }));
+    console.log(user, match.params.username);
+    dispatch(readMypage(match.params.username));
   }, [dispatch, match, user]);
 
   if (!mypage || loading) return null;
