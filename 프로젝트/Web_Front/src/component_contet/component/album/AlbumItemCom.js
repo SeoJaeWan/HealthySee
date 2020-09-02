@@ -1,49 +1,66 @@
 import React from "react"
-// import { Link } from "react-router-dom"
 import { AlbumItemForm } from "./style/AlbumItemCom_style"
+import ImageGallery from "react-image-gallery"
 import { Icon } from "semantic-ui-react"
+import { GalleryItem } from "./style/AlbumItemGallery_style"
+import defaultImg from "../../../Images/defaultImg.jpg"
 
 const AlbumItemCom = () => {
+  const images = [
+    {
+      thumbnail: "https://picsum.photos/id/1018/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1015/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+    {
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+  ]
+
   return (
     <>
       <AlbumItemForm>
-        <thead>
-          <tr>
-            {/* 프사 나올곳 */}
-            <th>프사</th>
-            {/* 글 작성자 */}
-            <th>
-              이름
-              <br />
-              작성일자
-              {/* 편집버튼  */}
-              <button>
-                <Icon name="ellipsis horizontal"></Icon>
-              </button>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+        <div className="titleForm">
+          {/* 프사 나올곳 */}
+          <div className="profileIMGForm">
+            <img className="profileIMG" src={defaultImg} alt="" />
+          </div>
+          {/* 글 작성자 */}
+          <h3>이름</h3>
+          <h4>작성일자</h4>
+          {/* 편집버튼  */}
+          <button>
+            <Icon name="ellipsis horizontal"></Icon>
+          </button>
+        </div>
+        <div className="contentForm">
           {/* 본문 내용 */}
-          <tr>
-            <td colSpan="2">작성 내용 </td>
-          </tr>
+          <pre>작성 내용 </pre>
           {/* 이미지 미리보기 뷰 */}
-          <tr>
-            <td>이미지</td>
-            <td>
-              <div>이미지</div>
-              <div>이미지</div>
-              <div>이미지</div>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
+        </div>
+        <GalleryItem>
+          <ImageGallery items={images} showPlayButton={false} showFullscreenButton={false} />
+        </GalleryItem>
+        <div className="commentsForm">
           {/* 댓글 ( 추천수 가장 많은거 ) */}
-          <tr>
-            <td colSpan="2">댓글</td>
-          </tr>
-        </tfoot>
+          <p colSpan="2">댓글</p>
+        </div>
       </AlbumItemForm>
     </>
   )

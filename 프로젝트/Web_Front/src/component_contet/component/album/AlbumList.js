@@ -1,7 +1,7 @@
 import React from "react"
 import { Container } from "../../style/Container_style"
 import { Link } from "react-router-dom"
-import { AlbumForm } from "./style/AlbumList_style"
+import { AlbumForm, Flex } from "./style/AlbumList_style"
 import AlbumItemCom from "./AlbumItemCom"
 import Selectyear from "../../common/Selectyear"
 import { Icon } from "semantic-ui-react"
@@ -14,12 +14,12 @@ const AlbumList = () => {
         <div className="titleBar">
           <h2 className="title">앨범</h2>
           <div className="flexgrow">
-            <button >
+            <button>
               <Link className="buttonLink" to={`/Album/1/Write`}>
                 <Icon link name="write"></Icon>
               </Link>
             </button>
-            <button >
+            <button>
               <Link className="buttonLink" to={`/Album/1/Edit`}>
                 <Icon link name="edit"></Icon>
               </Link>
@@ -28,9 +28,14 @@ const AlbumList = () => {
             <Selectyear />
           </div>
         </div>
+      </AlbumForm>
+      <Flex>
         {/* 앨범 아이템  */}
         <AlbumItemCom />
-      </AlbumForm>
+        <AlbumItemCom />
+        <AlbumItemCom />
+        <AlbumItemCom />
+      </Flex>
     </Container>
   )
 }

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
-export const AlbumForm = styled.div`
+export const AlbumWriteForm = styled.div`
   width: 100%;
   margin-top: 2rem;
   font-size: 2rem;
@@ -52,37 +52,32 @@ export const AlbumForm = styled.div`
   `}
     }
   }
-  dl{
-    display:flex;
-    border: 1px solid #676a72;
+  dl {
+    display: flex;
+    width: 80%;
   }
-  dt{
-    border: 1px solid #676a72;
+  dt {
+    margin: 2rem 0 0 0;
+    width: 13rem;
+    padding-left: 5%;
   }
-  dd{
-    border: 1px solid #676a72;
+  dd {
+    width: 80%;
+    margin: 1rem 0;
+    padding-left: 5%;
   }
-
+  .filenameform {
+    width: 100%; 
+    margin: 1rem 0;
+  }
   .tmgdiv {
     border: 5px solid #676a72;
     height: 30rem;
     width: 45%;
   }
-  .contentdiv {
-    width: 45%;
-    font: inherit;
-    margin-left: 2%;
-    border: none;
-    resize: none;
-    font-size: 20px;
-    line-height: 24px;
-    overflow: auto;
-    height: auto;
-    padding: 8px;
-    box-shadow: 0px 4px 10px -3px black;
-  }
-  .fileForm{
+  .fileForm {
     position: relative;
+    margin: 2rem auto;
   }
   .flex {
     width: 100%;
@@ -91,22 +86,21 @@ export const AlbumForm = styled.div`
     justify-content: space-around;
   }
 
-  .inputIMG {
-    position: absolute;
-    display: inline-block;
-    text-align: center;
-    right: 0 ;
-    width: 3rem;
-    height: 3rem;
-    color: #999;
-    font-size: inherit;
-    vertical-align: middle;
-    background-color: #fdfdfd;
+  .inputImg {
+    font-size: 1.5rem;
     cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: 0.25em;
   }
+  .fileButton {
+    position: absolute;
+    right: 0;
+  }
+  .fileInput {
+    font-family: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
   .hidden {
     position: absolute;
     width: 1px;
@@ -117,4 +111,30 @@ export const AlbumForm = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-`;
+
+  .context {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .imageView {
+    display: flex;
+    align-items: center;
+    height: 600px;
+    width: 50%;
+  }
+
+  textarea {
+    margin: 1.8rem 0 0 2%;
+    width: 40%;
+    max-height: 500px;
+    height: auto;
+    font: inherit;
+    border: none;
+    resize: none;
+    font-size: 20px;
+    overflow: auto;
+    padding: 8px;
+    box-shadow: 0px 4px 10px -3px black;
+  }
+`
