@@ -8,7 +8,6 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         primaryKey: true,
-        primaryKey: true,
         comment: "null",
         autoIncrement: true,
       },
@@ -38,7 +37,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         comment: "null",
       },
-      PL_Routine: {
+      PL_Routin: {
         type: DataTypes.STRING(1000),
         allowNull: false,
         comment: "null",

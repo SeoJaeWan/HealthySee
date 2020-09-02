@@ -1,14 +1,12 @@
 import React from "react";
-import TrainingForm from "../containers/training/TrainingForm";
 import { Route } from "react-router-dom";
-import SetForm from "../containers/training/SetForm";
+
+import ViewForm from "../containers/training/exercise/ViewForm";
 
 const Training = ({ match }) => {
   return (
     <>
-      {console.log("여기니?")}
-      <Route exact path={match.path} component={SetForm} />
-      <Route path={`${match.path}/:pose`} component={TrainingForm} />
+      <Route path={`${match.path}`} component={ViewForm} />
     </>
   );
 };
