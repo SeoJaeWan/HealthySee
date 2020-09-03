@@ -8,7 +8,7 @@ import createRequestSaga, {
 import * as trainingAPI from "../../lib/api/training";
 
 const CHANGE_FIELD = "training/CHANGE_FILED";
-const CLEAR_LOGDATA = "training/CLEAR_LOGDATA";
+// const CLEAR_LOGDATA = "training/CLEAR_LOGDATA";
 
 const [
   LOGGING_EXERCISE,
@@ -17,7 +17,7 @@ const [
 ] = createRequestActionTypes("training/LOGGING_EXERCISE");
 const INCREASE_FIELD = "training/INCREASE_FIELD";
 
-export const clearLogData = createAction(CLEAR_LOGDATA);
+// export const clearLogData = createAction(CLEAR_LOGDATA);
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ key, value = null }) => ({
@@ -59,6 +59,7 @@ const initialState = {
   logData,
 
   logging: false,
+  exerciseFinish: false,
 };
 
 const training = handleActions(
@@ -67,11 +68,11 @@ const training = handleActions(
       produce(state, (draft) => {
         draft[key] = value;
       }),
-    [CLEAR_LOGDATA]: (state) => ({
-      ...state,
-      logData,
-      logging: false,
-    }),
+    // [CLEAR_LOGDATA]: (state) => ({
+    //   ...state,
+    //   logData,
+    //   logging: false,
+    // }),
     [INCREASE_FIELD]: (state, { payload: { key, value } }) => {
       let train = "logData";
       console.log(key);
@@ -85,17 +86,39 @@ const training = handleActions(
         });
     },
 
-    [LOGGING_EXERCISE_SUCCESS]: (state, { payload: log }) => ({
-      ...state,
+    [LOGGING_EXERCISE_SUCCESS]: (state, { payload: log }) => {
+      let result = {
+        ...state,
+        logging: true,
+        logData,
+      };
 
-      logData: {
-        ...state.logData,
-        ref: log.LO_Re_Ref,
-      },
+      // 운동 종료
+      if (set - 1 === 0) {
+        return {
+          ...state,
+          exerciseFinish: true,
+        };
+      } else {
+        // 루틴 종료
+        if (state.routin.length < state.poseCount + 2)
+          return {
+            ...result,
+            set: state.set - 1,
+          };
+        // 다음 운동으로
+        else
+          return {
+            ...result,
+            logData: {
+              ...result.logData,
+              ref: log.LO_Re_Ref,
+            },
 
-      logging: true,
-      poseCount: state.poseCount + 2,
-    }),
+            poseCount: state.poseCount + 2,
+          };
+      }
+    },
   },
   initialState
 );

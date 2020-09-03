@@ -6,27 +6,23 @@ import ExerciseForm from "./ExerciseForm";
 import { changeField, clearLogData } from "../../../modules/training/training";
 
 const ViewForm = () => {
-  const { logging, restTime, routin, poseCount, set } = useSelector(
-    ({ training }) => ({
-      logging: training.logging,
-      restTime: training.restTime,
-      routin: training.routin,
-      poseCount: training.poseCount,
-      set: training.set,
-    })
-  );
+  const { logging, restTime, exerciseFinish } = useSelector(({ training }) => ({
+    logging: training.logging,
+    restTime: training.restTime,
+    exerciseFinish: training.exerciseFinish,
+  }));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (set < 0) {
-      // 결과 호출
-    } else if (routin.length < poseCount)
-      dispatch(changeField({ key: "set", value: set - 1 }));
-
-    setTimeout(() => {
-      dispatch(clearLogData());
-    }, restTime);
-  }, [routin, poseCount, set, restTime, dispatch]);
+    if (exerciseFinish) {
+      // 운동 종료
+    } else if (logging) {
+      // 한 동작 종료, 휴식 시간
+      setTimeout(() => {
+        dispatch(changeField({ key: "logging", value: false }));
+      }, restTimez);
+    }
+  }, [logging, exerciseFinish, restTime, dispatch]);
 
   return <>{logging ? <RestForm /> : <ExerciseForm />}</>;
 };
