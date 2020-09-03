@@ -20,7 +20,7 @@ const ViewForm = () => {
       // 한 동작 종료, 휴식 시간
       setTimeout(() => {
         dispatch(changeField({ key: "logging", value: false }));
-      }, restTimez);
+      }, restTime);
     }
   }, [logging, exerciseFinish, restTime, dispatch]);
 

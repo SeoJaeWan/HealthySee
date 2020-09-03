@@ -1,11 +1,11 @@
-import React from "react"
-import { Container } from "../../style/Container_style"
-import { Link } from "react-router-dom"
-import { AlbumWriteForm } from "./style/AlbumWrite_style"
-import ImageGallery from "react-image-gallery"
-import { GalleryWrite } from "./style/AlbumWriteGallery_style"
+import React from "react";
+import { Container } from "../../style/Container_style";
+import { Link } from "react-router-dom";
+import { AlbumWriteForm } from "./style/AlbumWrite_style";
+import ImageGallery from "react-image-gallery";
+import { GalleryWrite } from "./style/AlbumWriteGallery_style";
 
-const AlbumWrite = ({match , images, onChange }) => {
+const AlbumWrite = ({ match, images, onChange }) => {
   return (
     <>
       <Container>
@@ -47,7 +47,7 @@ const AlbumWrite = ({match , images, onChange }) => {
           </div>
 
           <div className="context">
-            <div className="imageView">
+            {/* <div className="imageView">
               <GalleryWrite>
                 <ImageGallery
                   thumbnailPosition={"bottom"}
@@ -56,15 +56,19 @@ const AlbumWrite = ({match , images, onChange }) => {
                   items={images}
                 />
               </GalleryWrite>
-            </div>
+            </div> */}
 
             {/* 내용 넣는 폼 */}
-            <textarea className="contentDiv" type="text" defaultValue="내용을 입력하세요" />
+            <textarea
+              className="contentDiv"
+              type="text"
+              defaultValue="내용을 입력하세요"
+            />
           </div>
         </AlbumWriteForm>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default AlbumWrite
+export default AlbumWrite;

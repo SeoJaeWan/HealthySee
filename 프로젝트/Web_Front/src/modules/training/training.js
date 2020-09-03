@@ -94,7 +94,7 @@ const training = handleActions(
       };
 
       // 운동 종료
-      if (set - 1 === 0) {
+      if (state.set - 1 === 0) {
         return {
           ...state,
           exerciseFinish: true,
