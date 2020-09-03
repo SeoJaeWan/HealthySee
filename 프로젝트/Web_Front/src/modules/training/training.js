@@ -49,10 +49,11 @@ const logData = {
 };
 
 const initialState = {
-  planCode: 4,
-  set: 0,
+  planCode: 4, // 계획 코드
+  set: 1, // 몇 세트를 진행하였는지
+  restTime: 5000,
 
-  index: 0,
+  poseCount: 0,
   routin: ["스쿼트", 2, "스쿼트", 1],
 
   logData,
@@ -69,6 +70,7 @@ const training = handleActions(
     [CLEAR_LOGDATA]: (state) => ({
       ...state,
       logData,
+      logging: false,
     }),
     [INCREASE_FIELD]: (state, { payload: { key, value } }) => {
       let train = "logData";
@@ -92,7 +94,7 @@ const training = handleActions(
       },
 
       logging: true,
-      index: state.index + 2,
+      poseCount: state.poseCount + 2,
     }),
   },
   initialState
