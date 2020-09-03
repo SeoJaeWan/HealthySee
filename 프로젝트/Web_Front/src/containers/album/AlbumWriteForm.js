@@ -5,6 +5,10 @@ import Resizer from "react-image-file-resizer";
 
 const AlbumWriteForm = ({ match }) => {
   const onChange = (e) => {
+    console.log(e.target.value, e.target.type);
+    // e.target.type으로 파일 구분해야 할듯
+    // e.target.value로 . 단위로 잘라내서 확장자 알아내야 할듯
+
     // Resizer.imageFileResizer(
     //   e.target.files[0],
     //   2000,

@@ -63,6 +63,7 @@ const AlbumWrite = ({ match, images, onChange }) => {
               className="contentDiv"
               type="text"
               defaultValue="내용을 입력하세요"
+              onChange={onChange}
             />
           </div>
         </AlbumWriteForm>
