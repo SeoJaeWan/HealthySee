@@ -11,10 +11,10 @@ const [WRITE, WRITE_SUCCESS, WRITE_FAILURE] = createRequestActionTypes(
   "albumWrite/WRITE"
 );
 const INITIALIZE = "albumWrite/INITIALIZE";
-const CHANGEFIELD = "albumWrite/CHANGEFIELD";
+const CHANGE_FIELD = "albumWrite/CHANGE_FIELD";
 
 export const write = createAction(WRITE, (formData) => formData);
-export const changeField = createAction(CHANGEFIELD, ({ key, value }) => ({
+export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
@@ -28,9 +28,11 @@ export function* albumWriteSaga() {
 
 const initialState = {
   field: {
-    photo: [],
+    username: null,
     content: null,
     scope: true,
+
+    photo: [],
   },
 
   albumInfo: null,
@@ -40,7 +42,7 @@ const initialState = {
 const albumWrite = handleActions(
   {
     [INITIALIZE]: () => initialState,
-    [CHANGEFIELD]: (state, { payload: { key, value } }) =>
+    [CHANGE_FIELD]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {
         draft["field"][key] = value;
       }),

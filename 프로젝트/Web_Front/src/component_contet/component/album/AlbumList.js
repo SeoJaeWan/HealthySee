@@ -6,7 +6,7 @@ import AlbumItemCom from "./AlbumItemCom";
 import Selectyear from "../../common/Selectyear";
 import { Icon } from "semantic-ui-react";
 
-const AlbumList = ({ album, onChange }) => {
+const AlbumList = ({ album, onChange, owner }) => {
   return (
     <Container>
       <AlbumForm>
@@ -14,16 +14,20 @@ const AlbumList = ({ album, onChange }) => {
         <div className="titleBar">
           <h2 className="title">앨범</h2>
           <div className="flexgrow">
-            <button>
-              <Link className="buttonLink" to={`/Album/1/Write`}>
-                <Icon link name="write"></Icon>
-              </Link>
-            </button>
-            <button>
-              <Link className="buttonLink" to={`/Album/1/Edit`}>
-                <Icon link name="edit"></Icon>
-              </Link>
-            </button>
+            {owner && (
+              <>
+                <button>
+                  <Link className="buttonLink" to={`/Album/1/Write`}>
+                    <Icon link name="write"></Icon>
+                  </Link>
+                </button>
+                <button>
+                  <Link className="buttonLink" to={`/Album/1/Edit`}>
+                    <Icon link name="edit"></Icon>
+                  </Link>
+                </button>
+              </>
+            )}
             {/* 셀렉트로 년도 선택   */}
             <Selectyear onChange={onChange} />
           </div>
