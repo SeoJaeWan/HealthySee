@@ -10,9 +10,14 @@ module.exports = function (sequelize, DataTypes) {
         primaryKey: true,
         comment: "null",
       },
+      EX_KO_Name: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        comment: "null",
+      },
       EX_Video: {
         type: DataTypes.STRING(45),
-        allowNull: false,
+        allowNull: true,
         comment: "null",
       },
       EX_Description: {

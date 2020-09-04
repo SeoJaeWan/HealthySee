@@ -2,7 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "E_Evaluation",
+    "e_evaluation",
     {
       EEV_Code: {
         type: DataTypes.INTEGER(11),
@@ -24,7 +24,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       EEV_Content: {
         type: DataTypes.STRING(1000),
-        allowNull: false,
+        allowNull: true,
         comment: "null",
       },
       EEV_Creation_Date: {
@@ -44,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      tableName: "E_Evaluation",
+      tableName: "e_evaluation",
       timestamps: false,
     }
   );
