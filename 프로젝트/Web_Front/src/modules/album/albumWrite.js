@@ -28,11 +28,11 @@ export function* albumWriteSaga() {
 
 const initialState = {
   field: {
-    username: null,
-    content: null,
+    content: "",
     scope: true,
 
     photo: [],
+    img: [],
   },
 
   albumInfo: null,
@@ -44,6 +44,9 @@ const albumWrite = handleActions(
     [INITIALIZE]: () => initialState,
     [CHANGE_FIELD]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {
+        if (key === "photo") value = state.field.photo.concat(value);
+        else if (key === "img")
+          value = state.field.img.concat({ original: value, thumbnail: value });
         draft["field"][key] = value;
       }),
     [WRITE_SUCCESS]: (state, { payload: albumInfo }) => ({

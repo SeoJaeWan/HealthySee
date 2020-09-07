@@ -5,10 +5,12 @@ import { AlbumWriteForm } from "./style/AlbumWrite_style";
 import ImageGallery from "react-image-gallery";
 import { GalleryWrite } from "./style/AlbumWriteGallery_style";
 
-const AlbumWrite = ({ match, images, onChange }) => {
+const AlbumWrite = ({ match, onChange, field }) => {
+  const { content, scope, img } = field;
   return (
     <>
       <Container>
+        {console.log(content)}
         <AlbumWriteForm>
           {/* 헤더폼 */}
           <div className="titleBar">
@@ -47,22 +49,22 @@ const AlbumWrite = ({ match, images, onChange }) => {
           </div>
 
           <div className="context">
-            {/* <div className="imageView">
+            <div className="imageView">
               <GalleryWrite>
                 <ImageGallery
                   thumbnailPosition={"bottom"}
                   showPlayButton={false}
                   showFullscreenButton={false}
-                  items={images}
+                  items={img}
                 />
               </GalleryWrite>
-            </div> */}
+            </div>
 
             {/* 내용 넣는 폼 */}
             <textarea
               className="contentDiv"
               type="text"
-              defaultValue="내용을 입력하세요"
+              value={content}
               onChange={onChange}
             />
           </div>

@@ -7,7 +7,7 @@ import {
   initialize,
 } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { onRenderImg } from "../common/onRenderImg";
+import { RenderImg } from "../common/RenderImg";
 import ProfileImageModal from "../../component_contet/component/mypage/ProfileImageModal";
 
 const MypageEditForm = ({ history }) => {
@@ -117,7 +117,7 @@ const MypageEditForm = ({ history }) => {
   useEffect(() => {
     if (mypage.originalProfile) {
       console.log("여ㅑ기");
-      onRenderImg(mypage.originalProfile, updateField, dispatch);
+      RenderImg(mypage.originalProfile, updateField, dispatch);
     }
   }, [mypage.originalProfile, dispatch]);
 

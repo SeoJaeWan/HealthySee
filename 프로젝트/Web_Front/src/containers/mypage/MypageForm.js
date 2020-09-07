@@ -3,7 +3,7 @@ import MypageCom from "../../component_contet/component/mypage/MyPageCom";
 import { useDispatch, useSelector } from "react-redux";
 import { readMypage, updateField } from "../../modules/mypage/mypage";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { onRenderImg } from "../common/onRenderImg";
+import { RenderImg } from "../common/RenderImg";
 
 const MypageForm = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const MypageForm = ({ match, history }) => {
 
       dispatch(updateField({ key: "originalProfile", value: blob }));
 
-      onRenderImg(blob, updateField, dispatch);
+      RenderImg(blob, updateField, dispatch);
     }
   }, [mypage.ME_Profile_Photo, mypage.ME_Profile_Type, dispatch]);
 

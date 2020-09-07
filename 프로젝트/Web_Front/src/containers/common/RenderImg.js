@@ -1,4 +1,4 @@
-export const onRenderImg = (file, update, dispatch) => {
+export const RenderImg = (file, update, dispatch) => {
   let render = new FileReader();
 
   render.readAsDataURL(file);
