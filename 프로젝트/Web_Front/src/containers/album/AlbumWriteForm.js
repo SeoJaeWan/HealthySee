@@ -4,16 +4,30 @@ import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import Resizer from "react-image-file-resizer";
 
 import AlbumWrite from "../../component_contet/component/album/AlbumWrite";
-import { changeField } from "../../modules/album/albumWrite";
+import { changeField, writeAlbum } from "../../modules/album/albumWrite";
 import { RenderImg } from "../common/RenderImg";
 
 const AllowType = ["png", "jpg", "jpeg"];
 
 const AlbumWriteForm = ({ match }) => {
   const dispatch = useDispatch();
-  const { field } = useSelector(({ albumWrite }) => ({
+  const { field, user } = useSelector(({ albumWrite, user }) => ({
     field: albumWrite.field,
+    user: user.user,
   }));
+
+  const onClick = () => {
+    const formData = new FormData();
+
+    formData.append("Account_AC_NickName", user);
+    formData.append("AL_Content", field.content);
+    formData.append("AL_Scope", field.scope);
+    for (var i = 0; i < field.photo.length; i++)
+      formData.append("files", field.photo[i]);
+
+    dispatch(writeAlbum(formData));
+  };
+
   const onChange = (e) => {
     // 파일의 경우 분기
     if (e.target.type === "file") {
@@ -44,7 +58,14 @@ const AlbumWriteForm = ({ match }) => {
     } else dispatch(changeField({ key: "content", value: e.target.value }));
   };
 
-  return <AlbumWrite match={match} onChange={onChange} field={field} />;
+  return (
+    <AlbumWrite
+      match={match}
+      onChange={onChange}
+      onClick={onClick}
+      field={field}
+    />
+  );
 };
 
 export default withRouter(AlbumWriteForm);

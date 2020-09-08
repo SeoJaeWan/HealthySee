@@ -5,7 +5,7 @@ import { AlbumWriteForm } from "./style/AlbumWrite_style";
 import ImageGallery from "react-image-gallery";
 import { GalleryWrite } from "./style/AlbumWriteGallery_style";
 
-const AlbumWrite = ({ match, onChange, field }) => {
+const AlbumWrite = ({ match, onChange, onClick, field }) => {
   const { content, scope, img } = field;
   return (
     <>
@@ -17,7 +17,9 @@ const AlbumWrite = ({ match, onChange, field }) => {
             <button className="backButton">
               <Link to={`/Album/${match}`}>뒤로가기</Link>
             </button>
-            <button className="addButton">완료</button>
+            <button className="addButton" onClick={onClick}>
+              완료
+            </button>
           </div>
           {/* 첨부 파일 폼 */}
           <div className="fileForm">
