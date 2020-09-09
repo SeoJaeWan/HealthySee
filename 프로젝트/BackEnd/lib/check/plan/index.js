@@ -1,5 +1,6 @@
 const PlanDetail = require("../../../models").plandetail;
 const P_Evaluation = require("../../../models").p_evaluation;
+const Plan = require("../../../models").plan;
 
 const checkPlan = async (req, res, next) => {
   const PL_Code = req.params.PL_Code ? req.params.PL_Code : req.body.PL_Code;
@@ -56,4 +57,32 @@ const checkEvaluation = async (req, res, next) => {
   }
 };
 
-module.exports = { checkPlan, checkEvaluation };
+
+// Plan Code가 존재하는지 확인
+const checkOwnPlan = async (req, res, next) => {
+  const { planCode } = req.body.training;
+
+  console.log("asdsadsad", planCode);
+
+  if (!planCode) {
+    next();
+  }
+
+  try {
+    let plan = await Plan.findOne({
+      where: { PL_Code: planCode },
+    });
+
+    if (!plan) {
+      res.status(404).end();
+      return;
+    }
+
+    next();
+  } catch (e) {
+    console.log(e);
+    res.status(500).end();
+  }
+};
+
+module.exports = {checkOwnPlan, checkPlan, checkEvaluation };
