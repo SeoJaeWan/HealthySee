@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
-// const writeExercise = require("../../lib/sequelize/exercise/writeExercise").writeExercise;
-// const writeReview = require("../../lib/sequelize/exercise/writeExercise").writeReview;
+const writeExercise = require("../../lib/sequelize/exercise/writeExercise").writeExercise;
+const writeReview = require("../../lib/sequelize/exercise/writeExercise").writeReview;
 const readAll = require("../../lib/sequelize/exercise/readExercise").readAll;
 const readExerciseList = require("../../lib/sequelize/exercise/readExercise")
   .readExerciseList;
@@ -17,8 +17,8 @@ router.get("/:EX_Name", readAll);
 router.get("/review/:EX_Name&:page", readReviews);
 
 // 운동 생성
-// router.post("/", writeExercise);
+router.post("/", writeExercise);
 // /운동 리뷰 생성
-// router.post("/review", writeReview, readAll);
+router.post("/review", writeReview, readAll);
 
 module.exports = router;
