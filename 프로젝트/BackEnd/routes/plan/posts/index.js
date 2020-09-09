@@ -3,8 +3,7 @@ var router = express.Router();
 const writePost = require("../../../lib/sequelize/plan/writePlan").writePlan;
 const readPost = require("../../../lib/sequelize/plan/readPlan").readPlan;
 const deletePost = require("../../../lib/sequelize/plan/deletePlan").deletePlan;
-const checkLogin = require("../../../lib/check/checkData").checkLogin;
-const checkOwnBoard = require("../../../lib/check/checkData").checkOwnBoard;
+const checkLogin = require("../../../lib/check/user").checkLogin;
 const checkPlan = require("../../../lib/check/plan").checkPlan;
 const reportPost = require("../../../lib/sequelize/plan/reportPlan");
 const pushHealthsee = require("../../../lib/sequelize/plan/pushPlanHealthsee");
@@ -15,12 +14,11 @@ router.post("/", checkLogin, writePost, readPost);
 
 router.get("/:PL_Code", readPost);
 
-router.delete("/:PL_Code", checkPlan, checkLogin, checkOwnBoard, deletePost);
+router.delete("/:PL_Code", checkPlan, checkLogin, deletePost);
 
 router.patch(
   "/:PL_Code",
   checkPlan,
-  checkOwnBoard,
   updatePost,
   readPost
 );
