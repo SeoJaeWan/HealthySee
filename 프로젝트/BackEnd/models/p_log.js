@@ -40,7 +40,7 @@ module.exports = function (sequelize, DataTypes) {
       LO_Index: {
         type: DataTypes.INTEGER(11),
       },
-      Plan_PL_Code: {
+      PL_Code: {
         type: DataTypes.INTEGER(11),
         comment: "null",
         references: {
