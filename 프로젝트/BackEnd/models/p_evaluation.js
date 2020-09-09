@@ -8,7 +8,6 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         primaryKey: true,
-        primaryKey: true,
         comment: "null",
         autoIncrement: true,
       },
@@ -17,8 +16,8 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         comment: "null",
       },
-      PEV_Rank: {
-        type: DataTypes.FLOAT,
+      PEV_State: {
+        type: DataTypes.TINYINT,
         allowNull: false,
         defaultValue: "0",
         comment: "null",
