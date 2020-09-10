@@ -149,7 +149,7 @@ export const GalleryWrite = styled.div`
   .image-gallery-content .image-gallery-slide .image-gallery-image {
     width: 100%;
     display: block;
-    height: 450px;
+    height: 400px;
   }
   .image-gallery-content.left .image-gallery-slide .image-gallery-image,
   .image-gallery-content.right .image-gallery-slide .image-gallery-image {
@@ -177,6 +177,7 @@ export const GalleryWrite = styled.div`
   .image-gallery-slides {
     line-height: 0;
     overflow: hidden;
+    height: 400px;
     position: relative;
     white-space: nowrap;
     text-align: center;
@@ -348,11 +349,13 @@ export const GalleryWrite = styled.div`
     margin-left: 2px;
   }
   .image-gallery-thumbnail .image-gallery-thumbnail-inner {
+    vertical-align: middle;
     position: relative;
   }
   .image-gallery-thumbnail .image-gallery-thumbnail-image {
     vertical-align: middle;
     width: 100%;
+    max-height: 100px;
     line-height: 0;
   }
   .image-gallery-thumbnail.active,

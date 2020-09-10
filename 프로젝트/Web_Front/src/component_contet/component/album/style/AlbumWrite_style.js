@@ -7,8 +7,10 @@ export const AlbumWriteForm = styled.div`
   font-size: 2rem;
   .titleBar {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
+    margin: 2rem 0 4rem 0;
   }
 
   .backButton {
@@ -21,64 +23,6 @@ export const AlbumWriteForm = styled.div`
     font-size: 2rem;
   }
 
-  .titleForm {
-    display: flex;
-    width: 95%;
-    font-size: 1rem;
-    border: 5px solid #676a72;
-    border-left: solid white;
-    margin-top: 1%;
-    margin-left: 2%;
-    ${media.mobile`
-    width: 100%;
-    margin-left: 2%;
-    `}
-    &::before {
-      content: "";
-      position: static;
-      margin: -10px;
-      margin-top: -30px;
-      display: block;
-      border-radius: 50%;
-      width: 50px;
-      height: 58px;
-      background: #676a72;
-      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-      transition: 0.2s;
-      ${media.mobile`    
-      margin-top: -20px;
-      width: 30px;
-      height: 40px;
-  `}
-    }
-  }
-  dl {
-    display: flex;
-    width: 80%;
-  }
-  dt {
-    margin: 2rem 0 0 0;
-    width: 13rem;
-    padding-left: 5%;
-  }
-  dd {
-    width: 80%;
-    margin: 1rem 0;
-    padding-left: 5%;
-  }
-  .filenameform {
-    width: 100%; 
-    margin: 1rem 0;
-  }
-  .tmgdiv {
-    border: 5px solid #676a72;
-    height: 30rem;
-    width: 45%;
-  }
-  .fileForm {
-    position: relative;
-    margin: 2rem auto;
-  }
   .flex {
     width: 100%;
     margin-top: 1.5rem;
@@ -92,7 +36,8 @@ export const AlbumWriteForm = styled.div`
   }
   .fileButton {
     position: absolute;
-    right: 0;
+    top: 60px;
+    right: 10px;
   }
   .fileInput {
     font-family: none;
@@ -113,6 +58,7 @@ export const AlbumWriteForm = styled.div`
   }
 
   .context {
+    margin-top: 5rem;
     display: flex;
     justify-content: space-around;
   }

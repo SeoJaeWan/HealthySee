@@ -1,28 +1,25 @@
-import React from "react";
-import { Container } from "../../style/Container_style";
-import { Link } from "react-router-dom";
-import { AlbumWriteForm } from "./style/AlbumWrite_style";
-import ImageGallery from "react-image-gallery";
-import { GalleryWrite } from "./style/AlbumWriteGallery_style";
+import React from "react"
+import { Container } from "../../style/Container_style"
+import { Link } from "react-router-dom"
+import { AlbumWriteForm } from "./style/AlbumWrite_style"
+import ImageGallery from "react-image-gallery"
+import { GalleryWrite } from "./style/AlbumWriteGallery_style"
 
 const AlbumWrite = ({ match, onChange, onClick, field }) => {
-  const { content, scope, img } = field;
+  const { content, scope, img } = field
   return (
     <>
       <Container>
-        {console.log(content)}
+        {console.log(match)}
         <AlbumWriteForm>
           {/* 헤더폼 */}
           <div className="titleBar">
             <button className="backButton">
-              <Link to={`/Album/${match}`}>뒤로가기</Link>
+              <Link to={`/Album/${match.params.name}`}>뒤로가기</Link>
             </button>
             <button className="addButton" onClick={onClick}>
               완료
             </button>
-          </div>
-          {/* 첨부 파일 폼 */}
-          <div className="fileForm">
             {/* 첨부 파일 버튼 */}
             <div className="fileButton">
               <label className="inputImg" htmlFor="file">
@@ -40,14 +37,6 @@ const AlbumWrite = ({ match, onChange, onClick, field }) => {
                 onChange={onChange}
               />
             </div>
-
-            {/* 첨부 파일 이름 리스트  */}
-            <dl>
-              <dt>첨부 파일</dt>
-              <div className="filenameform">
-                <dd>파일명들 나올곳 </dd>
-              </div>
-            </dl>
           </div>
 
           <div className="context">
@@ -63,17 +52,12 @@ const AlbumWrite = ({ match, onChange, onClick, field }) => {
             </div>
 
             {/* 내용 넣는 폼 */}
-            <textarea
-              className="contentDiv"
-              type="text"
-              value={content}
-              onChange={onChange}
-            />
+            <textarea className="contentDiv" type="text" value={content} onChange={onChange} />
           </div>
         </AlbumWriteForm>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default AlbumWrite;
+export default AlbumWrite

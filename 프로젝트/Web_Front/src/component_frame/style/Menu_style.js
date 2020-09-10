@@ -11,7 +11,7 @@ export const MenuInfo = styled.menu`
   padding: 0;
 
   ${media.mobile`
-    margin: ${(props) => (props.scrollY >= 100 ? "80px 0 0 0" : "120px 0 0 0")};;
+    margin: ${(props) => (props.scrollY >= 100 ? "80px 0 0 0" : "120px 0 0 0")};
   `}
 
   .userBox {

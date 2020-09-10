@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const ContentComForm = styled.div`
-
   width: 100%;
   font-size: 2rem;
 
@@ -52,7 +51,6 @@ export const ContentComForm = styled.div`
   }
 
   .commentInput {
-
     width: 75%;
     height: 80%;
 
@@ -68,7 +66,6 @@ export const ContentComForm = styled.div`
   }
 
   .writeButton {
-
     background-color: #676a72;
     color: white;
     font-size: 3rem;
@@ -86,7 +83,6 @@ export const ContentComForm = styled.div`
   }
 
   .separateREF {
-
     display: flex;
     align-items: center;
 
@@ -138,7 +134,6 @@ export const ContentComForm = styled.div`
   }
 
   table {
-
     width: 20%;
     height: 100%;
     font-size: 1.5rem;

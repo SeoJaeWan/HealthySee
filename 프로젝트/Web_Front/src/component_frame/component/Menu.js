@@ -38,6 +38,20 @@ const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu })
       </li>
       <li>
         <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
+          <Link className="linkbutton" to="/Pose">
+            운동하기
+          </Link>
+        </button>
+      </li>
+      <li>
+        <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
+          <Link className="linkbutton" to="/Training">
+            세트운동
+          </Link>
+        </button>
+      </li>
+      <li>
+        <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
           <Link className="linkbutton" to="/Board/Select">
             게시판
           </Link>

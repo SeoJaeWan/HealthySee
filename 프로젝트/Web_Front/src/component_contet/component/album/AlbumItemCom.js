@@ -5,7 +5,7 @@ import { Icon } from "semantic-ui-react"
 import { GalleryItem } from "./style/AlbumItemGallery_style"
 import defaultImg from "../../../Images/defaultImg.jpg"
 
-const AlbumItemCom = () => {
+const AlbumItemCom = (albumItem) => {
   const images = [
     {
       thumbnail: "https://picsum.photos/id/1018/250/150/",
@@ -37,13 +37,8 @@ const AlbumItemCom = () => {
     <>
       <AlbumItemForm>
         <div className="titleForm">
-          {/* 프사 나올곳 */}
-          <div className="profileIMGForm">
-            <img className="profileIMG" src={defaultImg} alt="" />
-          </div>
-          {/* 글 작성자 */}
-          <h3>이름</h3>
-          <h4>작성일자</h4>
+          {/* 시간  */}
+          <h4>{albumItem.albumItem.AL_Creation_Date}</h4>
           {/* 편집버튼  */}
           <button>
             <Icon name="ellipsis horizontal"></Icon>

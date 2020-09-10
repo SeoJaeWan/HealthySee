@@ -78,6 +78,9 @@ export const HomeForm = styled.div`
     width: 200px;
     height: 100px;
     background-color: #676a72;
+    color: white;
+    text-align: center;
+    line-height: 100px;
 
     border: none;
     border-radius: 50%;
@@ -85,8 +88,8 @@ export const HomeForm = styled.div`
     margin: 1rem auto;
   }
 
-  .startButton a {
-    color: #fff;
+  .startButton:hover {
+    color: #858994;
   }
 
   li {
