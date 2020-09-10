@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from "react";
-import BoardCom from "../../component_contet/component/board/BoardCom";
-import { useDispatch, useSelector } from "react-redux";
-import { list, listDetail, changeField } from "../../modules/board/boardList";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import AlertModal from "../../component_contet/common/Modal/AlertModal";
+import React, { useEffect, useState } from "react"
+import BoardCom from "../../component_contet/component/board/BoardCom"
+import { useDispatch, useSelector } from "react-redux"
+import { list, listDetail, changeField } from "../../modules/board/boardList"
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min"
+import AlertModal from "../../component_contet/common/Modal/AlertModal"
 
 const BoardForm = ({ match, history }) => {
-  const [scroll, setScroll] = useState(true);
-  const [modal, setModal] = useState(false);
-  const dispatch = useDispatch();
-  const { posts, postsCount, loading, options } = useSelector(
-    ({ boardList, loading }) => ({
-      posts: boardList.posts,
-      options: boardList.options,
-      postsCount: boardList.postsCount,
-      loading: loading["posts/LIST"],
-    })
-  );
+  const [scroll, setScroll] = useState(true)
+  const [modal, setModal] = useState(false)
+  const dispatch = useDispatch()
+  const { posts, postsCount, loading, options } = useSelector(({ boardList, loading }) => ({
+    posts: boardList.posts,
+    options: boardList.options,
+    postsCount: boardList.postsCount,
+    loading: loading["posts/LIST"],
+  }))
 
   const fetchMoreData = () => {
-    console.log(postsCount);
+    console.log(postsCount)
     if (postsCount <= 10) {
-      setScroll(false);
-      return;
+      setScroll(false)
+      return
     }
     // a fake async api call like which sends
     // 20 more records in 1.5 secs
@@ -33,17 +31,17 @@ const BoardForm = ({ match, history }) => {
           name: options.name,
           keyword: options.keyword,
         })
-      );
-    }, 1500);
-  };
+      )
+    }, 1500)
+  }
 
   const onChange = (e) => {
-    const { name, value } = e.target;
-    dispatch(changeField({ form: "options", key: name, value }));
-  };
+    const { name, value } = e.target
+    dispatch(changeField({ form: "options", key: name, value }))
+  }
   // 원리는 다 구현되었다. 이제 검색시 나오는 주소, 그리고 useEffect 종속 해결하면 끝
   const onSearch = () => {
-    console.log("asdasd");
+    console.log("asdasd")
     localStorage.setItem(
       "search",
       JSON.stringify({
@@ -51,55 +49,53 @@ const BoardForm = ({ match, history }) => {
         name: options.name,
         keyword: options.keyword,
       })
-    );
-    history.push(`/Board/search`);
-  };
+    )
+    history.push(`/Board/search`)
+  }
 
   const onClick = (postId) => {
-    const beforeInfo = { posts, options, postsCount };
-    sessionStorage.setItem("beforeList", JSON.stringify(beforeInfo));
-    history.push(`/Board/read/${postId}`);
-  };
+    const beforeInfo = { posts, options, postsCount }
+    sessionStorage.setItem("beforeList", JSON.stringify(beforeInfo))
+    history.push(`/Board/read/${postId}`)
+  }
 
   useEffect(() => {
-    setScroll(true);
-    console.log(posts);
-    let search = localStorage.getItem("search");
+    setScroll(true)
+    console.log(posts)
+    let search = localStorage.getItem("search")
     if (search) {
-      let jsonSearch = JSON.parse(search);
-      dispatch(list(jsonSearch));
+      let jsonSearch = JSON.parse(search)
+      dispatch(list(jsonSearch))
 
-      dispatch(
-        changeField({ form: "options", key: "name", value: jsonSearch.name })
-      );
+      dispatch(changeField({ form: "options", key: "name", value: jsonSearch.name }))
       dispatch(
         changeField({
           form: "options",
           key: "keyword",
           value: jsonSearch.keyword,
         })
-      );
-      localStorage.removeItem("search");
+      )
+      localStorage.removeItem("search")
     } else if (posts.length !== 0) {
-      sessionStorage.removeItem("beforeList");
+      sessionStorage.removeItem("beforeList")
     } else {
-      console.log("여기까지 왔나요?");
+      console.log("여기까지 왔나요?")
       dispatch(
         list({
           id: null,
           name: null,
           keyword: null,
         })
-      );
+      )
     }
     // posts를 []안에 넣지 않아 경고 상태가 계속 나옴 해결방법 생각해보자
-  }, [dispatch, match]);
+  }, [dispatch, match])
 
   const onChangeModal = () => {
-    setModal(!modal);
-  };
+    setModal(!modal)
+  }
   if (!posts || loading) {
-    return null;
+    return null
   }
   return (
     <>
@@ -121,7 +117,7 @@ const BoardForm = ({ match, history }) => {
         onCancel={onChangeModal}
       />
     </>
-  );
-};
+  )
+}
 
-export default withRouter(BoardForm);
+export default withRouter(BoardForm)
