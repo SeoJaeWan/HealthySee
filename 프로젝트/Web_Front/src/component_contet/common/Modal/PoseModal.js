@@ -1,17 +1,14 @@
-import React, { useState } from "react"
-import { Fullscreen, ModalBlock, StyledButton } from "./style/PoseModal_style"
+import React, { useState } from "react";
+import { Fullscreen, ModalBlock, StyledButton } from "./style/PoseModal_style";
 
 const PoseModal = ({
   title,
-  number,
-  numberUp,
-  numberDown,
   onCancel,
   visible,
-  timeUp,
-  timeDown,
-  time,
-  Start,
+  onIncrease,
+  onDecrease,
+  count,
+  onStartButton,
 }) => {
   return (
     <Fullscreen visible={visible}>
@@ -19,22 +16,12 @@ const PoseModal = ({
         <h2>{title}</h2>
         <div className="flex">
           <div className="times">
-            <h3 className="context">세트</h3>
-            <button type="button" onClick={numberDown}>
-              &lt;
-            </button>
-            <h3>{number}</h3>
-            <button type="button" onClick={numberUp}>
-              &gt;
-            </button>
-          </div>
-          <div className="times">
             <h3 className="context">횟수</h3>
-            <button type="button" onClick={timeDown}>
+            <button type="button" onClick={onDecrease}>
               &lt;
             </button>
-            <h3>{time}</h3>
-            <button type="button" onClick={timeUp}>
+            <h3>{count}</h3>
+            <button type="button" onClick={onIncrease}>
               &gt;
             </button>
           </div>
@@ -55,12 +42,16 @@ const PoseModal = ({
           <StyledButton type="button" onClick={onCancel}>
             취소
           </StyledButton>
-          <StyledButton type="button" cyan onClick={Start}>
+          <StyledButton
+            type="button"
+            cyan
+            onClick={() => count > 0 && onStartButton}
+          >
             시작하기
           </StyledButton>
         </div>
       </ModalBlock>
     </Fullscreen>
-  )
-}
-export default PoseModal
+  );
+};
+export default PoseModal;

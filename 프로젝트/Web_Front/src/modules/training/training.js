@@ -54,7 +54,7 @@ const initialState = {
   restTime: 5000,
 
   poseCount: 0,
-  routin: ["스쿼트", 2, "스쿼트", 1],
+  routin: [],
 
   logData,
 
