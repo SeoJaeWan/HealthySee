@@ -7,7 +7,11 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true
-        },
+		},
+		AL_Thumbnail: {
+			type: DataTypes.BLOB("long"),
+			allowNull: false,
+		  },
         AL_Creation_Date: {
 			type: DataTypes.DATE,
 			allowNull: false
