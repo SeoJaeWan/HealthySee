@@ -5,7 +5,10 @@ import test from "../../../Images/test.mp4";
 import { PoseInfoForm } from "./style/PoseInfoCom_style";
 import { Link } from "react-router-dom";
 
-const PoseInfoCom = ({ onChangeModal }) => {
+const PoseInfoCom = ({ onChangeModal, poseItem }) => {
+  console.log(poseItem);
+  const { EX_KO_Name, EX_Description } = poseItem.exercise;
+  const { Review_Count, Review_AVG } = poseItem.exerciserate;
   return (
     <>
       <Container>
@@ -22,14 +25,14 @@ const PoseInfoCom = ({ onChangeModal }) => {
               <div className="titleFrom">
                 <img className="profileIMG" src={IMG}></img>
                 <dl className="infoForm">
-                  <dt>스쿼트</dt>
-                  <dd>&#9734; : 4.5</dd>
-                  <dd>리뷰 : 4.5</dd>
+                  <dt>{EX_KO_Name}</dt>
+                  <dd>&#9734; : {Review_AVG}</dd>
+                  <dd>리뷰 : {Review_Count}</dd>
                 </dl>
               </div>
               <dl>
                 <dt className="descriptionForm">운동 설명</dt>
-                <dd className="explainForm">설명 넣는곳</dd>
+                <dd className="explainForm">{EX_Description}</dd>
               </dl>
             </div>
             <div className="rightForm">

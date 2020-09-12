@@ -1,17 +1,18 @@
-import { combineReducers } from "redux"
-import { all } from "redux-saga/effects"
+import { combineReducers } from "redux";
+import { all } from "redux-saga/effects";
 
-import auth, { authSaga } from "./account/auth"
-import user, { userSaga } from "./account/user"
-import boardWrite, { writeSaga } from "./board/boardWrite"
-import boardPost, { postSaga } from "./board/boardPost"
-import boardList, { postsSaga } from "./board/boardList"
-import evaluation, { evaluationSaga } from "./board/evaluation"
-import loading from "./loading"
-import mypage, { mypageSaga } from "./mypage/mypage"
-import albumList, { albumListSaga } from "./album/albumList"
-import albumWrite, { albumWriteSaga } from "./album/albumWrite"
-import training, { trainingSaga } from "./training/training"
+import auth, { authSaga } from "./account/auth";
+import user, { userSaga } from "./account/user";
+import boardWrite, { writeSaga } from "./board/boardWrite";
+import boardPost, { postSaga } from "./board/boardPost";
+import boardList, { postsSaga } from "./board/boardList";
+import evaluation, { evaluationSaga } from "./board/evaluation";
+import loading from "./loading";
+import mypage, { mypageSaga } from "./mypage/mypage";
+import albumList, { albumListSaga } from "./album/albumList";
+import albumWrite, { albumWriteSaga } from "./album/albumWrite";
+import training, { trainingSaga } from "./training/training";
+import pose, { poseSaga } from "./pose/pose";
 
 const rootReducer = combineReducers({
   auth,
@@ -24,8 +25,9 @@ const rootReducer = combineReducers({
   albumList,
   albumWrite,
   training,
+  pose,
   loading,
-})
+});
 
 export function* rootSaga() {
   yield all([
@@ -39,7 +41,8 @@ export function* rootSaga() {
     albumListSaga(),
     albumWriteSaga(),
     trainingSaga(),
-  ])
+    poseSaga(),
+  ]);
 }
 
-export default rootReducer
+export default rootReducer;

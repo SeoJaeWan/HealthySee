@@ -3,7 +3,7 @@ import { Container } from "../../style/Container_style";
 import { PoseSelectForm } from "./style/PoseSelectCom_style";
 import PoseItemCom from "./PoseItemCom";
 
-const PoseSelectCom = ({ onClick, Menu, selected }) => {
+const PoseSelectCom = ({ onClick, poseList }) => {
   return (
     <>
       <Container>
@@ -16,7 +16,9 @@ const PoseSelectCom = ({ onClick, Menu, selected }) => {
             </button>
           </div>
           <div className="ItemForm">
-            <PoseItemCom Menu={Menu} selected={selected} onClick={onClick} />
+            {poseList.map((pose, index) => (
+              <PoseItemCom pose={pose} onClick={onClick} key={index} />
+            ))}
           </div>
         </PoseSelectForm>
       </Container>

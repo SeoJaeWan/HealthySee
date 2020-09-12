@@ -42,11 +42,7 @@ const PoseModal = ({
           <StyledButton type="button" onClick={onCancel}>
             취소
           </StyledButton>
-          <StyledButton
-            type="button"
-            cyan
-            onClick={() => count > 0 && onStartButton}
-          >
+          <StyledButton type="button" cyan onClick={onStartButton}>
             시작하기
           </StyledButton>
         </div>

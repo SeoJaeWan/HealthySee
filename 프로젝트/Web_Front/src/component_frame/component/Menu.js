@@ -1,8 +1,16 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { MenuInfo, UserButton } from "../style/Menu_style"
+import React from "react";
+import { Link } from "react-router-dom";
+import { MenuInfo, UserButton } from "../style/Menu_style";
 
-const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu }) => {
+const Menu = ({
+  onClear,
+  user,
+  onLogout,
+  scrollY,
+  onChange,
+  onSearch,
+  setMenu,
+}) => {
   return (
     <MenuInfo scrollY={scrollY}>
       <UserButton scrollY={scrollY}>
@@ -64,8 +72,17 @@ const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu })
           </Link>
         </button>
       </li>
+      {user === "서요미" && (
+        <li>
+          <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
+            <Link className="linkbutton" to={`/AI`}>
+              학습 AI 만들기
+            </Link>
+          </button>
+        </li>
+      )}
     </MenuInfo>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

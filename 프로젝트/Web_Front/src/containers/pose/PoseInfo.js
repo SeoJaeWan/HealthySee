@@ -6,9 +6,13 @@ import PoseModal from "../../component_contet/common/Modal/PoseModal";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import CommentCom from "../../component_contet/component/training/comment/CommentCom";
 import RatingModal from "../../component_contet/common/Modal/RatingModal";
+import { readPose } from "../../modules/pose/pose";
 
 const PoseInfo = ({ match, history }) => {
   let dispatch = useDispatch();
+  const { poseItem } = useSelector(({ pose }) => ({
+    poseItem: pose.poseItem,
+  }));
 
   const { Pose } = match.params;
   const [modal, setModal] = useState({
@@ -36,24 +40,34 @@ const PoseInfo = ({ match, history }) => {
     history.push(`/Training/${Pose}`);
   };
 
+  useEffect(() => {
+    dispatch(readPose(Pose));
+  }, [Pose, dispatch]);
+
   return (
     <>
-      <PoseInfoCom onChangeModal={onChangeModal} />
-      <CommentCom />
-      <PoseModal
-        visible={poseModal}
-        count={count}
-        onIncrease={onIncrease}
-        onDecrease={onDecrease}
-        title="스쿼트"
-        onCancel={onChangeModal}
-        onStartButton={onStartButton}
-      />
-      <RatingModal
-        // grades={grades}
-        visible={ratingModal}
-        // onCancel={onChangeRatingModal}
-      ></RatingModal>
+      {poseItem ? (
+        <>
+          <PoseInfoCom onChangeModal={onChangeModal} poseItem={poseItem} />
+          <CommentCom />
+          <PoseModal
+            visible={poseModal}
+            count={count}
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+            title="스쿼트"
+            onCancel={onChangeModal}
+            onStartButton={onStartButton}
+          />
+          <RatingModal
+            // grades={grades}
+            visible={ratingModal}
+            // onCancel={onChangeRatingModal}
+          ></RatingModal>
+        </>
+      ) : (
+        <div></div>
+      )}
     </>
   );
 };
