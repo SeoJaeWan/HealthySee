@@ -19,7 +19,12 @@ module.exports = function(sequelize, DataTypes) {
         ACO_Creation_Date: {
 			type: DataTypes.DATE,
 			allowNull: false
-		},
+        },
+        ACO_State: {
+			type: DataTypes.INTEGER(11),
+            allowNull: false,
+            defaultValue: "0",
+        },
         Album_AL_Code: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
