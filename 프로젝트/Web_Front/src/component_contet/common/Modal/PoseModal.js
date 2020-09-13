@@ -13,6 +13,8 @@ const PoseModal = ({
   return (
     <Fullscreen visible={visible}>
       <ModalBlock>
+        {console.log(count)}
+        {console.log(count > 0)}
         <h2>{title}</h2>
         <div className="flex">
           <div className="times">
@@ -42,7 +44,11 @@ const PoseModal = ({
           <StyledButton type="button" onClick={onCancel}>
             취소
           </StyledButton>
-          <StyledButton type="button" cyan onClick={onStartButton}>
+          <StyledButton
+            type="button"
+            cyan
+            onClick={() => count > 0 && onStartButton()}
+          >
             시작하기
           </StyledButton>
         </div>
