@@ -36,12 +36,12 @@ const reportReviewAtList = async (req, res, next) => {
                 
                 })
                 // 테스트를 위해 신고가 1이상 되면 블라인드처리
-                if(ee_reporter.count > 0){
+                if(ee_reporter.count > 1){
                     await E_evaluation.update({EEV_State : 1},{where : {EEV_Code : E_Evaluation_EEV_Code}})
                     // 가지고 있는 배열에서 해당 댓글을 삭제하라는 코드
-                    responseDate.answer = 1;
+                    responseDate.answer = "1";
                 }else{
-                    responseDate.answer = 0;
+                    responseDate.answer = "0";
                 }
                 // 블라인드 처리 대상이 아닐 경우, 해당 댓글의 정보를 다시 보내줘 교체 (reportCount) or ReportCount ++ 하라는 코드
                 
@@ -50,6 +50,7 @@ const reportReviewAtList = async (req, res, next) => {
                 res.status(409).end(); 
             }
         })
+        res.json(responseDate);
   };
 
 /**
