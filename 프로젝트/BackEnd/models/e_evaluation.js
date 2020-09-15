@@ -27,6 +27,11 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         comment: "null",
       },
+          EEV_State:{
+          type: DataTypes.INTEGER(11),
+          allowNull: false,
+          defaultValue : 0,
+        },
       EEV_Creation_Date: {
         type: DataTypes.DATE,
         allowNull: false,

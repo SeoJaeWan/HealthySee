@@ -2,7 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "ee_Reporter",
+    "ee_reporter",
     {
       ERE_Code: {
         type: DataTypes.INTEGER(11),
@@ -44,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      tableName: "ee_Reporter",
+      tableName: "ee_reporter",
       timestamps: false,
     }
   );
