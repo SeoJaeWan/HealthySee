@@ -1,10 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { CommentForm, CommentsItemForm } from "./style/CommentCom_style"
 import { Container } from "../../../style/Container_style"
 import { Icon } from "semantic-ui-react"
 import CommentItemCom from "./CommentItemCom"
 
 const CommentCom = ({ grades, onChangeRatingModal }) => {
+  const [modal] = useState({
+    poseModal: undefined,
+    ratingModal: false,
+  })
+
   return (
     <>
       <Container>
@@ -14,7 +19,7 @@ const CommentCom = ({ grades, onChangeRatingModal }) => {
             작성
           </button>
           <div className="ratingButtonForm">
-            <button type="button" onClick={onChangeRatingModal}>
+            <button type="button" onClick={() => onChangeRatingModal(modal)}>
               <Icon size="big" link name="star"></Icon>
             </button>
             <h2>{grades}</h2>
