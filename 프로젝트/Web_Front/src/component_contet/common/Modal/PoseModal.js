@@ -13,17 +13,15 @@ const PoseModal = ({
   return (
     <Fullscreen visible={visible}>
       <ModalBlock>
-        {console.log(count)}
-        {console.log(count > 0)}
         <h2>{title}</h2>
         <div className="flex">
           <div className="times">
             <h3 className="context">횟수</h3>
-            <button type="button" onClick={onDecrease}>
+            <button type="button" onClick={() => onDecrease(poseCount)}>
               &lt;
             </button>
-            <h3>{count}</h3>
-            <button type="button" onClick={onIncrease}>
+            <h3>{poseCount}</h3>
+            <button type="button" onClick={() => onIncrease(poseCount)}>
               &gt;
             </button>
           </div>

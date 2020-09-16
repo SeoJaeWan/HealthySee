@@ -4,6 +4,7 @@ import { Container } from "../../../style/Container_style";
 import { Icon } from "semantic-ui-react";
 import CommentItemCom from "./CommentItemCom";
 
+<<<<<<< HEAD
 const CommentCom = ({
   grades,
   ratingModal,
@@ -14,6 +15,9 @@ const CommentCom = ({
   write,
   user,
 }) => {
+=======
+const CommentCom = ({ grades, onChangeRatingModal, ratingCount }) => {
+>>>>>>> 1dab7c6cd4447beb9bc9f9a934ef2dd4d1d1d422
   const [modal] = useState({
     poseModal: undefined,
     ratingModal: false,
@@ -39,7 +43,7 @@ const CommentCom = ({
             >
               <Icon size="big" link name="star"></Icon>
             </button>
-            <h2>{grades}</h2>
+            <h2>{ratingCount}</h2>
           </div>
         </CommentForm>
         <CommentsItemForm>

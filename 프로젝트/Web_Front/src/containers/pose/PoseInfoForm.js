@@ -56,6 +56,11 @@ const PoseInfoForm = ({ match, history }) => {
     setModal({ poseModal: false, ratingModal: false });
   };
 
+ const onComplete = (count) => {
+    setModal({ poseModal: false, ratingModal: false })
+    return setCount({ poseCount: 0, ratingCount: count })
+  }
+
   const onIncrease = (count) => {
     if (count === poseCount) {
       setCount({ poseCount: count + 1, ratingCount: 0 });
@@ -97,6 +102,7 @@ const PoseInfoForm = ({ match, history }) => {
       {poseItem ? (
         <>
           <PoseInfoCom onChangeModal={onChangeModal} poseItem={poseItem} />
+<<<<<<< HEAD
           <CommentCom
             onChangeRatingModal={onChangeModal}
             comments={poseItem.comments}
@@ -105,6 +111,9 @@ const PoseInfoForm = ({ match, history }) => {
             onWriteReview={onWriteReview}
             user={user}
           />
+=======
+          <CommentCom onChangeRatingModal={onChangeModal} ratingCount={ratingCount} />
+>>>>>>> 1dab7c6cd4447beb9bc9f9a934ef2dd4d1d1d422
           <PoseModal
             visible={poseModal}
             poseCount={poseCount}
@@ -118,6 +127,7 @@ const PoseInfoForm = ({ match, history }) => {
             visible={ratingModal}
             ratingCount={ratingCount}
             onCancel={onCancel}
+            onComplete={onComplete}
             onIncrease={onIncrease}
             onDecrease={onDecrease}
           />
