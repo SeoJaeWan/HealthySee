@@ -39,9 +39,9 @@ const PoseInfoForm = ({ match, history }) => {
     setModal({ poseModal: false, ratingModal: false })
   }
 
-  const onComplete = (count) => {
+ const onComplete = (count) => {
     setModal({ poseModal: false, ratingModal: false })
-    return setCount({ ratingCount: count })
+    return setCount({ poseCount: 0, ratingCount: count })
   }
 
   const onIncrease = (count) => {
