@@ -56,10 +56,10 @@ const PoseInfoForm = ({ match, history }) => {
     setModal({ poseModal: false, ratingModal: false });
   };
 
- const onComplete = (count) => {
-    setModal({ poseModal: false, ratingModal: false })
-    return setCount({ poseCount: 0, ratingCount: count })
-  }
+  const onComplete = (count) => {
+    setModal({ poseModal: false, ratingModal: false });
+    return setCount({ poseCount: 0, ratingCount: count });
+  };
 
   const onIncrease = (count) => {
     if (count === poseCount) {
@@ -89,7 +89,7 @@ const PoseInfoForm = ({ match, history }) => {
   };
 
   const onStartButton = () => {
-    dispatch(changeField({ key: "routin", value: [Pose, count] }));
+    dispatch(changeField({ key: "routin", value: [Pose, poseCount] }));
     history.push(`/Training/${Pose}`);
   };
 
@@ -102,7 +102,6 @@ const PoseInfoForm = ({ match, history }) => {
       {poseItem ? (
         <>
           <PoseInfoCom onChangeModal={onChangeModal} poseItem={poseItem} />
-<<<<<<< HEAD
           <CommentCom
             onChangeRatingModal={onChangeModal}
             comments={poseItem.comments}
@@ -111,9 +110,6 @@ const PoseInfoForm = ({ match, history }) => {
             onWriteReview={onWriteReview}
             user={user}
           />
-=======
-          <CommentCom onChangeRatingModal={onChangeModal} ratingCount={ratingCount} />
->>>>>>> 1dab7c6cd4447beb9bc9f9a934ef2dd4d1d1d422
           <PoseModal
             visible={poseModal}
             poseCount={poseCount}

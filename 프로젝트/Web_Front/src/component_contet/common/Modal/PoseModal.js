@@ -7,7 +7,7 @@ const PoseModal = ({
   visible,
   onIncrease,
   onDecrease,
-  count,
+  poseCount,
   onStartButton,
 }) => {
   return (
@@ -45,7 +45,7 @@ const PoseModal = ({
           <StyledButton
             type="button"
             cyan
-            onClick={() => count > 0 && onStartButton()}
+            onClick={() => poseCount > 0 && onStartButton()}
           >
             시작하기
           </StyledButton>
