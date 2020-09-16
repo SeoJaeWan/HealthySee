@@ -39,6 +39,11 @@ const PoseInfoForm = ({ match, history }) => {
     setModal({ poseModal: false, ratingModal: false })
   }
 
+  const onComplete = (count) => {
+    setModal({ poseModal: false, ratingModal: false })
+    return setCount({ ratingCount: count })
+  }
+
   const onIncrease = (count) => {
     if (count === poseCount) {
       setCount({ poseCount: count + 1, ratingCount: 0 })
@@ -80,7 +85,7 @@ const PoseInfoForm = ({ match, history }) => {
       {poseItem ? (
         <>
           <PoseInfoCom onChangeModal={onChangeModal} poseItem={poseItem} />
-          <CommentCom onChangeRatingModal={onChangeModal} />
+          <CommentCom onChangeRatingModal={onChangeModal} ratingCount={ratingCount} />
           <PoseModal
             visible={poseModal}
             poseCount={poseCount}
@@ -94,6 +99,7 @@ const PoseInfoForm = ({ match, history }) => {
             visible={ratingModal}
             ratingCount={ratingCount}
             onCancel={onCancel}
+            onComplete={onComplete}
             onIncrease={onIncrease}
             onDecrease={onDecrease}
           />
