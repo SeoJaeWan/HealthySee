@@ -1,7 +1,15 @@
-import React, { useState } from "react"
-import { Fullscreen, ModalBlock, StyledButton } from "./style/PoseModal_style"
+import React, { useState } from "react";
+import { Fullscreen, ModalBlock, StyledButton } from "./style/PoseModal_style";
 
-const PoseModal = ({ title, onCancel, visible, onIncrease, onDecrease, count, onStartButton }) => {
+const PoseModal = ({
+  title,
+  onCancel,
+  visible,
+  onIncrease,
+  onDecrease,
+  count,
+  onStartButton,
+}) => {
   return (
     <Fullscreen visible={visible}>
       <ModalBlock>
@@ -36,12 +44,16 @@ const PoseModal = ({ title, onCancel, visible, onIncrease, onDecrease, count, on
           <StyledButton type="button" onClick={onCancel}>
             취소
           </StyledButton>
-          <StyledButton type="button" cyan onClick={() => count > 0 && onStartButton()}>
+          <StyledButton
+            type="button"
+            cyan
+            onClick={() => count > 0 && onStartButton()}
+          >
             시작하기
           </StyledButton>
         </div>
       </ModalBlock>
     </Fullscreen>
-  )
-}
-export default PoseModal
+  );
+};
+export default PoseModal;

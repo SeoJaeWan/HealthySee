@@ -1,27 +1,34 @@
-import React from "react"
-import { CommentItemForm } from "./style/CommentItemCom_style"
-import { Icon } from "semantic-ui-react"
-import ActionButton from "../../../common/Modal/ActionButton"
+import React from "react";
+import { CommentItemForm } from "./style/CommentItemCom_style";
+import { Icon } from "semantic-ui-react";
+import ActionButton from "../../../common/Modal/ActionButton";
 
-const CommentItemCom = () => {
+const CommentItemCom = ({ comment, user }) => {
+  const {
+    EEV_Content,
+    EEV_Rank,
+    EEV_Writer_NickName,
+    EEV_Creation_Date,
+  } = comment;
+
   return (
     <>
       <CommentItemForm>
         <div className="contentsForm">
-          <h2>내용</h2>
+          <h2>{EEV_Content}</h2>
         </div>
         <div className="writerinfoForm">
-          <h2 className="writerFrom">작성자</h2>
-          <h3 className="dateForm">작성자</h3>
+          <h2 className="writerFrom">{EEV_Writer_NickName}</h2>
+          <h3 className="dateForm">{EEV_Creation_Date}</h3>
         </div>
         <div className="ratinginfoForm">
           <Icon size="large" name="star" />
-          <h2 className="ratingScore">4</h2>
-          <ActionButton></ActionButton>
+          <h2 className="ratingScore">{EEV_Rank}</h2>
+          {EEV_Writer_NickName === user && <ActionButton />}
         </div>
       </CommentItemForm>
     </>
-  )
-}
+  );
+};
 
-export default CommentItemCom
+export default CommentItemCom;

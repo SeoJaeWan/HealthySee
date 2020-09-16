@@ -2,14 +2,15 @@ import React from "react";
 import Sketch from "react-p5";
 import { TrainBox, Progress } from "../style/TrainingCom_style";
 
-const ExerciseCom = ({ setup, draw, count, training }) => {
+const ExerciseCom = ({ setup, draw, count, training, routin }) => {
   return (
     <>
       <Progress value="1" max="10"></Progress>
       {/* 시간 넣을곳 퍼센트 바로 해서 사용 ( training.timmer ) */}
 
       <TrainBox>
-        <h1>{count}</h1>
+        {console.log(routin)}
+        <h1>{routin[0]}</h1>
         {/* {console.log(count)} */}
         <div className="trainImg">
           {/* <p>{training.poses[training.state]}</p> */}

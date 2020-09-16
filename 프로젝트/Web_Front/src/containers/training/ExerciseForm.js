@@ -214,6 +214,7 @@ const ExerciseForm = ({ history }) => {
         draw={draw}
         count={success_count}
         training={training}
+        routin={routin}
       />
     </>
   );

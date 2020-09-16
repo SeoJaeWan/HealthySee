@@ -136,12 +136,13 @@ const MypageEditForm = ({ history }) => {
 
   const getImagePreview = () => {
     b64toBlob(cropper.current.getImageScaledToCanvas().toDataURL());
-
+    console.log("asdsadsdasda");
     setModal(!modal);
   };
   const b64toBlob = async (url) => {
     const response = await fetch(url);
     const blob = await response.blob();
+    console.log(blob);
     dispatch(updateField({ key: "originalProfile", value: blob }));
   };
 

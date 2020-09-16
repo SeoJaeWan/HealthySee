@@ -1,6 +1,6 @@
 import client from "./client";
 
-export const list = () => client.get("/exercise/list");
+export const list = () => client.get("/exercise/list?keyword=&offset=0&");
 
 export const readPose = (poseName) => client.get(`/exercise/${poseName}`);
 
@@ -9,4 +9,5 @@ export const readReview = ({ poseName, page }) =>
 
 export const writeExercise = () => client.post("/exercise");
 
-export const writeReview = () => client.post("/exercise/review/");
+export const writeReview = ({ rank, content, name }) =>
+  client.post("/exercise/review/", { rank, content, name });

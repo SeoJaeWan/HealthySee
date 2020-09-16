@@ -5,75 +5,77 @@ const ExerciseList = require("../../../models").exerciselist;
 const E_evaluation_view = require("../../../models").e_evaluation_view;
 const { Op } = require("sequelize");
 
-
 const readExerciseList = async (req, res, next) => {
   // 몇번째 운동부터 받아올 것인지 나타냄
- 
-  // 검색했을 때 검색어 기준으로 
+
+  // 검색했을 때 검색어 기준으로
+  console.log(req.query);
   let keyword = req.query.keyword;
   let responseData = {};
-  let offset = req.query.offset === null ?  0 : parseInt(req.query.offset);
+  let offset = parseInt(req.query.offset);
   let condition = {
     where: {
-        [Op.or]: [
-         { EX_Name : { [Op.like]: "%" + keyword + "%" }},
-         { EX_KO_Name : {[Op.like]: "%" + keyword + "%"}}
+      [Op.or]: [
+        { EX_Name: { [Op.like]: "%" + keyword + "%" } },
+        { EX_KO_Name: { [Op.like]: "%" + keyword + "%" } },
       ],
     },
     limit: 2,
-    offset : offset,
+    offset: offset,
   };
-  let exerciseList = await ExerciseList.findAndCountAll(condition)
-
+  let exerciseList = await ExerciseList.findAndCountAll(condition);
 
   responseData.exerciseList = exerciseList.rows;
   responseData.exerciseListCount = exerciseList.count;
   return res.json(responseData);
-}
+};
 
 // 운동정보, 랭크, 리뷰 3가지 다 받아옴.
 const readAll = async (req, res, next) => {
-    // 조회하는 운동의 이름
-    let EX_Name = req.params.EX_Name;
-    console.log(EX_Name);
-    // 요청한 유저의 정보 (요청한 유저의 리뷰를 별도로 보내줘야하기때문에 사용)
-    let username = req.body.user.username;
-    let responseData = {};       
-  
-    // 운동과 관련된 정보 조회
-    let exercise = await Exercise.findOne({
-      where: { EX_Name },
-    });
-    
-    // 운동의 평점과 관련된 정보 조회
-    let exerciserate = await ExerciseRate.findOne({
-      where : {EX_Name},
-    })
+  // 조회하는 운동의 이름
+  let EX_Name = req.params.EX_Name;
+  console.log(EX_Name);
+  // 요청한 유저의 정보 (요청한 유저의 리뷰를 별도로 보내줘야하기때문에 사용)
+  let username = req.body.user.username;
+  let responseData = {};
 
-    // 운동의 리뷰들 조회 (내 리뷰는 따로 불러오기때문에 검색자의 리뷰는 제외해서 3개 들고온다.)
-    comments = await E_evaluation_view.findAll({
-      where: { Exercise_EX_Name: EX_Name, EEV_Writer_NickName : {[Op.ne] : username},EEV_State :0},
-      limit: 3,
-    });
-  
-   
-    myComment = await E_evaluation_view.findOne({
-      where : {
-        EEV_Writer_NickName : username,Exercise_EX_Name : EX_Name
-      }
-    })
+  // 운동과 관련된 정보 조회
+  let exercise = await Exercise.findOne({
+    where: { EX_Name },
+  });
 
-    responseData.exercise = exercise;
-    responseData.exerciserate = exerciserate;
-    responseData.myComment = myComment;
-    responseData.comments = comments;
-  
-    return res.json(responseData);
-  };
-  
-  // 댓글 only 페이지로 갈 때 댓글 무한 스크롤 형식으로 받아옴.
-  const readReviews = async (req, res, next) => {
+  // 운동의 평점과 관련된 정보 조회
+  let exerciserate = await ExerciseRate.findOne({
+    where: { EX_Name },
+  });
 
+  // 운동의 리뷰들 조회 (내 리뷰는 따로 불러오기때문에 검색자의 리뷰는 제외해서 3개 들고온다.)
+  comments = await E_evaluation_view.findAll({
+    where: {
+      Exercise_EX_Name: EX_Name,
+      EEV_Writer_NickName: { [Op.ne]: username },
+      EEV_State: 0,
+    },
+    limit: 3,
+  });
+
+  myComment = await E_evaluation_view.findOne({
+    where: {
+      EEV_Writer_NickName: username,
+      Exercise_EX_Name: EX_Name,
+    },
+  });
+
+  responseData.exercise = exercise;
+  responseData.exerciserate = exerciserate;
+  responseData.myComment = myComment;
+  responseData.comments = comments;
+
+  return res.json(responseData);
+};
+
+// 댓글 only 페이지로 갈 때 댓글 무한 스크롤 형식으로 받아옴.
+const readReviews = async (req, res, next) => {
   let Exercise_EX_Name = req.params.EX_Name;
   let page = req.params.page;
   let offset = 0;
@@ -88,25 +90,23 @@ const readAll = async (req, res, next) => {
   }
 
   reviews = await E_evaluation_view.findAndCountAll({
-      where: { Exercise_EX_Name, EEV_Writer_NickName : {[Op.ne] : username}, EEV_State : 0 },
-      order: [
-        ["EEV_Code", "DESC"],
-      ],
-      limit: 20,
-      offset: offset,
-    });
-    
-    responseData.reviews = reviews.rows;
-    responseData.lastPage =
-      Math.ceil(reviews.count / 20) == 0 ? 1 : Math.ceil(reviews.count / 20);
-    
-    responseData.reviewsCount = reviews.count;
-    console.log("aaa", reviews.count);
+    where: {
+      Exercise_EX_Name,
+      EEV_Writer_NickName: { [Op.ne]: username },
+      EEV_State: 0,
+    },
+    order: [["EEV_Code", "DESC"]],
+    limit: 20,
+    offset: offset,
+  });
+
+  responseData.reviews = reviews.rows;
+  responseData.lastPage =
+    Math.ceil(reviews.count / 20) == 0 ? 1 : Math.ceil(reviews.count / 20);
+
+  responseData.reviewsCount = reviews.count;
+  console.log("aaa", reviews.count);
   return res.json(responseData);
-  };
+};
 
- 
-
-
-  
-  module.exports =  {readAll, readReviews,readExerciseList};
+module.exports = { readAll, readReviews, readExerciseList };

@@ -5,4 +5,5 @@ export const readMypage = (owner) => {
   return client.get(`/mypages/${owner}`);
 };
 
-export const updateMypage = (mypage) => client.post("/mypages", mypage, config);
+export const updateMypage = (mypage) =>
+  client.patch("/mypages", mypage, config);

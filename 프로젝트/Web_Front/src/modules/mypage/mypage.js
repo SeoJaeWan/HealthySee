@@ -62,7 +62,7 @@ const initialState = {
     img: null,
   },
   mypageError: null,
-  isUpdate: null,
+  isUpdate: false,
 };
 
 const mypage = handleActions(
@@ -81,9 +81,9 @@ const mypage = handleActions(
       mypage: {},
       mypageError,
     }),
-    [UPDATE_MYPAGE_SUCCESS]: (state, { payload: isUpdate }) => ({
+    [UPDATE_MYPAGE_SUCCESS]: (state) => ({
       ...state,
-      isUpdate,
+      isUpdate: true,
     }),
     [CHANGE_FILED]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {
