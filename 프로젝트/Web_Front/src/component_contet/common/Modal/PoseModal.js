@@ -1,21 +1,27 @@
 import React, { useState } from "react"
 import { Fullscreen, ModalBlock, StyledButton } from "./style/PoseModal_style"
 
-const PoseModal = ({ title, onCancel, visible, onIncrease, onDecrease, count, onStartButton }) => {
+const PoseModal = ({
+  title,
+  onCancel,
+  visible,
+  onIncrease,
+  onDecrease,
+  poseCount,
+  onStartButton,
+}) => {
   return (
     <Fullscreen visible={visible}>
       <ModalBlock>
-        {console.log(count)}
-        {console.log(count > 0)}
         <h2>{title}</h2>
         <div className="flex">
           <div className="times">
             <h3 className="context">횟수</h3>
-            <button type="button" onClick={onDecrease}>
+            <button type="button" onClick={() => onDecrease(poseCount)}>
               &lt;
             </button>
-            <h3>{count}</h3>
-            <button type="button" onClick={onIncrease}>
+            <h3>{poseCount}</h3>
+            <button type="button" onClick={() => onIncrease(poseCount)}>
               &gt;
             </button>
           </div>
@@ -36,7 +42,7 @@ const PoseModal = ({ title, onCancel, visible, onIncrease, onDecrease, count, on
           <StyledButton type="button" onClick={onCancel}>
             취소
           </StyledButton>
-          <StyledButton type="button" cyan onClick={() => count > 0 && onStartButton()}>
+          <StyledButton type="button" cyan onClick={() => poseCount > 0 && onStartButton()}>
             시작하기
           </StyledButton>
         </div>

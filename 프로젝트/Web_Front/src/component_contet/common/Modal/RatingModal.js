@@ -1,9 +1,10 @@
 import React from "react"
 import { Fullscreen, ModalBlock, StyledButton } from "./style/PoseModal_style"
 
-const RatingModal = ({ onIncrease, onDecrease, onCancel, visible, ratingCount }) => {
+const RatingModal = ({ onIncrease, onComplete, onDecrease, onCancel, visible, ratingCount }) => {
   return (
     <Fullscreen visible={visible}>
+      {console.log(ratingCount)}
       <ModalBlock>
         <div className="flex">
           <h3 className="context">평점</h3>
@@ -19,7 +20,7 @@ const RatingModal = ({ onIncrease, onDecrease, onCancel, visible, ratingCount })
           <StyledButton type="button" onClick={() => onCancel(visible)}>
             취소
           </StyledButton>
-          <StyledButton type="button" cyan onClick={() => onCancel(visible)}>
+          <StyledButton type="button" cyan onClick={() => onComplete(ratingCount)}>
             완료
           </StyledButton>
         </div>
