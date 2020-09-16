@@ -13,7 +13,7 @@ const AlbumList = ({ album, onChange, owner, match }) => {
         {/* 타이틀 바는 픽스드로 고정  */}
         <div className="titleBar">
           <h2 className="title">앨범</h2>
-          {console.log(match)}
+          {console.log(album)}
           <div className="flexgrow">
             {owner && (
               <>

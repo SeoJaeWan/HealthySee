@@ -10,7 +10,7 @@ const AlbumWrite = ({ match, onChange, onClick, field }) => {
   return (
     <>
       <Container>
-        {console.log(match)}
+        {console.log(field)}
         <AlbumWriteForm>
           {/* 헤더폼 */}
           <div className="titleBar">

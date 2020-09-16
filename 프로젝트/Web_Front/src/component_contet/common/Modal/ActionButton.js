@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import { ButtonForm } from "./style/ActionButton_style.js";
-import AskModal from "./AskModal";
+import React, { useState } from "react"
+import { ButtonForm } from "./style/ActionButton_style.js"
+import AskModal from "./AskModal"
 
 const ActionButton = ({ onChange, onDelete }) => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false)
   const onRemoveClick = () => {
-    setModal(true);
-  };
+    setModal(true)
+  }
   const onCancel = () => {
-    setModal(false);
-  };
+    setModal(false)
+  }
   const onConfirm = () => {
-    setModal(false);
-    onDelete();
-  };
+    setModal(false)
+    onDelete()
+  }
 
   return (
     <>
-      {console.log(modal)}
       <ButtonForm>
         <button type="button" onClick={onChange}>
           수정
@@ -28,14 +27,9 @@ const ActionButton = ({ onChange, onDelete }) => {
         </button>
       </ButtonForm>
 
-      <AskModal
-        visible={modal}
-        title="삭제"
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-      />
+      <AskModal visible={modal} title="삭제" onConfirm={onConfirm} onCancel={onCancel} />
     </>
-  );
-};
+  )
+}
 
-export default ActionButton;
+export default ActionButton
