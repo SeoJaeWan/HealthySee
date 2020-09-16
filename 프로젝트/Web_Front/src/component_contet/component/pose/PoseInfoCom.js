@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import { Container } from "../../style/Container_style";
-import IMG from "../../../Images/defaultImg.jpg";
-import test from "../../../Images/test.mp4";
-import { PoseInfoForm } from "./style/PoseInfoCom_style";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { Container } from "../../style/Container_style"
+import IMG from "../../../Images/defaultImg.jpg"
+import test from "../../../Images/test.mp4"
+import { PoseInfoForm } from "./style/PoseInfoCom_style"
+import { Link } from "react-router-dom"
 
-const PoseInfoCom = ({ onChangeModal, poseItem }) => {
-  const { EX_KO_Name, EX_Description } = poseItem.exercise;
-  const { Review_Count, Review_AVG } = poseItem.exerciserate;
-
-  const [modal] = useState({
-    poseModal: false,
-    ratingModal: undefined,
-  });
+const PoseInfoCom = ({ onChangeModal, poseItem, poseModal }) => {
+  const { EX_KO_Name, EX_Description } = poseItem.exercise
+  const { Review_Count, Review_AVG } = poseItem.exerciserate
 
   return (
     <>
@@ -20,7 +15,7 @@ const PoseInfoCom = ({ onChangeModal, poseItem }) => {
         <PoseInfoForm>
           <div className="topButton">
             <Link to="/Pose">뒤로가기</Link>
-            <button type="button" onClick={() => onChangeModal(modal)}>
+            <button type="button" onClick={() => onChangeModal(poseModal)}>
               운동하기
             </button>
           </div>
@@ -48,7 +43,7 @@ const PoseInfoCom = ({ onChangeModal, poseItem }) => {
         </PoseInfoForm>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default PoseInfoCom;
+export default PoseInfoCom
