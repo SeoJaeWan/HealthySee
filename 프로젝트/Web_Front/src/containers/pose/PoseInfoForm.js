@@ -26,7 +26,7 @@ const PoseInfoForm = ({ match, history }) => {
   const { poseModal, ratingModal } = modal
 
   const [count, setCount] = useState({
-    poseCount: 0,
+    poseCount: 1,
     ratingCount: 0,
   })
 
@@ -58,14 +58,15 @@ const PoseInfoForm = ({ match, history }) => {
   }
 
   const onIncrease = (count) => {
+    console.log(count, poseCount, ratingCount)
     if (count === poseCount) {
-      setCount({ poseCount: count + 1, ratingCount: 0 })
+      setCount({ poseCount: count + 1, ratingCount: ratingCount })
       count = poseCount
     }
 
     if (ratingCount < 5) {
       if (count === ratingCount) {
-        setCount({ poseCount: 0, ratingCount: count + 1 })
+        setCount({ poseCount: poseCount, ratingCount: count + 1 })
         count = ratingCount
       }
     }
