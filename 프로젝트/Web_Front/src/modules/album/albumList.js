@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { takeLatest } from "redux-saga/effects";
+import { RenderImg } from "../../containers/common/RenderImg";
 import * as AlbumAPI from "../../lib/api/album";
 
 import createRequestSaga, {
@@ -17,9 +18,9 @@ export const list = createAction(LIST, ({ name, year, AL_Code }) => ({
   year,
   AL_Code,
 }));
-export const changeField = createAction(CHANGE_FIELD, ({ form, data }) => ({
-  form,
-  data,
+export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
+  key,
+  value,
 }));
 export const initialize = createAction(INITIALIZE);
 
@@ -31,23 +32,43 @@ export function* albumListSaga() {
 
 const initialState = {
   year: null,
+
   album: [],
 
+  img: [],
   remainCount: null,
 };
 
 const albumList = handleActions(
   {
     [INITIALIZE]: () => initialState,
-    [CHANGE_FIELD]: (state, { payload: { form, data } }) => ({
-      ...state,
-      [form]: data,
-    }),
-    [LIST_SUCCESS]: (state, { payload: albumData }) => ({
-      ...state,
-      album: state.album.concat(albumData.albumList),
-      remainCount: albumData.AlbumCount,
-    }),
+    [CHANGE_FIELD]: (state, { payload: { key, value } }) => {
+      if (key === "img") value = state[key].concat(value);
+      return {
+        ...state,
+        [key]: value,
+      };
+    },
+    [LIST_SUCCESS]: (state, { payload: albumData }) => {
+      // const album = albumData.albumList.map((data) => {
+      //   let blob = new Blob([Uint8Array.from(data.AL_Thumbnail.data).buffer], {
+      //     type: "image/png",
+      //   });
+      //   console.log(blob);
+      //   return {
+      //     ...data,
+      //     AL_Thumbnail: RenderImg({ blob }),
+      //   };
+      // });
+
+      // console.log("dsaasdasdsda", album);
+
+      return {
+        ...state,
+        album: state.album.concat(albumData.albumList),
+        option: { ...state.option, remainCount: albumData.AlbumCount },
+      };
+    },
   },
   initialState
 );

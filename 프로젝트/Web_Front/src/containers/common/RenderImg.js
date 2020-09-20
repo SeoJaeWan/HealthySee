@@ -1,7 +1,8 @@
-export const RenderImg = (file, update, dispatch) => {
+export const RenderImg = (blob, update, dispatch) => {
   let render = new FileReader();
 
-  render.readAsDataURL(file);
+  console.log(blob);
+  render.readAsDataURL(blob);
 
   render.onloadend = () => {
     // console.log(render.result);

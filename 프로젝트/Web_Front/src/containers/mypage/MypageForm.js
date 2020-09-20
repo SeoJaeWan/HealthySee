@@ -25,6 +25,7 @@ const MypageForm = ({ match, history }) => {
     if (mypage.ME_Profile_Photo) {
       let data = mypage.ME_Profile_Photo.data;
       let type = mypage.ME_Profile_Type;
+      console.log(type);
 
       let blob = new Blob([Uint8Array.from(data).buffer], { type });
 
