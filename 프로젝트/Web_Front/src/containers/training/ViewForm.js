@@ -5,13 +5,18 @@ import RestForm from "./RestForm";
 import ExerciseForm from "./ExerciseForm";
 import { changeField, clearLogData } from "../../modules/training/training";
 
-const ViewForm = () => {
+const ViewForm = ({ match }) => {
   const { logging, restTime, exerciseFinish } = useSelector(({ training }) => ({
     logging: training.logging,
     restTime: training.restTime,
     exerciseFinish: training.exerciseFinish,
   }));
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (match.params.type === "app")
+      dispatch(changeField({ key: "type", value: "app" }));
+  }, [match, dispatch]);
 
   useEffect(() => {
     if (exerciseFinish) {

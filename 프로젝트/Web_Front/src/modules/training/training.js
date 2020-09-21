@@ -54,12 +54,14 @@ const initialState = {
   restTime: 5000,
 
   poseCount: 0,
-  routin: [],
+  routin: ["squat", 5],
 
   logData,
 
   logging: false,
   exerciseFinish: false,
+
+  type: null,
 };
 
 const training = handleActions(
@@ -76,6 +78,21 @@ const training = handleActions(
     [INCREASE_FIELD]: (state, { payload: { key, value } }) => {
       let train = "logData";
       console.log(key);
+
+      if (state.type === "app") {
+        let currentResult = {
+          ...JSON.parse(sessionStorage.getItem("result")),
+          [state.poseCount / 2]: {
+            ...state.logData,
+            pose: state.routin[state.poseCount],
+          },
+        };
+
+        console.log(currentResult);
+
+        sessionStorage.setItem("result", JSON.stringify(currentResult));
+      }
+
       if (value) {
         return produce(state, (draft) => {
           draft[train][key] = state[train][key].concat(value);
@@ -92,6 +109,18 @@ const training = handleActions(
         logging: true,
         logData,
       };
+
+      if (state.type === "app") {
+        let currentResult = {
+          ...JSON.parse(sessionStorage.getItem("result")),
+          [state.poseCount / 2]: {
+            ...state.logData,
+            pose: state.routin[state.poseCount],
+          },
+        };
+
+        sessionStorage.setItem("result", JSON.stringify(currentResult));
+      }
 
       // 운동 종료
       if (state.set - 1 === 0) {

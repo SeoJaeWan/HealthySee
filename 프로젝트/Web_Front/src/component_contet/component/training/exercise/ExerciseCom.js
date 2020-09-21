@@ -1,16 +1,18 @@
 import React from "react";
 import Sketch from "react-p5";
-import { TrainBox, Progress } from "../style/TrainingCom_style";
+import { TrainBox, Progress, TrainBoxApp } from "../style/TrainingCom_style";
 
 const ExerciseCom = ({ setup, draw, count, training, routin }) => {
   return (
     <>
-      <Progress value="1" max="10"></Progress>
-      {/* 시간 넣을곳 퍼센트 바로 해서 사용 ( training.timmer ) */}
+      {/* 앱 화면을 위해서 주석 */}
+      {/* <Progress value="1" max="10"></Progress>
+      시간 넣을곳 퍼센트 바로 해서 사용 ( training.timmer ) */}
 
-      <TrainBox>
-        {console.log(routin)}
-        <h1>{routin[0]}</h1>
+      <TrainBoxApp>
+        {/* 앱 화면을 위해서 주석 */}
+        {/* {console.log(routin)}
+        <h1>{routin[0]}</h1> */}
         {/* {console.log(count)} */}
         <div className="trainImg">
           {/* <p>{training.poses[training.state]}</p> */}
@@ -24,7 +26,7 @@ const ExerciseCom = ({ setup, draw, count, training, routin }) => {
           {/* {console.log(pose)} */}
           <Sketch setup={setup} draw={draw} />
         </div>
-      </TrainBox>
+      </TrainBoxApp>
 
       <div>
         {/* <div>횟수 : {info.count}</div>

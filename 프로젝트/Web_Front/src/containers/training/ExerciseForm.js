@@ -10,7 +10,7 @@ import {
 } from "../../modules/training/training";
 import ExerciseCom from "../../component_contet/component/training/exercise/ExerciseCom";
 
-const ExerciseForm = ({ history }) => {
+const ExerciseForm = ({ history, match }) => {
   let brain; // AI를 사용하기 위한 변수
   let poseNet; // 카메라를 통해 사용자의 동작을 입력받음
 
@@ -23,11 +23,14 @@ const ExerciseForm = ({ history }) => {
 
   let dispatch = useDispatch();
   // 서버에 전송할 정보
-  let { routin, poseCount, success_count } = useSelector(({ training }) => ({
-    routin: training.routin,
-    poseCount: training.poseCount,
-    success_count: training.success_count,
-  }));
+  let { routin, poseCount, type, success_count } = useSelector(
+    ({ training }) => ({
+      routin: training.routin,
+      poseCount: training.poseCount,
+      success_count: training.success_count,
+      type: training.type,
+    })
+  );
 
   let [view, setView] = useState(true); // 시작 전 모달창을 출력시카기 위해서 사용
   // 운동 페이지에서만 쓰일 정보
@@ -69,7 +72,8 @@ const ExerciseForm = ({ history }) => {
     console.log(
       results[0].label === poses[state],
       results[0].label,
-      poses[state]
+      poses[state],
+      match.params.type
     );
     if (results[0].label === poses[state]) {
       if (
@@ -83,6 +87,7 @@ const ExerciseForm = ({ history }) => {
         timmer = new Date().getTime() - timmer;
         dispatch(increaseField({ key: "success_count", value: timmer }));
 
+        // 운동 완료 시 로비 화면으로 이동
         if (count === routin[poseCount + 1]) {
           poseNet.video = null;
           dispatch(loggingExercise());
@@ -180,12 +185,9 @@ const ExerciseForm = ({ history }) => {
     }
   };
 
-  const goBack = () => {
-    history.goBack();
-  };
-
   // 제일 처음 모달창 10초 뒤 제거
   useEffect(() => {
+    console.log(match.params);
     let modal;
     let clock;
     modal = setTimeout(() => {

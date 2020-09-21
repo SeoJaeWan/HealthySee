@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes } from "styled-components";
 // import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const loaderP = keyframes`
@@ -11,7 +11,29 @@ export const loaderP = keyframes`
   100% {
     opacity: 0;
   }
-`
+`;
+
+export const TrainBoxApp = styled.div`
+  width: 100%;
+
+  padding-top: 40px;
+
+  .trainImg {
+    width: 35%;
+    position: absolute;
+    border: 5px solid #676a72;
+    font-size: 300px;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    bottom: 0;
+  }
+  .trainCapture {
+  }
+`;
 
 export const TrainBox = styled.div`
   width: 100%;
@@ -35,7 +57,7 @@ export const TrainBox = styled.div`
     border: 5px solid #676a72;
     width: 35%;
   }
-`
+`;
 export const Counter = styled.p`
   width: 75%;
   height: 75%;
@@ -45,7 +67,7 @@ export const Counter = styled.p`
   transition: opacity 1s;
   display: ${(props) => (props.CountView ? "block" : "none")};
   animation: ${loaderP} 1s;
-`
+`;
 
 export const Progress = styled.progress`
   -webkit-appearance: none;
@@ -66,4 +88,4 @@ export const Progress = styled.progress`
 
     border-radius: 30px;
   }
-`
+`;
