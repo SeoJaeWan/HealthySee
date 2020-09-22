@@ -16,7 +16,7 @@ const ViewForm = ({ match }) => {
   useEffect(() => {
     if (match.params.type === "app")
       dispatch(changeField({ key: "type", value: "app" }));
-  }, [match, dispatch]);
+  }, [match.params.type, dispatch]);
 
   useEffect(() => {
     if (exerciseFinish) {
