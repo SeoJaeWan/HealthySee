@@ -1,8 +1,16 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { MenuInfo, UserButton } from "../style/Menu_style"
+import React from "react";
+import { Link } from "react-router-dom";
+import { MenuInfo, UserButton } from "../style/Menu_style";
 
-const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu }) => {
+const Menu = ({
+  onClear,
+  user,
+  onLogout,
+  scrollY,
+  onChange,
+  onSearch,
+  setMenu,
+}) => {
   return (
     <MenuInfo scrollY={scrollY}>
       <UserButton scrollY={scrollY}>
@@ -45,7 +53,7 @@ const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu })
       </li>
       <li>
         <button type="submit" onClick={(onClear, () => setMenu(setMenu))}>
-          <Link className="linkbutton" to="/Set">
+          <Link className="linkbutton" to="/Plan">
             세트운동
           </Link>
         </button>
@@ -74,7 +82,7 @@ const Menu = ({ onClear, user, onLogout, scrollY, onChange, onSearch, setMenu })
         </li>
       )}
     </MenuInfo>
-  )
-}
+  );
+};
 
-export default Menu
+export default Menu;

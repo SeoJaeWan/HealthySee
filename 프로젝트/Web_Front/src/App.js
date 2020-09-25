@@ -14,7 +14,7 @@ import { createGlobalStyle } from "styled-components";
 import HeaderForm from "./containers/header/HeaderForm";
 import Pose from "./Page/Pose";
 import Ai from "./Page/Ai";
-import Set from "./Page/Set";
+import Plan from "./Page/Plan";
 
 const App = () => {
   const { type } = useSelector(({ training }) => ({
@@ -65,7 +65,7 @@ const App = () => {
       <Route path="/MyPage" component={MyPage} />
       <Route path="/Album/:name" component={Album} />
       <Route path="/Training/:type" component={Training} />
-      <Route path="/Set" component={Set} />
+      <Route path="/Plan" component={Plan} />
       <Route path="/Pose" component={Pose} />
       <Route path="/AI" component={Ai} />
     </div>

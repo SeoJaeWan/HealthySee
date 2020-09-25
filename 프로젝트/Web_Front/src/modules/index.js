@@ -13,6 +13,7 @@ import albumList, { albumListSaga } from "./album/albumList";
 import albumWrite, { albumWriteSaga } from "./album/albumWrite";
 import training, { trainingSaga } from "./training/training";
 import pose, { poseSaga } from "./pose/pose";
+import plan, { planSaga } from "./plan/plan";
 
 const rootReducer = combineReducers({
   auth,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   albumWrite,
   training,
   pose,
+  plan,
   loading,
 });
 
@@ -42,6 +44,7 @@ export function* rootSaga() {
     albumWriteSaga(),
     trainingSaga(),
     poseSaga(),
+    planSaga(),
   ]);
 }
 
