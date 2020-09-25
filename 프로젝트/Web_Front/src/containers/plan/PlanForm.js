@@ -10,9 +10,9 @@ const PlanForm = ({ history }) => {
   }));
   const dispatch = useDispatch();
 
-  const onClick = (setName, code) => {
+  const onClick = (code) => {
     dispatch(readPlan(code));
-    history.push(`/Plan/${setName}`);
+    history.push(`/Plan/${code}`);
   };
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const PlanForm = ({ history }) => {
 
   return (
     <>
-      {" "}
       {planList ? (
         <PlanSelectCom onClick={onClick} planList={planList} />
       ) : (

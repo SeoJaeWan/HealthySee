@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import PlanAddCom from "../../component_contet/component/set/PlanAddCom";
 import { v4 as uuid } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { listPose } from "../../modules/pose/pose";
 
-const PlanAddForm = ({ history }) => {
+const PlanAddForm = () => {
+  // 운동 리스트
+  const { poseList } = useSelector(({ pose }) => ({
+    poseList: pose.poseList,
+  }));
+  const dispatch = useDispatch();
+
   const itemsFromBackend = [
     {
       id: uuid(),
@@ -24,10 +32,6 @@ const PlanAddForm = ({ history }) => {
   };
 
   const [columns, setColumns] = useState(columnsFromBackend);
-
-  const onClick = (setName) => {
-    history.push(`/Set/${setName}`);
-  };
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -66,8 +70,14 @@ const PlanAddForm = ({ history }) => {
     }
   };
 
+  // 운동 불러오기
+  useEffect(() => {
+    dispatch(listPose());
+  }, [dispatch]);
+
   return (
     <>
+      {/* {console.log(poseList)}  운동 리스트 */}
       <PlanAddCom
         columns={columns}
         onDragEnd={onDragEnd}

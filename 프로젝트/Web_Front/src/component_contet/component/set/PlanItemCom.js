@@ -26,7 +26,7 @@ const PlanItemCom = ({ onClick, plan }) => {
           <button
             type="button"
             className="moreButton"
-            onClick={() => onClick(PL_Title, PL_Code)}
+            onClick={() => onClick(PL_Code)}
           >
             <Icon link name="play" />
           </button>
