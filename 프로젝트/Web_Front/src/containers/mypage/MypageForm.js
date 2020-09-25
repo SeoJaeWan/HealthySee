@@ -25,7 +25,6 @@ const MypageForm = ({ match, history }) => {
     if (mypage.ME_Profile_Photo) {
       let data = mypage.ME_Profile_Photo.data;
       let type = mypage.ME_Profile_Type;
-      console.log(type);
 
       let blob = new Blob([Uint8Array.from(data).buffer], { type });
 
@@ -38,7 +37,7 @@ const MypageForm = ({ match, history }) => {
   useEffect(() => {
     console.log(user, match.params.username);
     dispatch(readMypage(match.params.username));
-  }, [dispatch, match, user]);
+  }, [dispatch, match.params.username, user]);
 
   if (!mypage || loading) return null;
   return (

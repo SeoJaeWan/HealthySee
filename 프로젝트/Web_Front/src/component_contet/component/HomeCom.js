@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HomeForm, Img, Home, Thumblist } from "../style/HomeCom_style.js";
 import { Link } from "react-router-dom";
 import ReactHelmet from "../../containers/common/ReactHelmet.js";
 import { Container } from "../style/Container_style.js";
+import { useState } from "react";
 
 const HomeCom = () => {
   return (
