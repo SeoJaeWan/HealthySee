@@ -42,7 +42,7 @@ const writeAlbum = async (req, res, next) => {
 
 const writeComment = async (req, res, next) => {
   let ACO_Content = req.body.ACO_Content;
-  let Album_AL_Code = req.body.Album_AL_Code;
+  let Album_AL_Code = req.params.AL_Code;
   let ACO_Writer_NickName = req.body.user.username;
   let ACO_Creation_Date = today;
   let Album_Account_AC_NickName = req.body.Album_Account_AC_NickName;
@@ -55,7 +55,6 @@ const writeComment = async (req, res, next) => {
     Album_Account_AC_NickName,
   });
 
-  req.params.AL_Code = Album_AL_Code;
   req.params.page = req.body.page ? req.body.page : 1;
 
   next();

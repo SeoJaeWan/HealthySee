@@ -9,28 +9,48 @@ import {
   getAlbumPicture,
   initialize,
   readAlbum,
+  writeComment,
 } from "../../modules/album/albumList";
 import { RenderImg } from "../common/RenderImg";
 
 const AlbumReadForm = ({ match }) => {
-  const { albumDetail, picturesCount, picture, comments, img } = useSelector(
-    ({ albumList }) => ({
-      albumDetail: albumList.albumDetail,
-      picturesCount: albumList.picturesCount,
-      picture: albumList.picture,
-      comments: albumList.comments,
-      img: albumList.img,
-    })
-  );
+  const {
+    albumDetail,
+    picturesCount,
+    picture,
+    comments,
+    comment,
+    img,
+  } = useSelector(({ albumList }) => ({
+    albumDetail: albumList.albumDetail,
+    picturesCount: albumList.picturesCount,
+    picture: albumList.picture,
+    comments: albumList.comments,
+    comment: albumList.comment,
+    img: albumList.img,
+  }));
 
   const dispatch = useDispatch();
+
+  const onChangeComment = (e) => {
+    dispatch(changeField({ key: "comment", value: e.target.value }));
+  };
+
+  const onWriteReview = () => {
+    dispatch(
+      writeComment({
+        code: match.params.code,
+        ACO_Content: comment,
+        Album_Account_AC_NickName: albumDetail.Account_AC_NickName,
+      })
+    );
+  };
 
   useEffect(() => {
     dispatch(readAlbum(match.params.code));
     return () => dispatch(initialize());
   }, [match.params.code, dispatch]);
 
-  console.log(picturesCount);
   useEffect(() => {
     if (picture[0] && picture.length !== picturesCount) {
       dispatch(
@@ -54,7 +74,12 @@ const AlbumReadForm = ({ match }) => {
       {img.length === picturesCount ? (
         <>
           <AlbumInfoCom match={match} imgs={img} albumDetail={albumDetail} />
-          <CommentCom comments={comments} />
+          <CommentCom
+            comments={comments}
+            comment={comment}
+            onChangeValue={onChangeComment}
+            onWriteReview={onWriteReview}
+          />
         </>
       ) : (
         <div>loading</div>

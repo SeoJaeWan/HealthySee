@@ -23,6 +23,12 @@ const [
 const CHANGE_FIELD = "albumList/CHANGE_FIELD";
 const INITIALIZE = "albumList/INITIALIZE";
 
+const [
+  WRITE_COMMENT,
+  WRITE_COMMENT_SUCCESS,
+  WRITE_COMMENT_FAILURE,
+] = createRequestActionTypes("albumList/WRITE_COMMENT");
+
 export const list = createAction(LIST, ({ name, year, AL_Code }) => ({
   name,
   year,
@@ -39,17 +45,31 @@ export const getAlbumPicture = createAction(
 );
 export const initialize = createAction(INITIALIZE);
 
+export const writeComment = createAction(
+  WRITE_COMMENT,
+  ({ code, ACO_Content, Album_Account_AC_NickName }) => ({
+    code,
+    ACO_Content,
+    Album_Account_AC_NickName,
+  })
+);
+
 const listSage = createRequestSaga(LIST, AlbumAPI.readAlbumList);
 const readAlbumSaga = createRequestSaga(READ_ALBUM, AlbumAPI.readAlbum);
 const getAlbumPictureSaga = createRequestSaga(
   GET_ALBUM_PICTURE,
   AlbumAPI.getAlbumPicture
 );
+const writeCommentSaga = createRequestSaga(
+  WRITE_COMMENT,
+  AlbumAPI.writeComment
+);
 
 export function* albumListSaga() {
   yield takeLatest(LIST, listSage);
   yield takeLatest(READ_ALBUM, readAlbumSaga);
   yield takeLatest(GET_ALBUM_PICTURE, getAlbumPictureSaga);
+  yield takeLatest(WRITE_COMMENT, writeCommentSaga);
 }
 
 const initialState = {
@@ -62,6 +82,7 @@ const initialState = {
   picturesCount: null,
 
   comments: null,
+  comment: "",
 
   img: [],
   remainCount: null,
@@ -94,6 +115,10 @@ const albumList = handleActions(
     [GET_ALBUM_PICTURE_SUCCESS]: (state, { payload: picture }) => ({
       ...state,
       picture: state.picture.concat(picture),
+    }),
+    [WRITE_COMMENT_SUCCESS]: (state, { payload: comment }) => ({
+      ...state,
+      comment: comment,
     }),
   },
   initialState

@@ -24,3 +24,13 @@ export const readAlbumList = ({ name, year, AL_Code }) => {
 
   return client.get(`/album/lists?${queryString}`);
 };
+
+export const writeComment = ({
+  code,
+  ACO_Content,
+  Album_Account_AC_NickName,
+}) =>
+  client.post(`/album/comments/${code}`, {
+    ACO_Content,
+    Album_Account_AC_NickName,
+  });
