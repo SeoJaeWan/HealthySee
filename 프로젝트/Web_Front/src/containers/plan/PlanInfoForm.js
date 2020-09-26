@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min"
-import { changeField } from "../../modules/training/training"
-import RatingModal from "../../component_contet/common/Modal/RatingModal"
-import SetInfoCom from "../../component_contet/component/set/PlanInfoCom"
-import CommentCom from "../../component_contet/component/training/comment/CommentCom"
-import { changeComment, readPose, writeReview } from "../../modules/pose/pose"
-import PlanInfoCom from "../../component_contet/component/set/PlanInfoCom"
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { changeField } from "../../modules/training/training";
+import RatingModal from "../../component_contet/common/Modal/RatingModal";
+import SetInfoCom from "../../component_contet/component/plan/PlanInfoCom";
+import CommentCom from "../../component_contet/component/training/comment/CommentCom";
+import { changeComment, readPose, writeReview } from "../../modules/pose/pose";
+import PlanInfoCom from "../../component_contet/component/plan/PlanInfoCom";
 
 const SetInfoForm = ({ history, match }) => {
   const onClick = (setName) => {
-    history.push(`/Set/${setName}`)
-  }
+    history.push(`/Set/${setName}`);
+  };
 
   return (
     <>
@@ -27,7 +27,7 @@ const SetInfoForm = ({ history, match }) => {
         onDecrease={onDecrease}
       /> */}
     </>
-  )
-}
+  );
+};
 
-export default withRouter(SetInfoForm)
+export default withRouter(SetInfoForm);

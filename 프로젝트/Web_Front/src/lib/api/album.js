@@ -8,6 +8,10 @@ export const updateAlbum = (formDate, code) =>
 
 export const deleteAlbum = (code) => client.delete(`/album/posts/${code}`);
 
+export const readAlbum = (code) => client.get(`/album/posts/${code}`);
+export const getAlbumPicture = ({ p_code, a_code }) =>
+  client.get(`/album/posts/picture/${p_code}&${a_code}`);
+
 export const readAlbumList = ({ name, year, AL_Code }) => {
   console.log({ name, year, AL_Code });
   const queryString = qs.stringify({

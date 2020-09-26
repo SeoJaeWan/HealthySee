@@ -1,12 +1,21 @@
-import React from "react"
-import { Container } from "../../style/Container_style"
-import { Link } from "react-router-dom"
-import { AlbumForm, Flex } from "./style/AlbumList_style"
-import AlbumItemCom from "./AlbumItemCom"
-import Selectyear from "../../common/Selectyear"
-import { Icon } from "semantic-ui-react"
+import React from "react";
+import { Container } from "../../style/Container_style";
+import { Link } from "react-router-dom";
+import { AlbumForm, Flex } from "./style/AlbumList_style";
+import AlbumItemCom from "./AlbumItemCom";
+import Selectyear from "../../common/Selectyear";
+import { Icon } from "semantic-ui-react";
 
-const AlbumList = ({ onReadAlbum, album, img, onChange, owner, match, user, onClickEdit }) => {
+const AlbumList = ({
+  onReadAlbum,
+  album,
+  img,
+  onChange,
+  owner,
+  match,
+  user,
+  onClickEdit,
+}) => {
   return (
     <Container>
       <AlbumForm>
@@ -16,7 +25,10 @@ const AlbumList = ({ onReadAlbum, album, img, onChange, owner, match, user, onCl
           {owner && (
             <>
               <button>
-                <Link className="buttonLink" to={`/Album/${match.params.name}/Write`}>
+                <Link
+                  className="buttonLink"
+                  to={`/Album/${match.params.name}/Write`}
+                >
                   <Icon link name="write"></Icon>
                 </Link>
               </button>
@@ -28,20 +40,18 @@ const AlbumList = ({ onReadAlbum, album, img, onChange, owner, match, user, onCl
       </AlbumForm>
       <Flex>
         {album.map((item, index) => (
-          <>
-            <AlbumItemCom
-              onReadAlbum={onReadAlbum}
-              onClickEdit={onClickEdit}
-              img={img}
-              albumItem={item}
-              key={index}
-              index={index}
-            />
-          </>
+          <AlbumItemCom
+            onReadAlbum={onReadAlbum}
+            onClickEdit={onClickEdit}
+            img={img}
+            albumItem={item}
+            key={index}
+            index={index}
+          />
         ))}
       </Flex>
     </Container>
-  )
-}
+  );
+};
 
-export default AlbumList
+export default AlbumList;

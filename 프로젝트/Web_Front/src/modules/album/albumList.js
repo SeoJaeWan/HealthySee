@@ -10,6 +10,16 @@ import createRequestSaga, {
 const [LIST, LIST_SUCCESS, LIST_FAILURE] = createRequestActionTypes(
   "albumList/LIST"
 );
+const [
+  READ_ALBUM,
+  READ_ALBUM_SUCCESS,
+  READ_ALBUM_FAILURE,
+] = createRequestActionTypes("albumList/READ_ALBUM");
+const [
+  GET_ALBUM_PICTURE,
+  GET_ALBUM_PICTURE_SUCCESS,
+  GET_ALBUM_PICTURE_FAILURE,
+] = createRequestActionTypes("albumList/GET_ALBUM_PICTURE");
 const CHANGE_FIELD = "albumList/CHANGE_FIELD";
 const INITIALIZE = "albumList/INITIALIZE";
 
@@ -22,18 +32,36 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
+export const readAlbum = createAction(READ_ALBUM, (code) => code);
+export const getAlbumPicture = createAction(
+  GET_ALBUM_PICTURE,
+  ({ p_code, a_code }) => ({ p_code, a_code })
+);
 export const initialize = createAction(INITIALIZE);
 
 const listSage = createRequestSaga(LIST, AlbumAPI.readAlbumList);
+const readAlbumSaga = createRequestSaga(READ_ALBUM, AlbumAPI.readAlbum);
+const getAlbumPictureSaga = createRequestSaga(
+  GET_ALBUM_PICTURE,
+  AlbumAPI.getAlbumPicture
+);
 
 export function* albumListSaga() {
   yield takeLatest(LIST, listSage);
+  yield takeLatest(READ_ALBUM, readAlbumSaga);
+  yield takeLatest(GET_ALBUM_PICTURE, getAlbumPictureSaga);
 }
 
 const initialState = {
   year: null,
 
   album: [],
+
+  albumDetail: null,
+  picture: [],
+  picturesCount: null,
+
+  comments: null,
 
   img: [],
   remainCount: null,
@@ -50,25 +78,23 @@ const albumList = handleActions(
       };
     },
     [LIST_SUCCESS]: (state, { payload: albumData }) => {
-      // const album = albumData.albumList.map((data) => {
-      //   let blob = new Blob([Uint8Array.from(data.AL_Thumbnail.data).buffer], {
-      //     type: "image/png",
-      //   });
-      //   console.log(blob);
-      //   return {
-      //     ...data,
-      //     AL_Thumbnail: RenderImg({ blob }),
-      //   };
-      // });
-
-      // console.log("dsaasdasdsda", album);
-
       return {
         ...state,
         album: state.album.concat(albumData.albumList),
         option: { ...state.option, remainCount: albumData.AlbumCount },
       };
     },
+    [READ_ALBUM_SUCCESS]: (state, { payload: albumDetailData }) => ({
+      ...state,
+      albumDetail: albumDetailData.albumDetail,
+      picture: state.picture.concat(albumDetailData.picture),
+      picturesCount: albumDetailData.picturesCount,
+      comments: albumDetailData.comments,
+    }),
+    [GET_ALBUM_PICTURE_SUCCESS]: (state, { payload: picture }) => ({
+      ...state,
+      picture: state.picture.concat(picture),
+    }),
   },
   initialState
 );

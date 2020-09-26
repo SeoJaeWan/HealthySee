@@ -1,9 +1,9 @@
-import React from "react"
-import { Route } from "react-router-dom"
-import PlanAddForm from "../containers/plan/PlanAddForm"
-import PlanForm from "../containers/plan/PlanForm"
-import PlanInfoForm from "../containers/plan/PlanInfoForm"
-import PlanWriteForm from "../containers/plan/PlanWriteForm"
+import React from "react";
+import { Route } from "react-router-dom";
+import PlanAddForm from "../containers/plan/PlanAddForm";
+import PlanForm from "../containers/plan/PlanForm";
+import PlanInfoForm from "../containers/plan/PlanInfoForm";
+import PlanWriteForm from "../containers/plan/PlanWriteForm";
 
 const Plan = ({ match }) => {
   return (
@@ -13,7 +13,7 @@ const Plan = ({ match }) => {
       <Route path={"/Plan/Add"} component={PlanAddForm} />
       <Route path={`${match.path}/:PlanName/Info`} component={PlanInfoForm} />
     </>
-  )
-}
+  );
+};
 
-export default Plan
+export default Plan;

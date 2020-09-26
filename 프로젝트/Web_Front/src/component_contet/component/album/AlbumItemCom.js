@@ -1,8 +1,8 @@
-import React from "react"
-import { AlbumItemForm, AlbumEdit } from "./style/AlbumItemCom_style"
-import ImageGallery from "react-image-gallery"
-import { Icon } from "semantic-ui-react"
-import defaultImg from "../../../Images/defaultImg.jpg"
+import React from "react";
+import { AlbumItemForm, AlbumEdit } from "./style/AlbumItemCom_style";
+import ImageGallery from "react-image-gallery";
+import { Icon } from "semantic-ui-react";
+import defaultImg from "../../../Images/defaultImg.jpg";
 
 const AlbumItemCom = ({ albumItem, img, index, onClickEdit, onReadAlbum }) => {
   return (
@@ -10,7 +10,9 @@ const AlbumItemCom = ({ albumItem, img, index, onClickEdit, onReadAlbum }) => {
       <AlbumItemForm>
         <div className="titleForm">
           {/* 시간  */}
-          <h3>작성일 : {new Date(albumItem.AL_Creation_Date).toLocaleDateString()}</h3>
+          <h3>
+            작성일 : {new Date(albumItem.AL_Creation_Date).toLocaleDateString()}
+          </h3>
           {/* 댓글 수 */}
           <h3>댓글수 : </h3>
           {/* 편집버튼  */}
@@ -19,7 +21,10 @@ const AlbumItemCom = ({ albumItem, img, index, onClickEdit, onReadAlbum }) => {
           </button>
         </div>
         <div className="galleryItem">
-          <img onClick={onReadAlbum} src={img[index]}></img>
+          <img
+            onClick={() => onReadAlbum(albumItem.AL_Code)}
+            src={img[index]}
+          ></img>
         </div>
         <div className="commentsForm">
           {/* 댓글 ( 가장 처음 댓글 ) */}
@@ -31,7 +36,7 @@ const AlbumItemCom = ({ albumItem, img, index, onClickEdit, onReadAlbum }) => {
         </div>
       </AlbumItemForm>
     </>
-  )
-}
+  );
+};
 
-export default AlbumItemCom
+export default AlbumItemCom;
