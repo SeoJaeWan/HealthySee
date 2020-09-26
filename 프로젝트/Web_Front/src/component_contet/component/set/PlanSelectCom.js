@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Container } from "../../style/Container_style";
-import PlanItemCom from "./PlanItemCom";
-import { PlanSelectForm } from "./style/PlanSelectCom_style";
+import React from "react"
+import { Link } from "react-router-dom"
+import { Container } from "../../style/Container_style"
+import PlanItemCom from "./PlanItemCom"
+import { PlanSelectForm } from "./style/PlanSelectCom_style"
 
-const PlanSelectCom = ({ onClick, planList }) => {
+const PlanSelectCom = ({ onClick, planList, pose }) => {
   return (
     <>
       <Container>
@@ -20,13 +20,13 @@ const PlanSelectCom = ({ onClick, planList }) => {
           <div className="itemForm">
             {planList &&
               planList.map((plan, index) => (
-                <PlanItemCom key={index} onClick={onClick} plan={plan} />
+                <PlanItemCom key={index} onClick={onClick} plan={plan} pose={pose} />
               ))}
           </div>
         </PlanSelectForm>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default PlanSelectCom;
+export default PlanSelectCom

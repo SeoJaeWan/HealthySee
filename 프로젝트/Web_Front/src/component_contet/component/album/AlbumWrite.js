@@ -10,7 +10,7 @@ const AlbumWrite = ({ match, onChange, onClick, field }) => {
   return (
     <>
       <Container>
-        {console.log(field)}
+        {console.log(img)}
         <AlbumWriteForm>
           {/* 헤더폼 */}
           <div className="titleBar">
@@ -38,7 +38,14 @@ const AlbumWrite = ({ match, onChange, onClick, field }) => {
               />
             </div>
           </div>
-
+          {/* 이거는 편집일때 나오게 하는거 */}
+          <dl className="editForm">
+            <dt>파일명 :</dt>
+            <dd>파일명 나오게</dd>
+            <button type="submit" className="deleteButton">
+              X
+            </button>
+          </dl>
           <div className="context">
             <div className="imageView">
               <GalleryWrite>

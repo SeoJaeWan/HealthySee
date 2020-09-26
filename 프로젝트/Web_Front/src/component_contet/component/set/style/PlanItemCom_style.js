@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const PlanItemForm = styled.div`
   width: 98%;
@@ -28,7 +28,8 @@ export const PlanItemForm = styled.div`
     font-size: 2.5rem;
   }
   h3 {
-    margin: 1rem;
+    font-size: 2rem;
+    margin: 0.5rem;
   }
 
   .moreButton {
@@ -66,4 +67,4 @@ export const PlanItemForm = styled.div`
   img {
     max-width: 100%;
   }
-`;
+`

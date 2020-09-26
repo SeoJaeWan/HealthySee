@@ -2,26 +2,55 @@ import React from "react"
 import { Container } from "../../style/Container_style"
 import { Link } from "react-router-dom"
 import { AlbumEditForm } from "./style/AlbumEdit_style"
-import MonthCom from "./MonthCom"
+import ImageGallery from "react-image-gallery"
+import { GalleryWrite } from "./style/AlbumWriteGallery_style"
 import Selectyear from "../../common/Selectyear"
-import AlbumEditItemCom from "./AlbumEditItemCom"
 
-const AlbumEditCom = () => {
+const AlbumEditCom = ({ match, field, onChange }) => {
+  const { content, scope, img } = field
   return (
     <Container>
       <AlbumEditForm>
+        {/* 헤더폼 */}
         <div className="titleBar">
-          <div className="title">앨범</div>
-          <div className="flexgrow">
-            <button className="addButton">
-              <Link to={`/Album/1/`}>완료</Link>
-            </button>
-            <Selectyear />
+          <button className="backButton">
+            <Link to={`/Album/${match.params.name}`}>뒤로가기</Link>
+          </button>
+          <button className="addButton">완료</button>
+          {/* 첨부 파일 버튼 */}
+          <div className="fileButton">
+            <label className="inputImg" htmlFor="file">
+              첨부 하기 &nbsp;
+            </label>
+            <label className="fileInput" htmlFor="file">
+              &#8626;
+            </label>
+            <input
+              className="hidden"
+              id="file"
+              type="file"
+              name="file"
+              multiple
+              onChange={onChange}
+            />
           </div>
         </div>
+        <div className="context">
+          <div className="imageView">
+            <GalleryWrite>
+              <ImageGallery
+                thumbnailPosition={"bottom"}
+                showPlayButton={false}
+                showFullscreenButton={false}
+                items={img}
+              />
+            </GalleryWrite>
+          </div>
+
+          {/* 내용 넣는 폼 */}
+          <textarea className="contentDiv" type="text" value={content} onChange={onChange} />
+        </div>
       </AlbumEditForm>
-      <MonthCom />
-      <AlbumEditItemCom />
     </Container>
   )
 }

@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const PoseInfoForm = styled.div`
   margin: 1.5rem 0;
@@ -72,7 +72,9 @@ export const PoseInfoForm = styled.div`
     font-size: 2rem;
   }
   .explainForm {
-    margin: 1.5rem;
+    width: 100%;
+    line-height: 2rem;
+    padding: 1.5rem;
     font-size: 2rem;
   }
   .rightForm {
@@ -97,4 +99,4 @@ export const PoseInfoForm = styled.div`
     min-width: 5rem;
   `}
   }
-`;
+`

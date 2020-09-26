@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const GalleryWrite = styled.div`
   margin: 0 auto;
@@ -150,6 +151,9 @@ export const GalleryWrite = styled.div`
     width: 100%;
     display: block;
     height: 400px;
+    ${media.mobile`
+    height: 200px;
+    `}
   }
   .image-gallery-content.left .image-gallery-slide .image-gallery-image,
   .image-gallery-content.right .image-gallery-slide .image-gallery-image {
@@ -181,6 +185,9 @@ export const GalleryWrite = styled.div`
     position: relative;
     white-space: nowrap;
     text-align: center;
+    ${media.mobile`
+    height: 200px;
+    `}
   }
 
   .image-gallery-slide {

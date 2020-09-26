@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const PlanPoseItemForm = styled.div`
   width: 20%;
@@ -41,8 +41,8 @@ export const PlanPoseItemForm = styled.div`
     margin: 0;
     text-align: center;
     font-size: 2.5rem;
+    color: #676a72;
   }
-
   h3 {
     flex-grow: 1;
     text-align: center;
@@ -90,4 +90,4 @@ export const PlanPoseItemForm = styled.div`
   }
   .menu-wrapper {
   }
-`;
+`

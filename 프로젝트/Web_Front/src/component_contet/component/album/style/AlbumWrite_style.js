@@ -11,16 +11,25 @@ export const AlbumWriteForm = styled.div`
     align-items: center;
     justify-content: space-between;
     margin: 2rem 0 4rem 0;
+    ${media.mobile`
+    margin: 0rem 0 3.5rem 0;
+    `}
   }
 
   .backButton {
     font-size: 2rem;
     margin-left: 4rem;
+    ${media.mobile`
+    margin-left: 1rem;
+    `}
   }
 
   .addButton {
     margin-right: 3rem;
     font-size: 2rem;
+    ${media.mobile`
+    margin-right: 1rem;
+    `}
   }
 
   .flex {
@@ -38,6 +47,10 @@ export const AlbumWriteForm = styled.div`
     position: absolute;
     top: 60px;
     right: 10px;
+    ${media.mobile`
+    top: 45px;
+    right: 10px;
+    `}
   }
   .fileInput {
     font-family: none;
@@ -56,10 +69,29 @@ export const AlbumWriteForm = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-
+  .editForm {
+    border: 3px solid #676a72;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 0 2rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  dd {
+    padding-left: 1rem;
+  }
+  .deleteButton {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    color: white;
+    background-color: #676a72;
+    text-align: center;
+    margin-left: 1rem;
+  }
   .context {
     margin-top: 5rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
   }
 
@@ -68,6 +100,10 @@ export const AlbumWriteForm = styled.div`
     align-items: center;
     height: 600px;
     width: 50%;
+    ${media.mobile`
+    width: 100%;
+    height: 300px;
+    `}
   }
 
   textarea {
@@ -82,5 +118,10 @@ export const AlbumWriteForm = styled.div`
     overflow: auto;
     padding: 8px;
     box-shadow: 0px 4px 10px -3px black;
+    ${media.mobile`
+    width: 100%;
+    height: 300px;
+    margin: 1rem 0 2% 0;
+    `}
   }
 `

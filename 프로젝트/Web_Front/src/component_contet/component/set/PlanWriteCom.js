@@ -1,36 +1,29 @@
-import React from "react";
-import { Icon } from "semantic-ui-react";
-import { useHorizontalScroll } from "../../../containers/common/SideScroll";
-import IMG from "../../../Images/defaultImg.jpg";
-import { Container } from "../../style/Container_style";
-import PlanPoseItemCom from "./PlanPoseItemCom";
-import { PlanWriteForm } from "./style/PlanWriteCom_style";
+import React from "react"
+import { Icon } from "semantic-ui-react"
+import { useHorizontalScroll } from "../../../containers/common/SideScroll"
+import IMG from "../../../Images/defaultImg.jpg"
+import { Container } from "../../style/Container_style"
+import PlanPoseItemCom from "./PlanPoseItemCom"
+import { PlanWriteForm } from "./style/PlanWriteCom_style"
 
 const PlanWriteCom = ({ onClick }) => {
-  const a = useHorizontalScroll();
+  const scroll = useHorizontalScroll()
   return (
     <>
       <Container>
         <PlanWriteForm>
           <div className="titleFrom">
-            <h1>제목</h1>
+            <h1>세트 명 : </h1>
             <input type="text" className="titleInput"></input>
-            <button
-              type="button"
-              className="writeButton"
-              onClick={() => onClick("")}
-            >
+            <h2>휴식 시간 : 30s</h2>
+            <button type="button" className="writeButton" onClick={() => onClick("")}>
               만들기
             </button>
-            <button
-              type="button"
-              className="addButton"
-              onClick={() => onClick("Add")}
-            >
-              추가하기
+            <button type="button" className="addButton" onClick={() => onClick("Add")}>
+              운동 설정
             </button>
           </div>
-          <div ref={a} className="content">
+          <div ref={scroll} className="content">
             <PlanPoseItemCom />
           </div>
           <h1 className="setTitle">세트 설명</h1>
@@ -40,7 +33,7 @@ const PlanWriteCom = ({ onClick }) => {
         </PlanWriteForm>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default PlanWriteCom;
+export default PlanWriteCom

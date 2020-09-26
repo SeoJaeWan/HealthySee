@@ -1,60 +1,33 @@
 import React from "react"
-import { AlbumItemForm } from "./style/AlbumItemCom_style"
+import { AlbumItemForm, AlbumEdit } from "./style/AlbumItemCom_style"
 import ImageGallery from "react-image-gallery"
 import { Icon } from "semantic-ui-react"
-import { GalleryItem } from "./style/AlbumItemGallery_style"
 import defaultImg from "../../../Images/defaultImg.jpg"
 
-const AlbumItemCom = (albumItem) => {
-  const images = [
-    {
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-    {
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-  ]
-
+const AlbumItemCom = ({ albumItem, img, index, onClickEdit, onReadAlbum }) => {
   return (
     <>
       <AlbumItemForm>
         <div className="titleForm">
           {/* 시간  */}
-          <h4>{albumItem.albumItem.AL_Creation_Date}</h4>
+          <h3>작성일 : {new Date(albumItem.AL_Creation_Date).toLocaleDateString()}</h3>
+          {/* 댓글 수 */}
+          <h3>댓글수 : </h3>
           {/* 편집버튼  */}
-          <button>
-            <Icon name="ellipsis horizontal"></Icon>
+          <button type="submit" className="editButton" onClick={onClickEdit}>
+            편집
           </button>
         </div>
-        <div className="contentForm">
-          {/* 본문 내용 */}
-          <pre>작성 내용 </pre>
-          {/* 이미지 미리보기 뷰 */}
+        <div className="galleryItem">
+          <img onClick={onReadAlbum} src={img[index]}></img>
         </div>
-        <GalleryItem>
-          <ImageGallery items={images} showPlayButton={false} showFullscreenButton={false} />
-        </GalleryItem>
         <div className="commentsForm">
-          {/* 댓글 ( 추천수 가장 많은거 ) */}
-          <p colSpan="2">댓글</p>
+          {/* 댓글 ( 가장 처음 댓글 ) */}
+          <dl>
+            <dd className="writeContents">작성내용</dd>
+            <dt className="writer">작성자</dt>
+            <dd className="writeDate">작성일</dd>
+          </dl>
         </div>
       </AlbumItemForm>
     </>

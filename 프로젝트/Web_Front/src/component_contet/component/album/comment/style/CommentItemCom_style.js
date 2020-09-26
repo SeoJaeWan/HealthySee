@@ -9,7 +9,7 @@ export const CommentItemForm = styled.div`
     padding: 0.5rem;
     border: 3px solid #676a72;
     height: 6rem;
-    width: 75%;
+    width: 85%;
     ${media.mobile`   
     width: 50%;
   `}
@@ -23,7 +23,7 @@ export const CommentItemForm = styled.div`
   .writerinfoForm {
     margin: 1rem 0.5rem 0 0;
     text-align: center;
-    width: 15%;
+    width: 10%;
     min-width: 5rem;
     height: 6rem;
   }
@@ -39,9 +39,8 @@ export const CommentItemForm = styled.div`
 
   .ratinginfoForm {
     margin: 0.3rem 0.5rem 0 0;
-    width: 5rem;
-    min-width: 5rem;
-    font-size: 1.5rem;
+    width: 10rem;
+    min-width: 10rem;
     height: 6rem;
     text-align: center;
     display: flex;
@@ -57,30 +56,6 @@ export const CommentItemForm = styled.div`
 
   .ratingScore {
     margin: 1.5rem 0 1rem 0;
-    line-height: 1.5rem;
-    font-size: 3rem;
-  }
-
-  .reportForm {
-    margin: 0.5rem 0.3rem 0.5rem 0.5rem;
-    width: 7rem;
-    min-width: 7rem;
-    font-size: 1.5rem;
-    height: 6rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    ${media.mobile`  
-    
-    width: 6rem;
-    min-width: 6rem;  
-  `}
-  }
-
-  .reportScore {
-    margin: 1.5rem 0 1.5rem 0;
     line-height: 1.5rem;
     font-size: 3rem;
   }

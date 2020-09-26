@@ -1,19 +1,24 @@
 import styled from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const AlbumForm = styled.div`
-  width: 90%;
   margin-top: 2rem;
-  margin-left: 10%;
   font-size: 2rem;
+  margin-left: 1rem;
 
   .titleBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
   }
   .title {
     font-size: 3rem;
     margin-left: 2rem;
+    ${media.mobile`
+    font-size: 2rem;
+    margin-left: 0rem;
+    `}
   }
   .addButton {
     margin-right: 3rem;
@@ -44,6 +49,7 @@ export const AlbumForm = styled.div`
   }
 `
 export const Flex = styled.div`
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
 `
