@@ -5,17 +5,23 @@ import AlbumInfoCom from "../../component_contet/component/album/AlbumInfoCom";
 import AlbumList from "../../component_contet/component/album/AlbumList";
 import CommentCom from "../../component_contet/component/album/comment/CommentCom";
 import {
+  changeField,
   getAlbumPicture,
   initialize,
   readAlbum,
 } from "../../modules/album/albumList";
+import { RenderImg } from "../common/RenderImg";
 
-const AlbumReadForm = ({ match, history }) => {
-  const { picturesCount, picture, comments } = useSelector(({ albumList }) => ({
-    picturesCount: albumList.picturesCount,
-    picture: albumList.picture,
-    comments: albumList.comments,
-  }));
+const AlbumReadForm = ({ match }) => {
+  const { albumDetail, picturesCount, picture, comments, img } = useSelector(
+    ({ albumList }) => ({
+      albumDetail: albumList.albumDetail,
+      picturesCount: albumList.picturesCount,
+      picture: albumList.picture,
+      comments: albumList.comments,
+      img: albumList.img,
+    })
+  );
 
   const dispatch = useDispatch();
 
@@ -33,13 +39,26 @@ const AlbumReadForm = ({ match, history }) => {
           a_code: match.params.code,
         })
       );
+    } else if (picture.length === picturesCount) {
+      picture.map((picture) => {
+        let blob = new Blob([Uint8Array.from(picture.AP_Picture.data).buffer], {
+          type: "image/jpg",
+        });
+        RenderImg(blob, changeField, dispatch);
+      });
     }
   }, [dispatch, match.params.code, picture, picturesCount]);
 
   return (
     <>
-      <AlbumInfoCom match={match} />
-      <CommentCom />
+      {img.length === picturesCount ? (
+        <>
+          <AlbumInfoCom match={match} imgs={img} albumDetail={albumDetail} />
+          <CommentCom comments={comments} />
+        </>
+      ) : (
+        <div>loading</div>
+      )}
     </>
   );
 };

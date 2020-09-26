@@ -13,6 +13,8 @@ const AlbumListForm = ({ match, history }) => {
     user: user.user,
   }));
 
+  const albumOwner = match.params.name;
+
   const onClickEdit = () => {
     history.push(`/Album/a/Edit`);
   };
@@ -24,15 +26,13 @@ const AlbumListForm = ({ match, history }) => {
   };
 
   const onReadAlbum = (code) => {
-    history.push(`/Album/${match.params.name}/read/${code}`);
+    history.push(`/Album/${albumOwner}/read/${code}`);
   };
 
   useEffect(() => {
-    console.log("반복");
-    console.log(match.params);
-    dispatch(list({ name: match.params.name, year: 2020 }));
+    dispatch(list({ name: albumOwner, year: 2020 }));
     return () => dispatch(initialize());
-  }, [dispatch, match.params.name]);
+  }, [dispatch, albumOwner]);
 
   useEffect(() => {
     if (album) {
@@ -40,7 +40,7 @@ const AlbumListForm = ({ match, history }) => {
         let blob = new Blob(
           [Uint8Array.from(albumData.AL_Thumbnail.data).buffer],
           {
-            type: "image/png",
+            type: "image/jpg",
           }
         );
         RenderImg(blob, changeField, dispatch);
@@ -57,8 +57,8 @@ const AlbumListForm = ({ match, history }) => {
         onReadAlbum={onReadAlbum}
         onClickEdit={onClickEdit}
         match={match}
-        user={user}
-        owner={match.params.name === user}
+        user={albumOwner}
+        owner={albumOwner === user}
       />
     </>
   );

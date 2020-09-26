@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import { CommentForm, CommentsItemForm } from "./style/CommentCom_style"
-import { Container } from "../../../style/Container_style"
-import { Icon } from "semantic-ui-react"
-import CommentItemCom from "./CommentItemCom"
+import React, { useState } from "react";
+import { CommentForm, CommentsItemForm } from "./style/CommentCom_style";
+import { Container } from "../../../style/Container_style";
+import { Icon } from "semantic-ui-react";
+import CommentItemCom from "./CommentItemCom";
 
-const CommentCom = ({ onChangeValue, onWriteReview }) => {
+const CommentCom = ({ onChangeValue, onWriteReview, comments }) => {
   return (
     <>
       <Container>
@@ -15,11 +15,13 @@ const CommentCom = ({ onChangeValue, onWriteReview }) => {
           </button>
         </CommentForm>
         <CommentsItemForm>
-          <CommentItemCom />
+          {comments.map((comment, index) => (
+            <CommentItemCom comment={comment} key={index} />
+          ))}
         </CommentsItemForm>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default CommentCom
+export default CommentCom;

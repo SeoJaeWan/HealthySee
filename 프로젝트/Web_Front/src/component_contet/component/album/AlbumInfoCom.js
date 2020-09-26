@@ -5,29 +5,12 @@ import { Container } from "../../style/Container_style";
 import ImageGallery from "react-image-gallery";
 import { GalleryWrite } from "./style/AlbumWriteGallery_style";
 
-const AlbumInfoCom = ({ match, onChange, onClick, field }) => {
-  const images = [
-    {
-      original: "https://picsum.photos/id/1018/1024/1024/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1018/1024/1024/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1018/1024/1024/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1018/1024/1024/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1018/1024/1024/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-  ];
+const AlbumInfoCom = ({ match, imgs, albumDetail }) => {
+  const images = imgs.map((img) => ({
+    original: img,
+    thumbnail: img,
+  }));
+
   return (
     <Container>
       <AlbumInfoForm>
@@ -52,7 +35,7 @@ const AlbumInfoCom = ({ match, onChange, onClick, field }) => {
 
           {/* 내용 넣는 폼 */}
           <div className="contentDiv">
-            <pre> </pre>
+            <pre>{albumDetail.AL_Content}</pre>
           </div>
         </div>
       </AlbumInfoForm>
