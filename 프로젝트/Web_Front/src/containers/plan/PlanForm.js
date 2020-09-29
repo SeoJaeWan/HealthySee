@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import PlanSelectCom from "../../component_contet/component/plan/PlanSelectCom";
-import { listPlan, readPlan } from "../../modules/plan/plan";
+import { initialize, listPlan, readPlan } from "../../modules/plan/plan";
 
 const PlanForm = ({ history }) => {
   const { planList } = useSelector(({ plan }) => ({
@@ -17,6 +17,7 @@ const PlanForm = ({ history }) => {
 
   useEffect(() => {
     dispatch(listPlan());
+    return () => dispatch(initialize());
   }, [dispatch]);
 
   return (

@@ -1,6 +1,6 @@
-import React from "react"
-import { PlanPoseItemForm } from "./style/PlanPoseItemCom_style"
-import IMG from "../../../Images/defaultImg.jpg"
+import React from "react";
+import { PlanPoseItemForm } from "./style/PlanPoseItemCom_style";
+import IMG from "../../../Images/defaultImg.jpg";
 
 const PlanPoseItemCom = ({ onClick, poseName, poseCount }) => {
   return (
@@ -14,7 +14,7 @@ const PlanPoseItemCom = ({ onClick, poseName, poseCount }) => {
         <div className="contents"></div>
       </PlanPoseItemForm>
     </>
-  )
-}
+  );
+};
 
-export default PlanPoseItemCom
+export default PlanPoseItemCom;
