@@ -7,6 +7,7 @@ export const PoseInfoForm = styled.div`
   .topButton {
     font-size: 3rem;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin: 2rem auto;
     width: 80%;

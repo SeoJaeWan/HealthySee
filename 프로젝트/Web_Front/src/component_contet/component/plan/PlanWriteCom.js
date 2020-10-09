@@ -1,12 +1,10 @@
 import React from "react"
-import { Icon } from "semantic-ui-react"
 import { useHorizontalScroll } from "../../../containers/common/SideScroll"
-import IMG from "../../../Images/defaultImg.jpg"
 import { Container } from "../../style/Container_style"
 import PlanPoseItemCom from "./PlanPoseItemCom"
 import { PlanWriteForm } from "./style/PlanWriteCom_style"
 
-const PlanWriteCom = ({ onClick }) => {
+const PlanWriteCom = ({ onClick, writeList, match }) => {
   const scroll = useHorizontalScroll()
   return (
     <>
@@ -24,7 +22,15 @@ const PlanWriteCom = ({ onClick }) => {
             </button>
           </div>
           <div ref={scroll} className="content">
-            <PlanPoseItemCom />
+            {writeList !== undefined
+              ? writeList.AddPose.items.map((items, index) => (
+                  <PlanPoseItemCom
+                    key={index}
+                    poseName={items.PoseName}
+                    poseCount={items.PoseCount}
+                  />
+                ))
+              : ""}
           </div>
           <h1 className="setTitle">세트 설명</h1>
           <div className="textForm">

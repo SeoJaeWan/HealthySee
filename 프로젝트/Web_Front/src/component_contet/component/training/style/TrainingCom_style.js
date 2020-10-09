@@ -52,21 +52,44 @@ export const TrainBox = styled.div`
   padding-top: 40px;
   display: flex;
   justify-content: center;
-  .trainImg {
-    width: 35%;
-    position: relative;
-    border: 5px solid #676a72;
-    font-size: 300px;
-    text-align: center;
-
+  flex-wrap: wrap;
+  .infoForm {
+    width: 80%;
     display: flex;
-    align-items: center;
+    justify-content: space-around;
+  }
+
+  h2 {
+    margin: 1rem;
+    font-size: 3rem;
+  }
+  .trainForm {
+    width: 100%;
+    display: flex;
     justify-content: center;
+  }
+
+  .trainImg {
+    border: 5px solid #676a72;
+    margin: 0 4rem 0 4rem;
+    width: 510px;
+    height: 610px;
   }
   .trainCapture {
     margin-left: 2rem;
     border: 5px solid #676a72;
-    width: 35%;
+    margin: 0 4rem 0 4rem;
+    width: 510px;
+    height: 610px;
+  }
+
+  img {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 `
 export const Counter = styled.p`

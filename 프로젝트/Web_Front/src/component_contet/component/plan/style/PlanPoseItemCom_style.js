@@ -68,7 +68,7 @@ export const PlanPoseItemForm = styled.div`
   }
   .contents {
     margin: 1rem;
-    max-height: 18rem;
+    height: 16rem;
     width: 17.5rem;
     border-radius: 20px;
     overflow: hidden;
@@ -81,13 +81,11 @@ export const PlanPoseItemForm = styled.div`
   }
 
   img {
-    max-width: 100%;
-  }
-
-  .menu-item-wrapper {
-    width: 17.5rem;
-    vertical-align: middle;
-  }
-  .menu-wrapper {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 `

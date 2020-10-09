@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const PoseResultForm = styled.div`
   margin: 1.5rem 0;
@@ -65,25 +65,33 @@ export const PoseResultForm = styled.div`
     width: 50%;
     font-size: 1.8rem;
   }
-
-  .descriptionForm {
-    margin-top: 1.5rem;
-    padding-left: 2rem;
-    font-size: 2rem;
+  .trainingform {
+    display: flex;
   }
-  .explainForm {
-    margin: 1.5rem;
+  .trainingContext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    width: 40%;
+    height: 4rem;
+    line-height: 3rem;
+  }
+  .trainingInfo {
+    width: 50%;
+    display: flex;
+    align-items: center;
     font-size: 2rem;
   }
   .rightForm {
+    min-height: 20rem;
+    min-width: 24rem;
     width: 50%;
-    min-width: 35rem;
     margin: 1rem;
     border-radius: 20px;
     border: 3px solid #676a72;
     ${media.half`
   width: 100%;
-  min-width: 100%;
 `}
   }
 
@@ -97,4 +105,8 @@ export const PoseResultForm = styled.div`
   min-width: 5rem;
 `}
   }
-`;
+
+  recharts-surface {
+    width: 100%;
+  }
+`

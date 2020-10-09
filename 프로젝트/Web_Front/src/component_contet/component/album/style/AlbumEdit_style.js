@@ -69,7 +69,25 @@ export const AlbumEditForm = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-
+  .editForm {
+    border: 3px solid #676a72;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0 0 2rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  dd {
+    padding-left: 1rem;
+  }
+  .deleteButton {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    color: white;
+    background-color: #676a72;
+    text-align: center;
+    margin-left: 1rem;
+  }
   .context {
     margin-top: 5rem;
     display: flex;

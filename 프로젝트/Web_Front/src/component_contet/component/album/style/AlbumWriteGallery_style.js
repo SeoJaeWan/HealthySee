@@ -3,7 +3,7 @@ import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const GalleryWrite = styled.div`
   margin: 0 auto;
-
+  width: 100%;
   .image-gallery-icon {
     color: #fff;
     transition: all 0.2s ease-out;

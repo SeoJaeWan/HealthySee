@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { AlbumEditForm } from "./style/AlbumEdit_style"
 import ImageGallery from "react-image-gallery"
 import { GalleryWrite } from "./style/AlbumWriteGallery_style"
-import Selectyear from "../../common/Selectyear"
 
 const AlbumEditCom = ({ match, field, onChange }) => {
   const { content, scope, img } = field
@@ -35,6 +34,15 @@ const AlbumEditCom = ({ match, field, onChange }) => {
             />
           </div>
         </div>
+        {/* 이거는 편집일때 나오게 하는거 */}
+        <dl className="editForm">
+          <dt>파일명 :</dt>
+          <dd>파일명 나오게</dd>
+          {/* x누르면 지우게 */}
+          <button type="submit" className="deleteButton">
+            X
+          </button>
+        </dl>
         <div className="context">
           <div className="imageView">
             <GalleryWrite>

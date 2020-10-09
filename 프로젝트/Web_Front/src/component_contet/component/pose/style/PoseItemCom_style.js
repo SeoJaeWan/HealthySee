@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle";
+import styled, { keyframes } from "styled-components"
+import { media } from "../../../../lib/ReactiveStyle/ReactiveStyle"
 
 export const PoseItemForm = styled.div`
   width: 20%;
@@ -88,7 +88,7 @@ export const PoseItemForm = styled.div`
   }
   .content {
     margin: 1rem;
-    max-height: 18rem;
+    height: 18rem;
     width: 17.5rem;
     border-radius: 20px;
     overflow: hidden;
@@ -104,10 +104,12 @@ export const PoseItemForm = styled.div`
     max-width: 100%;
   }
 
-  .menu-item-wrapper {
-    width: 17.5rem;
-    vertical-align: middle;
+  .contextIMG {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
-  .menu-wrapper {
-  }
-`;
+`
