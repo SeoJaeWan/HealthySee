@@ -44,7 +44,6 @@ const ExerciseForm = ({ history, match }) => {
   // AI 입력 및 해야할 운동 저장
   const brainLoaded = () => {
     console.log("pose classification ready!")
-
     poses = brain.neuralNetworkData.meta.outputs[0].uniqueValues
     poses.pop()
     poses = poses.concat(poses[0])
@@ -79,6 +78,7 @@ const ExerciseForm = ({ history, match }) => {
         state = 0
         count++
         console.log(new Date().getTime())
+
         timmer = new Date().getTime() - timmer
         dispatch(increaseField({ key: "success_count", value: timmer }))
 
@@ -116,7 +116,12 @@ const ExerciseForm = ({ history, match }) => {
 
   // 최초 화면 설정
   const setup = (p5) => {
-    let canvas = p5.createCanvas(window.innerWidth, window.innerHeight / 2.5)
+    let canvas
+    {
+      type === true
+        ? (canvas = p5.createCanvas(window.innerWidth, window.innerHeight / 2.5))
+        : (canvas = p5.createCanvas(500, 600))
+    }
     let div = p5.select(".trainCapture")
 
     div.child(canvas)
@@ -149,7 +154,11 @@ const ExerciseForm = ({ history, match }) => {
   const draw = (p5) => {
     if (training.capture) {
       p5.push() // 새로운 도면 시작
-      p5.image(training.capture, 0, 0, window.innerWidth, window.innerHeight / 2.5)
+      {
+        type === true
+          ? p5.image(training.capture, 0, 0, window.innerWidth, window.innerHeight / 2.5)
+          : p5.image(training.capture, 0, 0, 500, 600)
+      }
 
       // 입력 받은 포즈의 골격 등을 화면에 출력
       if (training.pose) {
@@ -208,11 +217,13 @@ const ExerciseForm = ({ history, match }) => {
         onCancel={() => history.goBack()}
       />
       <ExerciseCom
+        type={type}
         setup={setup}
         draw={draw}
         count={success_count}
         training={training}
         routin={routin}
+        timmer={timmer}
       />
     </>
   )

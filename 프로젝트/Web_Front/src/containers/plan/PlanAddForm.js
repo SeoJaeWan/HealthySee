@@ -1,64 +1,83 @@
-import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import PlanAddCom from "../../component_contet/component/plan/PlanAddCom";
-import { v4 as uuid } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
-import { listPose } from "../../modules/pose/pose";
+import React, { useEffect, useState } from "react"
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min"
+import PlanAddCom from "../../component_contet/component/plan/PlanAddCom"
+import { v4 as uuid } from "uuid"
+import { useDispatch, useSelector } from "react-redux"
+import { listPose } from "../../modules/pose/pose"
+import plan, { changeField, listPlan, writePlan } from "../../modules/plan/plan"
+import AddPoseModal from "../../component_contet/common/Modal/AddPoseModal"
 
 const PlanAddForm = ({ history }) => {
+  //poseList를 써서 add 부분에 운동 리스트 뜨게 햇음
   const { poseList } = useSelector(({ pose }) => ({
     poseList: pose.poseList,
-  }));
-  const dispatch = useDispatch();
-  const example = {
-    id: uuid(),
-    PoseName: "스쿼트",
-    PoseCount: 12,
-  };
-  //itemsFromBackend가 늘어나면 운동 추가화면에서 우측 운동이 늘어남
-  //PoseCount는 Input 안에 defaultvalue로 넣어놨음
-  const [itemsFromBackend, setItems] = useState([]);
+  }))
+
+  const { writeList } = useSelector(({ plan }) => ({
+    writeList: plan.write.list,
+  }))
+
+  const dispatch = useDispatch()
+
+  const [modal, setModal] = useState(false)
+  const [PoseName, setPoseName] = useState("")
+  let [PoseCount, setPoseCount] = useState(0)
+
+  const [itemsFromBackend, setItems] = useState([])
+
   const columnsFromBackend = {
-    [uuid()]: {
+    ["AddPose"]: {
       items: itemsFromBackend,
     },
-  };
-  //[example, { id: uuid(), PoseName: "런지", PoseCount: 12 }]
-  //이거는 위쪽 itemsFromBackend를 나열하는 곳
-  //원래 세로줄이 여러개면 여기서 2~3개 더 만들어서 이동시킬수 있는데 우린 하나만 사용해서 하나만있음
+  }
 
-  const onClick = (setName) => {
-    history.push(`/Set/${setName}`);
-  };
+  const [columns, setColumns] = useState(columnsFromBackend)
 
-  const onChange = (e) => {
-    const { Count, name } = e.target;
-    console.log(Count);
-    console.log(itemsFromBackend);
-  };
+  const onComplete = (e) => {
+    dispatch(changeField({ key: "list", value: columns }))
+    history.push("/Plan/Write")
+  }
 
   //이거는 add 페이지에서 운동을 눌렀을때 우측에 추가
-  const onAddPose = (e) => {
-    setItems((itemsFromBackend) => [
-      ...itemsFromBackend,
-      { id: uuid(), PoseName: "런지", PoseCount: 0 },
-    ]);
-    setColumns(columnsFromBackend);
-  };
+  const onClick = (pose) => {
+    setModal(!modal)
+    setPoseName(pose)
+  }
 
-  const [columns, setColumns] = useState(columnsFromBackend);
+  const onAddPose = (name, count) => {
+    setItems([...itemsFromBackend, { id: uuid(), PoseName: name, PoseCount: count }])
+    setColumns(columnsFromBackend)
+    dispatch(changeField({ key: "list", value: itemsFromBackend }))
+    setPoseCount(0)
+    setModal(!modal)
+  }
 
-  const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
+  const onIncrease = () => {
+    PoseCount++
+    setPoseCount(PoseCount)
+  }
+  const onDecrease = () => {
+    if (PoseCount > 0) {
+      PoseCount--
+      setPoseCount(PoseCount)
+    }
+  }
+
+  const onChange = (e, id, name) => {
+    dispatch(changeField({ key: "list", value: itemsFromBackend }))
+  }
+
+  const onDragEnd = async (result, columns, setColumns) => {
+    if (!result.destination) return
+    const { source, destination } = result
 
     if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
-      destItems.splice(destination.index, 0, removed);
+      const sourceColumn = columns[source.droppableId]
+      const destColumn = columns[destination.droppableId]
+      const sourceItems = [...sourceColumn.items]
+      const destItems = [...destColumn.items]
+      const [removed] = sourceItems.splice(source.index, 1)
+      destItems.splice(destination.index, 0, removed)
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -69,39 +88,61 @@ const PlanAddForm = ({ history }) => {
           ...destColumn,
           items: destItems,
         },
-      });
+      })
+
+      dispatch(changeField({ key: "list", value: columns }))
     } else {
-      const column = columns[source.droppableId];
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removed);
+      const column = columns[source.droppableId]
+      const copiedItems = [...column.items]
+      const [removed] = copiedItems.splice(source.index, 1)
+      copiedItems.splice(destination.index, 0, removed)
       setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
           items: copiedItems,
         },
-      });
-    }
-  };
+      })
 
+      dispatch(changeField({ key: "list", value: columns }))
+    }
+  }
   // 운동 불러오기
   useEffect(() => {
-    dispatch(listPose());
-  }, [dispatch]);
+    dispatch(listPose())
+  }, [dispatch])
+
+  useEffect(() => {
+    setColumns(columnsFromBackend)
+  }, [itemsFromBackend])
+
+  useEffect(() => {
+    dispatch(writePlan())
+  }, [dispatch])
 
   return (
     <>
       <PlanAddCom
-        onAddPose={onAddPose}
+        writeList={writeList}
+        onClick={onClick}
         columns={columns}
         onDragEnd={onDragEnd}
+        onComplete={onComplete}
         setColumns={setColumns}
         onChange={onChange}
         poseList={poseList}
       />
+      <AddPoseModal
+        visible={modal}
+        PoseCount={PoseCount}
+        onAddPose={onAddPose}
+        onCancel={setModal}
+        PoseName={PoseName}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+      />
     </>
-  );
-};
+  )
+}
 
-export default withRouter(PlanAddForm);
+export default withRouter(PlanAddForm)

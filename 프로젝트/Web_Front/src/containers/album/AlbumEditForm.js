@@ -1,34 +1,34 @@
-import React, { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min"
-import Resizer from "react-image-file-resizer"
+import React, { useEffect, useState } from "react"
 
-import AlbumWrite from "../../component_contet/component/album/AlbumWrite"
-import { changeField, writeAlbum } from "../../modules/album/albumWrite"
+import AlbumList from "../../component_contet/component/album/AlbumList"
+import { useSelector, useDispatch } from "react-redux"
+import {
+  changeField,
+  getAlbumPicture,
+  initialize,
+  readAlbum,
+  writeComment,
+} from "../../modules/album/albumList"
+import AlbumEditCom from "../../component_contet/component/album/AlbumEditCom"
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min"
 import { RenderImg } from "../common/RenderImg"
+import Resizer from "react-image-file-resizer"
 
 const AllowType = ["png", "jpg", "jpeg"]
 
-const AlbumWriteForm = ({ match, history }) => {
-  const dispatch = useDispatch()
+const AlbumEditForm = ({ match, history }) => {
+  //엘범 편집의 경우 쓰기의 폼에서 파일을 추가 삭제할수 있는 기능만 더할 생각
   const { field, user } = useSelector(({ albumWrite, user }) => ({
     field: albumWrite.field,
     user: user.user,
   }))
-  const [thumnail, setThumnail] = useState()
 
-  const onClick = () => {
-    const formData = new FormData()
+  const dispatch = useDispatch()
 
-    formData.append("Account_AC_NickName", user)
-    formData.append("AL_Content", field.content)
-    formData.append("AL_Scope", field.scope)
-    for (var i = 0; i < field.photo.length; i++) formData.append("files", field.photo[i])
-    formData.append("files", thumnail)
+  const [profileIMG, setProfileIMG] = useState()
 
-    dispatch(writeAlbum(formData))
-    history.push(`/Album/${match.params.name}`)
-  }
+  //X눌렀을때 파일 삭제
+  const onDelete = () => {}
 
   const onChange = (e) => {
     // 파일의 경우 분기
@@ -64,7 +64,7 @@ const AlbumWriteForm = ({ match, history }) => {
             70,
             0,
             (uri) => {
-              setThumnail(uri)
+              setProfileIMG(uri)
             },
             "blob"
           )
@@ -77,9 +77,9 @@ const AlbumWriteForm = ({ match, history }) => {
 
   return (
     <>
-      <AlbumWrite match={match} onChange={onChange} onClick={onClick} field={field} />
+      <AlbumEditCom match={match} field={field} onChange={onChange} />
     </>
   )
 }
 
-export default withRouter(AlbumWriteForm)
+export default withRouter(AlbumEditForm)

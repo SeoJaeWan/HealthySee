@@ -1,34 +1,39 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min"
 
-import PlanInfoCom from "../../component_contet/component/plan/PlanInfoCom";
-import { initialize, readPlan } from "../../modules/plan/plan";
-import { changeField } from "../../modules/training/training";
+import PlanInfoCom from "../../component_contet/component/plan/PlanInfoCom"
+import { initialize, readPlan } from "../../modules/plan/plan"
+import { changeField } from "../../modules/training/training"
 
-const SetInfoForm = ({ history, match }) => {
+const PlanInfoForm = ({ history, match }) => {
   const { planDetail } = useSelector(({ plan }) => ({
     planDetail: plan.planDetail,
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
+
+  const onEdit = (code, purpose) => {
+    history.push(`/Plan/${code}/${purpose}`)
+    console.log(match)
+  }
 
   const onClick = () => {
-    dispatch(changeField({ key: "routin", value: planDetail.PL_Routin }));
-    dispatch(changeField({ key: "restTime", value: planDetail.PL_RestTIme }));
-    history.push(`/Training/${planDetail.PL_Title}`);
-  };
-  const planCode = match.params.PlanName;
+    dispatch(changeField({ key: "routin", value: planDetail.PL_Routin }))
+    dispatch(changeField({ key: "restTime", value: planDetail.PL_RestTIme }))
+    history.push(`/Training/${planDetail.PL_Title}`)
+  }
+  const planCode = match.params.PlanName
 
   useEffect(() => {
-    dispatch(readPlan(planCode));
+    dispatch(readPlan(planCode))
 
-    return () => dispatch(initialize());
-  }, [dispatch]);
+    return () => dispatch(initialize())
+  }, [dispatch])
 
   return (
     <>
       {planDetail ? (
-        <PlanInfoCom onClick={onClick} planDetail={planDetail} />
+        <PlanInfoCom onClick={onClick} onEdit={onEdit} planDetail={planDetail} match={match} />
       ) : (
         /*댓글 코멘트는 포즈에 있는 커맨트를 그대로 이용할 생각
       <CommentCom />
@@ -43,7 +48,7 @@ const SetInfoForm = ({ history, match }) => {
         <div>Loading</div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default withRouter(SetInfoForm);
+export default withRouter(PlanInfoForm)
