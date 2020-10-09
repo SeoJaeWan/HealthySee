@@ -1,44 +1,36 @@
-import produce from "immer";
-import { createAction, handleActions } from "redux-actions";
-import { takeLatest } from "redux-saga/effects";
+import produce from "immer"
+import { createAction, handleActions } from "redux-actions"
+import { takeLatest } from "redux-saga/effects"
 
-import createRequestSaga, {
-  createRequestActionTypes,
-} from "../../lib/createRequestSaga";
-import * as trainingAPI from "../../lib/api/training";
+import createRequestSaga, { createRequestActionTypes } from "../../lib/createRequestSaga"
+import * as trainingAPI from "../../lib/api/training"
 
-const CHANGE_FIELD = "training/CHANGE_FILED";
+const CHANGE_FIELD = "training/CHANGE_FILED"
 // const CLEAR_LOGDATA = "training/CLEAR_LOGDATA";
 
 const [
   LOGGING_EXERCISE,
   LOGGING_EXERCISE_SUCCESS,
   LOGGING_EXERCISE_FAILURE,
-] = createRequestActionTypes("training/LOGGING_EXERCISE");
-const INCREASE_FIELD = "training/INCREASE_FIELD";
+] = createRequestActionTypes("training/LOGGING_EXERCISE")
+const INCREASE_FIELD = "training/INCREASE_FIELD"
 
 // export const clearLogData = createAction(CLEAR_LOGDATA);
-export const changeField = createAction(
-  CHANGE_FIELD,
-  ({ key, value = null }) => ({
-    key,
-    value,
-  })
-);
+export const changeField = createAction(CHANGE_FIELD, ({ key, value = null }) => ({
+  key,
+  value,
+}))
 
-export const loggingExercise = createAction(LOGGING_EXERCISE);
+export const loggingExercise = createAction(LOGGING_EXERCISE)
 export const increaseField = createAction(INCREASE_FIELD, ({ key, value }) => ({
   key,
   value,
-}));
+}))
 
-const loggingExerciseSaga = createRequestSaga(
-  LOGGING_EXERCISE,
-  trainingAPI.logExercise
-);
+const loggingExerciseSaga = createRequestSaga(LOGGING_EXERCISE, trainingAPI.logExercise)
 
 export function* trainingSaga() {
-  yield takeLatest(LOGGING_EXERCISE, loggingExerciseSaga);
+  yield takeLatest(LOGGING_EXERCISE, loggingExerciseSaga)
 }
 
 const logData = {
@@ -46,7 +38,7 @@ const logData = {
   success_count: [],
   fault_count: 0,
   ref: 0,
-};
+}
 
 const initialState = {
   planCode: 4, // 계획 코드
@@ -62,13 +54,13 @@ const initialState = {
   exerciseFinish: false,
 
   type: null,
-};
+}
 
 const training = handleActions(
   {
     [CHANGE_FIELD]: (state, { payload: { key, value } }) =>
       produce(state, (draft) => {
-        draft[key] = value;
+        draft[key] = value
       }),
     // [CLEAR_LOGDATA]: (state) => ({
     //   ...state,
@@ -76,8 +68,7 @@ const training = handleActions(
     //   logging: false,
     // }),
     [INCREASE_FIELD]: (state, { payload: { key, value } }) => {
-      let train = "logData";
-      console.log(key);
+      let train = "logData"
 
       if (state.type === "app") {
         let currentResult = {
@@ -86,21 +77,21 @@ const training = handleActions(
             ...state.logData,
             pose: state.routin[state.poseCount],
           },
-        };
+        }
 
-        console.log(currentResult);
+        console.log(currentResult)
 
-        sessionStorage.setItem("result", JSON.stringify(currentResult));
+        sessionStorage.setItem("result", JSON.stringify(currentResult))
       }
 
       if (value) {
         return produce(state, (draft) => {
-          draft[train][key] = state[train][key].concat(value);
-        });
+          draft[train][key] = state[train][key].concat(value)
+        })
       } else
         return produce(state, (draft) => {
-          draft[train][key] = state[train][key] + 1;
-        });
+          draft[train][key] = state[train][key] + 1
+        })
     },
 
     [LOGGING_EXERCISE_SUCCESS]: (state, { payload: log }) => {
@@ -108,7 +99,7 @@ const training = handleActions(
         ...state,
         logging: true,
         logData,
-      };
+      }
 
       if (state.type === "app") {
         let currentResult = {
@@ -117,9 +108,9 @@ const training = handleActions(
             ...state.logData,
             pose: state.routin[state.poseCount],
           },
-        };
+        }
 
-        sessionStorage.setItem("result", JSON.stringify(currentResult));
+        sessionStorage.setItem("result", JSON.stringify(currentResult))
       }
 
       // 운동 종료
@@ -127,14 +118,14 @@ const training = handleActions(
         return {
           ...state,
           exerciseFinish: true,
-        };
+        }
       } else {
         // 루틴 종료
         if (state.routin.length < state.poseCount + 2)
           return {
             ...result,
             set: state.set - 1,
-          };
+          }
         // 다음 운동으로
         else
           return {
@@ -145,11 +136,11 @@ const training = handleActions(
             },
 
             poseCount: state.poseCount + 2,
-          };
+          }
       }
     },
   },
   initialState
-);
+)
 
-export default training;
+export default training
